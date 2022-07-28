@@ -1,0 +1,464 @@
+@charset "utf-8";
+
+/* Body Elements
+==============================================================================*/
+	
+	body {
+		color:#222;
+		}
+		
+		
+/* Layout Elements
+==============================================================================*/
+	
+	#container {
+		background-image:url(../r/g/cartfusion_page_bg.gif);
+		background-repeat:repeat-y;		
+		}
+
+
+/* Header
+==============================================================================*/
+
+	#header	{
+		
+	}
+
+	#logo	{
+		/*border: 1px #ccc solid;*/
+	}
+	
+	#headerlinks	{
+		/*border: 1px #ccc solid;*/
+		color:#728D26;
+		background: #edfdce url(../images/style/box_bottom.gif) no-repeat bottom right;
+	}
+
+
+
+/* PrimaryNav
+==============================================================================*/
+	
+	/*#primaryNav {
+		background-color:#444041;
+		border-top:1px solid #333;
+		color:#fff;
+	}
+	
+	#primaryNav li a:hover {
+		background-color:#eed;
+		}
+
+	#primaryNav li {
+		border-right:1px solid #999;
+		}
+
+	#primaryNav li a {
+		color:#fff;
+		}
+
+	#primaryNav li a:hover, #primaryNav .currentSection {
+		background-color:#eed;
+		color:#556;
+	}*/
+
+
+
+/* BreadCrumbs
+==============================================================================*/
+
+	#breadCrumb {
+		color: #777;
+		/*background-color: #f1f1f1;*/
+		border-top:1px #ccc dashed;
+		border-bottom:1px #ccc dashed;
+		}
+
+/* Orange/Gold ff6600 */
+
+/* Page
+==============================================================================*/
+
+/* Layout A - With Sidebar navigation on left */
+	#pageContent-A, #pageContent-B {
+		/*border: 1px #ccc solid;*/
+		color:#777;
+		}
+		
+	#pageContent-A h3, #pageContent-B h3	{
+		color:#4DA0CA;
+	}
+
+/* CategoryNav
+==============================================================================*/
+	
+/* Layout A - With Sidebar navigation on left */	
+	#categoryNavContainer-A, #categoryNavContainer-B {
+		background-color:#edfdce;
+		/*background-color:#fff;*/
+	}
+
+	#categoryNavContent h1, #categoryNavContent h1 a	{
+		color: #728D26;
+	}
+
+	#categoryNavContent ul.categories	{
+		background: url(../images/style/dots.jpg) repeat-x left top;
+	}
+
+	#categoryNavContent ul.categories li	{
+		color: #68774A;
+		background: url(../images/style/dots.jpg) repeat-x left bottom;
+	}
+
+	#categoryNavContent ul.categories li a {
+		text-decoration: none;	
+		background-image: none;	
+		color: #777;			
+	}
+	
+	#categoryNavContent h1 a:hover, #categoryNavContent ul.categories li a:hover {	
+		color: #1773BC;
+	}
+
+	#categoryNavContainer-A .first, #categoryNavContainer-B .first {
+		/*background:url(../images/style/cat_header_bg.gif) repeat-x;*/
+		background: #678b3f url(../images/style/box_top.gif) no-repeat top left;
+		/*background: #edfdce url(../images/style/box_top.gif) no-repeat top left;*/
+	}
+	
+	#categoryNavContainer-A .last, #categoryNavContainer-B .last {
+		background: #678b3f url(../images/style/box_bottom.gif) no-repeat bottom left;
+		/*background: #edfdce url(../images/style/box_bottom.gif) no-repeat bottom left;*/
+	}
+
+/* Page Sections
+==============================================================================*/
+
+	div.featuredItem{
+		background-image:url(../images/image-FeaturedProductBG-2.jpg);
+		background-repeat:no-repeat;
+	}
+
+	#column-A	{
+		/*border-right:1px solid #000;*/
+	}
+	
+	.myaccount	{
+		background-color:#fafafa;
+		border:1px #ddd dashed;
+	}
+	
+	th	{
+		background-color:#5ab9e9;
+		color:#fff;
+	}
+	
+	
+
+/* Page Sections (Category & Page Display)
+==============================================================================*/
+	
+	#categoryList	{
+	
+	}
+	
+	#productDisplay	{
+	
+	}
+	
+
+	#showProductImage-A, #showProductImage-B	{
+		/*border: 1px #ddd solid;*/
+	}
+
+	#productShowOptions-A, #productShowOptions-B	{
+		border: 1px #eee solid;
+	}
+
+	#productExtras	{
+		/*border:1px #ddd solid;*/
+	}
+
+	#productExtrasContent	{
+		border: 1px #8cb85c solid;
+	}
+
+
+/* Page Section Links
+==============================================================================*/
+
+	#pageContainer a, #copyright a	{
+		color: #1773BC;
+	}
+	
+	#pageContainer a:hover, #copyright a:hover	{
+		color: #93BC0C;
+	}
+
+
+/* Page Sections (Cart)
+==============================================================================*/
+	
+	/*#cartTable	{
+		border-collapse:collapse;
+		border:1px #f1f1f1 solid;
+	}
+
+	#cartTable tr.row0	{
+		background-color:#fff;
+		border-bottom: 1px #eee solid;
+	}
+	
+	#cartTable tr.row1	{
+		border-bottom: 1px #eee solid;
+	}
+	
+	#cartTable tr.row0 td, #cartTable tr.row1 td	{
+		border-left: 1px solid #eee;
+	}
+	
+	#cartTable tr.subTotal	{
+		background-color:#f1f1f1;
+		color:#777;
+	}
+	
+	#cartTable tr.grandTotal	{
+		background-color:#5ab9e9;
+		color:#fff;
+	}*/
+	
+	.cartLayoutTable	{
+		border-collapse:collapse;
+		border:1px #f1f1f1 solid;
+	}
+
+	tr.row0	{
+		background-color:#fff;
+		border-bottom: 1px #eee solid;
+	}
+	
+	tr.row1	{
+		border-bottom: 1px #eee solid;
+	}
+	
+	tr.row0 td, tr.row1 td	{
+		border-left: 1px solid #eee;
+	}
+	
+	tr.subTotal	{
+		background-color:#f1f1f1;
+		color:#777;
+	}
+	
+	tr.grandTotal	{
+		background-color:#5ab9e9;
+		color:#fff;
+	}
+	
+
+/* Pagination
+==============================================================================*/
+
+	#pagination {
+		background: #f2f2f2;
+		color:#666;
+		}
+	#pagination p a:link, #pagination p a:visited, #pagination p a:hover, #pagination p a:active {
+		text-decoration:none;
+		background:#fff;
+		border: 1px solid #ccc;
+		}
+	#pagination p a:hover {
+		background:#c00;
+		color:#fff;
+		}
+	#pagination p span {
+		text-decoration:none;
+		border: 1px solid #ccc;
+		background:#fff;
+		color:#ccc;		
+		}
+
+
+/* Footer & Copyright
+==============================================================================*/
+
+	#footer	{
+		background-repeat: no-repeat;
+		background-image: url(../r/g/cartfusion_page_footer.gif);
+		}
+
+	#copyright	{
+		
+	}
+
+	#copyright li a	{
+		border-right:1px #ccc solid;
+	}
+
+
+/* Misc
+==============================================================================*/
+
+	.snip	{
+		border: 1px dashed #eee;
+	}
+
+	.cfErrorMsg	{
+		background-color:#ffeaef;
+		border: 1px solid #c00;
+	}
+
+/* Form
+==============================================================================*/
+
+/* FORMS - general classes */
+	input.f-submit {
+		background:#666;
+		color:#fff;
+	}
+	
+/* FORMS - f-wrap-1 - simple form, headings on left, form elements on right */
+	.f-wrap-1 {
+		background: #f6f6f6 url("images/featurebox_bg.gif") no-repeat 100% 100%;
+		border-top: 1px solid #d7d7d7;
+	}
+		
+		.f-wrap-1 h3 {
+			color:#c00;
+		}
+		
+		.f-wrap-1 label {
+			border-top: 1px solid #fff;
+		}
+		
+		.f-wrap-1 label b .req {
+			color:#c00;
+		}
+		
+		.f-wrap-1 div.req {
+			color:#777;
+		}
+		
+		.f-wrap-1 div.req b {
+			color:#c00;
+		}
+		
+		/*form.f-wrap-1 label span.errormsg {
+			background: transparent url(../images/style/errormsg_bg.gif) no-repeat 0 0;
+		}*/
+		
+		.f-wrap-1 label span.errormsg b {
+			color:#B30800;
+		}
+
+/* End Forms */
+
+	#pageContainer form.form  {
+		border: 1px solid #f2f2f2; 
+		background-color: #FAFAFA; 
+	}
+	
+	#pageContainer input, #pageContainer select {
+		border:1px solid #eee;
+		color:#777;
+	}
+	
+	#pageContainer input.no-border {
+		border:0;
+	}
+	
+	#pageContainer textarea {
+		border:1px solid #eee;
+		color:#777;
+	}
+	
+	#pageContainer input.button { 
+		color: #FFF;
+		background: #8EB50C url(button-bg.jpg) repeat-x 0 0;
+		border: none;
+	}
+
+	.button { 
+		color: #FFF;
+		background: #8EB50C url(button-bg.jpg) repeat-x 0 0;
+		border: none;
+		font-weight:bold;
+	}
+
+
+/* ColorTabs For PrimaryNav & Product Extra Tabs
+==============================================================================*/
+
+	#primaryNavTabs, #productExtrasHeaders	{
+		background: transparent;
+	}
+
+
+/* PrimaryNav Tabs */
+
+	#primaryNavTabs a	{
+		color: white;
+		/*background: #678b3f url(../images/style/color_tabs_left.gif) no-repeat left top;*/
+		background: #aa9 url(../images/style/color_tabs_left.gif) no-repeat left top;
+	}
+	
+	#primaryNavTabs a span	{
+		background: transparent url(../images/style/color_tabs_right.gif) no-repeat right top;
+	}
+	
+	#primaryNavTabs a:hover	{
+		background-color:#79bad7;
+		/*background-color:#025ab4;*/
+		/*background-color: #8cb85c;*/
+	}
+	
+	#primaryNavTabs a:hover span	{
+		background-color:#79bad7;
+		/*background-color:#025ab4
+		background-color: #8cb85c;*/
+	}
+	
+	#primaryNavTabs #pnt-current a, #primaryNavTabs #pnt-current span	{ /*currently selected tab*/
+		background-color:#025ab4
+		/*background-color: #8cb85c;*/
+	}
+	
+	#primaryNavTabsline	{
+		background-color:#025ab4; /* CartFusion Blue */
+		/*background:#8cb85c;*/
+		/*border-top: 1px solid #fff;*/ /*Remove this to remove border between bar and tabs*/
+		color:#fff;
+	}
+
+
+
+/* Product Extras Headers */	
+
+	#productExtrasHeaders a	{
+		color: white;
+		background: #678b3f url(../images/style/color_tabs_left.gif) no-repeat left top;
+	}
+	
+	#productExtrasHeaders a span	{
+		background: transparent url(../images/style/color_tabs_right.gif) no-repeat right top;
+	}
+	
+	#productExtrasHeaders a:hover	{
+		background-color: #8cb85c;
+		color:#fff;
+	}
+	
+	#productExtrasHeaders a:hover span	{
+		background-color: #8cb85c;
+	}
+	
+	#productExtrasHeaders #current a, #productExtrasHeaders #current span	{ /*currently selected tab*/
+		background-color: #8cb85c;
+	}
+	
+	#productExtrasHeadersline	{
+		background: #678b3f;
+		border-top: 1px solid #fff; /*Remove this to remove border between bar and tabs*/
+	}

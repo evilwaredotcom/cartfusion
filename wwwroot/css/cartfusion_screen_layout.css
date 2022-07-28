@@ -1,0 +1,205 @@
+@charset "utf-8";
+
+/* Body Elements
+==============================================================================*/
+	body {
+		margin:0;
+		padding:0;
+		text-align:center;
+		}
+		
+		
+/* Layout Elements
+==============================================================================*/
+	#container	{
+		width: 1020px;
+		margin:0 auto;
+		padding:0;
+		text-align:left;
+		}
+
+
+/* Header
+==============================================================================*/
+
+	#header	{
+		padding:0;
+		margin:0;		
+	}
+
+	#logo	{
+		float:left;
+		width:350px;
+		padding:0;
+		margin:0;
+	}
+	
+	#headerlinks	{
+		float:right;
+		/*width:600px;*/
+		width:175px;
+		height:25px;
+		/*padding: 3px 10px;
+		margin: 3px 10px;*/
+	}	
+
+	
+/* PrimaryNav
+==============================================================================*/
+
+	#horizontalNav	{
+		margin:15px 0;
+		padding:0;
+	}
+
+	#primaryNav	{
+		margin:0 1px;
+		padding:0;
+	}
+
+
+/* Page
+==============================================================================*/
+
+/* Placeholder For Page and contents */
+	#pageContainer	{ 
+		padding: 0;
+		margin: 0;	
+	}
+
+	#pageContent-A, #pageContent-B	{
+		width:750px;
+		padding:0;
+		margin:0;
+	}
+
+
+/* Layout A - With Sidebar navigation on left */
+	#pageContent-A {
+		float:right;
+	}
+		
+/* Layout B - With Sidebar navigation on right */
+	#pageContent-B {
+		float:left;
+	}
+
+	#pageContent-Full	{
+		width:950;
+		padding:0;
+		margin:0;
+	}
+	
+	#pageContent-3Col	{
+		width:550px;
+		padding:0;
+		margin:0;
+	}
+
+/* CategoryNav
+==============================================================================*/
+
+	#categoryNavContainer-A, #categoryNavContainer-B	{
+		width:200px;
+		padding:0;
+		margin:0;
+	}
+
+/* Layout A - With Sidebar navigation on left */	
+	#categoryNavContainer-A {
+		float:left;
+		}
+
+/* Layout B - With Sidebar navigation on right */
+	#categoryNavContainer-B {
+		float:right;
+		}
+
+	#categoryNavContent	{
+		padding:0;
+		margin:0;
+	}
+
+
+
+/* Page Sections
+==============================================================================*/
+
+	
+	#categoryList	{
+	
+	}
+	
+	#productDisplay	{
+	
+	}
+
+	#productContent	{
+		padding:3px;
+		margin:5px;
+		display:inline;
+	}
+
+/* Shows Product Image */
+	#showProductImage-A, #showProductImage-B	{
+		width:400px;
+		padding:0;
+		margin:0;
+	}
+
+	#showProductImage-A	{
+		float:left;
+	}
+
+	#showProductImage-B	{
+		float:right;
+	}
+
+/* Shows Product Options */
+	#productShowOptions-A, #productShowOptions-B	{
+		width:290px;
+		padding:0;
+		margin:0;
+	}
+
+	#productShowOptions-A	{
+		float:right;
+	}
+
+
+	#productShowOptions-B	{
+		float:left;
+	}
+
+
+	#productExtras	{
+		padding:0;
+		margin:0;
+	}
+
+	#column-A	{
+		float:left;
+		padding:0;
+		margin:0;
+	}
+	
+	#column-B	{
+		float:right;
+		padding:0;
+		margin:0;
+	}
+
+/* Footer & Copyright
+==============================================================================*/
+
+	#footer	{
+		margin: 0px auto; /* centers the page */
+		width: 1020px;
+	}
+	
+	#copyright	{
+		margin: 0px auto; /* centers the page */
+		width: 1020px;
+	}
+
+
