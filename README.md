@@ -3,7 +3,9 @@ ColdFusion Ecommerce + Shopping Cart on SQL: MSSQL Server 2005 (, MySQL, Postgre
 
 ## Installation
 
->> SEE NEW INSTRUCTIONS IN PDF FILE "CartFusion-4.8.1-Installation-Instructions.pdf"
+>> SEE NEW INSTRUCTIONS IN ROOT FILE:
+>> PDF: "CartFusion-4.8.1-Installation-Instructions.pdf"
+>> DOC: "CartFusion-4.8.1-Installation-Instructions.doc"
 
 =====================================================
 ## (older) 4.8.0
