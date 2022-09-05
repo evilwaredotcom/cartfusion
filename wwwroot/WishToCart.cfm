@@ -1,8 +1,13 @@
+<!--- 
+|| MIT LICENSE
+|| CartFusion.com
+--->
+
 <!--- Get all products from Wishlist to add to cart --->
 <cfif session.CustomerArray[17] NEQ '' >
 	
 	<cfscript>
-		getWishList = application.Common.getCustomerWishList(CustomerID=session.CustomerArray[17],SiteID=application.siteConfig.data.SiteID);
+		getWishList = application.Common.getCustomerWishList(CustomerID=session.CustomerArray[17],SiteID=application.SiteID);
 	</cfscript>
 	
 	<!--- BEGIN: SAVE WISHLIST INTO CART --->
@@ -12,7 +17,7 @@
 		<!--- LOOKUP PRODUCT IN CART --->
 		<cfinvoke component="#application.Common#" method="getCart" returnvariable="getCart">
 			<cfinvokeargument name="SessionID" value="#Variables.SessionID#">
-			<cfinvokeargument name="SiteID" value="#application.siteConfig.data.SiteID#">
+			<cfinvokeargument name="SiteID" value="#application.SiteID#">
 			<cfinvokeargument name="ItemID" value="#ItemID#">
 			<cfif isDefined("OptionName1") AND OptionName1 NEQ ''>
 				<cfinvokeargument name="OptionName1" value="#OptionName1#">
@@ -32,7 +37,7 @@
 			<cfinvoke component="#application.Common#" method="insertCart">
 				<cfinvokeargument name="SessionID" value="#Variables.SessionID#">
 				<cfinvokeargument name="CustomerID" value="#session.CustomerArray[17]#">
-				<cfinvokeargument name="SiteID" value="#application.siteConfig.data.SiteID#">
+				<cfinvokeargument name="SiteID" value="#application.SiteID#">
 				<cfinvokeargument name="ItemID" value="#ItemID#">
 				<cfinvokeargument name="Quantity" value="#Qty#">
 				<cfif isDefined("OptionName1") AND OptionName1 NEQ ''>
@@ -57,7 +62,7 @@
 				<cfscript>
 					updateCart = application.Common.updateCart(
 						SessionID=Variables.SessionID,
-						SiteID=application.siteConfig.data.SiteID,
+						SiteID=application.SiteID,
 						ItemID=getWishlist.ItemID,
 						Quantity=getWishlist.Qty,
 						CartItemID=getCart.CartItemID,

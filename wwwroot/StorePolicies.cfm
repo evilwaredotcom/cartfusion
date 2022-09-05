@@ -1,7 +1,7 @@
-<cfmodule template="tags/layout.cfm" CurrentTab="CustomerService" PageTitle="Store Policies">
+<cfmodule template="templates/#application.SiteTemplate#/layout.cfm" currenttab="CustomerService" pagetitle="Store Policies">
 
 <!--- Start Breadcrumb --->
-<cfmodule template="tags/breadCrumbs.cfm" CrumbLevel='1' showLinkCrumb="Store Policies" />
+<cfmodule template="tags/breadCrumbs.cfm" crumblevel='1' showlinkcrumb="Store Policies" />
 <!--- End BreadCrumb --->
 
 <cfoutput>
@@ -13,25 +13,25 @@
 	Please read the following policies before purchasing from this 
 	website.</strong></p>
 	<p><strong>Return Policy</strong>: At 
-	#application.siteConfig.data.DomainName#, we strive for complete customer satisfaction. If 
+	#application.DomainName#, we strive for complete customer satisfaction. If 
 	for any reason you not fully satisfied with your purchase, simply 
 	return the product to us within 7 days of receipt of product for a 
 	full refund of the purchase price, less shipping and handling. </p>
 	<p>In order to facilitate the return process, please contact us by e-mail 
-	at <a href="mailto:#application.siteConfig.data.EmailSales#">#application.siteConfig.data.EmailSales#</a>. 
+	at <a href="mailto:#application.EmailSales#">#application.EmailSales#</a>. 
 	Please make sure to include your name, invoice number, and the reason 
 	for the return.</p>
 	<p>Important: Our customer service department will respond to 
 	your email and send you a confirmation message and instructions 
 	for your return shipment. If you do not receive a response within 
 	48 hours of request, or if you have any questions regarding 
-	a return, please call #application.siteConfig.data.StoreName# at #application.siteConfig.data.CompanyPhone#.</p>
+	a return, please call #application.StoreName# at #application.CompanyPhone#.</p>
 	
 	<p>Terms and Conditions of Product Returns:</p>
 		
 	<ul>
 		<li> Items must not be damaged in any way</li>
-		<li> Refund is credited when all items are received by #application.siteConfig.data.StoreName#</li>
+		<li> Refund is credited when all items are received by #application.StoreName#</li>
 		<li> Refund is amount is less shipping and handling charges</li>
 		<li>Any returned items may be subject to a 15% restocking fee</li>
 	</ul>
@@ -45,7 +45,7 @@
 	
 	<p><strong>Secure Online Purchasing</strong></p>
 	
-	<p>Ordering online with #application.siteConfig.data.DomainName# is safe and secure!</p>
+	<p>Ordering online with #application.DomainName# is safe and secure!</p>
 	
 	<p>We employ a method of interaction with our visitors that does not 
 	compromise credit card information. This online system is 100% secure.</p>
@@ -83,14 +83,13 @@
 	in our facility.</p>
 </div>
 
-<br />
 <div align="center">
+	<br/>
 	<hr class="snip" />
-	<br />
-	<a href="javascript:history.back()"><img src="images/button-back.gif"></a>
-	<a href="index.cfm"><img src="images/button-home.gif"></a>
+	<br/>
+	<input type="button" name="GoBack" value="&lt; BACK" class="button2" onclick="javascript:history.back();"> 
+	<input type="button" name="GoHome" value="HOME &gt;" class="button2" onclick="javascript:document.location.href='index.cfm';">
 </div>
-
 
 </cfoutput>
 

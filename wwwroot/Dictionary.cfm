@@ -1,5 +1,8 @@
+
+
+
 <cfoutput>
-<cfmodule template="tags/layout.cfm" CurrentTab="Home" PageTitle="Dictionary">
+<cfmodule template="templates/#application.SiteTemplate#/layout.cfm" CurrentTab="Home" PageTitle="Dictionary">
 
 <!--- Start Breadcrumb --->
 <cfmodule template="tags/breadCrumbs.cfm" CrumbLevel='1' showLinkCrumb="Dictionary" />
@@ -42,8 +45,8 @@
 		</cfif>
 		ORDER BY Term
 	</cfquery>
-	<br />
-	<br />
+	<br/>
+	<br/>
 	<cfif getTerm.RecordCount>
 	
 	<table class="cartLayoutTable">

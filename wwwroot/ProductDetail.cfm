@@ -8,8 +8,8 @@
 	LocateToURL = 0;
 	OptionNeeded = 0;
 	
-	/*         ADD TO CART	      */
-	if ( isDefined('Form.AddToCart.x') OR isDefined('Form.AddToWishlist.x') )
+	/*		 ADD TO CART		  */
+	if ( isDefined('Form.AddToCart') OR isDefined('Form.AddToWishlist') )
 	{	
 		if ( NOT isDefined('Form.OptionName1') AND NOT isDefined('Form.OptionName2') AND NOT isDefined('Form.OptionName3') ) 
 			LocateToURL = 1;
@@ -38,8 +38,8 @@
 		}
 	}
 				
-	/*         ADD TO WISHLIST	      */ 
-	if ( isDefined('Form.AddToWishlist.x') ) 
+	/*		 ADD TO WISHLIST		  */ 
+	if ( isDefined('Form.AddToWishlist') ) 
 	{
 		if ( OptionNeeded EQ 1 )
 		{
@@ -121,11 +121,10 @@
 </cfscript>
 
 <cfoutput>
-
-<cfmodule template="tags/layout.cfm" CurrentTab="Products" PageTitle="#PageTitle#">
+<cfmodule template="templates/#application.SiteTemplate#/layout.cfm" currenttab="Products" pagetitle="#PageTitle#">
 
 	<!--- Start Breadcrumb --->
-		<cfmodule template="tags/breadCrumbs.cfm" CrumbLevel='2' />
+		<cfmodule template="tags/breadCrumbs.cfm" crumblevel='2' />
 	<!--- End BreadCrumb --->
 
 	<cfif getCategory.CatBanner NEQ '' AND getCategory.CatImageDir NEQ ''>
@@ -140,16 +139,13 @@
 	<!--- End Product Display --->
 
 
-
 	<div align="center">
-		<br />
-		<br />
+		<br/>
 		<hr class="snip" />
-		<br />
-		<a href="javascript:history.back()"><img src="images/button-back.gif"></a> 
-		<a href="index.cfm"><img src="images/button-home.gif"></a>
+		<br/>
+		<input type="button" name="GoBack" value="&lt; BACK" class="button2" onclick="javascript:history.back();"> 
+		<input type="button" name="GoHome" value="HOME &gt;" class="button2" onclick="javascript:document.location.href='index.cfm';">
 	</div>
 
 </cfmodule>
-
 </cfoutput>

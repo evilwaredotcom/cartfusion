@@ -1,9 +1,12 @@
+
+
+
 <!--- What row to start at? Assume first by default --->
 <cfparam name="url.StartRow" default="1" type="numeric">
 <cfparam name="url.SortOption" default="SignID" type="string">
 <cfparam name="url.SortAscending" default="0" type="numeric">
 <cfparam name="form.field" default="ALL" type="string">
-<cfparam name="form.string" default="camera" type="string">
+<cfparam name="form.string" default="" type="string">
 
 <cfscript>
 	string = Trim(string);
@@ -11,27 +14,15 @@
 
 
 <cfif field is "Category">
-	<!--- Convert to cfc --->
-	<cfscript>
-		// Search Categories
-		//searchCategories = application.Queries.getCategories();
-		// Next N values
-		RowsPerPage = 8;
-		TotalRows = getProducts.RecordCount;
-		EndRow = Min(URL.StartRow + RowsPerPage - 1, TotalRows);
-		StartRowNext = EndRow + 1;
-		StartRowBack = URL.StartRow - RowsPerPage;
-	</cfscript>
-	
-	
 	<cfquery name="GetCategories" datasource="#application.dsn#">
 		SELECT 		CatName
 		FROM 		categories
 		WHERE 		categories.CatName like '%#string#%'
 		AND			Hide#session.CustomerArray[28]# != 1
-		AND			SiteID = #application.siteConfig.data.SiteID#
+		AND			SiteID = #application.SiteID#
 		ORDER BY 	CatName
 	</cfquery>
+	
 </cfif>
 
 <!--- Convert to cfc --->
@@ -40,7 +31,7 @@
 	SELECT 	* 
 	FROM 	Products 
 	WHERE	Hide#session.CustomerArray[28]# != 1
-	AND		SiteID = #application.siteConfig.data.SiteID#
+	AND		SiteID = #application.SiteID#
 	AND		(Deleted = 0 OR Deleted IS NULL)
 	AND		Category IN (SELECT CatID FROM Categories WHERE Hide#session.CustomerArray[28]# != 1)
 <cfif field EQ 'All'>
@@ -69,169 +60,117 @@
 	ORDER BY ItemName
 </cfquery>
 
+	<cfscript>
+		// Search Categories
+		//searchCategories = application.Queries.getCategories();
+		// Next N values
+		RowsPerPage = 8;
+		TotalRows = getProducts.RecordCount;
+		EndRow = Min(url.StartRow + RowsPerPage - 1, TotalRows);
+		StartRowNext = EndRow + 1;
+		StartRowBack = url.StartRow - RowsPerPage;
+	</cfscript>
 
 
-<cfmodule template="tags/layout.cfm" CurrentTab="Home" PageTitle="Search Results">
+<cfoutput>
+	<cfmodule template="templates/#application.SiteTemplate#/layout.cfm" currenttab="Home" pagetitle="Search Results">
+	
+	<!--- Start Breadcrumb --->
+	<cfmodule template="tags/breadCrumbs.cfm" crumblevel='1' showlinkcrumb="Search Results" />
+	<!--- End BreadCrumb --->
+	
+		
+		<!--- Display Results --->
+		<div align="center">
+			Your search for <cfif isDefined('string') neq ''><strong>"#string#"</strong></cfif> produced <strong>#getProducts.RecordCount#</strong> results...
+			<hr class="snip" />
+		</div>
+	
+		<!--- <cfinclude template="includes/ProductListDisplay.cfm"> --->
+		<!--- Start Category Container --->
+	
+	<cfif getProducts.RecordCount>
+	
+	<div id="categoryList">
+	
+	<cfloop query="getProducts" startrow="#StartRow#" endrow="#EndRow#">
+	<!--- <cfoutput query="getProducts" startrow="#URL.StartRow#"> --->
+				
+			<!--- CARTFUSION 4.6 - CART CFC --->
+			<cfscript>
+				if ( trim(session.CustomerArray[28]) NEQ '' ) {
+					UserID = session.CustomerArray[28] ;
+				} else {
+					UserID = 1 ;
+				}
+				UseThisPrice = application.Cart.getItemPrice(
+					UserID=UserID,
+					SiteID=application.SiteID,
+					ItemID=ItemID,
+					SessionID=SessionID);
+			</cfscript>
+			
+	
+	
+		<a href="ProductDetail.cfm?ItemID=#ItemID#">
+			<div class="thumbnail">
+				<cfif getProducts.ImageSmall IS ''>
+					<cfif FileExists(#application.ImageServerPath# & '\' & #ImageDir# & '\' & #SKU# & 'sm.jpg')>
+						<img src="images/#ImageDir#/#SKU#sm.jpg" align="middle" alt="#ItemName#" width="75"><br>
+						<!---<img src="images/button-detail.gif" border="0" align="middle">---></a>
+					<cfelse>
+						<img src="images/image-EMPTY.gif" align="middle" alt="#ItemName#"><br>
+						<!---<img src="images/button-detail.gif" border="0" align="middle">---></a>
+					</cfif>
+				<cfelse>
+					<cfif FileExists(#application.ImageServerPath# & '\' & #ImageDir# & '\' & #ImageSmall#)>
+						<img src="images/#ImageDir#/#ImageSmall#" align="middle" alt="#ItemName#" width="75"><br>
+						<!---<img src="images/button-detail.gif" border="0" align="middle">---></a>
+					<cfelse>											
+						<img src="images/image-EMPTY.gif" align="middle" alt="#ItemName#"><br>
+						<!---<img src="images/button-detail.gif" border="0" align="middle">---></a>
+					</cfif>
+				</cfif>
+					<p>
+						<!--- Text Link and form elements --->
+						<a href="ProductDetail.cfm?ItemID=#ItemID#">#ItemName#</a><br/>
+						<!--- SHOW SKU --->
+						SKU: #SKU#<br/>
+						#LSCurrencyFormat(UseThisPrice, "local")#<br/><br/>
+						<!--- OPTIONAL COMPARE PRODUCTS FORM --->
+						<input type="checkbox" name="ID" value="#ItemID#"><input type="button" value="compare" class="button" onclick="submit();"><br><br>
+					</p>
+				
+			</div>
+			
+			</a>
+	</cfloop><!--- </cfoutput> --->
 
-<!--- Start Breadcrumb --->
-<cfmodule template="tags/breadCrumbs.cfm" CrumbLevel='1' showLinkCrumb="Search Results" />
-<!--- End BreadCrumb --->
-
-	<!--- Display Results --->
-	<div align="center">
-		Your search for <cfoutput><strong>"#string#"</strong> produced <strong>#getProducts.RecordCount#</strong> results...</cfoutput>
-		<hr class="snip" />
 	</div>
-
-	<!--- <cfinclude template="includes/ProductListDisplay.cfm"> --->
-
-
-
-</cfmodule>
-
-
-
-<!--- Old Code --->
-
-<!--- <cfscript>
-	PageTitle = 'SEARCH RESULTS' ;
-	BannerTitle = 'Search' ;
-	HideLeftNav = 0 ;
-	BreadCrumbs = 13 ;
-</cfscript>
-
-<cfinclude template="LayoutGlobalHeader.cfm">
-
-<!--- What row to start at? Assume first by default --->
-<cfparam name="URL.StartRow" default="1" type="numeric">
-<cfparam name="URL.SortOption" default="SignID" type="string">
-<cfparam name="URL.SortAscending" default="0" type="numeric">
-<cfparam name="Form.Field" default="ALL" type="string">
-<cfparam name="Form.string" default="" type="string">	
-
-<cfscript>
-	string = Trim(string);
-</cfscript>
-
-<cfif field is "Category">
-	<cfquery name="GetCategories" datasource="#application.dsn#">
-		SELECT 		CatName
-		FROM 		categories
-		WHERE 		categories.CatName like '%#string#%'
-		AND			Hide#session.CustomerArray[28]# != 1
-		AND			SiteID = #config.SiteID#
-		ORDER BY 	CatName
-	</cfquery>
-</cfif>
-
-<cfquery name="getProducts" datasource="#application.dsn#">
-	SELECT 	* 
-	FROM 	Products 
-	WHERE	Hide#session.CustomerArray[28]# != 1
-	AND		SiteID = #config.SiteID#
-	AND		(Deleted = 0 OR Deleted IS NULL)
-	AND		Category IN (SELECT CatID FROM Categories WHERE Hide#session.CustomerArray[28]# != 1)
-<cfif field EQ 'All'>
-	AND 	(SKU like '%'
-	OR 		ItemName like '%#string#%'
-	OR 		ItemDescription like '%#string#%')
-<cfelseif field EQ "Category">
-	AND		Category IN (SELECT CatID FROM Categories WHERE CatName LIKE '%#string#%')
-<cfelseif field EQ "ProductPrice">
-	<cfif string IS "">
-		<cfset string = '0'>
+	<!--- End Category Container --->
 	</cfif>
-	AND 	#field# <= #string# 			
-<cfelseif field EQ "ItemAndID">
-	AND 	(SKU like '%#string#%'
-	OR 		ItemName like '%#string#%'
-	OR 		ItemDescription like '%#string#%'
-	OR		Comments like '%#string#%'
-	OR		Category IN (SELECT CatID FROM Categories WHERE CatName LIKE '%#string#%')
-	)
-<cfelseif field EQ "Price">
-	AND 	Price#session.CustomerArray[28]# <= CONVERT(money, '#string#')
-<cfelse>
-	AND #field# like '%#string#%' 
-</cfif>		
-	ORDER BY ItemName
-</cfquery>
- 
- <!--- NEXT N VALUES --->
-<cfscript>
-	RowsPerPage = 8;
-	TotalRows = getProducts.RecordCount;
-	EndRow = Min(URL.StartRow + RowsPerPage - 1, TotalRows);
- 	StartRowNext = EndRow + 1;
- 	StartRowBack = URL.StartRow - RowsPerPage;
-</cfscript>
- 
-<table width="90%" border="1" cellspacing="0" cellpadding="0" align="center" bordercolor="<cfoutput>#layout.PrimaryBGColor#</cfoutput>">
-  	<tr> 
-    	<td valign="top" bordercolor="<cfoutput>#layout.PrimaryBGColor#</cfoutput>"> 
-			<!--- Display Results --->
-			<div align="center" class="cfMessageThree">
-				<img src="images/spacer.gif" height="15" width="1" border="0">
-				Your search for <cfoutput><b>"#string#"</b> produced <b>#getProducts.RecordCount#</b> results...</cfoutput>
-			</div>
-			<hr width="100%" size="1" color="<cfoutput>#layout.TableHeadingBGColor#</cfoutput>" align="center">
-			
-			<cfinclude template="Includes/ProductListDisplay.cfm">
-			
-			
-			<cfif getProducts.RecordCount>
-			<!--- NAVIGATION ------------------------------------->
-			<table width="88%" border="0" cellspacing="0" cellpadding="7" align="center">	
-				<tr>
-					<td class="cfDefault"><cfoutput>Displaying <B>#URL.StartRow#</B> to <B>#EndRow#</B> of <B>#TotalRows#</B> Records</cfoutput></td>
-					<td align="right"><cfinclude template="Includes/NextNButtons.cfm"></td>
-				</tr>
-			</table>
-			<!--- NAVIGATION ------------------------------------->
-			
-			<cfelse>
-				<table width="100%" border="0" cellspacing="0" cellpadding="6" align="center">
-					<tr> 
-						<td align="center" class="cfMessageThree"><b>Sorry... No items matched your query</b></td>
-					</tr>
-					<tr>
-						<td align="center" class="cfDefault">Suggestions:</td>
-					</tr>
-					<tr> 
-						<td class="cfDefault" align="center" width="95%">
-							<table><tr><td class="cfDefault">
-							<ul>
-								<li>Try our Advanced Search below.</li>
-								<li>Try typing 408 instead of SI-408</li>
-								<li>Try a different spelling or just use the first few letters in the name</li>
-							</ul>
-							</td></tr></table>
-						</td>
-					</tr>
-				</table>
-			</cfif><!---  END <CFIF #getProducts.RecordCount# EQ 0> --->
-			<br>
-			<div align="center">
-			<a href="javascript:history.back()"><img src="images/button-back.gif" border="0"></a> 
-			<a href="index.cfm"><img src="images/button-home.gif" border="0"></a><br>
-			<br>
-			</div>
-   		</td> 
-  	</tr>
-	<tr>
-		<td align="center" class="cfDefault" bordercolor="<cfoutput>###layout.TableHeadingBGColor#</cfoutput>">
-			<form action="SearchResults.cfm" method="GET">
-				<br>
-				<div class="cfHeading">ADVANCED SEARCH</div><br>
-				<input type="radio" name="field" value="SKU" CHECKED>Product ID &nbsp;
-				<input type="radio" name="field" value="ItemName">Product Name &nbsp;
-				<input type="radio" name="field" value="Price">Price Limit<br>
-				<input class="cfFormField" type="text" name="string" size="50"><br><br>
-				<input type="hidden" name="start" value="1">
-				<input type="submit" NAME="button" value="Search" class="cfButton" style="width:150px;">
-			</form>
-		</td>
-	</tr>
-</table>
-
-<cfinclude template="LayoutGlobalFooter.cfm"> --->
+	
+	<!--- NAVIGATION --->
+	<cfif TotalRows GT 0>
+	<!--- Pagination --->		
+	<div id="pagination">
+		<p>Displaying <b>#StartRow#-#EndRow#</b> of <b>#TotalRows#</b> results. <cfinclude template="tags/pagination.cfm"></p>
+	</div>
+	</cfif>
+	<!--- End NAVIGATION --->	
+	
+	<div align="center">
+		<cfform action="SearchResults.cfm" method="get">
+			<br/>
+			<div class="cfHeading">ADVANCED SEARCH</div><br/>
+			<input type="radio" name="field" value="SKU" checked>Product ID &nbsp;
+			<input type="radio" name="field" value="ItemName">Product Name &nbsp;
+			<input type="radio" name="field" value="Price">Price Limit<br>
+			<input class="cfFormField" type="text" name="string" size="50"><br><br>
+			<input type="hidden" name="start" value="1">
+			<input type="submit" name="button" value="Search" class="button" style="width:150px;">
+		</cfform>
+	</div>
+	
+	</cfmodule>
+</cfoutput>

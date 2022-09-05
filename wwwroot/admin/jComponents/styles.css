@@ -1,0 +1,45 @@
+body, td {
+  font-family:helvetica;
+  font-size: 11px;
+  margin:0px;
+}
+
+.sectionTitle {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.pageTitle {
+  font-size: 20px;
+  font-weight: bold;
+  padding-top:5px;
+  padding-bottom:5px;
+}
+
+#banner {
+  border-bottom:2px #000 Solid;
+  background:#3D8BD8;
+  color:#FFF;
+  padding:5px;
+  height:10%;
+}
+
+#banner h1 {
+  margin:0px;
+}
+
+#nav {
+ background:#FFC202;
+ position:absolute;
+ width:160px;
+ height:100%;
+}
+
+#content {
+  border-left:2px #000 Solid;
+  position:absolute;
+  width:80%;
+  left:160;
+  height:100%;
+  padding-left:10px;
+}

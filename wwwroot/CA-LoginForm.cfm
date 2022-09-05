@@ -1,35 +1,22 @@
 <div id="formContainer">
-
-<cfform action="CA-LoginCheck.cfm?goToPage=#goToPage#" method="post" class="f-wrap-1">
-	
+<cfform action="CA-LoginCheck.cfm?goToPage=#goToPage#" method="post" class="formWrap1">
+	<h3>Registered Customers</h3>
+	If you have already purchased with us and have a unique username and password, please login here.
 	<fieldset>
-		<h3>Registered Customers</h3>If you have already purchased with us and have a unique username and password, please login here.
-		
-		<label for="username"><b><span class="req">*</span>Username:</b>
-			<cfinput type="text" Name="CustUser" size="30" maxlength="20" required="yes" message="Username is required"><br />
-		</label>
-		
-		<label for="password"><b><span class="req">*</span>Password:</b>
-			<cfinput type="password" Name="CustPassword" size="30" maxlength="20" required="yes" message="Password is required"><br />
-		</label>
+		<label for="username"><b><span class="req">*</span>Username:</b></label>
+		<cfinput type="text" Name="CustUser" size="30" maxlength="20" required="yes" message="Username is required">
+		<label for="password"><b><span class="req">*</span>Password:</b></label>
+		<cfinput type="password" Name="CustPassword" size="30" maxlength="20" required="yes" message="Password is required">
 	</fieldset>
-	
 	<fieldset>
-	
-	<div class="f-submit-wrap">
-		<cfinput type="submit" name="LoginButton" value="Login" class="button" style="width:100px;"><br />
-	</div>
-	
+		<div class="f-submit-wrap">
+			<cfinput type="submit" name="LoginButton" value="Login" class="button large green"><br/>
+		</div>
 	</fieldset>
-	
-	
 </cfform>
-
 </div>
 
-
 <!--- Old Code --->
-
 <!--- <cfform action="CA-LoginCheck.cfm?goToPage=#goToPage#" METHOD="Post">
 	<table width="100%" border=0>
 		<cfif IsDefined('loginErrorMsg')>

@@ -1,11 +1,16 @@
+<!--- 
+|| MIT LICENSE
+|| CartFusion.com
+--->
+
 <!--- BEGIN: CALCULATE TOTAL WEIGHT & TOTAL PRICE OF ORDER --->
-<cfif NOT isDefined('Cart.CartTotal') >
+<cfif not isDefined('Cart.CartTotal') >
 	<cfinclude template="CartTotals.cfm">
 </cfif>
 <!--- END: CALCULATE TOTAL WEIGHT & TOTAL PRICE OF ORDER --->
 
 <cfif getCartItems.data.RecordCount EQ 0>
-	<cflocation url="../CartEdit.cfm" addtoken="no">
+	<cflocation url="#application.rootURL#/CartEdit.cfm" addtoken="no">
  	<cfabort>
 </cfif>
 

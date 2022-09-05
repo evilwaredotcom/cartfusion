@@ -1,40 +1,31 @@
+<cfparam name="url.pt" default="1">
+
 <cfscript>
-	/*getProductSpecs = application.Queries.getProductSpecs(ItemID=ItemID);
+	/*
+		THIS IS THE START OF THE PRODUCT SPECIFICATIONS TABLE SET
+		Added By Carl Vanderpal 20 June 2007
+	*/
+	getProductSpecs = application.Queries.getProductSpecs(ItemID=ItemID);
 		if( getProductSpecs.RecordCount )	{
 			getProductTypes = application.Queries.getProductTypes(TypeID=getProductSpecs.ProductType);
-		}*/
+		}
 </cfscript>
 
+<cfoutput>
 
-<!--- <!--- THIS IS THE START OF THE PRODUCT SPECIFICATIONS TABLE SET --->
-<cfparam name="URL.PT" default="1">
-
-<cfquery name="getProductSpecs" datasource="#datasource#">
-	SELECT	*
-	FROM	ProductSpecs
-	WHERE	ItemID = #ItemID#
-</cfquery>
-
-<cfif getProductSpecs.RecordCount>
-	<cfquery name="getProductTypes" datasource="#datasource#">
-		SELECT	*
-		FROM	ProductTypes
-		WHERE	TypeID = #getProductSpecs.ProductType#
-	</cfquery>
-</cfif>
-
-<cfif getProductSpecs.RecordCount AND isDefined('getProductTypes') AND getProductTypes.RecordCount>
-	<table width="100%" border="0" <!--- style="border-color:<cfoutput>#layout.TableHeadingBGColor#</cfoutput>;" ---> cellpadding="0" cellspacing="0">
-	<cfoutput query="getProductTypes">
+<cfif getProductSpecs.RecordCount and isDefined('getProductTypes') and getProductTypes.RecordCount>
 	
-	<!--- SPEC TITLES --->
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<cfloop query="getProductTypes">
+		
+		<!--- SPEC TITLES --->
 		<tr>
 			<td class="cfDefault" width="15%" valign="bottom"> 
 				<table width="100%" border="0" cellpadding="3" cellspacing="1">					
 					<cfloop from="1" to="#getProductTypes.SpecCount#" index="i">
 						<cfset ThisSpecTitle = Evaluate("getProductTypes.SpecTitle" & i) >
 					<tr>
-						<td class="cfMini" bgcolor="#layout.TableHeadingBGColor#" nowrap >
+						<td class="cfMini" nowrap >
 							#ThisSpecTitle#&nbsp;
 						</td>
 					</tr>
@@ -49,7 +40,7 @@
 					<cfloop from="1" to="#getProductTypes.SpecCount#" index="i">
 						<cfset ThisSpecValue = Evaluate("getProductSpecs.Spec" & i) >
 						<tr>
-							<td class="cfMini" bgcolor="#layout.PrimaryBGColor#" nowrap >
+							<td class="cfMini" nowrap >
 								#ThisSpecValue#&nbsp;
 							</td>
 						</tr>		
@@ -58,13 +49,17 @@
 			</td>
 		</cfloop>				
 		</tr>
-	</cfoutput>
+		
+		</cfloop>
 	</table>
-<cfelse>
-	<table border=0 <!--- style="border-color:<cfoutput>#layout.TableHeadingBGColor#</cfoutput>;" ---> cellpadding="0" cellspacing="0">
-		<tr>
-			<td class="cfErrorMsg">There are no additional specifications for this product</td>
-		</tr>
-	</table>	
+	
+	<cfelse>
+	
+		<div align="center">
+			<p>There are no additional specifications for this product</p>
+		</div>
+
 </cfif>
-<!--- THIS IS THE END OF THE PRODUCT SPECIFICATIONS TABLE SET ---> --->
+
+</cfoutput>
+<br/>

@@ -1,3 +1,8 @@
+<!--- 
+|| MIT LICENSE
+|| CartFusion.com
+--->
+
 <!--- PROCESS LOGOUT --->
 <cfif isDefined('Logout')>
 	<cflock scope="session" timeout="30" type="exclusive">
@@ -39,7 +44,7 @@
 			<cfoutput><cflocation url="AF-Login.cfm?errorLogin=#errorLogin#"></cfoutput>	
 		</cfif>	
 		
-		<cfset Decrypted_Password = DECRYPT(getAffiliate.Password, application.siteConfig.data.CryptKey, "CFMX_COMPAT", "Hex") >
+		<cfset Decrypted_Password = DECRYPT(getAffiliate.Password, application.CryptKey, "CFMX_COMPAT", "Hex") >
 		
 		<!--- PASSWORD MATCH UNSUCCESSFUL, THROW ERROR --->
 		<cfif Decrypted_Password NEQ Form.AffiliatePassword>

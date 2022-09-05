@@ -1,0 +1,54 @@
+/* Page Sections (Cart)
+==============================================================================
+#cartTable {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+#cartTable tr.row0 td, #cartTable tr.row1 td {
+	padding: 5px;
+	font-size: 80%;
+}*/
+.cartLayoutTable {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	border-collapse: collapse;
+	border: 0px #f1f1f1 solid;
+}
+tr.row0 td, tr.row1 td {
+	padding: 5px;
+	font-size: 80%;
+}
+tr.row0 {
+	background-color: #fff;
+	border-bottom: 0px #ccc solid;
+}
+tr.row1 {
+	border-bottom: 0px #ccc solid;
+}
+tr.row0 td, tr.row1 td {
+	border-left: 0px solid #fff;
+	padding: 1px 5px;
+}
+tr.subTotal	td {
+	background-color: #f1f1f1;
+	color: #777;
+	padding: 1px 5px;
+}
+tr.grandTotal td {
+	background: #CCC url(/images/style/grad_white_xsm.png) repeat-x 0 0;
+	color: #555;
+	padding: 1px 5px;
+}
+th {
+	background: #CCC url(/images/style/grad_white_xsm.png) repeat-x 0 0;
+	color: #555;
+	padding: 1px 5px;
+}
+tr.grandTotal a {
+	color: #fff;
+}
+.cartImage {
+	padding: 0 0 10px 0;
+}

@@ -1,7 +1,10 @@
+
+
+
 <!--- BEGIN: CLEAN WISHLIST--->
 <cfif isDefined('CleanWish') AND CleanWish EQ 'Yes'>
 	<cfscript>
-		application.Common.deleteWishList(CustomerID=session.CustomerArray[17],SiteID=application.siteConfig.data.SiteID);
+		application.Common.deleteWishList(CustomerID=session.CustomerArray[17],SiteID=application.SiteID);
 	</cfscript>
 	
 	<cfoutput><cflocation url="#CGI.HTTP_REFERER#" addtoken="no"></cfoutput>
@@ -20,23 +23,22 @@
 		} else {
 			UserID = 1 ;
 		}
-		getCartItems = application.Cart.getCartItems(UserID=UserID,SiteID=application.siteConfig.data.SiteID,SessionID=SessionID) ;
+		getCartItems = application.Cart.getCartItems(UserID=UserID,SiteID=application.SiteID,SessionID=SessionID) ;
 	</cfscript>
 	
 	<!--- IF CART IS EMPTY --->
 	<cfif not getCartItems.data.RecordCount>
 	
-		<cfmodule template="tags/layout.cfm" CurrentTab="MyAccount" PageTitle="Update Wishlist">
-			<br />
-			<br />
+		<cfmodule template="templates/#application.SiteTemplate#/layout.cfm" currenttab="MyAccount" pagetitle="Update Wishlist">
+			<br/>
+			<br/>
 			<div class="cfErrorMsg" align="center">There are no items in your cart.</div>
-			<br />
-			<br />
-			<hr class="snip" />
-			<br />
 			<div align="center">
-				<a href="javascript:history.back()"><img src="images/button-back.gif"></a>&nbsp;&nbsp;
-				<a href="index.cfm"><img src="images/button-home.gif"></a>
+				<br/>
+				<hr class="snip" />
+				<br/>
+				<input type="button" name="GoBack" value="&lt; BACK" class="button2" onclick="javascript:history.back();"> 
+				<input type="button" name="GoHome" value="HOME &gt;" class="button2" onclick="javascript:document.location.href='index.cfm';">
 			</div>
 		
 		</cfmodule>
@@ -48,7 +50,7 @@
 		<!--- GET WISHLIST --->
 		<cfinvoke component="#application.Common#" method="getCustomerWishList" returnvariable="getWishList">
 			<cfinvokeargument name="CustomerID" value="#session.CustomerArray[17]#">
-			<cfinvokeargument name="SiteID" value="#application.siteConfig.data.SiteID#">
+			<cfinvokeargument name="SiteID" value="#application.SiteID#">
 			<cfinvokeargument name="ItemID" value="#ItemID#">
 			<cfif isDefined("OptionName1") AND OptionName1 NEQ ''>
 				<cfinvokeargument name="OptionName1" value="#OptionName1#">
@@ -67,7 +69,7 @@
 			<!--- INSERT INTO WISHLIST --->
 			<cfinvoke component="#application.Common#" method="insertWishList">
 				<cfinvokeargument name="CustomerID" value="#session.CustomerArray[17]#">
-				<cfinvokeargument name="SiteID" value="#application.siteConfig.data.SiteID#">
+				<cfinvokeargument name="SiteID" value="#application.SiteID#">
 				<cfinvokeargument name="ItemID" value="#ItemID#">
 				<cfinvokeargument name="Quantity" value="#Qty#">
 				<cfif isDefined("OptionName1") AND OptionName1 NEQ ''>
@@ -89,7 +91,7 @@
 			<!--- UPDATE WISHLIST --->
 			<cfinvoke component="#application.Common#" method="updateWishlist">
 				<cfinvokeargument name="CustomerID" value="#session.CustomerArray[17]#">
-				<cfinvokeargument name="SiteID" value="#application.siteConfig.data.SiteID#">
+				<cfinvokeargument name="SiteID" value="#application.SiteID#">
 				<cfinvokeargument name="Quantity" value="#Qty#">
 				<cfinvokeargument name="ItemID" value="#ItemID#">
 				<cfif isDefined("OptionName1") AND OptionName1 NEQ ''>
@@ -145,9 +147,9 @@
 			<!--- <cfset PageTitle = 'Update Wishlist'> --->
 			
 			<!--- Added 20 May 2007 --->
-			<cfmodule template="tags/layout.cfm" CurrentTab="MyAccount" PageTitle="Update Wishlist">
+			<cfmodule template="templates/#application.SiteTemplate#/layout.cfm" currenttab="MyAccount" pagetitle="Update Wishlist">
 				
-				<div class="cfHeading" align="center"><cfoutput>#application.siteConfig.data.Storename#</cfoutput> Item Details</div>
+				<div class="cfHeading" align="center"><cfoutput>#application.Storename#</cfoutput> Item Details</div>
 				<div align="center"><img src="images/design/dash.gif" width="550" height="1"></div>
 				<div class="cfErrorMsg" align="center">We are sorry, but the Quantity in stock of this item is insufficient for this order.</div>
 				<div align="center">
@@ -185,7 +187,7 @@ Keep adding records into the shopping cart for the number of items.
 			<!--- LOOKUP PRODUCT IN CART --->
 			<cfinvoke component="#application.Common#" method="getCart" returnvariable="getCart">
 				<cfinvokeargument name="SessionID" value="#Variables.SessionID#">
-				<cfinvokeargument name="SiteID" value="#application.siteConfig.data.SiteID#">
+				<cfinvokeargument name="SiteID" value="#application.SiteID#">
 				<cfinvokeargument name="ItemID" value="#ItemID#">
 				<cfif isDefined("OptionName1") AND OptionName1 NEQ ''>
 					<cfinvokeargument name="OptionName1" value="#OptionName1#">
@@ -204,7 +206,7 @@ Keep adding records into the shopping cart for the number of items.
 				<!--- INSERT INTO CART --->
 				<cfinvoke component="#application.Common#" method="insertCart">
 					<cfinvokeargument name="SessionID" value="#SessionID#">
-					<cfinvokeargument name="SiteID" value="#application.siteConfig.data.SiteID#">
+					<cfinvokeargument name="SiteID" value="#application.SiteID#">
 					<cfinvokeargument name="ItemID" value="#ItemID#">
 					<cfinvokeargument name="Quantity" value="#Quantity#">
 					<cfif isDefined("OptionName1") AND OptionName1 NEQ ''>
@@ -229,7 +231,7 @@ Keep adding records into the shopping cart for the number of items.
 				<!--- UPDATE CART --->
 				<cfinvoke component="#application.Common#" method="updateCart">
 					<cfinvokeargument name="SessionID" value="#SessionID#">
-					<cfinvokeargument name="SiteID" value="#application.siteConfig.data.SiteID#">
+					<cfinvokeargument name="SiteID" value="#application.SiteID#">
 					<cfinvokeargument name="ItemID" value="#ItemID#">
 					<cfinvokeargument name="Quantity" value="#newQuantity#">
 					<cfif session.CustomerArray[17] NEQ ''>
@@ -253,7 +255,7 @@ Keep adding records into the shopping cart for the number of items.
 		<!--- Check if there is another record in the cart table that contains the same ItemID --->
 		<cfinvoke component="#application.Common#" method="getCustomerWishList" returnvariable="getWishList">
 			<cfinvokeargument name="CustomerID" value="#session.CustomerArray[17]#">
-			<cfinvokeargument name="SiteID" value="#application.siteConfig.data.SiteID#">
+			<cfinvokeargument name="SiteID" value="#application.SiteID#">
 			<cfinvokeargument name="ItemID" value="#ItemID#">
 			<cfif isDefined("OptionName1") AND OptionName1 NEQ ''>
 				<cfinvokeargument name="OptionName1" value="#OptionName1#">
@@ -272,7 +274,7 @@ Keep adding records into the shopping cart for the number of items.
 			<!--- INSERT INTO WISHLIST --->
 			<cfinvoke component="#application.Common#" method="insertWishList">
 				<cfinvokeargument name="CustomerID" value="#session.CustomerArray[17]#">
-				<cfinvokeargument name="SiteID" value="#application.siteConfig.data.SiteID#">
+				<cfinvokeargument name="SiteID" value="#application.SiteID#">
 				<cfinvokeargument name="ItemID" value="#ItemID#">
 				<cfinvokeargument name="Quantity" value="#Quantity#">
 				<cfif isDefined("OptionName1") AND OptionName1 NEQ ''>
@@ -295,7 +297,7 @@ Keep adding records into the shopping cart for the number of items.
 			<cfscript>
 				deleteWishlist = application.Common.deleteWishList(
 					CustomerID=session.CustomerArray[17],
-					SiteID=application.siteConfig.data.SiteID,
+					SiteID=application.SiteID,
 					WishlistItemID=getWishList.WishlistItemID);
 			</cfscript>
 			
@@ -307,7 +309,7 @@ Keep adding records into the shopping cart for the number of items.
 				<cfscript>
 					updateWishlist = application.Common.updateWishlist(
 						CustomerID=session.CustomerArray[17],
-						SiteID=application.siteConfig.data.SiteID,
+						SiteID=application.SiteID,
 						Quantity=Quantity,
 						WishlistItemID=getWishList.WishlistItemID);
 				</cfscript>
@@ -323,7 +325,7 @@ Keep adding records into the shopping cart for the number of items.
 			<cfscript>
 				updateWishlist = application.Common.updateWishlist(
 					CustomerID=session.CustomerArray[17],
-					SiteID=application.siteConfig.data.SiteID,
+					SiteID=application.SiteID,
 					Quantity=newQuantity,
 					WishlistItemID=getWishList.WishlistItemID);
 			</cfscript>

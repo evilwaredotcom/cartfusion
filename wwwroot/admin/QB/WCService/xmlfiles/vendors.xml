@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<QBXML>
+  <QBXMLMsgsRs>
+     <VendorQueryRs requestID="1" statusCode="0" statusSeverity="Info" statusMessage="Status OK">
+        <VendorRet>
+           <ListID>2818048</ListID>
+           <TimeCreated>1999-07-29T14:24:18-0400</TimeCreated>
+           <TimeModified>2003-12-15T16:13:01-0500</TimeModified>
+           <EditSequence>1071522781</EditSequence>
+           <Name>Bayshore CalOil Service</Name>
+           <IsActive>true</IsActive>
+           <CompanyName>Bayshore CalOil Service</CompanyName>
+           <VendorAddress>
+              <Addr1>Bayshore CalOil Service</Addr1>
+              <Addr2>771 S. Lerimore</Addr2>
+              <City>Bayshore</City>
+              <State>CA</State>
+              <PostalCode>98323</PostalCode>
+           </VendorAddress>
+           <Phone>415-555-7378</Phone>
+           <Contact>Kurt Rutherford</Contact>
+           <NameOnCheck>Bayshore CalOil Service</NameOnCheck>
+           <IsVendorEligibleFor1099>false</IsVendorEligibleFor1099>
+           <Balance>0.00</Balance>
+        </VendorRet>
+        <VendorRet>
+           <ListID>196608</ListID>
+           <TimeCreated>1999-07-29T14:24:16-0400</TimeCreated>
+           <TimeModified>2003-12-15T18:03:16-0500</TimeModified>
+           <EditSequence>1071529396</EditSequence>
+           <Name>C.U. Electric</Name>
+           <IsActive>true</IsActive>
+           <CompanyName>C. U. Electric</CompanyName>
+           <FirstName>Carrick</FirstName>
+           <LastName>Underdown</LastName>
+           <VendorAddress>
+              <Addr1>C. U. Electric</Addr1>
+              <Addr2>P.O. Box 2816</Addr2>
+              <City>Bayshore</City>
+              <State>CA</State>
+              <PostalCode>94326</PostalCode>
+           </VendorAddress>
+           <Phone>415-555-0797</Phone>
+           <Fax>415-555-7283</Fax>
+           <Email>cu-service@samplename.com</Email>
+           <Contact>Carrick Underdown</Contact>
+           <NameOnCheck>C. U. Electric</NameOnCheck>
+           <VendorTypeRef>
+              <ListID>262144</ListID>
+              <FullName>Subcontractors</FullName>
+           </VendorTypeRef>
+           <TermsRef>
+              <ListID>65536</ListID>
+              <FullName>Net 30</FullName>
+           </TermsRef>
+           <IsVendorEligibleFor1099>false</IsVendorEligibleFor1099>
+           <Balance>-750.00</Balance>
+        </VendorRet>
+     </VendorQueryRs>
+  </QBXMLMsgsRs>
+</QBXML>

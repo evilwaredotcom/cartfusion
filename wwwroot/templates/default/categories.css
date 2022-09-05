@@ -1,0 +1,44 @@
+
+
+
+
+
+
+/* Page Sections (Category & Page Display)
+==============================================================================*/
+.pageSectionHeader {
+	padding: 5px;
+	margin: 0;
+	text-align: center;
+	font-weight: bold;
+	color: #fff;
+	background-color: #997;
+}
+/* CATEGORIES */
+#categoryList {
+
+}
+#categoryList {
+	display: inline;
+	text-align: center;
+	font-size: 90%;
+	margin: 0 auto;
+}
+#categoryList .thumbnail {
+	float: left;
+	margin: 0 5px 5px 0;
+	border: 1px solid #f1f1f1;
+	text-align: center;
+	width: 170px;
+	min-height: 230px;
+}
+#categoryList .thumbnail img {
+	margin: 5px 0 0 5px;
+}
+#categoryList .thumbnail p {
+	margin: 0;
+	padding: 0 5px 5px 5px;
+}
+#categoryList .thumbnail p a {
+	font-weight: bold;
+}

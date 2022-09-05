@@ -1,18 +1,11 @@
 <cfif getCategories.RecordCount>
 
-	<!--- <cfscript>
-		if ( isDefined('getCategory') )
-			ColsToShow = getCategory.ShowColumns ;
-		else
-			ColsToShow = 3 ;
-	</cfscript> --->
-
 <cfoutput>
 	
 	<form action="ProductList.cfm" method="get">
-	
-		<div id="CategoryHeader">Categories</div>
 		
+		<div class="pageSectionHeader">Categories</div>
+			<br/>
 			<div id="categoryList">
 			
 				<cfloop query="getCategories">
@@ -21,7 +14,7 @@
 					<cfif CatFeaturedID EQ ''>	
 						<a href="ProductList.cfm?CatDisplay=#CatID#&start=1"><img src="images/image-empty.gif" align="absmiddle" alt="#CatName#"></a>
 					<cfelse>
-						<cfif FileExists(#application.siteConfig.data.IU_VirtualPathDIR# & '\' & #CatFeaturedDir# & '\' & #CatFeaturedID#)>
+						<cfif FileExists(application.ImageServerPath & '\' & CatFeaturedDir & '\' & CatFeaturedID)>
 							<a href="ProductList.cfm?CatDisplay=#CatID#&start=1"><img src="images/#CatFeaturedDir#/#CatFeaturedID#" align="absmiddle" alt="#CatName#"></a>
 						<cfelse>											
 							<a href="ProductList.cfm?CatDisplay=#CatID#&start=1"><img src="images/image-empty.gif" align="absmiddle" alt="#CatName#"></a>
@@ -33,9 +26,9 @@
 			</div>
 			
 			<br class="clear" />
-			<br />
-			<hr />
-			<p align="right"><input type="image" src="images/button-ShowMe.gif" alt="Show Me These Categories"></p>
+			<br/>
+			<hr class="snip" />
+			<p align="right"><input type="submit" value="Show Me These Categories" class="button2"></p>
 	</form>
 </cfoutput>	
 

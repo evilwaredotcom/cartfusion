@@ -5,11 +5,11 @@
 </style>
 --->
 
-<cfif NOT isDefined('Cart.CartTotal')>
+<cfif not isDefined('Cart.CartTotal')>
 	<cfinclude template="CartTotals.cfm">
 </cfif>
 <!--- DEBUGGING
-<b>CART: <cfoutput>$#DecimalFormat(Cart.CartTotal)#</cfoutput><br /><br /></b>
+<b>CART: <cfoutput>$#DecimalFormat(Cart.CartTotal)#</cfoutput><br/><br/></b>
 --->
 
 <cfscript>
@@ -22,28 +22,28 @@
 </cfscript>
 <cfparam name="DisplayType" default="0">
 
-<cfquery name="getDiscounts" datasource="#datasource#">
+<cfquery name="getDiscounts" datasource="#application.dsn#">
 	SELECT	*
 	FROM	Discounts
 	WHERE   <!--- DateValidFrom <= #CreateODBCDate(Now())#
 	AND 	DateValidTo >= #CreateODBCDate(Now())#
 	AND		--->(Expired = 0 OR Expired IS NULL)
-	AND 	SiteID = #config.SiteID#
-	AND    (ApplyToUser = #session.CustomerArray[28]# OR ApplyToUser = 0)
+	AND 	SiteID = #application.SiteID#
+	AND	(ApplyToUser = #session.CustomerArray[28]# OR ApplyToUser = 0)
 	AND		OrderTotalLevel <= #Cart.CartTotal#
 	AND	   (AutoApply = 1
-	<cfif isDefined('Form.DiscountCode') AND Form.DiscountCode NEQ '' >
+	<cfif structKeyExists(form, 'DiscountCode') AND form.DiscountCode NEQ '' >
 	OR		DiscountCode = '#Form.DiscountCode#'
-	<cfelseif isDefined('Form.DiscountUsed') AND Form.DiscountUsed NEQ '' >
+	<cfelseif structKeyExists(form, 'DiscountUsed') AND form.DiscountUsed NEQ '' >
 	OR		DiscountID = #Form.DiscountUsed#
 	</cfif>)
 	ORDER BY QtyLevel ASC, OrderTotalLevel DESC, ApplyToType ASC
 </cfquery>
 
 <!--- DEBUGGING
-QUERIED --<br />
-<cfoutput query="getDiscounts">#DiscountID#: #DiscountCode# (#ApplyToType#) <br /></cfoutput>
-<br /><hr />
+QUERIED --<br/>
+<cfoutput query="getDiscounts">#DiscountID#: #DiscountCode# (#ApplyToType#) <br/></cfoutput>
+<br/><hr />
  --->
 
 <!--- CHECK THE CART ITEMS TO SEE IF THEY APPLY TO THE ENTERED DISCOUNT --->
@@ -56,13 +56,13 @@ QUERIED --<br />
 	
 	<!--- DEBUGGING
 	<b>CART ITEM: <cfoutput>#getCartItems.data.CartItemID#</cfoutput></b>
-	<cfquery name="itemName" datasource="#datasource#">
+	<cfquery name="itemName" datasource="#application.dsn#">
 		SELECT	ItemName
 		FROM	Products
 		WHERE	ItemID = #getCartItems.data.ItemID#
 	</cfquery>
 	<cfoutput>#itemName.itemName#</cfoutput>
-	<br /><hr />
+	<br/><hr />
 	<div style="padding-left:30px;">
 	--->
 	
@@ -71,13 +71,13 @@ QUERIED --<br />
 		<cfif ApplyToType NEQ 4 AND ApplyToType NEQ 5 AND ApplyToType NEQ 9 AND ApplyMultiple EQ 1 >
 			
 			<!--- DEBUGGING
-			ITEM: <b>#ThisItemID#</b><br />
+			ITEM: <b>#ThisItemID#</b><br/>
 			NOT SHIPPING DISCOUNT --
-			#DiscountID#: #DiscountCode# (#ApplyToType#) (#ApplyTo#) <br /><hr />
+			#DiscountID#: #DiscountCode# (#ApplyToType#) (#ApplyTo#) <br/><hr />
 			--->
 			
 			<!--- CHECK EACH CART ITEM --->
-			<cfquery name="checkDiscount" datasource="#datasource#">
+			<cfquery name="checkDiscount" datasource="#application.dsn#">
 				SELECT	*
 				FROM	Discounts
 				WHERE	DiscountID = #getDiscounts.DiscountID#
@@ -140,16 +140,15 @@ QUERIED --<br />
 					} else {
 						UserID = 1 ;
 					}
-                    UseThisPrice = application.Cart.getItemPrice(
-                                        UserID=UserID,
-                                        SiteID=config.SiteID,
-                                        ItemID=ThisItemID,
-                                        SessionID=SessionID,
-                                        OptionName1=getCartItems.data.OptionName1,
-                                        OptionName2=getCartItems.data.OptionName2,
-                                        OptionName3=getCartItems.data.OptionName3
-                                        ) ;
-                </cfscript>
+					UseThisPrice = application.Cart.getItemPrice(
+						UserID=UserID,
+						SiteID=application.SiteID,
+						ItemID=ThisItemID,
+						SessionID=SessionID,
+						OptionName1=getCartItems.data.OptionName1,
+						OptionName2=getCartItems.data.OptionName2,
+						OptionName3=getCartItems.data.OptionName3);
+				</cfscript>
 				
 				<!--- PURCHASE REQUIREMENTS & EXCLUSION OPTION --->
 				<cfif checkDiscount.AddPurchaseReq GT 0 >
@@ -173,7 +172,7 @@ QUERIED --<br />
 					<cfelseif checkDiscount.AddPurchaseReq EQ 2 >
 						<cfset ContinueDiscount = 0 >
 						<cfloop query="getCartItems.data">
-							<cfquery name="checkRequirement" datasource="#datasource#">
+							<cfquery name="checkRequirement" datasource="#application.dsn#">
 								SELECT	Category
 								FROM	Products
 								WHERE	ItemID = #ItemID#
@@ -183,7 +182,7 @@ QUERIED --<br />
 							</cfif>
 						</cfloop>
 						<cfif ContinueDiscount EQ 1 >
-							<cfquery name="checkCategory" datasource="#datasource#">
+							<cfquery name="checkCategory" datasource="#application.dsn#">
 								SELECT	Category
 								FROM	Products
 								WHERE	ItemID = #ThisItemID#
@@ -200,7 +199,7 @@ QUERIED --<br />
 					<cfelseif checkDiscount.AddPurchaseReq EQ 3 >
 						<cfset ContinueDiscount = 0 >
 						<cfloop query="getCartItems.data">
-							<cfquery name="checkRequirement" datasource="#datasource#">
+							<cfquery name="checkRequirement" datasource="#application.dsn#">
 								SELECT	SectionID
 								FROM	Products
 								WHERE	ItemID = #ItemID#
@@ -210,7 +209,7 @@ QUERIED --<br />
 							</cfif>
 						</cfloop>
 						<cfif ContinueDiscount EQ 1 >
-							<cfquery name="checkSection" datasource="#datasource#">
+							<cfquery name="checkSection" datasource="#application.dsn#">
 								SELECT	SectionID
 								FROM	Products
 								WHERE	ItemID = #ThisItemID#
@@ -264,14 +263,14 @@ QUERIED --<br />
 						<!--- CartEdit.cfm --->
 						<cfif DisplayType EQ 1 >
 						<tr>
-							<td class="cfAttract" align="right" colspan="5">#checkDiscount.DiscountName#:</td>
-							<td class="cfAttract" align="right" nowrap="nowrap">- #LSCurrencyFormat(ThisDiscount, "local")#</td>
+							<td class="subTotal" align="right" colspan="5">#checkDiscount.DiscountName#:</td>
+							<td class="subTotal" align="right" nowrap="nowrap">- #LSCurrencyFormat(ThisDiscount, "local")#</td>
 						</tr>
 						<!--- CartView.cfm --->
 						<cfelseif DisplayType EQ 2 >
 						<tr>
-							<td class="cfAttract" align="right" <cfif config.EnableMultiShip EQ 1 >colspan="5"<cfelse>colspan="4"</cfif>>#checkDiscount.DiscountName#:</td>
-							<td class="cfAttract" align="right" nowrap="nowrap">- #LSCurrencyFormat(ThisDiscount, "local")#</td>
+							<td class="subTotal" align="right" <cfif application.EnableMultiShip EQ 1 >colspan="5"<cfelse>colspan="4"</cfif>>#checkDiscount.DiscountName#:</td>
+							<td class="subTotal" align="right" nowrap="nowrap">- #LSCurrencyFormat(ThisDiscount, "local")#</td>
 						</tr>
 						<!--- CartViewMini.cfm --->
 						<cfelseif DisplayType EQ 3 >
@@ -280,16 +279,16 @@ QUERIED --<br />
 							<td class="cfMini" align="right" nowrap="nowrap">- #LSCurrencyFormat(ThisDiscount, "local")#</td>
 						</tr>
 						<cfelseif DisplayType EQ 4 >
-							#DiscountName#: #LSCurrencyFormat(ThisDiscount, "local")#<br />
+							#DiscountName#: #LSCurrencyFormat(ThisDiscount, "local")#<br/>
 						</cfif>
 						<!--- DEBUGGING
-						DISCOUNT APPLIED --<br />
-						ITEM: <b>#ThisItemID#</b><br />
-						Name: #checkDiscount.DiscountName#<br />
-						Discount: <cfif checkDiscount.IsPercentage EQ 1 >#checkDiscount.DiscountValue#%<cfelse>$#checkDiscount.DiscountValue#</cfif><br />
-						Qty = #ThisQty#<br />
-						Value = #ThisDiscount#<br />
-						Total = #DiscountTotal#<br /><hr />
+						DISCOUNT APPLIED --<br/>
+						ITEM: <b>#ThisItemID#</b><br/>
+						Name: #checkDiscount.DiscountName#<br/>
+						Discount: <cfif checkDiscount.IsPercentage EQ 1 >#checkDiscount.DiscountValue#%<cfelse>$#checkDiscount.DiscountValue#</cfif><br/>
+						Qty = #ThisQty#<br/>
+						Value = #ThisDiscount#<br/>
+						Total = #DiscountTotal#<br/><hr />
 						--->
 						<cfset ThisDiscount = 0 >
 						
@@ -344,7 +343,7 @@ QUERIED --<br />
 			<cfelseif checkDiscount.AddPurchaseReq EQ 2 >
 				<cfset ContinueDiscount = 0 >
 				<cfloop query="getCartItems.data">
-					<cfquery name="checkRequirement" datasource="#datasource#">
+					<cfquery name="checkRequirement" datasource="#application.dsn#">
 						SELECT	Category
 						FROM	Products
 
@@ -360,7 +359,7 @@ QUERIED --<br />
 			<cfelseif checkDiscount.AddPurchaseReq EQ 3 >
 				<cfset ContinueDiscount = 0 >
 				<cfloop query="getCartItems.data">
-					<cfquery name="checkRequirement" datasource="#datasource#">
+					<cfquery name="checkRequirement" datasource="#application.dsn#">
 						SELECT	SectionID
 						FROM	Products
 						WHERE	ItemID = #getCartItems.data.ItemID#
@@ -393,35 +392,35 @@ QUERIED --<br />
 			</cfscript>				
 			
 			<cfif ThisQty GT 0 >
-            	<!--- CartEdit.cfm --->
+				<!--- CartEdit.cfm --->
 				<cfif DisplayType EQ 1 >
-                <tr>
-                    <td class="cfAttract" align="right" colspan="5">#checkDiscount.DiscountName#:</td>
-                    <td class="cfAttract" align="right" nowrap="nowrap">- #LSCurrencyFormat(ThisDiscount, "local")#</td>
-                </tr>
-                <!--- CartView.cfm --->
-                <cfelseif DisplayType EQ 2 >
-                <tr>
-                    <td class="cfAttract" align="right" <cfif config.EnableMultiShip EQ 1 >colspan="5"<cfelse>colspan="4"</cfif>>#checkDiscount.DiscountName#:</td>
-                    <td class="cfAttract" align="right" nowrap="nowrap">- #LSCurrencyFormat(ThisDiscount, "local")#</td>
-                </tr>
-                <!--- CartViewMini.cfm --->
-                <cfelseif DisplayType EQ 3 >
-                <tr>
-                    <td class="cfMini" align="right" colspan="3">#DiscountName#:</td>
-                    <td class="cfMini" align="right" nowrap="nowrap">- #LSCurrencyFormat(ThisDiscount, "local")#</td>
-                </tr>
-                <cfelseif DisplayType EQ 4 >
-                    #DiscountName#: #LSCurrencyFormat(ThisDiscount, "local")#<br />
-                </cfif>
+				<tr>
+					<td class="subTotal" align="right" colspan="5">#checkDiscount.DiscountName#:</td>
+					<td class="subTotal" align="right" nowrap="nowrap">- #LSCurrencyFormat(ThisDiscount, "local")#</td>
+				</tr>
+				<!--- CartView.cfm --->
+				<cfelseif DisplayType EQ 2 >
+				<tr>
+					<td class="subTotal" align="right" <cfif application.EnableMultiShip EQ 1 >colspan="5"<cfelse>colspan="4"</cfif>>#checkDiscount.DiscountName#:</td>
+					<td class="subTotal" align="right" nowrap="nowrap">- #LSCurrencyFormat(ThisDiscount, "local")#</td>
+				</tr>
+				<!--- CartViewMini.cfm --->
+				<cfelseif DisplayType EQ 3 >
+				<tr>
+					<td class="cfMini" align="right" colspan="3">#DiscountName#:</td>
+					<td class="cfMini" align="right" nowrap="nowrap">- #LSCurrencyFormat(ThisDiscount, "local")#</td>
+				</tr>
+				<cfelseif DisplayType EQ 4 >
+					#DiscountName#: #LSCurrencyFormat(ThisDiscount, "local")#<br/>
+				</cfif>
 				<!--- DEBUGGING
-				DISCOUNT APPLIED --<br />
-				ITEM: <b>#ThisItemID#</b><br />
-				Name: #checkDiscount.DiscountName#<br />
-				Discount: <cfif checkDiscount.IsPercentage EQ 1 >#checkDiscount.DiscountValue#%<cfelse>$#checkDiscount.DiscountValue#</cfif><br />
-				Qty = #ThisQty#<br />
-				Value = #ThisDiscount#<br />
-				Total = #DiscountTotal#<br /><hr />
+				DISCOUNT APPLIED --<br/>
+				ITEM: <b>#ThisItemID#</b><br/>
+				Name: #checkDiscount.DiscountName#<br/>
+				Discount: <cfif checkDiscount.IsPercentage EQ 1 >#checkDiscount.DiscountValue#%<cfelse>$#checkDiscount.DiscountValue#</cfif><br/>
+				Qty = #ThisQty#<br/>
+				Value = #ThisDiscount#<br/>
+				Total = #DiscountTotal#<br/><hr />
 				--->
 				<cfset ThisDiscount = 0 >
 			</cfif>
@@ -439,7 +438,7 @@ QUERIED --<br />
 
 
 <!--- DEBUGGING
-<b>DISCOUNT: <cfoutput>$#DecimalFormat(DiscountTotal)#</cfoutput><br /></b>
-<b>TOTAL: <cfoutput>$#DecimalFormat(Cart.CartTotal - DiscountTotal)#</cfoutput><br /><br /></b>
+<b>DISCOUNT: <cfoutput>$#DecimalFormat(DiscountTotal)#</cfoutput><br/></b>
+<b>TOTAL: <cfoutput>$#DecimalFormat(Cart.CartTotal - DiscountTotal)#</cfoutput><br/><br/></b>
 <cfabort>
 --->

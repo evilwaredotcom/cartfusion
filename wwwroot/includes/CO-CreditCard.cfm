@@ -1,11 +1,16 @@
+<!--- 
+|| MIT LICENSE
+|| CartFusion.com
+--->
+
 <cfscript>
 	Decrypted_CardNum = '' ;
 	Decrypted_ExpDate = '' ;
 	// CARTFUSION 4.6
-	if ( config.SaveCreditCard EQ 1 and config.ShowCreditCard EQ 1 )
+	if ( application.SaveCreditCard EQ 1 and application.ShowCreditCard EQ 1 )
 	{
-		if ( TRIM(session.CustomerArray[14]) NEQ '' ) Decrypted_CardNum = DECRYPT(session.CustomerArray[14], config.CryptKey, "CFMX_COMPAT", "Hex");
-		if ( TRIM(session.CustomerArray[15]) NEQ '' ) Decrypted_ExpDate = DECRYPT(session.CustomerArray[15], config.CryptKey, "CFMX_COMPAT", "Hex");
+		if ( TRIM(session.CustomerArray[14]) NEQ '' ) Decrypted_CardNum = DECRYPT(session.CustomerArray[14], application.CryptKey, "CFMX_COMPAT", "Hex");
+		if ( TRIM(session.CustomerArray[15]) NEQ '' ) Decrypted_ExpDate = DECRYPT(session.CustomerArray[15], application.CryptKey, "CFMX_COMPAT", "Hex");
 	}
 </cfscript>
 
@@ -41,7 +46,7 @@
 		</td>
 		<td class="cfFormLabel" nowrap="nowrap">
 			<cfinput type="text" name="CardCVV" size="4" maxlength="4" class="cfFormField" value="#session.CustomerArray[37]#"
-				required="yes" message="Please enter a valid 3 or 4 digit CVV number"> <a href="javascript:NewWindow('images/logos/image-CVV.jpg','CVV','300','500','no');"><img src="images/logos/icon-cvv.gif" border="0" alt="Click here for more information" align="absmiddle"></a>
+				required="yes" message="Please enter a valid 3 or 4 digit CVV number"> <a href="javascript:NewWindow('images/logos/image-CVV.jpg','CVV','250','400','no');"><img src="images/logos/icon-cvv.gif" border="0" alt="Click here for more information" align="absmiddle"></a>
 		</td>
 	</tr>
 </table>

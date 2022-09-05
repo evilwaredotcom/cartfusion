@@ -1,0 +1,33 @@
+UPDATE    Orders
+SET              CCName = NULL, CCNum = NULL, CCExpDate = NULL, CCCVV = NULL
+WHERE     (OrderID <> 1003174) AND (OrderID <> 1003173) AND (OrderID <> 1003165) AND (OrderID <> 1003153) AND (OrderID <> 1003152) AND (OrderID <> 1003148) AND 
+                      (OrderID <> 1003143) AND (OrderID <> 1003126) AND (OrderID <> 1003125) AND (OrderID <> 1003121) AND (OrderID <> 1003120) AND (OrderID <> 1003119) AND 
+                      (OrderID <> 1003116) AND (OrderID <> 1003083) AND (OrderID <> 1003081) AND (OrderID <> 1003036) AND (OrderID <> 1003030) AND (OrderID <> 1002988) AND 
+                      (OrderID <> 1002955) AND (OrderID <> 1002908) AND (BillingStatus <> 'AU')
+
+
+
+
+UPDATE    Orders
+SET              CCName = NULL, CCNum = NULL, CCExpDate = NULL, CCCVV = NULL
+WHERE     (BillingStatus <> 'NB') AND (OrderID <= 1004088)
+
+
+UPDATE    Orders
+SET              CCNum = NULL, CCCVV = NULL
+WHERE     (BillingStatus <> 'nb')
+
+
+
+UPDATE    Customers
+SET              CardName = NULL, CardNum = NULL, ExpDate = NULL, CardCVV = NULL
+
+
+
+SELECT     CartItemID, SiteID, CustomerID, SessionID, ItemID, Qty, OptionName1, OptionName2, OptionName3, OptionName4, OptionName5, OptionName6, OptionName7, 
+                      OptionName8, OptionName9, OptionName10, DateEntered, AffiliateID, BackOrdered, ShippingID, ShippingMethod
+FROM         Cart
+WHERE     (ItemID IN
+                          (SELECT     ItemID
+                            FROM          Products
+                            WHERE      (Price1 >= 50.00) AND (Price1 <= 73.95)))

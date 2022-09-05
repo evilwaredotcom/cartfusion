@@ -1,12 +1,14 @@
+
+
 <cfif not structKeyExists(session, 'AffiliateArray') OR session.AffiliateArray[1] eq ''>
 	<cflocation url="AF-Login.cfm" addtoken="no">
 </cfif>
 
 <cfoutput>
 
-<cfmodule template="tags/layout.cfm" CurrentTab="Affiliates" PageTitle="Affiliate Area" showExpireHeaders="True">
+<cfmodule template="templates/#application.SiteTemplate#/layout.cfm" currenttab="Affiliates" pagetitle="Affiliate Area" showexpireheaders="True">
 <!--- Start Breadcrumb --->
-<cfmodule template="tags/breadCrumbs.cfm" CrumbLevel='1' showLinkCrumb="Affiliate Home" />
+<cfmodule template="tags/breadCrumbs.cfm" crumblevel='1' showlinkcrumb="Affiliate Home" />
 <!--- End BreadCrumb --->
 
 
@@ -20,7 +22,7 @@
 	getAffiliateHistory = application.queries.getAffiliateHistory(afid=session.AffiliateArray[1]);
 	
 	// Variables Used In Page
-	if ( getAffiliate.Password NEQ '') decrypted_Password = DECRYPT(getAffiliate.Password, application.siteConfig.data.CryptKey, "CFMX_COMPAT", "Hex") ;
+	if ( getAffiliate.Password NEQ '') decrypted_Password = DECRYPT(getAffiliate.Password, application.CryptKey, "CFMX_COMPAT", "Hex") ;
 	else decrypted_Password = '';
 		SubTotal = 0 ;
 		AffiliateCommission = 0 ;
@@ -141,7 +143,7 @@
 		</table>
 	</cfif>
 </span>
-<br />
+<br/>
 
 
 <!------------------------------------------------------------ AFFILIATE ORDERS ------------------------------------------------>
@@ -422,7 +424,7 @@
 		</cfif>
 	</table>
 </span>
-<br />
+<br/>
 
 
 <!---------------------------------------------------- MULTI-TIERED AFFILIATE PROGRAM -------------------------------------->
@@ -512,7 +514,7 @@
 								<cfinvokeargument name="AffiliateID" value="#AFID#">
 							</cfinvoke> --->
 							
-							<cfloop QUERY="getOrdersAF">
+							<cfloop query="getOrdersAF">
 								<!--- GET ORDER TOTAL --->
 								<cfscript>
 									getOrderTotal = application.Queries.getOrderTotal(OrderID=getOrdersAF.OrderID);
@@ -545,7 +547,7 @@
 		</table>
 	</cfif>
 </span>
-<br />
+<br/>
 
 
 <!---------------------------------------------------- AFFILIATE INFORMATION -------------------------------------------------->
@@ -672,13 +674,13 @@
 		
 		<tr>	
 			<td align="center" colspan="4" style="PADDING: 10px">
-			<a href="AF-Update.cfm"><img src="images/button-update.gif" border="0"></a>
+				<input type="button" name="Update" value="UPDATE &gt;" class="button" onclick="javascript:document.location.href='AF-Update.cfm'" />
 			</td>
 		</tr>
 	</table>
 	</cfloop><!--- </cfoutput> --->
 </span>
-<br />
+<br/>
 
 
 <!---------------------------------------------------- AFFILIATE MESSAGES -------------------------------------------------->
@@ -688,18 +690,14 @@
 <span class="submenu5" id="sub5" style="padding: 10px 0px 0px 0px;">
 	<div align="center">You have no new messages.</div>
 </span>
-<br /><br /><br />
 </div>
 
-
-
 <div align="center">
-	<br />
-	<br />
+	<br/>
 	<hr class="snip" />
-	<br />
-	<a href="AF-Logout.cfm"><img src="images/button-logout.gif"></a>&nbsp;&nbsp;
-	<a href="index.cfm"><img src="images/button-home.gif"></a>	
+	<br/>
+	<input type="button" name="GoBack" value="&lt; LOGOUT" class="button2" onclick="javascript:document.location.href='AF-Logout.cfm';">
+	<input type="button" name="GoHome" value="CONTINUE SHOPPING &gt;" class="button" onclick="javascript:document.location.href='index.cfm';">
 </div>
 
 </cfmodule>

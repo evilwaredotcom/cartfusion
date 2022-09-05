@@ -1,3 +1,8 @@
+<!--- 
+|| MIT LICENSE
+|| CartFusion.com
+--->
+
 <cflock scope="session" timeout="30" type="exclusive">
 	<cfloop index="loopcount" from=1 to="#ArrayLen(session.CustomerArray)#">	
 		<cfset session.AffiliateArray[loopcount] = ''>

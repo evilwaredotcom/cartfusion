@@ -1,4 +1,10 @@
-<cfmodule template="tags/layout.cfm" CurrentTab="MyAccount" LayoutStyle="Full" PageTitle="Check Out - Step 5 of 5" showCategories="false">
+<!--- 
+|| MIT LICENSE
+|| CartFusion.com
+--->
+
+
+<cfmodule template="templates/#application.SiteTemplate#/layout.cfm" CurrentTab="MyAccount" LayoutStyle="Full" PageTitle="Check Out - Step 5 of 5" showCategories="false">
 
 <!--- Start Breadcrumb --->
 <cfmodule template="tags/breadCrumbs.cfm" CrumbLevel='2' showLinkCrumb="Cart|Check Out - Step 5 of 5" />
@@ -24,14 +30,14 @@
 					<td width="50%" align="left" class="cfDefault">
 						<cfoutput>
 						<b>
-						#application.siteConfig.data.CompanyName#<br>
-						#application.siteConfig.data.CompanyAddress1#<br>
-						<cfif application.siteConfig.data.CompanyAddress2 neq ''>
-						#application.siteConfig.data.CompanyAddress2#<br>
+						#application.CompanyName#<br>
+						#application.CompanyAddress1#<br>
+						<cfif application.CompanyAddress2 neq ''>
+						#application.CompanyAddress2#<br>
 						</cfif>
-						#application.siteConfig.data.CompanyCity#, #application.siteConfig.data.CompanyState#, #application.siteConfig.data.CompanyZip#<br>
-						#application.siteConfig.data.CompanyCountry#<br>
-						#application.siteConfig.data.CompanyPhone#
+						#application.CompanyCity#, #application.CompanyState#, #application.CompanyZip#<br>
+						#application.CompanyCountry#<br>
+						#application.CompanyPhone#
 						</b>
 						</cfoutput>
 					</td>

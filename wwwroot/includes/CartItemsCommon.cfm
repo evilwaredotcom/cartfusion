@@ -1,3 +1,8 @@
+<!--- 
+|| MIT LICENSE
+|| CartFusion.com
+--->
+
 <cfscript>
 	RunningWeight = RunningWeight + (Weight * Qty);
 	TotalPrice = UseThisPrice * Qty;		

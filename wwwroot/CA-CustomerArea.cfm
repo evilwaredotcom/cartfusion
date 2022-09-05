@@ -1,3 +1,5 @@
+
+
 <cfif session.CustomerArray[26] EQ ''>
 	<cflocation url="index.cfm" addtoken="no"><cfabort>
 </cfif>
@@ -61,10 +63,10 @@
 
 <cfoutput>
 
-<cfmodule template="tags/layout.cfm" CurrentTab="MyAccount" PageTitle="Customer Area">
+<cfmodule template="templates/#application.SiteTemplate#/layout.cfm" currenttab="MyAccount" pagetitle="Customer Area">
 
 <!--- Start Breadcrumb --->
-<cfmodule template="tags/breadCrumbs.cfm" CrumbLevel='1' showLinkCrumb="My Account" />
+<cfmodule template="tags/breadCrumbs.cfm" crumblevel='1' showlinkcrumb="My Account" />
 <!--- End BreadCrumb --->
 
 
@@ -92,11 +94,11 @@
 	// Other Queries for the page
 	//checkMessages
 	
-	if( application.siteConfig.data.EnableMultiShip EQ 1)	{
+	if( application.EnableMultiShip EQ 1)	{
 		getCustomerShipping = application.Queries.getCustomerShipping(CustomerID=session.CustomerArray[17]);
 	}
 	// Get Wish List
-	getWishList = application.Common.getCustomerWishList(CustomerID=session.CustomerArray[17],SiteID=application.siteConfig.data.SiteID);
+	getWishList = application.Common.getCustomerWishList(CustomerID=session.CustomerArray[17],SiteID=application.SiteID);
 	// Get Messages
 	checkMessages = application.Queries.checkMessages(Customers=session.CustomerArray[17]);
 	
@@ -118,7 +120,7 @@
 	WHERE	o.CustomerID = '#session.CustomerArray[17]#'
 	AND 	p.ItemID = oi.ItemID 
 	AND 	p.SoftwareDownload = 1
-	AND		p.SiteID = #config.SiteID#
+	AND		p.SiteID = #application.SiteID#
 	ORDER BY o.OrderID
 </cfquery>
 --->
@@ -148,7 +150,7 @@
 	document.write('<style type="text/css">\n')
 	document.write('.submenu4{display: <cfif not show4 >none<cfelse>block</cfif>;}\n')
 	document.write('</style>\n')
-	<cfif application.siteConfig.data.EnableMultiShip EQ 1 >
+	<cfif application.EnableMultiShip EQ 1 >
 	document.write('<style type="text/css">\n')
 	document.write('.submenu5{display: <cfif not show5 >none<cfelse>block</cfif>;}\n')
 	document.write('</style>\n')
@@ -170,7 +172,7 @@
 					ar[i].style.display = "none";
 					if (ar[i].className=="submenu4") 
 					ar[i].style.display = "none";
-					<cfif application.siteConfig.data.EnableMultiShip EQ 1 >
+					<cfif application.EnableMultiShip EQ 1 >
 					if (ar[i].className=="submenu5") 
 					ar[i].style.display = "none";
 					</cfif>
@@ -184,21 +186,20 @@
 </script>
 
 <div id="MyAccount">
-<table cellpadding="0" cellspacing="0" border="0" width="100%">
-	<tr valign="top">
-		<td class="sub_pagehead"><span class="sub_pagetitle">Welcome, #getCustomer.FirstName# #getCustomer.LastName#!<br></span></td>
-	</tr>
-	<tr valign="top">
-		<td class="cfDefault" align="center" valign="middle">[click <img src="images/icon-down.gif" align="absmiddle" /> to show/hide]<br><br></td>
-	</tr>
-</table>
 
+<div class="cfDefault"><span class="sub_pagetitle">Welcome, #getCustomer.FirstName# #getCustomer.LastName#!<br></span></div>
+<div class="cfDefault" align="center">[click <img src="images/icon-down.gif" align="absmiddle" /> to show/hide]<br/><br/></div>
 
-
-
+<!---<div align="center">
+	<hr class="snip" />
+	<br/>
+	<input type="button" name="GoBack" value="&lt; LOGOUT" class="button2" onclick="javascript:document.location.href='CA-Logout.cfm';">
+	<input type="button" name="GoHome" value="CONTINUE SHOPPING &gt;" class="button" onclick="javascript:document.location.href='index.cfm';">
+</div>
+--->
 <!--- Start of 'My Wishlist' --->
 <div class="myaccount" align="left" onclick="SwitchMenu('sub1')">
-	<img src="images/icon-down.gif" align="absmiddle" /> &nbsp;My Wishlist
+	<img src="images/icon-down.gif" align="absmiddle" /> &nbsp;My Wishlist 
 </div>
 
 <span class="submenu1" id="sub1" style="padding: 10px 0px 0px 0px;">
@@ -231,7 +232,7 @@
 			}
 			UseThisPrice = application.Cart.getItemPrice(
 				UserID=UserID,
-				SiteID=application.siteConfig.data.SiteID,
+				SiteID=application.SiteID,
 				ItemID=ItemID,
 				SessionID=SessionID,
 				OptionName1=OptionName1,
@@ -250,7 +251,7 @@
 			<td width="10%" class="cfDefault">#SKU#</td>
 			<td width="35%" class="cfDefault"><a href="ProductDetail.cfm?ItemID=#ItemID#">#FinalDesc#</a></td>
 			<td width="15%">
-				<input type="text" name="quantity" size="2" value="#Qty#" onMouseDown="this.form.UpdateButton.focus();">&nbsp;
+				<input type="text" name="quantity" size="2" value="#Qty#" onmousedown="this.form.UpdateButton.focus();">&nbsp;
 				<input class="button" type="submit" name="UpdateButton" value="Update"></td>
 			<td width="10%" class="cfDefault" align="right">#LSCurrencyFormat(UseThisPrice, "local")#</td>
 			<td width="10%" class="cfDefault" align="right">#LSCurrencyFormat(TotalPrice, "local")#</td>
@@ -263,13 +264,11 @@
 		</tr>
 	</cfloop><!--- </cfoutput> --->
 	</table>
-	
 	<br>
 	<div align="center">
-		<a href="WishUpdate.cfm?CleanWish=Yes" onClick="return confirm('Are you sure you want to REMOVE ALL ITEMS from your WishList?')"><img src="images/button-empty.gif" border="0"></a>&nbsp;&nbsp;	
-		<a href="WishToCart.cfm"><img src="images/button-placeall.gif" border="0"></a>
+		<input type="button" name="GoHome" value="Remove All Items" class="button" onclick="javascript:document.location.href='WishUpdate.cfm?CleanWish=Yes&gotoPage=CA-CustomerArea.cfm';">	
+		<input type="button" name="GoHome" value="Place All Items In Cart" class="button" onclick="javascript:document.location.href='WishToCart.cfm';">
 	</div>
-	
 	</cfif>
 </span>
 <!--- End of 'My Wishlist' --->
@@ -285,7 +284,7 @@
 <span class="submenu2" id="sub2" style="padding: 10px 0px 0px 0px;">
 	
 	<cfif getStoreCredit.Credit>
-		<div align="center">*** You have <u>$<cfoutput>#DecimalFormat(getStoreCredit.Credit)#</cfoutput></u> in available store credit. ***</div><br />
+		<div align="center">*** You have <u>$<cfoutput>#DecimalFormat(getStoreCredit.Credit)#</cfoutput></u> in available store credit. ***</div><br/>
 	</cfif>
 	
 	<cfif not getOrdersCA.RecordCount>
@@ -416,7 +415,7 @@
 		
 		<tr>	
 			<td align="center" colspan="4" style="PADDING: 10px">
-			<a href="CA-CustomerUpdate.cfm"><img src="images/button-update.gif" border="0"></a>
+				<input type="button" name="Update" value="UPDATE &gt;" class="button" onclick="javascript:document.location.href='CA-CustomerUpdate.cfm'" />
 			</td>
 		</tr>
 	</table>
@@ -428,7 +427,7 @@
 
 
 <!--- Start Sub 5 - My Account --->
-<cfif application.siteConfig.data.EnableMultiShip EQ 1 >
+<cfif application.EnableMultiShip EQ 1 >
 	<div class="myaccount" align="left" onclick="SwitchMenu('sub5')">
 		<img src="images/icon-down.gif" align="absmiddle" /> &nbsp;My Shipping Addresses
 	</div>
@@ -461,23 +460,26 @@
 		<div id="formContainer">
 			
 			<cfif isDefined('ErrorMsg')>
-				<br />
+				<br/>
 					<div class="cfErrorMsg" align="center">#ErrorMsg#</div>
-				<br />
+				<br/>
 			</cfif>
+			
+			<!--- Include Blank Form --->
+			<cfinclude template="tags/shippingForm.cfm">
 			
 			<cfloop query="getCustomerShipping">		
 				<div class="loopForms">
 					
 					<cfform action="CA-CustomerArea.cfm" method="post">
-						<div class="f-wrap-1">
+						<div class="formWrap1">
 											
 							<fieldset>
 								
 								<h3>Shipping Information</h3>
 								
 								<label for="ShipNickName#CurrentRow#"><b><span class="req">*</span>###CurrentRow# Nickname:</b>
-									<cfinput type="text" name="ShipNickName" value="#ShipNickName#" required="yes" message="A Nickname for the shipping address is required"><br />
+									<cfinput type="text" name="ShipNickName" value="#ShipNickName#" required="yes" message="Required: Shipping Nickname"><br/>
 								</label>
 								
 							</fieldset>
@@ -489,11 +491,11 @@
 								</label>
 								
 								<label for="ShippingLastName#CurrentRow#"><b><span class="req">*</span>Last Name:</b>
-									<cfinput type="text" name="ShipLastName" value="#ShipLastName#" required="yes" message="Last Name for shipping address is required">
+									<cfinput type="text" name="ShipLastName" value="#ShipLastName#" required="yes" message="Required: Shipping Last Name">
 								</label>
 								
 								<label for="ShipEmail#CurrentRow#"><b>Email:</b>
-									<cfinput type="text" name="ShipEmail" value="#ShipEmail#" required="no" validate="email" message="Please enter a valid email address for the shipping address">
+									<cfinput type="text" name="ShipEmail" value="#ShipEmail#" required="no" validate="email" message="Required: Valid Shipping Email Address">
 								</label>
 								
 								<label for="ShipCompanyName#CurrentRow#"><b>Company Name:</b>
@@ -505,7 +507,7 @@
 							<fieldset>
 								
 								<label for="ShipAddress1#CurrentRow#"><b><span class="req">*</span>Address 1:</b>
-									<cfinput type="text" name="ShipAddress1" value="#ShipAddress1#" required="yes" message="Address Line 1 for shipping address is required">
+									<cfinput type="text" name="ShipAddress1" value="#ShipAddress1#" required="yes" message="Required: Shipping Address Line 1">
 								</label>
 								
 								<label for="ShipAddress2#CurrentRow#"><b>Address 2:</b>
@@ -513,19 +515,21 @@
 								</label>
 								
 								<label for="ShipCity#CurrentRow#"><b><span class="req">*</span>City:</b>
-									<cfinput type="text" name="ShipCity" value="#ShipCity#" required="yes" message="City for shipping address is required">
+									<cfinput type="text" name="ShipCity" value="#ShipCity#" required="yes" message="Required: Shipping City">
 								</label>
 								
 								<label for="ShipState#CurrentRow#"><b><span class="req">*</span>State/Prov:</b>
-									<cfselect name="ShipState" size="1" query="GetStates" value="StateCode" selected="#session.CustomerArray[6]#" display="State" />
+									<cfselect name="ShipState" size="1" query="GetStates" value="StateCode" display="State" required="yes" message="Required: Shipping State/Province"
+										selected="#IIf(ShipState EQ '', 'application.CompanyState', 'ShipState')#" />
 								</label>
 								
 								<label for="ShipZip#CurrentRow#"><b><span class="req">*</span>Zip/PostCode:</b>
-									<cfinput type="text" name="ShipZip" value="#ShipZip#" required="yes" message="ZIP or Postal Code for shipping address is required">
+									<cfinput type="text" name="ShipZip" value="#ShipZip#" required="yes" message="Required: Shipping ZIP/Postal Code">
 								</label>
 								
 								<label for="ShipCountry#CurrentRow#"><b><span class="req">*</span>Country:</b>
-									<cfselect name="ShipCountry" size="1" query="GetCountries" value="CountryCode" selected="#session.CustomerArray[8]#" display="Country" />
+									<cfselect name="ShipCountry" size="1" query="GetCountries" value="CountryCode" display="Country" required="yes" message="Required: Shipping Country"
+										selected="#IIf(ShipCountry EQ '', 'application.BaseCountry', 'ShipCountry')#" />
 								</label>
 							
 							</fieldset>
@@ -533,7 +537,7 @@
 							<fieldset>
 								
 								<label for="ShipPhone#CurrentRow#"><b><span class="req">*</span>Phone:</b>
-									<cfinput type="text" name="ShipPhone" value="#ShipPhone#" required="yes" message="Phone number for shipping address is required">
+									<cfinput type="text" name="ShipPhone" value="#ShipPhone#" required="yes" message="Required: Shipping Phone Number">
 								</label>
 								
 							</fieldset>
@@ -542,7 +546,7 @@
 								
 								<div class="f-submit-wrap">
 									<cfinput type="submit" name="UpdateSHID" value="Update" class="button"> 
-									<cfinput type="submit" name="DeleteSHID" value="Delete" class="button" onClick="return confirm('Are you sure you want to DELETE this shipping address?')">
+									<cfinput type="submit" name="DeleteSHID" value="Delete" class="button" onclick="return confirm('Are you sure you want to DELETE this shipping address?')">
 									<!--- <cfinput type="submit" name="AddSHID" value="Add Address" class="button" style="width:150px"> --->
 								</div>
 								
@@ -558,7 +562,7 @@
 				</div>
 			</cfloop>
 			
-		<cfinclude template="tags/shippingForm.cfm">
+		<br class="clear" />
 	</div>
 </cfif>
 	
@@ -602,16 +606,14 @@
 	--->
 	</cfif>
 </span>
-<br />
 </div>
 
-<br />
-<br />
 <div align="center">
-<hr class="snip" />
-<br />
-	<a href="CA-Logout.cfm"><img src="images/button-logout.gif"></a>&nbsp;&nbsp;
-	<a href="index.cfm"><img src="images/button-home.gif"></a>	
+	<br/>
+	<hr class="snip" />
+	<br/>
+	<input type="button" name="GoBack" value="&lt; LOGOUT" class="button2" onclick="javascript:document.location.href='CA-Logout.cfm';">
+	<input type="button" name="GoHome" value="CONTINUE SHOPPING &gt;" class="button" onclick="javascript:document.location.href='index.cfm';">
 </div>
 
 <br><br>

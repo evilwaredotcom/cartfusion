@@ -1,3 +1,5 @@
+
+
 <!--- MAKE SURE ITEMID AND EMAIL ADDRESS ARE POSTED FROM FORM --->
 <cfif isDefined('ItemID') and ItemID neq '' >
 	<!--- GET ITEM FROM POSTED FORM --->
@@ -10,18 +12,23 @@
 	<cfif structKeyExists(form, 'YourEmail') AND structKeyExists(form, 'RecipientEmail') AND form.YourEmail neq '' and form.RecipientEmail neq '' >
 	
 		<!--- CREATE EMAIL USING EMAIL ADDRESS FROM POSTED FORM AND ITEM RETRIEVED --->
-		<cfmail query="getProduct" group="SKU" to="#form.RecipientEmail#" from="#form.YourEmail#" subject="Check out #getProduct.ItemName# at #application.siteConfig.data.DomainName#" type="html">
+		<cfmail query="getProduct" group="SKU" to="#form.RecipientEmail#" from="#form.YourEmail#" subject="Check out #getProduct.ItemName# at #application.DomainName#" type="html">
 			<html>
-			<head></head>
+			<head>
+				<link rel="shortcut icon" href="images/favicon.ico" />
+				<link rel="stylesheet" type="text/css" href="templates/#application.SiteTemplate#/screen_layout.css">
+				<link rel="stylesheet" type="text/css" href="templates/#application.SiteTemplate#/screen_formatting.css">
+				<link rel="stylesheet" type="text/css" href="templates/#application.SiteTemplate#/screen_design.css">
+			</head>
 			
 			<body style="margin:0px;">
 			<table width="700" cellpadding="3" cellspacing="0" border="0">
 				<tr>
-					<td><a href="#application.siteConfig.data.RootURL#/ProductDetail.cfm?ItemID=#ItemID#"><img src="#application.RootURL#/images/image-CompanyLogo.gif" border="0" alt='#application.siteConfig.data.CompanyName#'></a></td>
-					<td align="right"><a href="#application.RootURL#/ProductDetail.cfm?ItemID=#ItemID#"><img src="#application.RootURL#/images/image-TellAFriend.gif" border="0" alt='#application.siteConfig.data.CompanyName#'></a></td>
+					<td><a href="#application.RootURL#/ProductDetail.cfm?ItemID=#ItemID#"><img src="#application.RootURL#/images/image-CompanyLogo.gif" border="0" alt='#application.CompanyName#'></a></td>
+					<td align="right"><a href="#application.RootURL#/ProductDetail.cfm?ItemID=#ItemID#"><img src="#application.RootURL#/images/image-TellAFriend.gif" border="0" alt='#application.CompanyName#'></a></td>
 				</tr>
 				<tr>
-					<td colspan="2" height="7"><img src="#application.siteConfig.data.RootURL#/images/image-spacer.gif" height="7" width="1"></td>
+					<td colspan="2" height="7"><img src="#application.RootURL#/images/image-spacer.gif" height="7" width="1"></td>
 				</tr>
 				<tr>
 					<td class="cfMessageTwo" align="center">
@@ -33,29 +40,29 @@
 							} else {
 								UserID = 1 ;
 							}
-                            UseThisPrice = application.Cart.getItemPrice(
+							UseThisPrice = application.Cart.getItemPrice(
 								UserID=UserID,
-								SiteID=application.siteConfig.data.SiteID,
+								SiteID=application.SiteID,
 								ItemID=ItemID,
 								SessionID=SessionID,
 								OptionName1=OptionName1,
 								OptionName2=OptionName2,
 								OptionName3=OptionName3);
-                        </cfscript>
+						</cfscript>
 						
 						<!--- ITEM IMAGE --->
-						<a href="#application.siteConfig.data.RootURL#/ProductDetail.cfm?ItemID=#ItemID#">
+						<a href="#application.RootURL#/ProductDetail.cfm?ItemID=#ItemID#">
 						<cfif getProduct.Image IS ''>
-							<cfif FileExists(#application.siteConfig.data.IU_VirtualPathDIR# & '\' & #ImageDir# & '\' & #SKU# & '.jpg')>
-								<img src="#application.siteConfig.data.RootURL#/images/#ImageDir#/#SKU#.jpg" id="img1" border="0" align="middle" alt='#ItemName#'>
+							<cfif FileExists(#application.ImageServerPath# & '\' & #ImageDir# & '\' & #SKU# & '.jpg')>
+								<img src="#application.RootURL#/images/#ImageDir#/#SKU#.jpg" id="img1" border="0" align="middle" alt='#ItemName#'>
 							<cfelse>
-								<img src="#application.siteConfig.data.RootURL#/images/image-EMPTY.gif" id="img1" border="0" align="middle" alt='#ItemName#'>
+								<img src="#application.RootURL#/images/image-EMPTY.gif" id="img1" border="0" align="middle" alt='#ItemName#'>
 							</cfif>
 						<cfelse>
-							<cfif FileExists(#application.siteConfig.data.IU_VirtualPathDIR# & '\' & #ImageDir# & '\' & #Image#)>
-								<img src="#application.siteConfig.data.RootURL#/images/#ImageDir#/#Image#" id="img1" border="0" align="middle" alt='#ItemName#'>
+							<cfif FileExists(#application.ImageServerPath# & '\' & #ImageDir# & '\' & #Image#)>
+								<img src="#application.RootURL#/images/#ImageDir#/#Image#" id="img1" border="0" align="middle" alt='#ItemName#'>
 							<cfelse>								
-								<img src="#application.siteConfig.data.RootURL#/images/image-EMPTY.gif" id="img1" border="0" align="middle" alt='#ItemName#'>
+								<img src="#application.RootURL#/images/image-EMPTY.gif" id="img1" border="0" align="middle" alt='#ItemName#'>
 							</cfif>
 						</cfif>
 						</a>
@@ -69,14 +76,14 @@
 						<br><br>
 						<b>#ItemName#</b>
 						<br>						
-						Click here: <a href="#application.siteConfig.data.RootURL#/ProductDetail.cfm?ItemID=#ItemID#">#application.siteConfig.data.RootURL#/ProductDetail.cfm?ItemID=#ItemID#</a>
+						Click here: <a href="#application.RootURL#/ProductDetail.cfm?ItemID=#ItemID#">#application.RootURL#/ProductDetail.cfm?ItemID=#ItemID#</a>
 						<br><br>
 						- #form.YourName#
 						<br><br>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" height="7"><img src="#application.siteConfig.data.RootURL#/images/image-spacer.gif" height="7" width="1"></td>
+					<td colspan="2" height="7"><img src="#application.RootURL#/images/image-spacer.gif" height="7" width="1"></td>
 				</tr>
 			</table>
 			</body>
@@ -98,13 +105,17 @@
 	<head>
 		<title>TELL A FRIEND</title>
 		<!--- <cfinclude template="css.cfm"> --->
+				<link rel="shortcut icon" href="images/favicon.ico" />
+				<link rel="stylesheet" type="text/css" href="templates/#application.SiteTemplate#/screen_layout.css">
+				<link rel="stylesheet" type="text/css" href="templates/#application.SiteTemplate#/screen_formatting.css">
+				<link rel="stylesheet" type="text/css" href="templates/#application.SiteTemplate#/screen_design.css">
 	</head>
 	
 	<body>
 	
-	<CFOUTPUT QUERY="getProduct" GROUP="SKU">
+	<cfoutput query="getProduct" group="SKU">
 	<table width="700" cellpadding="3" cellspacing="0" border="0" align="center">
-	<cfform name="TellAFriend" action="TellAFriend.cfm" method="post" preservedata="yes">
+	<cfform name="TellAFriend" action="TellAFriend.cfm" method="post">
 		<tr>
 			<td width="280" class="cfMessageTwo" rowspan="100" align="center">
 				<!--- CARTFUSION 4.6 - CART CFC --->
@@ -114,26 +125,26 @@
 					} else {
 						UserID = 1 ;
 					}
-                    UseThisPrice = application.Cart.getItemPrice(
-                                        UserID=UserID,
-                                        SiteID=application.siteConfig.data.SiteID,
-                                        ItemID=ItemID,
-                                        SessionID=SessionID,
-                                        OptionName1=OptionName1,
-                                        OptionName2=OptionName2,
-                                        OptionName3=OptionName3
-                                        ) ;
-                </cfscript>
+					UseThisPrice = application.Cart.getItemPrice(
+										UserID=UserID,
+										SiteID=application.SiteID,
+										ItemID=ItemID,
+										SessionID=SessionID,
+										OptionName1=OptionName1,
+										OptionName2=OptionName2,
+										OptionName3=OptionName3
+										) ;
+				</cfscript>
 				
 				<!--- ITEM IMAGE --->
 				<cfif getProduct.Image IS ''>
-					<cfif FileExists(#application.siteConfig.data.IU_VirtualPathDIR# & '\' & #ImageDir# & '\' & #SKU# & '.jpg')>
+					<cfif FileExists(#application.ImageServerPath# & '\' & #ImageDir# & '\' & #SKU# & '.jpg')>
 						<img src="images/#ImageDir#/#SKU#.jpg" id="img1" border="0" align="middle" alt='#ItemName#'>
 					<cfelse>
 						<img src="images/image-EMPTY.gif" id="img1" border="0" align="middle" alt='#ItemName#'>
 					</cfif>
 				<cfelse>
-					<cfif FileExists(#application.siteConfig.data.IU_VirtualPathDIR# & '\' & #ImageDir# & '\' & #Image#)>
+					<cfif FileExists(#application.ImageServerPath# & '\' & #ImageDir# & '\' & #Image#)>
 						<img src="images/#ImageDir#/#Image#" id="img1" border="0" align="middle" alt='#ItemName#'>
 					<cfelse>								
 						<img src="images/image-EMPTY.gif" id="img1" border="0" align="middle" alt='#ItemName#'>
@@ -147,9 +158,9 @@
 			<td class="cfFormLabel" colspan="2">
 				<font class="cfMessageTwo"><b>E-mail a Friend</b></font>
 				<br><hr size="1" width="100%" class="cfMessageTwo"><br>
-				Tell a friend about this product on #application.siteConfig.data.DomainName#:
+				Tell a friend about this product on #application.DomainName#:
 				<br><br>
-				<a href="#application.siteConfig.data.RootURL#/ProductDetail.cfm?ItemID=#ItemID#">#application.siteConfig.data.RootURL#/ProductDetail.cfm?ItemID=#ItemID#</a>
+				<a href="#application.RootURL#/ProductDetail.cfm?ItemID=#ItemID#">#application.RootURL#/ProductDetail.cfm?ItemID=#ItemID#</a>
 				<br><br>
 				Simply fill in the fields below and we'll send an email link to this product along with your personal message.
 				<br><br>
@@ -184,7 +195,7 @@
 				<b>Add a personal message:</b>
 			</td>
 			<td class="cfFormLabel">
-				<cftextarea name="Message" style="width:250px; height:100px;" width="250" height="100" class="cfFormField">Hey! I thought you might be interested in this product at #application.siteConfig.data.RootURL#, they've got all sorts of stuff like this. You should check them out.</cftextarea>
+				<textarea name="Message" style="width:250px; height:100px;" width="250" height="100" class="cfFormField">Hey! I thought you might be interested in this product at #application.RootURL#, they've got all sorts of stuff like this. You should check them out.</textarea>
 			</td>
 		</tr>
 		<tr>
@@ -203,6 +214,7 @@
 		</tr>
 	</cfform>	
 	</table>
+
 	</cfoutput>
 	</body>
 	</html>

@@ -6,14 +6,14 @@
 	} else {
 		UserID = 1 ;
 	}
-	getCartItems = application.Cart.getCartItems(UserID=UserID,SiteID=config.SiteID,SessionID=SessionID) ;
+	getCartItems = application.Cart.getCartItems(UserID=UserID,SiteID=application.SiteID,SessionID=SessionID) ;
 </cfscript>
 
 <!--- CHECK FOR MINIMUM ORDER REQUIREMENT --->
 <cfinclude template="CartMinimums.cfm">
 
 <cfif getCartItems.data.RecordCount eq 0 or MinNotReached eq 1 or FirstOrder eq 1 >
-	<cflocation url="../CartEdit.cfm" addtoken="no">
+	<cflocation url="#application.rootURL#/CartEdit.cfm" addtoken="no">
 	
 <!--- IF CART HAS STUFF... --->
 <cfelse>
@@ -25,31 +25,30 @@
 		BackOrdersPrice = 0 ;
 	</cfscript>
 
-	<table border="0" style="border-color:<cfoutput>#layout.TableHeadingBGColor#</cfoutput>;" cellpadding="2" cellspacing="0" width="225" align="center">
+	<table border="0" cellpadding="2" cellspacing="0" width="225" align="center" class="cartLayoutTable">
 		<tr>
 			<td class="cfHeading" colspan="4" align="center">Cart Contents<br></td>
 		</tr>
-		<tr bgcolor="<cfoutput>#layout.TableHeadingBGColor#</cfoutput>">
-			<td class="cfMini" width="25%" ><b>SKU</b></td>
-			<td class="cfMini" width="25%" ><b>Quantity</b></td>
-			<td class="cfMini" width="25%" ><b>Price</b></td>
-			<td class="cfMini" width="25%" align="right"><b>Total</b></td>
+		<tr>
+			<th width="25%" ><b>SKU</b></th>
+			<th width="25%" ><b>Quantity</b></th>
+			<th width="25%" ><b>Price</b></th>
+			<th width="25%" align="right"><b>Total</b></th>
 		</tr>
 	
 		<cfoutput query="getCartItems.data">
 		
 			<!--- CARTFUSION 4.6 - CART CFC --->
-            <cfscript>
+			<cfscript>
 				UseThisPrice = application.Cart.getItemPrice(
-									UserID=UserID,
-									SiteID=config.SiteID,
-									ItemID=ItemID,
-									SessionID=SessionID,
-									OptionName1=OptionName1,
-									OptionName2=OptionName2,
-									OptionName3=OptionName3
-									) ;
-            </cfscript>
+					UserID=UserID,
+					SiteID=application.SiteID,
+					ItemID=ItemID,
+					SessionID=SessionID,
+					OptionName1=OptionName1,
+					OptionName2=OptionName2,
+					OptionName3=OptionName3);
+			</cfscript>
 			
 			<cfinclude template="CartItemsCommon.cfm">
 	
@@ -69,7 +68,7 @@
 		<cfoutput>
 		<tr>
 			<td colspan="3">
-			<td><hr></td>
+			<td><hr class="snip" /></td>
 		</tr>
 		<tr>
 			<td class="cfMini" align="right" colspan="3">Subtotal:</td>
@@ -100,7 +99,7 @@
 		</cfif>
 		<!--- NOT WISE TO CALCULATE SHIPPING HERE BECAUSE OF POSTBACKS/INACCURACIES --->
 		<!--- CALCULATE SHIPPING 
-		<cfif isDefined('Form.ShippingMethod') OR config.ShipBy EQ 1 OR config.ShipBy EQ 2 OR config.ShipBy EQ 4 OR RunningWeight GT 150>		
+		<cfif isDefined('Form.ShippingMethod') OR application.ShipBy EQ 1 OR application.ShipBy EQ 2 OR application.ShipBy EQ 4 OR RunningWeight GT 150>		
 			<cfinclude template="Includes/CalculateShipping.cfm">		
 			<cfif isDefined("ShippingPrice") AND ShippingPrice NEQ 0>
 				<tr>

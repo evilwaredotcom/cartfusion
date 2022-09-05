@@ -1,0 +1,118 @@
+
+/* PRODUCTS */
+#productDisplay {
+
+}
+#productContent {
+	padding: 3px;
+	margin: 0px;
+	display: inline;
+}
+/* Shows Product Image */
+#showProductImage-A, #showProductImage-B {
+	width: 300px;
+	margin: 0 auto;
+	padding: 10px;
+	text-align: center;
+}
+#showProductImage-A {
+	float: left;
+}
+#showProductImage-B {
+	float: right;
+}
+/* Shows Product Options */
+#productShowOptions-A, #productShowOptions-B {
+	width: 400px;
+	padding: 5px 5px;
+	margin: 0px 0px 0px 0px;
+	border: 1px #ccc solid;
+}
+#productShowOptions-A {
+	float: right;
+}
+#productShowOptions-B {
+	float: left;
+}
+#productShowOptions-A input, #productShowOptions-B input {
+	font-size: 75%;
+	text-align: right;
+}
+
+
+
+/* ColorTabs For Product Extra Tabs
+==============================================================================*/
+
+#productExtras {
+	clear: both;
+	padding: 10px;
+	margin: 10px 0;
+}
+#productExtrasContent {
+	margin: 0;
+	padding: 0 5px;
+	border: 1px #8cb85c solid;
+}
+
+/* Product Extras Headers */
+#productExtrasHeaders a:hover {
+	text-decoration: none;
+}
+#productExtrasHeaders a {
+	color: #fff;
+	background: #64991e url(/images/style/color_tabs_left.gif) no-repeat left top;
+}
+#productExtrasHeaders a span {
+	background: transparent url(/images/style/color_tabs_right.gif) no-repeat right top;
+}
+#productExtrasHeaders a:hover {
+	background-color: #350;
+	color: #fff;
+}
+#productExtrasHeaders a:hover span {
+	background-color: #350;
+}
+#productExtrasHeaders #current a, 
+#productExtrasHeaders #current span {
+	background-color: #64991e;
+}
+#productExtrasHeaders #current a:hover, 
+#productExtrasHeaders #current a:hover span {
+	background-color: #350;
+}
+#productExtrasHeadersline {
+	clear: both;
+	padding: 0;
+	width: 100%;
+	height: 8px;
+	line-height: 8px;
+	background: #64991e;
+	border-top: 1px solid #fff;
+}
+
+
+
+/* Page Sections
+==============================================================================*/
+div.featuredItem {
+	width: 240px;
+	float: left;
+	padding: 0;
+	margin: 5px;
+	display: inline;
+	min-height: 135px;
+	background-image: url(/images/image-FeaturedProductBG-2.jpg);
+	background-repeat: no-repeat;
+}
+div.featuredItem img {
+	float: left;
+	padding: 3px 10px 0 5px;
+	margin: 5px 3px 40px 3px;
+}
+div.featuredItem p {
+	padding: 5px 3px;
+	margin: 0 5px;
+	font-size: 75%;
+	line-height: 12px;
+}

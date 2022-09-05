@@ -1,3 +1,4 @@
+   
 <!--- Initialize variables --->
 <cfscript>
 	TaxRate = 0 ;
@@ -6,7 +7,7 @@
 	TaxableTotal = 0 ;
 </cfscript>
 
-<cfquery name="getUTaxable" datasource="#datasource#">
+<cfquery name="getUTaxable" datasource="#application.dsn#">
 	SELECT	UTaxable
 	FROM	Users
 	WHERE	UID = #session.CustomerArray[28]#
@@ -16,26 +17,24 @@
 	
 	<cfscript>
 		// DOMESTIC CUSTOMERS
-		if ( config.BaseCountry EQ session.CustomerArray[8] )
-		{
-			if ( config.UseFlatTaxRate EQ 1 )
-				TaxRate = config.FlatTaxRate ;
+		if ( application.BaseCountry EQ session.CustomerArray[8] )	{
+			if ( application.UseFlatTaxRate EQ 1 )
+				TaxRate = application.FlatTaxRate ;
 			else
 				QueryForTax = 1 ;
 		}
 		// INTERNATIONAL CUSTOMERS
-		else if ( config.IntTaxCharge EQ 1 )
+		else if ( application.IntTaxCharge EQ 1 )
 		{
-			TaxRate = config.FlatTaxRate ;
+			TaxRate = application.FlatTaxRate ;
 		}
-		else
-		{
+		else	{
 			TaxRate = 0 ;
 		}		
 	</cfscript>
 	
 	<cfif QueryForTax EQ 1 >
-		<cfquery name="GetTaxRate" datasource="#datasource#" cachedwithin="#CreateTimeSpan(0,0,30,0)#">
+		<cfquery name="GetTaxRate" datasource="#application.dsn#" cachedwithin="#CreateTimeSpan(0,0,30,0)#">
 			SELECT	T_Rate
 			FROM 	States
 			WHERE 	StateCode = '#session.CustomerArray[6]#'
@@ -54,20 +53,19 @@
 			} else {
 				UserID = 1 ;
 			}
-			getCartItems = application.Cart.getCartItems(UserID=UserID,SiteID=config.SiteID,SessionID=SessionID) ;
+			getCartItems = application.Cart.getCartItems(UserID=UserID,SiteID=application.SiteID,SessionID=SessionID) ;
 		</cfscript>
 		
 		<cfloop query="getCartItems.data">		
-            <cfscript>
+			<cfscript>
 				UseThisPrice = application.Cart.getItemPrice(
-									UserID=UserID,
-									SiteID=config.SiteID,
-									ItemID=ItemID,
-									SessionID=SessionID,
-									OptionName1=OptionName1,
-									OptionName2=OptionName2,
-									OptionName3=OptionName3
-									) ;
+					UserID=UserID,
+					SiteID=application.SiteID,
+					ItemID=ItemID,
+					SessionID=SessionID,
+					OptionName1=OptionName1,
+					OptionName2=OptionName2,
+					OptionName3=OptionName3);
 			
 				// NEED TO EVALUATE ANY APPLICABLE DISCOUNTS FOR THIS (LOOPED) PRODUCT HERE --->
 

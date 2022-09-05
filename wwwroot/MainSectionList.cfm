@@ -1,7 +1,12 @@
+<!--- 
+|| MIT LICENSE
+|| CartFusion.com
+--->
+
 <cfscript>
 	getSections = application.Common.getSections(
 		UserID=session.CustomerArray[28], 
-		SiteID=application.siteConfig.data.SiteID, 
+		SiteID=application.SiteID, 
 		OnlyMainSections=1);
 </cfscript>
 
@@ -19,7 +24,7 @@
 <!--- GET MAIN SECTIONS --->
 <!--- <cfinvoke component="#application.Common#" method="getSections" returnvariable="getSections">
 	<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
-	<cfinvokeargument name="SiteID" value="#config.SiteID#">
+	<cfinvokeargument name="SiteID" value="#application.SiteID#">
 	<cfinvokeargument name="OnlyMainSections" value="1">
 </cfinvoke>
 
@@ -37,7 +42,7 @@
 								<td align="center" valign="middle" class="cfDefault"> 
 									<cfif SecFeaturedID EQ ''>	
 										<a href="ProductList.cfm?SecDisplay=#SectionID#&start=1">#SecName#</a>
-									<cfelseif FileExists(#config.IU_VirtualPathDIR# & '\' & #SecFeaturedDir# & '\' & #SecFeaturedID#)>
+									<cfelseif FileExists(#application.ImageServerPath# & '\' & #SecFeaturedDir# & '\' & #SecFeaturedID#)>
 										<a href="ProductList.cfm?SecDisplay=#SectionID#&start=1"><img src="images/#SecFeaturedDir#/#SecFeaturedID#" BORDER="0" align="absmiddle" alt="#SecName#"></a><br>
 										<a href="ProductList.cfm?SecDisplay=#SectionID#&start=1">#SecName#</a>
 									<cfelse>

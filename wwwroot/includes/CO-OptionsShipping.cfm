@@ -1,26 +1,27 @@
-<!--- CARTFUSION 4.5 - MULTIPLE SHIPPING ADDRESSES --->	
-<cfloop from="1" to="#Cart.Packages#" index="cpi">
-<tr>
-	<td width="35%" align="right" class="cfDefault"><b>Package <cfoutput>###cpi#</cfoutput><br />Shipping &amp; Handling:</b></td>
-	<td width="65%" class="cfFormLabel">
 
+<!--- CARTFUSION 4.5 - MULTIPLE SHIPPING ADDRESSES --->	
+<cfloop from="1" to="#Cart.Packages#" index="cpi"><cfset ShippingPrice = 0 >
+<tr>
+	<td width="35%" align="right" class="cfDefault" style="padding-right:5px;"><label style="width:100%"><b><span class="req">*</span><font style="font-size:120%;">Package <cfoutput>#cpi#</font></cfoutput><br/>Shipping &amp; Handling:</b></label></td>
+	<td width="65%" align="left" class="cfFormLabel" style="padding-left:5px;">					
+					
 <!--- IF WEIGHT IS MORE THAN ANY ALLOWABLE AMOUNT --->
-<cfif Cart.CartWeight GT 150 AND config.ShipBy EQ 3 AND config.UseFedex NEQ 1 >
+<cfif Cart.CartWeight GT 150 AND application.ShipBy EQ 3 AND application.UseFedex NEQ 1 >
 	<cfoutput>
-	Freight: <b>#LSCurrencyFormat(config.DefaultShipRateOver)#</b>
+	Freight: <b>#LSCurrencyFormat(application.DefaultShipRateOver)#</b>
 	<input type="hidden" name="ShippingMethod#cpi#" value="Overweight">
 	</cfoutput>
 
 <!--- RETIRED IN CARTFUSION 4.5
 <!--- IF SHIPBY IS PRICE --->
-<cfelseif config.ShipBy EQ 1>
+<cfelseif application.ShipBy EQ 1>
 
-	<cfquery name="getShipPrice" datasource="#datasource#">				
+	<cfquery name="getShipPrice" datasource="#application.dsn#">				
 		SELECT	InternationalRate, DomesticRate
 		FROM	ShipPrice
 		WHERE	Start	<	#Cart.CartTotal#
 		AND		Finish	>=	#Cart.CartTotal#
-		AND		SiteID = #config.SiteID#
+		AND		SiteID = #application.SiteID#
 	</cfquery>
 	
 	<cfoutput query="getShipPrice">
@@ -34,7 +35,7 @@
 				<cfelse>
 					<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 				</cfif>
-				<cfinvokeargument name="SiteID" value="#config.SiteID#">
+				<cfinvokeargument name="SiteID" value="#application.SiteID#">
 				<cfinvokeargument name="ShippingMethod" value="Price">
 				<cfinvokeargument name="SessionID" value="#SessionID#">
 			</cfinvoke>
@@ -44,14 +45,14 @@
 				{
 					if ( ShippingDiscount.Type EQ 1 )
 					{
-						if ( session.CustomerArray[25] NEQ config.BaseCountry )
+						if ( session.CustomerArray[25] NEQ application.BaseCountry )
 							getShipPrice.InternationalRate = getShipPrice.InternationalRate - (getShipPrice.InternationalRate * ShippingDiscount.Value/100) ;
 						else
 							getShipPrice.DomesticRate = getShipPrice.DomesticRate - (getShipPrice.DomesticRate * ShippingDiscount.Value/100) ;
 					}
 					else
 					{
-						if ( session.CustomerArray[25] NEQ config.BaseCountry )
+						if ( session.CustomerArray[25] NEQ application.BaseCountry )
 							getShipPrice.InternationalRate = getShipPrice.InternationalRate - ShippingDiscount.Value ;
 						else
 							getShipPrice.DomesticRate = getShipPrice.DomesticRate - ShippingDiscount.Value ;
@@ -62,14 +63,14 @@
 			<cfscript>
 				if ( ShippingDiscount.Type EQ 1 )
 				{
-					if ( session.CustomerArray[25] NEQ config.BaseCountry )
+					if ( session.CustomerArray[25] NEQ application.BaseCountry )
 						getShipPrice.InternationalRate = getShipPrice.InternationalRate - (getShipPrice.InternationalRate * ShippingDiscount.Value/100) ;
 					else
 						getShipPrice.DomesticRate = getShipPrice.DomesticRate - (getShipPrice.DomesticRate * ShippingDiscount.Value/100) ;
 				}
 				else
 				{
-					if ( session.CustomerArray[25] NEQ config.BaseCountry )
+					if ( session.CustomerArray[25] NEQ application.BaseCountry )
 						getShipPrice.InternationalRate = getShipPrice.InternationalRate - ShippingDiscount.Value ;
 					else
 						getShipPrice.DomesticRate = getShipPrice.DomesticRate - ShippingDiscount.Value ;
@@ -78,22 +79,22 @@
 		</cfif>
 		<!--- END: GET SHIPPING DISCOUNT --->
 		
-		<cfif session.CustomerArray[25] NEQ config.BaseCountry >
-			<input type="radio" name="JustForShow" checked> #config.StoreNameShort# International Shipping: <b>#LSCurrencyFormat(InternationalRate)#</b>
+		<cfif session.CustomerArray[25] NEQ application.BaseCountry >
+			<input type="radio" name="JustForShow" checked> #application.StoreNameShort# International Shipping: <b>#LSCurrencyFormat(InternationalRate)#</b>
 		<cfelse>
-			<input type="radio" name="JustForShow" checked> #config.StoreNameShort# Shipping: <b>#LSCurrencyFormat(DomesticRate)#</b>
+			<input type="radio" name="JustForShow" checked> #application.StoreNameShort# Shipping: <b>#LSCurrencyFormat(DomesticRate)#</b>
 		</cfif>
 		<input type="hidden" name="ShippingMethod#cpi#" value="Price">
 	</cfoutput>
 <!--- IF SHIPBY IS WEIGHT --->
-<cfelseif config.ShipBy EQ 2>		
+<cfelseif application.ShipBy EQ 2>		
 
-	<cfquery name="getShipPrice" datasource="#datasource#">				
+	<cfquery name="getShipPrice" datasource="#application.dsn#">				
 		SELECT	InternationalRate, DomesticRate
 		FROM	ShipWeight
 		WHERE	Start	<	#Cart.CartWeight#
 		AND		Finish	>=	#Cart.CartWeight#
-		AND		SiteID = #config.SiteID#
+		AND		SiteID = #application.SiteID#
 	</cfquery>
 	
 	<cfoutput query="getShipPrice">
@@ -107,7 +108,7 @@
 				<cfelse>
 					<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 				</cfif>
-				<cfinvokeargument name="SiteID" value="#config.SiteID#">
+				<cfinvokeargument name="SiteID" value="#application.SiteID#">
 				<cfinvokeargument name="ShippingMethod" value="Weight">
 				<cfinvokeargument name="SessionID" value="#SessionID#">
 			</cfinvoke>
@@ -117,14 +118,14 @@
 				{
 					if ( ShippingDiscount.Type EQ 1 )
 					{
-						if ( session.CustomerArray[25] NEQ config.BaseCountry )
+						if ( session.CustomerArray[25] NEQ application.BaseCountry )
 							getShipPrice.InternationalRate = getShipPrice.InternationalRate - (getShipPrice.InternationalRate * ShippingDiscount.Value/100) ;
 						else
 							getShipPrice.DomesticRate = getShipPrice.DomesticRate - (getShipPrice.DomesticRate * ShippingDiscount.Value/100) ;
 					}
 					else
 					{
-						if ( session.CustomerArray[25] NEQ config.BaseCountry )
+						if ( session.CustomerArray[25] NEQ application.BaseCountry )
 							getShipPrice.InternationalRate = getShipPrice.InternationalRate - ShippingDiscount.Value ;
 						else
 							getShipPrice.DomesticRate = getShipPrice.DomesticRate - ShippingDiscount.Value ;
@@ -135,14 +136,14 @@
 			<cfscript>
 				if ( ShippingDiscount.Type EQ 1 )
 				{
-					if ( session.CustomerArray[25] NEQ config.BaseCountry )
+					if ( session.CustomerArray[25] NEQ application.BaseCountry )
 						getShipPrice.InternationalRate = getShipPrice.InternationalRate - (getShipPrice.InternationalRate * ShippingDiscount.Value/100) ;
 					else
 						getShipPrice.DomesticRate = getShipPrice.DomesticRate - (getShipPrice.DomesticRate * ShippingDiscount.Value/100) ;
 				}
 				else
 				{
-					if ( session.CustomerArray[25] NEQ config.BaseCountry )
+					if ( session.CustomerArray[25] NEQ application.BaseCountry )
 						getShipPrice.InternationalRate = getShipPrice.InternationalRate - ShippingDiscount.Value ;
 					else
 						getShipPrice.DomesticRate = getShipPrice.DomesticRate - ShippingDiscount.Value ;
@@ -151,24 +152,24 @@
 		</cfif>
 		<!--- END: GET SHIPPING DISCOUNT --->
 		
-		<cfif session.CustomerArray[25] NEQ config.BaseCountry >
-			<input type="radio" name="JustForShow" checked> #config.StoreNameShort# International Shipping: <b>#LSCurrencyFormat(InternationalRate)#</b>
+		<cfif session.CustomerArray[25] NEQ application.BaseCountry >
+			<input type="radio" name="JustForShow" checked> #application.StoreNameShort# International Shipping: <b>#LSCurrencyFormat(InternationalRate)#</b>
 		<cfelse>
-			<input type="radio" name="JustForShow" checked> #config.StoreNameShort# Shipping: <b>#LSCurrencyFormat(DomesticRate)#</b>
+			<input type="radio" name="JustForShow" checked> #application.StoreNameShort# Shipping: <b>#LSCurrencyFormat(DomesticRate)#</b>
 		</cfif>
 		<input type="hidden" name="ShippingMethod#cpi#" value="Weight">
 	</cfoutput>
 --->
 
 <!--- IF SHIPBY IS AUTOMATED --->
-<cfelseif config.ShipBy EQ 3>
+<cfelseif application.ShipBy EQ 3>
 	<cfinvoke component="#application.Queries#" method="getShippingMethods" returnvariable="getShippingMethods"></cfinvoke>
 	<cfinvoke component="#application.Queries#" method="getShippingCos" returnvariable="getShippingCos">
-		<cfinvokeargument name="SiteID" value="#config.SiteID#">
+		<cfinvokeargument name="SiteID" value="#application.SiteID#">
 	</cfinvoke>
 	
 	<!--- IF USPS --->
-	<cfif config.UseUSPS EQ 1 >
+	<cfif application.UseUSPS EQ 1 >
 		<cfset ShippingChoices = ShippingChoices + 1 >
 		<cfif NOT isDefined('errorShippingUSPS') OR errorShippingUSPS NEQ 1 >
 			<cftry>
@@ -186,7 +187,7 @@
 	</cfif>	
 
 	<!--- IF FEDEX --->
-	<cfif config.UseFedEx EQ 1 >
+	<cfif application.UseFedEx EQ 1 >
 		<cfset ShippingChoices = ShippingChoices + 1 >
 		<cfif NOT isDefined('errorShippingFEDEX') OR errorShippingFEDEX NEQ 1 >
 			<cftry>
@@ -204,7 +205,7 @@
 	</cfif>
 	
 	<!--- IF UPS --->
-	<cfif config.UseUPS EQ 1 >
+	<cfif application.UseUPS EQ 1 >
 		<cfset ShippingChoices = ShippingChoices + 1 >
 		<cfif NOT isDefined('errorShippingUPS') OR errorShippingUPS NEQ 1 >
 			<cftry>
@@ -229,44 +230,44 @@
 	<cfif errorShippingUSPS EQ 1 
 		  AND ( ShippingChoices GT 1 AND ( errorShippingFedex EQ 1 OR errorShippingUPS EQ 1 ) 
 		  OR  ( ShippingChoices LTE 1 ) ) > 
-		<cfif session.CustomerArray[25] NEQ config.BaseCountry >
+		<cfif session.CustomerArray[25] NEQ application.BaseCountry >
 			<cfscript>
-				ShippingPrice = ShippingPrice + config.DefaultShipRateInt ;
+				ShippingPrice = ShippingPrice + application.DefaultShipRateInt ;
 			</cfscript>
-            <cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default International Shipping: <b>#LSCurrencyFormat(ShippingPrice)#</b><br />
+			<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default International Shipping: <b>#LSCurrencyFormat(ShippingPrice)#</b><br/>
 		<cfelse>
-        	<cfscript>
-				ShippingPrice = ShippingPrice + config.DefaultShipRateDom ;
+			<cfscript>
+				ShippingPrice = ShippingPrice + application.DefaultShipRateDom ;
 			</cfscript>
-			<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default Shipping: <b>#LSCurrencyFormat(ShippingPrice)#</b><br />
+			<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default Shipping: <b>#LSCurrencyFormat(ShippingPrice)#</b><br/>
 		</cfif>
 	<cfelseif errorShippingFedex EQ 1 
 		  AND ( ShippingChoices GT 1 AND ( errorShippingUSPS EQ 1 OR errorShippingUPS EQ 1 ) 
 		  OR  ( ShippingChoices LTE 1 ) ) > 
-		<cfif session.CustomerArray[25] NEQ config.BaseCountry >
+		<cfif session.CustomerArray[25] NEQ application.BaseCountry >
 			<cfscript>
-				ShippingPrice = ShippingPrice + config.DefaultShipRateInt ;
+				ShippingPrice = ShippingPrice + application.DefaultShipRateInt ;
 			</cfscript>
-            <cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default International Shipping: <b>#LSCurrencyFormat(ShippingPrice)#</b><br />
+			<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default International Shipping: <b>#LSCurrencyFormat(ShippingPrice)#</b><br/>
 		<cfelse>
-        	<cfscript>
-				ShippingPrice = ShippingPrice + config.DefaultShipRateDom ;
+			<cfscript>
+				ShippingPrice = ShippingPrice + application.DefaultShipRateDom ;
 			</cfscript>
-			<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default Shipping: <b>#LSCurrencyFormat(ShippingPrice)#</b><br />
+			<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default Shipping: <b>#LSCurrencyFormat(ShippingPrice)#</b><br/>
 		</cfif>
 	<cfelseif errorShippingUPS EQ 1 
 		  AND ( ShippingChoices GT 1 AND ( errorShippingFedex EQ 1 OR errorShippingUSPS EQ 1 ) 
 		  OR  ( ShippingChoices LTE 1 ) ) > 
-		<cfif session.CustomerArray[25] NEQ config.BaseCountry >
+		<cfif session.CustomerArray[25] NEQ application.BaseCountry >
 			<cfscript>
-				ShippingPrice = ShippingPrice + config.DefaultShipRateInt ;
+				ShippingPrice = ShippingPrice + application.DefaultShipRateInt ;
 			</cfscript>
-            <cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default International Shipping: <b>#LSCurrencyFormat(ShippingPrice)#</b><br />
+			<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default International Shipping: <b>#LSCurrencyFormat(ShippingPrice)#</b><br/>
 		<cfelse>
-        	<cfscript>
-				ShippingPrice = ShippingPrice + config.DefaultShipRateDom ;
+			<cfscript>
+				ShippingPrice = ShippingPrice + application.DefaultShipRateDom ;
 			</cfscript>
-			<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default Shipping: <b>#LSCurrencyFormat(ShippingPrice)#</b><br />
+			<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default Shipping: <b>#LSCurrencyFormat(ShippingPrice)#</b><br/>
 		</cfif>
 	</cfif>
 	</cfoutput>
@@ -274,28 +275,28 @@
 	
 	
 <!--- SHIPBY REGION/GEOGRAPHY --->	
-<cfelseif config.ShipBy EQ 4 >
-	<cfif session.CustomerArray[25] EQ config.BaseCountry >
-		<cfquery name="getRate" datasource="#datasource#">
+<cfelseif application.ShipBy EQ 4 >
+	<cfif session.CustomerArray[25] EQ application.BaseCountry >
+		<cfquery name="getRate" datasource="#application.dsn#">
 			SELECT 	*
 			FROM 	States
 			WHERE 	StateCode = '#session.CustomerArray[23]#'
 		</cfquery>
 		<cfscript>
 			if ( GetRate.S_Rate EQ '' OR GetRate.S_Rate EQ 0 )
-				ShippingPrice = ShippingPrice + config.DefaultShipRateDom ;
+				ShippingPrice = ShippingPrice + application.DefaultShipRateDom ;
 			else
 				ShippingPrice = ShippingPrice + GetRate.S_Rate ;
 		</cfscript>
 	<cfelse>
-		<cfquery name="getRate" datasource="#datasource#">
+		<cfquery name="getRate" datasource="#application.dsn#">
 			SELECT 	*
 			FROM	countries
 			WHERE	Country = '#session.CustomerArray[25]#'
 		</cfquery>
 		<cfscript>
 			if ( GetRate.S_Rate EQ '' OR GetRate.S_Rate EQ 0 )
-				ShippingPrice = ShippingPrice + config.DefaultShipRateInt ;
+				ShippingPrice = ShippingPrice + application.DefaultShipRateInt ;
 			else
 				ShippingPrice = ShippingPrice + GetRate.S_Rate ;
 		</cfscript>
@@ -310,7 +311,7 @@
 			<cfelse>
 				<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 			</cfif>
-			<cfinvokeargument name="SiteID" value="#config.SiteID#">
+			<cfinvokeargument name="SiteID" value="#application.SiteID#">
 			<cfinvokeargument name="ShippingMethod" value="Location">
 			<cfinvokeargument name="SessionID" value="#SessionID#">
 		</cfinvoke>
@@ -335,26 +336,26 @@
 	<!--- END: GET SHIPPING DISCOUNT --->
 		
 	<cfoutput>
-		<cfif session.CustomerArray[25] NEQ config.BaseCountry >
-			<input type="radio" name="JustForShow" checked> #config.StoreNameShort# International Shipping: <b>#LSCurrencyFormat(ShippingPrice)#</b>
+		<cfif session.CustomerArray[25] NEQ application.BaseCountry >
+			<input type="radio" name="JustForShow" checked> #application.StoreNameShort# International Shipping: <b>#LSCurrencyFormat(ShippingPrice)#</b>
 		<cfelse>
-			<input type="radio" name="JustForShow" checked> #config.StoreNameShort# Shipping: <b>#LSCurrencyFormat(ShippingPrice)#</b>
+			<input type="radio" name="JustForShow" checked> #application.StoreNameShort# Shipping: <b>#LSCurrencyFormat(ShippingPrice)#</b>
 		</cfif>
 		<input type="hidden" name="ShippingMethod#cpi#" value="Location">
 	</cfoutput>
 	
 
 <!--- SHIPBY CUSTOM SHIPPING OPTIONS: WEIGHT --->
-<cfelseif config.ShipBy EQ 5 >
-	<cfquery name="getCustomShipping" datasource="#datasource#">
+<cfelseif application.ShipBy EQ 5 >
+	<cfquery name="getCustomShipping" datasource="#application.dsn#">
 		SELECT 	*
 		FROM	ShippingMethods
 		WHERE	ShipWeightLo < #Cart.CartWeight#
 		AND		ShipWeightHi >=	#Cart.CartWeight#
 		AND		(ShipWeightLo > 0 OR ShipWeightHi > 0)
-		AND		SiteID = #config.SiteID#
+		AND		SiteID = #application.SiteID#
 		AND		ShippingCompany = 'Custom'
-		<cfif   session.CustomerArray[25] EQ config.BaseCountry >
+		<cfif   session.CustomerArray[25] EQ application.BaseCountry >
 		AND		International != 1
 		<cfelse>
 		AND		International = 1
@@ -373,7 +374,7 @@
 					<cfelse>
 						<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 					</cfif>
-					<cfinvokeargument name="SiteID" value="#config.SiteID#">
+					<cfinvokeargument name="SiteID" value="#application.SiteID#">
 					<cfinvokeargument name="ShippingMethod" value="Weight">
 					<cfinvokeargument name="SessionID" value="#SessionID#">
 				</cfinvoke>
@@ -397,13 +398,13 @@
 			</cfif>
 			<!--- END: GET SHIPPING DISCOUNT --->
 			<cfif getCustomShipping.RecordCount EQ 1>
-				<cfinput type="radio" name="ShippingMethod#cpi#" value="#ShippingCode#" required="yes" message="Please select a shipping method" checked="yes"> #ShippingMessage#: <b>#LSCurrencyFormat(ShipPrice)#</b><br />
+				<cfinput type="radio" name="ShippingMethod#cpi#" value="#ShippingCode#" required="yes" message="Please select a shipping method" checked="yes"> #ShippingMessage#: <b>#LSCurrencyFormat(ShipPrice)#</b><br/>
 			<cfelse>
-				<cfinput type="radio" name="ShippingMethod#cpi#" value="#ShippingCode#" required="yes" message="Please select a shipping method" checked="no" > #ShippingMessage#: <b>#LSCurrencyFormat(ShipPrice)#</b><br />
+				<cfinput type="radio" name="ShippingMethod#cpi#" value="#ShippingCode#" required="yes" message="Please select a shipping method" checked="no" > #ShippingMessage#: <b>#LSCurrencyFormat(ShipPrice)#</b><br/>
 			</cfif>
 		</cfoutput>
 	<cfelse>
-		<cfif session.CustomerArray[25] NEQ config.BaseCountry >
+		<cfif session.CustomerArray[25] NEQ application.BaseCountry >
 			<!--- BEGIN: GET SHIPPING DISCOUNT --->
 			<cfif GlobalShipDiscount EQ 0 >
 				<!--- INVOKE INSTANCE OF OBJECT - GET PRODUCT PRICE, INCLUDING ANY DISCOUNTS --->
@@ -413,7 +414,7 @@
 					<cfelse>
 						<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 					</cfif>
-					<cfinvokeargument name="SiteID" value="#config.SiteID#">
+					<cfinvokeargument name="SiteID" value="#application.SiteID#">
 					<cfinvokeargument name="ShippingMethod" value="Weight">
 					<cfinvokeargument name="SessionID" value="#SessionID#">
 				</cfinvoke>
@@ -422,22 +423,22 @@
 					if ( ShippingDiscount.ShipMethod EQ 'Weight' )
 					{
 						if ( ShippingDiscount.Type EQ 1 )
-							config.DefaultShipRateInt = config.DefaultShipRateInt - (config.DefaultShipRateInt * ShippingDiscount.Value/100) ;
+							application.DefaultShipRateInt = application.DefaultShipRateInt - (application.DefaultShipRateInt * ShippingDiscount.Value/100) ;
 						else
-							config.DefaultShipRateInt = config.DefaultShipRateInt - ShippingDiscount.Value ;		
+							application.DefaultShipRateInt = application.DefaultShipRateInt - ShippingDiscount.Value ;		
 					}
 				</cfscript>
 			<cfelse><!--- THERE IS AN AUTOMATIC DISCOUNT FOR ALL SHIPPING METHODS ---> 
 				<cfscript>
 					if ( ShippingDiscount.Type EQ 1 )
-						config.DefaultShipRateInt = config.DefaultShipRateInt - (config.DefaultShipRateInt * ShippingDiscount.Value/100) ;
+						application.DefaultShipRateInt = application.DefaultShipRateInt - (application.DefaultShipRateInt * ShippingDiscount.Value/100) ;
 					else
-						config.DefaultShipRateInt = config.DefaultShipRateInt - ShippingDiscount.Value ;
+						application.DefaultShipRateInt = application.DefaultShipRateInt - ShippingDiscount.Value ;
 				</cfscript>
 			</cfif>
 			<!--- END: GET SHIPPING DISCOUNT --->
 			<cfoutput>
-			<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default Int'l Shipping: <b>#LSCurrencyFormat(config.DefaultShipRateInt)#</b><br />
+			<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default Int'l Shipping: <b>#LSCurrencyFormat(application.DefaultShipRateInt)#</b><br/>
 			</cfoutput>
 		<cfelse>
 			<!--- BEGIN: GET SHIPPING DISCOUNT --->
@@ -449,7 +450,7 @@
 					<cfelse>
 						<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 					</cfif>
-					<cfinvokeargument name="SiteID" value="#config.SiteID#">
+					<cfinvokeargument name="SiteID" value="#application.SiteID#">
 					<cfinvokeargument name="ShippingMethod" value="Weight">
 					<cfinvokeargument name="SessionID" value="#SessionID#">
 				</cfinvoke>
@@ -458,38 +459,38 @@
 					if ( ShippingDiscount.ShipMethod EQ 'Weight' )
 					{
 						if ( ShippingDiscount.Type EQ 1 )
-							config.DefaultShipRateDom = config.DefaultShipRateDom - (config.DefaultShipRateDom * ShippingDiscount.Value/100) ;
+							application.DefaultShipRateDom = application.DefaultShipRateDom - (application.DefaultShipRateDom * ShippingDiscount.Value/100) ;
 						else
-							config.DefaultShipRateDom = config.DefaultShipRateDom - ShippingDiscount.Value ;		
+							application.DefaultShipRateDom = application.DefaultShipRateDom - ShippingDiscount.Value ;		
 					}
 				</cfscript>
 			<cfelse><!--- THERE IS AN AUTOMATIC DISCOUNT FOR ALL SHIPPING METHODS ---> 
 				<cfscript>
 					if ( ShippingDiscount.Type EQ 1 )
-						config.DefaultShipRateDom = config.DefaultShipRateDom - (config.DefaultShipRateDom * ShippingDiscount.Value/100) ;
+						application.DefaultShipRateDom = application.DefaultShipRateDom - (application.DefaultShipRateDom * ShippingDiscount.Value/100) ;
 					else
-						config.DefaultShipRateDom = config.DefaultShipRateDom - ShippingDiscount.Value ;
+						application.DefaultShipRateDom = application.DefaultShipRateDom - ShippingDiscount.Value ;
 				</cfscript>
 			</cfif>
 			<!--- END: GET SHIPPING DISCOUNT --->
 			<cfoutput>
-			<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default Shipping: <b>#LSCurrencyFormat(config.DefaultShipRateDom)#</b><br />
+			<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default Shipping: <b>#LSCurrencyFormat(application.DefaultShipRateDom)#</b><br/>
 			</cfoutput>
 		</cfif>
 	</cfif>
 	
 	
 <!--- SHIPBY CUSTOM SHIPPING OPTIONS: PRICE --->	
-<cfelseif config.ShipBy EQ 6 >
-	<cfquery name="getCustomShipping" datasource="#datasource#">
+<cfelseif application.ShipBy EQ 6 >
+	<cfquery name="getCustomShipping" datasource="#application.dsn#">
 		SELECT 	*
 		FROM	ShippingMethods
 		WHERE	ShipPriceLo <  #Cart.CartTotal#
 		AND		ShipPriceHi >= #Cart.CartTotal#
 		AND		(ShipPriceLo > 0 OR ShipPriceHi > 0)
-		AND		SiteID = #config.SiteID#
+		AND		SiteID = #application.SiteID#
 		AND		ShippingCompany = 'Custom'
-		<cfif   session.CustomerArray[25] EQ config.BaseCountry >
+		<cfif   session.CustomerArray[25] EQ application.BaseCountry >
 		AND		International != 1
 		<cfelse>
 		AND		International = 1
@@ -508,7 +509,7 @@
 					<cfelse>
 						<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 					</cfif>
-					<cfinvokeargument name="SiteID" value="#config.SiteID#">
+					<cfinvokeargument name="SiteID" value="#application.SiteID#">
 					<cfinvokeargument name="ShippingMethod" value="Price">
 					<cfinvokeargument name="SessionID" value="#SessionID#">
 				</cfinvoke>
@@ -532,13 +533,13 @@
 			</cfif>
 			<!--- END: GET SHIPPING DISCOUNT --->
 			<cfif getCustomShipping.RecordCount EQ 1>
-				<cfinput type="radio" name="ShippingMethod#cpi#" value="#ShippingCode#" required="yes" message="Please select a shipping method" checked="yes"> #ShippingMessage#: <b>#LSCurrencyFormat(ShipPrice)#</b><br />
+				<cfinput type="radio" name="ShippingMethod#cpi#" value="#ShippingCode#" required="yes" message="Please select a shipping method" checked="yes"> #ShippingMessage#: <b>#LSCurrencyFormat(ShipPrice)#</b><br/>
 			<cfelse>
-				<cfinput type="radio" name="ShippingMethod#cpi#" value="#ShippingCode#" required="yes" message="Please select a shipping method" checked="no" > #ShippingMessage#: <b>#LSCurrencyFormat(ShipPrice)#</b><br />
+				<cfinput type="radio" name="ShippingMethod#cpi#" value="#ShippingCode#" required="yes" message="Please select a shipping method" checked="no" > #ShippingMessage#: <b>#LSCurrencyFormat(ShipPrice)#</b><br/>
 			</cfif>
 		</cfoutput>
 	<cfelse>
-		<cfif session.CustomerArray[25] NEQ config.BaseCountry >
+		<cfif session.CustomerArray[25] NEQ application.BaseCountry >
 			<!--- BEGIN: GET SHIPPING DISCOUNT --->
 			<cfif GlobalShipDiscount EQ 0 >
 				<!--- INVOKE INSTANCE OF OBJECT - GET PRODUCT PRICE, INCLUDING ANY DISCOUNTS --->
@@ -548,7 +549,7 @@
 					<cfelse>
 						<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 					</cfif>
-					<cfinvokeargument name="SiteID" value="#config.SiteID#">
+					<cfinvokeargument name="SiteID" value="#application.SiteID#">
 					<cfinvokeargument name="ShippingMethod" value="Weight">
 					<cfinvokeargument name="SessionID" value="#SessionID#">
 				</cfinvoke>
@@ -557,22 +558,22 @@
 					if ( ShippingDiscount.ShipMethod EQ 'Weight' )
 					{
 						if ( ShippingDiscount.Type EQ 1 )
-							config.DefaultShipRateInt = config.DefaultShipRateInt - (config.DefaultShipRateInt * ShippingDiscount.Value/100) ;
+							application.DefaultShipRateInt = application.DefaultShipRateInt - (application.DefaultShipRateInt * ShippingDiscount.Value/100) ;
 						else
-							config.DefaultShipRateInt = config.DefaultShipRateInt - ShippingDiscount.Value ;		
+							application.DefaultShipRateInt = application.DefaultShipRateInt - ShippingDiscount.Value ;		
 					}
 				</cfscript>
 			<cfelse><!--- THERE IS AN AUTOMATIC DISCOUNT FOR ALL SHIPPING METHODS ---> 
 				<cfscript>
 					if ( ShippingDiscount.Type EQ 1 )
-						config.DefaultShipRateInt = config.DefaultShipRateInt - (config.DefaultShipRateInt * ShippingDiscount.Value/100) ;
+						application.DefaultShipRateInt = application.DefaultShipRateInt - (application.DefaultShipRateInt * ShippingDiscount.Value/100) ;
 					else
-						config.DefaultShipRateInt = config.DefaultShipRateInt - ShippingDiscount.Value ;
+						application.DefaultShipRateInt = application.DefaultShipRateInt - ShippingDiscount.Value ;
 				</cfscript>
 			</cfif>
 			<!--- END: GET SHIPPING DISCOUNT --->
 			<cfoutput>
-			<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default Int'l Shipping: <b>#LSCurrencyFormat(config.DefaultShipRateInt)#</b><br />
+			<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default Int'l Shipping: <b>#LSCurrencyFormat(application.DefaultShipRateInt)#</b><br/>
 			</cfoutput>
 		<cfelse>
 			<!--- BEGIN: GET SHIPPING DISCOUNT --->
@@ -584,7 +585,7 @@
 					<cfelse>
 						<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 					</cfif>
-					<cfinvokeargument name="SiteID" value="#config.SiteID#">
+					<cfinvokeargument name="SiteID" value="#application.SiteID#">
 					<cfinvokeargument name="ShippingMethod" value="Weight">
 					<cfinvokeargument name="SessionID" value="#SessionID#">
 				</cfinvoke>
@@ -593,31 +594,31 @@
 					if ( ShippingDiscount.ShipMethod EQ 'Weight' )
 					{
 						if ( ShippingDiscount.Type EQ 1 )
-							config.DefaultShipRateDom = config.DefaultShipRateDom - (config.DefaultShipRateDom * ShippingDiscount.Value/100) ;
+							application.DefaultShipRateDom = application.DefaultShipRateDom - (application.DefaultShipRateDom * ShippingDiscount.Value/100) ;
 						else
-							config.DefaultShipRateDom = config.DefaultShipRateDom - ShippingDiscount.Value ;		
+							application.DefaultShipRateDom = application.DefaultShipRateDom - ShippingDiscount.Value ;		
 					}
 				</cfscript>
 			<cfelse><!--- THERE IS AN AUTOMATIC DISCOUNT FOR ALL SHIPPING METHODS ---> 
 				<cfscript>
 					if ( ShippingDiscount.Type EQ 1 )
-						config.DefaultShipRateDom = config.DefaultShipRateDom - (config.DefaultShipRateDom * ShippingDiscount.Value/100) ;
+						application.DefaultShipRateDom = application.DefaultShipRateDom - (application.DefaultShipRateDom * ShippingDiscount.Value/100) ;
 					else
-						config.DefaultShipRateDom = config.DefaultShipRateDom - ShippingDiscount.Value ;
+						application.DefaultShipRateDom = application.DefaultShipRateDom - ShippingDiscount.Value ;
 				</cfscript>
 			</cfif>
 			<!--- END: GET SHIPPING DISCOUNT --->
 			<cfoutput>
-			<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default Shipping: <b>#LSCurrencyFormat(config.DefaultShipRateDom)#</b><br />
+			<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default Shipping: <b>#LSCurrencyFormat(application.DefaultShipRateDom)#</b><br/>
 			</cfoutput>
 		</cfif>
 	</cfif>
 
 
 <!--- SHIPBY RETAIL PRO --->
-<cfelseif config.ShipBy EQ 7 >
+<cfelseif application.ShipBy EQ 7 >
 	
-	<cfquery name="getShippingCodes" datasource="#datasource#" >
+	<cfquery name="getShippingCodes" datasource="#application.dsn#" >
 		SELECT	*
 		FROM	ShippingCodes
 	</cfquery>
@@ -657,15 +658,15 @@
 		</cfif>
 	</cfloop>
 	
-	<cfquery name="getCustomShipping" datasource="#datasource#">
+	<cfquery name="getCustomShipping" datasource="#application.dsn#">
 		SELECT 	*
 		FROM	ShippingMethods
 		WHERE	ShipWeightLo < #RPTotalWeight#
 		AND		ShipWeightHi >=	#RPTotalWeight#
 		AND		(ShipWeightLo > 0 OR ShipWeightHi > 0)
-		AND		SiteID = #config.SiteID#
+		AND		SiteID = #application.SiteID#
 		AND		ShippingCompany = 'Custom'
-		<cfif   session.CustomerArray[25] EQ config.BaseCountry >
+		<cfif   session.CustomerArray[25] EQ application.BaseCountry >
 		AND		International != 1
 		<cfelse>
 		AND		International = 1
@@ -688,7 +689,7 @@
 					<cfelse>
 						<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 					</cfif>
-					<cfinvokeargument name="SiteID" value="#config.SiteID#">
+					<cfinvokeargument name="SiteID" value="#application.SiteID#">
 					<cfinvokeargument name="ShippingMethod" value="Weight">
 					<cfinvokeargument name="SessionID" value="#SessionID#">
 				</cfinvoke>
@@ -712,9 +713,9 @@
 			</cfif>
 			<!--- END: GET SHIPPING DISCOUNT --->
 			<cfif getCustomShipping.RecordCount EQ 1>
-				<cfinput type="radio" name="ShippingMethod#cpi#" value="#ShippingCode#" required="yes" message="Please select a shipping method" checked="yes"> #ShippingMessage#: <b>#LSCurrencyFormat(ShipPrice)#</b> <cfif RPShipCodeUsed EQ 1 ><font class="cfAttract">*</font></cfif><br />
+				<cfinput type="radio" name="ShippingMethod#cpi#" value="#ShippingCode#" required="yes" message="Please select a shipping method" checked="yes"> #ShippingMessage#: <b>#LSCurrencyFormat(ShipPrice)#</b> <cfif RPShipCodeUsed EQ 1 ><font class="cfAttract">*</font></cfif><br/>
 			<cfelse>
-				<cfinput type="radio" name="ShippingMethod#cpi#" value="#ShippingCode#" required="yes" message="Please select a shipping method" checked="no" > #ShippingMessage#: <b>#LSCurrencyFormat(ShipPrice)#</b> <cfif RPShipCodeUsed EQ 1 ><font class="cfAttract">*</font></cfif><br />
+				<cfinput type="radio" name="ShippingMethod#cpi#" value="#ShippingCode#" required="yes" message="Please select a shipping method" checked="no" > #ShippingMessage#: <b>#LSCurrencyFormat(ShipPrice)#</b> <cfif RPShipCodeUsed EQ 1 ><font class="cfAttract">*</font></cfif><br/>
 			</cfif>
 		</cfoutput>
 	<!--- NO ITEMS IN CART ARE CALCULATED BY WEIGHT --->
@@ -728,7 +729,7 @@
 				<cfelse>
 					<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 				</cfif>
-				<cfinvokeargument name="SiteID" value="#config.SiteID#">
+				<cfinvokeargument name="SiteID" value="#application.SiteID#">
 				<cfinvokeargument name="ShippingMethod" value="Weight">
 				<cfinvokeargument name="SessionID" value="#SessionID#">
 			</cfinvoke>
@@ -752,13 +753,13 @@
 		</cfif>
 		<!--- END: GET SHIPPING DISCOUNT --->
 		<cfoutput>
-		<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Special Shipping: <b>#LSCurrencyFormat(RPShipPriceAdd)#</b> <cfif RPShipCodeUsed EQ 1 ><font class="cfAttract">*</font></cfif><br />
+		<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Special Shipping: <b>#LSCurrencyFormat(RPShipPriceAdd)#</b> <cfif RPShipCodeUsed EQ 1 ><font class="cfAttract">*</font></cfif><br/>
 		</cfoutput>
 	<!--- USE DEFAULT, AS LONG AS NO ITEMS IN CART HAVE SPECIAL SHIPPING CODE --->
 	<cfelseif RPShipCodeUsed EQ 0 >
-		<cfif session.CustomerArray[25] NEQ config.BaseCountry >
+		<cfif session.CustomerArray[25] NEQ application.BaseCountry >
 
-			<cfset config.DefaultShipRateInt = config.DefaultShipRateInt + RPShipPriceAdd >
+			<cfset application.DefaultShipRateInt = application.DefaultShipRateInt + RPShipPriceAdd >
 
 			<!--- BEGIN: GET SHIPPING DISCOUNT --->
 			<cfif GlobalShipDiscount EQ 0 >
@@ -769,7 +770,7 @@
 					<cfelse>
 						<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 					</cfif>
-					<cfinvokeargument name="SiteID" value="#config.SiteID#">
+					<cfinvokeargument name="SiteID" value="#application.SiteID#">
 					<cfinvokeargument name="ShippingMethod" value="Weight">
 					<cfinvokeargument name="SessionID" value="#SessionID#">
 				</cfinvoke>
@@ -778,26 +779,26 @@
 					if ( ShippingDiscount.ShipMethod EQ 'Weight' )
 					{
 						if ( ShippingDiscount.Type EQ 1 )
-							config.DefaultShipRateInt = config.DefaultShipRateInt - (config.DefaultShipRateInt * ShippingDiscount.Value/100) ;
+							application.DefaultShipRateInt = application.DefaultShipRateInt - (application.DefaultShipRateInt * ShippingDiscount.Value/100) ;
 						else
-							config.DefaultShipRateInt = config.DefaultShipRateInt - ShippingDiscount.Value ;		
+							application.DefaultShipRateInt = application.DefaultShipRateInt - ShippingDiscount.Value ;		
 					}
 				</cfscript>
 			<cfelse><!--- THERE IS AN AUTOMATIC DISCOUNT FOR ALL SHIPPING METHODS ---> 
 				<cfscript>
 					if ( ShippingDiscount.Type EQ 1 )
-						config.DefaultShipRateInt = config.DefaultShipRateInt - (config.DefaultShipRateInt * ShippingDiscount.Value/100) ;
+						application.DefaultShipRateInt = application.DefaultShipRateInt - (application.DefaultShipRateInt * ShippingDiscount.Value/100) ;
 					else
-						config.DefaultShipRateInt = config.DefaultShipRateInt - ShippingDiscount.Value ;
+						application.DefaultShipRateInt = application.DefaultShipRateInt - ShippingDiscount.Value ;
 				</cfscript>
 			</cfif>
 			<!--- END: GET SHIPPING DISCOUNT --->
 			<cfoutput>
-			<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default Int'l Shipping: <b>#LSCurrencyFormat(config.DefaultShipRateInt)#</b> <cfif RPShipCodeUsed EQ 1 ><font class="cfAttract">*</font></cfif><br />
+			<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default Int'l Shipping: <b>#LSCurrencyFormat(application.DefaultShipRateInt)#</b> <cfif RPShipCodeUsed EQ 1 ><font class="cfAttract">*</font></cfif><br/>
 			</cfoutput>
 		<cfelse>
 
-			<cfset config.DefaultShipRateDom = config.DefaultShipRateDom + RPShipPriceAdd >
+			<cfset application.DefaultShipRateDom = application.DefaultShipRateDom + RPShipPriceAdd >
 
 			<!--- BEGIN: GET SHIPPING DISCOUNT --->
 			<cfif GlobalShipDiscount EQ 0 >
@@ -808,7 +809,7 @@
 					<cfelse>
 						<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 					</cfif>
-					<cfinvokeargument name="SiteID" value="#config.SiteID#">
+					<cfinvokeargument name="SiteID" value="#application.SiteID#">
 					<cfinvokeargument name="ShippingMethod" value="Weight">
 					<cfinvokeargument name="SessionID" value="#SessionID#">
 				</cfinvoke>
@@ -817,41 +818,41 @@
 					if ( ShippingDiscount.ShipMethod EQ 'Weight' )
 					{
 						if ( ShippingDiscount.Type EQ 1 )
-							config.DefaultShipRateDom = config.DefaultShipRateDom - (config.DefaultShipRateDom * ShippingDiscount.Value/100) ;
+							application.DefaultShipRateDom = application.DefaultShipRateDom - (application.DefaultShipRateDom * ShippingDiscount.Value/100) ;
 						else
-							config.DefaultShipRateDom = config.DefaultShipRateDom - ShippingDiscount.Value ;		
+							application.DefaultShipRateDom = application.DefaultShipRateDom - ShippingDiscount.Value ;		
 					}
 				</cfscript>
 			<cfelse><!--- THERE IS AN AUTOMATIC DISCOUNT FOR ALL SHIPPING METHODS ---> 
 				<cfscript>
 					if ( ShippingDiscount.Type EQ 1 )
-						config.DefaultShipRateDom = config.DefaultShipRateDom - (config.DefaultShipRateDom * ShippingDiscount.Value/100) ;
+						application.DefaultShipRateDom = application.DefaultShipRateDom - (application.DefaultShipRateDom * ShippingDiscount.Value/100) ;
 					else
-						config.DefaultShipRateDom = config.DefaultShipRateDom - ShippingDiscount.Value ;
+						application.DefaultShipRateDom = application.DefaultShipRateDom - ShippingDiscount.Value ;
 				</cfscript>
 			</cfif>
 			<!--- END: GET SHIPPING DISCOUNT --->
 			<cfoutput>
-			<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default Shipping: <b>#LSCurrencyFormat(config.DefaultShipRateDom)#</b> <cfif RPShipCodeUsed EQ 1 ><font class="cfAttract">*</font></cfif><br />
+			<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> Default Shipping: <b>#LSCurrencyFormat(application.DefaultShipRateDom)#</b> <cfif RPShipCodeUsed EQ 1 ><font class="cfAttract">*</font></cfif><br/>
 			</cfoutput>
 		</cfif>
 	<!--- ALL ITEMS IN CART HAVE SPECIAL SHIPPING CODES --->
 	<cfelse>
-		<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> <b>Special Shipping Required...</b><br />
+		<cfinput type="radio" name="ShippingMethod#cpi#" value="Default" required="yes" message="Please select a shipping method" checked="yes"> <b>Special Shipping Required...</b><br/>
 	</cfif>
 	
 	<cfif RPShipCodeUsed EQ 1 >
 		<div style="padding-left:6px; padding-right:20px;" class="cfAttract">
-			<br />
-			<u>* SHIPPING NOTES *</u><br />
+			<br/>
+			<u>* SHIPPING NOTES *</u><br/>
 			<cfoutput>#checkShippingCode.ShippingMessage#</cfoutput>
 		</div>
 	</cfif>
 	
-</cfif><!--- config.ShipBy --->
+</cfif><!--- application.ShipBy --->
 	</td>
 </tr>
 <tr>
-	<td colspan="2"><hr size="1" style="margin:0; padding:0; width:100%" /></td>
+	<td colspan="2"><hr class="snip" /></td>
 </tr>
 </cfloop><!--- Cart.Packages --->

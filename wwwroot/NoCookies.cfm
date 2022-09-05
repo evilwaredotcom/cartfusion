@@ -1,4 +1,7 @@
-<cfmodule template="tags/layout.cfm" CurrentTab="Home" PageTitle="No Cookies Enabled">
+
+
+
+<cfmodule template="templates/#application.SiteTemplate#/layout.cfm" CurrentTab="Home" PageTitle="No Cookies Enabled">
 
 <!--- Start Breadcrumb --->
 <cfmodule template="tags/breadCrumbs.cfm" CrumbLevel='1' showLinkCrumb="No Cookies Enabled" />
@@ -6,7 +9,7 @@
 
 	<h3>You Must Enable Your Browser To Accept Cookies To Use This Site</h3>
 
-<br />
+<br/>
 <div id="Content">
 
 	<h4>COOKIES</h4>

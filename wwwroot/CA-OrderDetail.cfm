@@ -1,3 +1,6 @@
+
+
+
 <cfif session.CustomerArray[26] EQ ''>
 	<script language="javascript" type="text/javascript">
 		self.close();
@@ -18,21 +21,20 @@
 
 <cfoutput>
 
-	<cfmodule template="tags/layout.cfm" showHorizontalNav="false" showCategories="false" showCopyright="false" showCartTotals="false" LayoutStyle="Full">
+	<cfmodule template="templates/#application.SiteTemplate#/layout.cfm" showhorizontalnav="false" showcategories="false" showcopyright="false" showcarttotals="false" layoutstyle="Full">
 	
 	<cfloop query="getOrder">
-		<div align="center"><br><h3>#application.siteConfig.data.storename# Invoice</h3><br /></div>
-		
+		<div align="center"><br><h3>#application.storename# Invoice</h3><br/></div>
 		<table width="700" align="center">
 			<tr>
-				<td>
+				<td>			
 					<table align="center" cellpadding="6" cellspacing="0" class="cartLayoutTable">
 						<tr>
 							<th><b>Invoice##: #OrderID#</b></th>
 							<th><b>Invoice Date: #DateFormat(OrderDate,"dd-mmm-yyyy")#</b></th>
 						</tr>
 						<tr>
-							<td width="300" CLASS="cfDefault" valign="top">
+							<td width="300" class="cfDefault" valign="top">
 								<b>Customer ID: #CustomerID#</b><br>
 								#FirstName# #LastName#<br>
 								#Address1#<br>
@@ -49,44 +51,43 @@
 									PV = 'No';
 				
 								if ( CCNum NEQ '' ) 
-									Decrypted_CardNum = DECRYPT(getOrder.CCNum, application.siteConfig.data.CryptKey, "CFMX_COMPAT", "Hex") ;
+									Decrypted_CardNum = DECRYPT(getOrder.CCNum, application.CryptKey, "CFMX_COMPAT", "Hex") ;
 								else 
 									Decrypted_CardNum = '' ;
-								if ( getOrder.CCExpDate NEQ '' ) 
-									Decrypted_ExpDate = DECRYPT(getOrder.CCExpDate, application.siteConfig.data.CryptKey, "CFMX_COMPAT", "Hex") ;
+								/* if ( getOrder.CCExpDate NEQ '' ) 
+									Decrypted_ExpDate = DECRYPT(getOrder.CCExpDate, application.CryptKey, "CFMX_COMPAT", "Hex") ;
 								else 
-									Decrypted_ExpDate = '' ;
+									Decrypted_ExpDate = '' ; */
 							</cfscript>
 							
 							
-							<td width="300" CLASS="cfDefault" valign="top">
+							<td width="300" class="cfDefault" valign="top">
 								<b>Payment Method:</b><br>
-									<cfswitch expression="#getOrder.FormOfPayment#">
-									 <cfcase value="1">
-									  Card Type: #CCName#<br>
-									  Card Number: XXXXXXXXXXXX#Right(decrypted_CardNum,4)#<br>
-									  Expiration Date: #decrypted_ExpDate#<br>
-									 </cfcase>
-									 <cfcase value="2">
-									  <img src="images/Logos/logo-PayPal.gif" align="absmiddle"> <b>PayPal</b>
-									 </cfcase>
-									 <cfcase value="3">
-									  <img src="images/Logos/logo-ECheck.gif" align="absmiddle"> <b>eCheck</b>
-									 </cfcase>
-									 <cfcase value="4">
-									  <img src="images/Logos/logo-OrderForm.gif" align="absmiddle"> <b>Order Form / Invoice</b>
-									 </cfcase>
-									</cfswitch>
-									Payment Verified: <b>#PV#</b><br>
-									Shipping Method: #getShippingMethod.ShippingMessage#<br>
-								
+								<cfswitch expression="#getOrder.FormOfPayment#">
+									<cfcase value="1">
+										Card Type: <img src="images/logos/icon-#CCName#.gif" border="0" alt="#CCName#" align="absmiddle" /><br>
+										Card Number: XXXXXXXXXXXX#Right(decrypted_CardNum,4)#<br>
+										<!---Expiration Date: #decrypted_ExpDate#<br>--->
+									</cfcase>
+									<cfcase value="2">
+										<img src="images/Logos/logo-PayPal.gif" align="absmiddle"> <b>PayPal</b><br>
+									</cfcase>
+									<cfcase value="3">
+										<img src="images/Logos/logo-ECheck.gif" align="absmiddle"> <b>eCheck</b><br>
+									</cfcase>
+									<cfcase value="4">
+										<img src="images/Logos/logo-OrderForm.gif" align="absmiddle"> <b>Order Form / Invoice</b><br>
+									</cfcase>
+								</cfswitch>
+								Payment Verified: <b>#PV#</b><br>
+								Shipping Method: #getShippingMethod.ShippingMessage#<br>
 							</td>
-						</tr>
-	  </table>
-  </cfloop>
+						</tr>		
+					</table>
 				</td>
 			</tr>		
 		</table>
+	</cfloop>
 	<br>	
 	
 	<cfscript>
@@ -97,19 +98,19 @@
 	</cfscript>
 	
 	<div id="OrderDetails" align="center">Order Details</div>
-	<br />
+	<br/>
 		<table width="700" align="center">
 			<tr>
 				<td>
 					<table class="cartLayoutTable" cellspacing="0" cellpadding="6">
 						<tr>
-							<th align="center">Action Date</th>
-							<th align="center">Status</th>
-							<th align="center">SKU</th>
-							<th>Description</th>
-							<th align="center">Qty</th>
-							<th align="center">Each</th>
-							<th align="center">Total</th>
+							<th align="left">Action Date</th>
+							<th align="left">Status</th>
+							<th align="left">SKU</th>
+							<th align="left">Description</th>
+							<th align="right">Qty</th>
+							<th align="right">Each</th>
+							<th align="right">Total</th>
 						</tr>
 						<cfloop query="getOrderItems">
 
@@ -136,13 +137,13 @@
 							
 							
 							<tr class="row#CurrentRow mod 2#">
-								<td align="center">#DateFormat(OrderItemDate, "mm/dd/yy")#</td>
-								<td align="center">#getOrderStatus.StatusMessage#</td>		
-								<td align="center">#SKU#</td>
-								<td>#FinalDesc#</td>
-								<td align="center">#Qty#</td>
-								<td align="center">#LSCurrencyFormat(itemprice, "local")#</td>
-								<td align="center">#LSCurrencyFormat(TotalPrice, "local")#</td>
+								<td align="left">#DateFormat(OrderItemDate, "mm/dd/yy")#</td>
+								<td align="left">#getOrderStatus.StatusMessage#</td>		
+								<td align="left">#SKU#</td>
+								<td align="left">#FinalDesc#</td>
+								<td align="right">#Qty#</td>
+								<td align="right">#LSCurrencyFormat(itemprice, "local")#</td>
+								<td align="right">#LSCurrencyFormat(TotalPrice, "local")#</td>
 							</tr>
 							<cfset runningtotal = runningtotal + TotalPrice>
 							<cfset runningnorm = runningnorm + NormalPrice>
@@ -163,7 +164,7 @@
 										</a>
 									<cfelse>
 										<form action="http://trkcnfrm1.smi.usps.com/netdata-cgi/db2www/cbd_243.d2w/output" method="POST" name="getTrackNum">
-											<INPUT TYPE="HIDDEN" NAME="CAMEFROM" VALUE="OK">
+											<input type="HIDDEN" name="CAMEFROM" value="OK">
 											<input type="HIDDEN" name="strOrigTrackNum" id="EnterLabelNumberHere" value="#OITrackingNumber#">
 											#OITrackingNumber# <input type="image" src="admin/images/button-trackusps.gif" align="absmiddle">
 										</form>
@@ -174,11 +175,11 @@
 						</cfloop>
 						<!--- TOTALS ---------------------------------------------------------------------->
 						<cfloop query="getOrder"><!--- <cfoutput query="getOrder"> --->
-							<!--- <tr>
+							<tr>
 								<td colspan="6">
 								<td><hr class="snip" /></td>
-							</tr> --->
-							<tr>
+							</tr>
+							<tr class="subTotal">
 								<td align="right" colspan="6" height="20">SubTotal:</td>
 								<td align="right">#LSCurrencyFormat(runningtotal, "local")#</td>
 							</tr>
@@ -210,7 +211,7 @@
 							</tr>
 							<cfset runningtotal = runningtotal - CreditApplied>
 							</cfif>
-							<tr>
+							<tr class="grandTotal">
 								<td colspan="5" height="20">&nbsp;</td>
 								<td align="right" valign="middle"><b>Total:</b></td>
 								<td align="right" valign="middle"><b>#LSCurrencyFormat(runningtotal, "local")#</b></td>

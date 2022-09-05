@@ -1,7 +1,9 @@
-<cfif application.siteConfig.data.EmailInvoiceToCustomer EQ 1 >
+
+
+<cfif application.EmailInvoiceToCustomer EQ 1 >
 	<cfinclude template="Includes/CO-EmailOrder.cfm">
 <cfelse>
-	<cfmail from="#application.siteConfig.dataEmailSales#" to="#session.CustomerArray[11]#" bcc="#application.siteConfig.dataNotifyEmail#" subject="#application.siteConfig.dataStoreNameShort# Order ###OrderID# Received" type="html">
+	<cfmail from="#application.EmailSales#" to="#session.CustomerArray[11]#" bcc="#application.NotifyEmail#" subject="#application.StoreNameShort# Order ###OrderID# Received" type="html">
 	<table width="600" border=0>
 		<tr>
 			<td>
@@ -9,11 +11,11 @@
 				<br><br>
 				Dear #session.CustomerArray[1]# #session.CustomerArray[2]#,
 				<br><br>
-				The order you have placed with #application.siteConfig.dataStoreNameShort#, 
+				The order you have placed with #application.StoreNameShort#, 
 				Order ###OrderID#, has been received by our sales department and is currently being fulfilled.  You may track the status of your order(s) by
-				visiting our website at <a href="#application.siteConfig.dataRootURL#">#application.siteConfig.dataDomainName#</a> and logging in using your site username and password.
+				visiting our website at <a href="#application.RootURL#">#application.DomainName#</a> and logging in using your site username and password.
 				<br><br>
-				Thank you for shopping with #application.siteConfig.dataStoreNameShort#.  Please visit us soon at <a href="#application.siteConfig.dataRootURL#">#application.siteConfig.dataDomainName#</a>.
+				Thank you for shopping with #application.StoreNameShort#.  Please visit us soon at <a href="#application.RootURL#">#application.DomainName#</a>.
 			</td>
 		</tr>
 	</table>
@@ -34,8 +36,8 @@
 		
 		
 		<cfif getOrderDistSend.RecordCount>
-			<cfmail from="#application.siteConfig.dataEmailSales#" to="#getDistributors.Email#" bcc="#application.siteConfig.dataNotifyEmail#" 
-				subject="#application.siteConfig.dataStoreNameShort# Order #OrderID# for #DateFormat(NOW(),'d-mmm-yyyy')#" TYPE="HTML">
+			<cfmail from="#application.EmailSales#" to="#getDistributors.Email#" bcc="#application.NotifyEmail#" 
+				subject="#application.StoreNameShort# Order #OrderID# for #DateFormat(NOW(),'d-mmm-yyyy')#" type="HTML">
 			<html>
 			<head></head>
 			<body>
@@ -43,18 +45,18 @@
 			<cfoutput>
 			<table border="0" cellpadding="0" cellspacing="0" width="100%">
 				<tr>
-					<td colspan="2"><img src="#application.siteConfig.dataRootURL#/images/image-CompanyLogo.gif" vspace="3"></td>
+					<td colspan="2"><img src="#application.RootURL#/images/image-CompanyLogo.gif" vspace="3"></td>
 				</tr>
 				<tr>
 					<td width="40%" valign="top" class="cfAdminDefault">
-						#application.siteConfig.dataStoreNameShort#<br>
-						#application.siteConfig.dataCompanyAddress1#<br>
-						<cfif application.siteConfig.dataCompanyAddress2 NEQ ''>
-						#application.siteConfig.dataCompanyAddress2#<br>
+						#application.StoreNameShort#<br>
+						#application.CompanyAddress1#<br>
+						<cfif application.CompanyAddress2 NEQ ''>
+						#application.CompanyAddress2#<br>
 						</cfif>
-						#application.siteConfig.dataCompanyCity#, #application.siteConfig.dataCompanyState# #application.siteConfig.dataCompanyZIP#<br>
-						Phone: #application.siteConfig.dataCompanyPhone#<br>
-						Tax ID: #application.siteConfig.dataTaxID# 
+						#application.CompanyCity#, #application.CompanyState# #application.CompanyZIP#<br>
+						Phone: #application.CompanyPhone#<br>
+						Tax ID: #application.TaxID# 
 					</td>
 					<td width="40%" valign="top" class="cfAdminDefault">
 						DISTRIBUTOR: #getDistributors.DistributorName#<br>
@@ -92,9 +94,9 @@
 							</tr>
 						</table>
 						<table border="0" cellpadding="0" cellspacing="0" width="100%">
-							<tr class="cfAdminHeader4" style="background-color:6AB0D2;">
+							<tr class="cfAdminHeader4" style="background-color:##65ADF1;">
 								<td width="49%" colspan="2" height="20" class="cfAdminHeader4">SHIPPING INFORMATION</td>
-								<td rowspan="12" width="1%" style="background-color:FFFFFF;">&nbsp;</td>
+								<td rowspan="12" width="1%" style="background-color:##FFFFFF;">&nbsp;</td>
 								<td width="50%" colspan="2" class="cfAdminHeader4">ORDER INFORMATION</td>
 							</tr>
 							<tr>
@@ -162,7 +164,7 @@
 							</tr>
 						</table>
 						<br>
-						<hr color="CCCCCC" width="100%">
+						<hr color="##CCCCCC" width="100%">
 						
 						<!--- ITEMS --->			
 						
@@ -175,12 +177,12 @@
 						</cfquery>
 						
 						<table border="0" cellpadding="0" cellspacing="0" width="100%">
-							<tr style="background-color:FF8C40;">
+							<tr style="background-color:##F27028;">
 								<td width="10%" height="20" class="cfAdminHeader4" align="center">Quantity</td>
 								<td width="10%" height="20" class="cfAdminHeader4">SKU</td>
 								<td width="70%" height="20" class="cfAdminHeader4">Item Name/Description</td>
 							</tr>
-							<cfloop QUERY="getOrderItems">	
+							<cfloop query="getOrderItems">	
 							<tr>
 								<td height="20" align="center">#getOrderItems.Qty#</td>
 								<td>#getOrderItems.SKU#</td>
@@ -191,7 +193,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td colspan="7" height="1" bgcolor="CCCCCC"></td>
+								<td colspan="7" height="1" bgcolor="##CCCCCC"></td>
 							</tr>
 							</cfloop>
 						</table>
@@ -202,7 +204,7 @@
 				</cfif><!--- TO GROUP BY ORDERID IN CFLOOP --->
 			</cfloop>
 			</td></tr></table>
-			<br />
+			<br/>
 			</body>
 			</html>
 			</cfmail>

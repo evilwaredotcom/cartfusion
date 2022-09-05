@@ -1,4 +1,10 @@
-<cfmodule template="tags/layout.cfm" CurrentTab="Affiliates" PageTitle="Affiliate Email Login Info">	
+<!--- 
+|| MIT LICENSE
+|| CartFusion.com
+--->
+
+
+<cfmodule template="templates/#application.SiteTemplate#/layout.cfm" CurrentTab="Affiliates" PageTitle="Affiliate Email Login Info">	
 
 <!--- Start Breadcrumb --->
 <cfmodule template="tags/breadCrumbs.cfm" CrumbLevel='1' showLinkCrumb="Affiliates|Affiliate Email Login Info" />
@@ -14,24 +20,24 @@
 
 	<cfif getAffiliateInfo.RecordCount>
 		
-		<cfset Decrypted_Password = DECRYPT(getAffiliateInfo.Password, application.siteConfig.data.CryptKey, "CFMX_COMPAT", "Hex") >
+		<cfset Decrypted_Password = DECRYPT(getAffiliateInfo.Password, application.CryptKey, "CFMX_COMPAT", "Hex") >
 	<div class="cfMessageTwo">Your Password has been emailed to <cfoutput>#form.EmailAddress#.</cfoutput><br><br>
 	<a href="AF-Login.cfm">Return to Affiliate Area</a><br>
 	<a href="index.cfm">Return to Store</a></div>
 
 	<CFMAIL QUERY="getAffiliateInfo" GROUP="Email"
-			FROM="#application.siteConfig.data.NotifyEmail#"
+			FROM="#application.NotifyEmail#"
 			TO="#form.EmailAddress#"
-			SUBJECT="#application.siteConfig.data.DomainName# Affiliate Login Information"
+			SUBJECT="#application.DomainName# Affiliate Login Information"
 			type="html">
 		<cfoutput>	
 		<div>
-			Affiliate Login Information for #application.siteConfig.data.DomainName#<br><br>
+			Affiliate Login Information for #application.DomainName#<br><br>
 				<cfloop query="getAffiliateInfo">	
 					Affiliate ID: #getAffiliateInfo.AFID#<br>
 					Password: #decrypted_password#<br><br>
 				</cfloop>
-				<a href="http://www.#application.siteConfig.data.DomainName#">Visit #application.siteConfig.data.DomainName# Now</a>
+				<a href="http://www.#application.DomainName#">Visit #application.DomainName# Now</a>
 			</font>
 		</div>
 		</cfoutput>

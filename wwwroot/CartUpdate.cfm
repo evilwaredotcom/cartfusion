@@ -1,3 +1,5 @@
+
+
 <cfif structKeyExists(form, 'ShippingID') AND NOT structKeyExists(form, 'UpdateButton') AND not isDefined('RemoveButton')>
 
 	<cfif form.ShippingID EQ 'add' >
@@ -48,21 +50,22 @@
 			
 			<!--- Start BackOrders NOT allowed: ORDER MAXIMUM NUMBER or RETURN TO STORE --->
 			<cfif checkInventory.CompSellByStock EQ 1 AND checkInventory.QtyAvailable LT Quantity >
-				<cfmodule template="tags/layout.cfm" CurrentTab="ViewCart" PageTitle="Update Cart">	
+				<cfmodule template="templates/#application.SiteTemplate#/layout.cfm" currenttab="ViewCart" pagetitle="Update Cart">	
 
 				<!--- Start Breadcrumb --->
-				<cfmodule template="tags/breadCrumbs.cfm" CrumbLevel='1' showLinkCrumb="Update Cart" />
+				<cfmodule template="tags/breadCrumbs.cfm" crumblevel='1' showlinkcrumb="Update Cart" />
 				<!--- End BreadCrumb --->
 				
-				<cfoutput>
-				<div class="cfHeading" align="center">#application.siteConfig.data.Storename# Item Details</div>
-				<!--- <div align="center"><hr width="70%" size="1"></div> --->
-				<br />
-				<div class="cfErrorMsg" align="center">We are sorry, but the quantity in stock for this item is insufficient for this order.</div>
-				<br />
-				<div align="center">
+					<cfoutput>
+					<div class="cfHeading" align="center">#application.Storename# Item Details</div>
+					<!--- <div align="center"><hr width="70%" size="1"></div> --->
+					<br/>
+					<div class="cfErrorMsg" align="center">We are sorry, but the quantity in stock for this item is insufficient for this order.</div>
+					<br/>
+					<div id="formContainer">
 					<form action="CartUpdate.cfm" method="post">
-						<input class="cfButton" type="submit" name="UpdateButton" value="Order Max Quantity Available (#checkInventory.QtyAvailable#)">
+						<input type="submit" name="button" value="Order Maximum Quantity Available (#checkInventory.QtyAvailable#)" class="button2">
+						<input type="button" name="button" value="Return to Item" onclick="javascript:history.back();" class="button">
 						<input type="hidden" name="Quantity" value="#checkInventory.QtyAvailable#">
 						<input type="hidden" name="ItemID" value="#ItemID#">
 						<cfif isDefined("OptionName1") AND OptionName1 NEQ ''>
@@ -74,10 +77,6 @@
 						<cfif isDefined("OptionName3") AND OptionName3 NEQ ''>
 							<input type="hidden" name="OptionName3" value="#OptionName3#">
 						</cfif>
-					</form>
-					
-					<form action="index.cfm" method="Post">
-						<input class="cfButton" type="submit" name="button" value="Return to Store">
 					</form>
 					</div>
 					</cfoutput>
@@ -96,38 +95,35 @@
 		<cfelseif getProduct.SellByStock EQ 1 AND getProduct.StockQuantity LT Quantity >
 			<cfset QtyIsEnough = 0 >
 			
-			<cfmodule template="tags/layout.cfm" CurrentTab="ViewCart" PageTitle="Update Cart">	
+			<cfmodule template="templates/#application.SiteTemplate#/layout.cfm" currenttab="ViewCart" pagetitle="Update Cart">	
 
 				<!--- Start Breadcrumb --->
-				<cfmodule template="tags/breadCrumbs.cfm" CrumbLevel='1' showLinkCrumb="Update Cart" />
+				<cfmodule template="tags/breadCrumbs.cfm" crumblevel='1' showlinkcrumb="Update Cart" />
 				<!--- End BreadCrumb --->
 			
 			
 				<cfoutput>
-				<div class="cfHeading" align="center">#application.siteConfig.data.Storename# Item Details</div>
-				<br />
+				<div class="cfHeading" align="center">#application.Storename# Item Details</div>
+				<br/>
 				<!--- <div align="center"><hr width="70%" size="1"></div> --->
 				<div class="cfErrorMsg" align="center">We are sorry, but the quantity in stock for this item is insufficient for this order.</div>
-				<br />
-				<div align="center">
-				<form action="CartUpdate.cfm" method="post">
-					<input class="cfButton" type="submit" name="UpdateButton" value="Order Max Quantity Available (#getProduct.StockQuantity#)">
-					<input type="hidden" name="Quantity" value="#getProduct.StockQuantity#">
-					<input type="hidden" name="ItemID" value="#ItemID#">
-					<cfif isDefined("OptionName1") AND OptionName1 NEQ ''>
-						<input type="hidden" name="OptionName1" value="#OptionName1#">
-					</cfif>
-					<cfif isDefined("OptionName2") AND OptionName2 NEQ ''>
-						<input type="hidden" name="OptionName2" value="#OptionName2#">
-					</cfif>
-					<cfif isDefined("OptionName3") AND OptionName3 NEQ ''>
-						<input type="hidden" name="OptionName3" value="#OptionName3#">
-					</cfif>
-				</form>
-				
-				<form action="index.cfm" method="Post">
-					<input class="cfButton" type="submit" name="button" value="Return to Store">
-				</form>
+				<br/>
+				<div id="formContainer">
+					<form action="CartUpdate.cfm" method="post">
+						<input type="submit" name="UpdateButton" value="Order Maximum Quantity Available (#getProduct.StockQuantity#)" class="button2">
+						<input type="button" name="button" value="Return to Item" onclick="javascript:history.back();" class="button">
+						<input type="hidden" name="Quantity" value="#getProduct.StockQuantity#">
+						<input type="hidden" name="ItemID" value="#ItemID#">
+						<cfif isDefined("OptionName1") AND OptionName1 NEQ ''>
+							<input type="hidden" name="OptionName1" value="#OptionName1#">
+						</cfif>
+						<cfif isDefined("OptionName2") AND OptionName2 NEQ ''>
+							<input type="hidden" name="OptionName2" value="#OptionName2#">
+						</cfif>
+						<cfif isDefined("OptionName3") AND OptionName3 NEQ ''>
+							<input type="hidden" name="OptionName3" value="#OptionName3#">
+						</cfif>
+					</form>
 				</div>
 				</cfoutput>
 			</cfmodule>
@@ -152,7 +148,7 @@ Keep adding records into the shopping cart for the number of items.
 				<!--- GET WISHLIST --->
 				<cfinvoke component="#application.Common#" method="getCustomerWishList" returnvariable="getWishList">
 					<cfinvokeargument name="CustomerID" value="#session.CustomerArray[17]#">
-					<cfinvokeargument name="SiteID" value="#application.siteConfig.data.SiteID#">
+					<cfinvokeargument name="SiteID" value="#application.SiteID#">
 					<cfinvokeargument name="ItemID" value="#ItemID#">
 					<cfif isDefined("OptionName1") AND OptionName1 NEQ ''>
 						<cfinvokeargument name="OptionName1" value="#OptionName1#">
@@ -171,7 +167,7 @@ Keep adding records into the shopping cart for the number of items.
 					<!--- INSERT INTO WISHLIST --->
 					<cfinvoke component="#application.Common#" method="insertWishList">
 						<cfinvokeargument name="CustomerID" value="#session.CustomerArray[17]#">
-						<cfinvokeargument name="SiteID" value="#application.siteConfig.data.SiteID#">
+						<cfinvokeargument name="SiteID" value="#application.SiteID#">
 						<cfinvokeargument name="ItemID" value="#ItemID#">
 						<cfinvokeargument name="Quantity" value="#Quantity#">
 						<cfif isDefined("OptionName1") AND OptionName1 NEQ ''>
@@ -196,7 +192,7 @@ Keep adding records into the shopping cart for the number of items.
 					<!--- UPDATE WISHLIST --->
 					<cfinvoke component="#application.Common#" method="updateWishlist">
 						<cfinvokeargument name="CustomerID" value="#session.CustomerArray[17]#">
-						<cfinvokeargument name="SiteID" value="#application.siteConfig.data.SiteID#">
+						<cfinvokeargument name="SiteID" value="#application.SiteID#">
 						<cfinvokeargument name="Quantity" value="#newQuantity#">
 						<cfif isDefined("OptionName1") AND OptionName1 NEQ ''>
 							<cfinvokeargument name="OptionName1" value="#OptionName1#">
@@ -219,7 +215,7 @@ Keep adding records into the shopping cart for the number of items.
 		<!--- LOOKUP PRODUCT IN CART --->
 		<cfinvoke component="#application.Common#" method="getCart" returnvariable="getCart">
 			<cfinvokeargument name="SessionID" value="#SessionID#">
-			<cfinvokeargument name="SiteID" value="#application.siteConfig.data.SiteID#">
+			<cfinvokeargument name="SiteID" value="#application.SiteID#">
 			<cfinvokeargument name="ItemID" value="#ItemID#">
 			<cfif isDefined("OptionName1") AND OptionName1 NEQ ''>
 				<cfinvokeargument name="OptionName1" value="#OptionName1#">
@@ -238,7 +234,7 @@ Keep adding records into the shopping cart for the number of items.
 			<!--- INSERT INTO CART --->
 			<cfinvoke component="#application.Common#" method="insertCart">
 				<cfinvokeargument name="SessionID" value="#SessionID#">
-				<cfinvokeargument name="SiteID" value="#application.siteConfig.data.SiteID#">
+				<cfinvokeargument name="SiteID" value="#application.SiteID#">
 				<cfinvokeargument name="ItemID" value="#ItemID#">
 				<cfinvokeargument name="Quantity" value="#Quantity#">
 				<cfif session.CustomerArray[17] NEQ ''>
@@ -272,7 +268,7 @@ Keep adding records into the shopping cart for the number of items.
 				<cfif isDefined("HandlingAmount") AND HandlingAmount NEQ ''>
 					<cfinvokeargument name="HandlingAmount" value="#HandlingAmount#">
 				</cfif>
-                <!--- !CARTFUSION 4.6 - PRODUCT-SPECIFIC SHIPPING! --->
+				<!--- !CARTFUSION 4.6 - PRODUCT-SPECIFIC SHIPPING! --->
 			</cfinvoke>
 			
 		<!--- Else, if customer clicked the Remove button, delete item from cart --->
@@ -281,7 +277,7 @@ Keep adding records into the shopping cart for the number of items.
 			<!--- DELETE ITEM IN CART --->
 			<cfinvoke component="#application.Common#" method="deleteCart">
 				<cfinvokeargument name="SessionID" value="#SessionID#">
-				<cfinvokeargument name="SiteID" value="#application.siteConfig.data.SiteID#">
+				<cfinvokeargument name="SiteID" value="#application.SiteID#">
 				<cfinvokeargument name="ItemID" value="#ItemID#">
 				<cfif isDefined("OptionName1") AND OptionName1 NEQ ''>
 					<cfinvokeargument name="OptionName1" value="#OptionName1#">
@@ -300,7 +296,7 @@ Keep adding records into the shopping cart for the number of items.
 			<!--- UPDATE CART --->
 			<cfinvoke component="#application.Common#" method="updateCart">
 				<cfinvokeargument name="SessionID" value="#SessionID#">
-				<cfinvokeargument name="SiteID" value="#application.siteConfig.data.SiteID#">
+				<cfinvokeargument name="SiteID" value="#application.SiteID#">
 				<cfinvokeargument name="ItemID" value="#ItemID#">
 				<cfinvokeargument name="Quantity" value="#Quantity#">
 				<cfif isDefined("OptionName1") AND OptionName1 NEQ ''>
@@ -323,24 +319,26 @@ Keep adding records into the shopping cart for the number of items.
 					<cfset QtyIsEnough = 0 >
 					
 					
-					<cfmodule template="tags/layout.cfm" CurrentTab="ViewCart" PageTitle="Update Cart">	
+					<cfmodule template="templates/#application.SiteTemplate#/layout.cfm" currenttab="ViewCart" pagetitle="Update Cart">	
 
 						<!--- Start Breadcrumb --->
-						<cfmodule template="tags/breadCrumbs.cfm" CrumbLevel='1' showLinkCrumb="Update Cart" />
+						<cfmodule template="tags/breadCrumbs.cfm" crumblevel='1' showlinkcrumb="Update Cart" />
 						<!--- End BreadCrumb --->
 					
-					<div class="cfHeading" align="center">#application.siteConfig.data.Storename# Item Details</div>
+					<div class="cfHeading" align="center">#application.Storename# Item Details</div>
 					<!--- <div align="center"><hr width="70%" size="1"></div> --->
-					<br />
+					<br/>
 					<div class="cfErrorMsg" align="center">We are sorry, but the quantity in stock for this item is insufficient for this order.</div>
-					<br />
-					<div align="center">
+					<br/>
+					<div id="formContainer">
 					<form action="CartUpdate.cfm" method="post">
 						<cfif isDefined('checkInventory.QtyAvailable') AND checkInventory.QtyAvailable LT (Qty + Quantity) >
-						<input class="cfButton" type="submit" name="UpdateButton" value="Order Max Quantity Available (#checkInventory.QtyAvailable#)">
+						<input type="submit" name="UpdateButton" value="Order Maximum Quantity Available (#checkInventory.QtyAvailable#)" class="button2">
+						<input type="button" name="button" value="Return to Item" onclick="javascript:history.back();" class="button">
 						<input type="hidden" name="Quantity" value="#checkInventory.QtyAvailable#">
 						<cfelse>
-						<input class="cfButton" type="submit" name="UpdateButton" value="Order Max Quantity Available (#getProduct.StockQuantity#)">
+						<input type="submit" name="UpdateButton" value="Order Maximum Quantity Available (#getProduct.StockQuantity#)" class="button2">
+						<input type="button" name="button" value="Return to Item" onclick="javascript:history.back();" class="button">
 						<input type="hidden" name="Quantity" value="#getProduct.StockQuantity#">
 						</cfif>
 						<input type="hidden" name="ItemID" value="#ItemID#">
@@ -369,7 +367,7 @@ Keep adding records into the shopping cart for the number of items.
 			<!--- UPDATE CART --->
 			<cfinvoke component="#application.Common#" method="updateCart">
 				<cfinvokeargument name="SessionID" value="#SessionID#">
-				<cfinvokeargument name="SiteID" value="#application.siteConfig.data.SiteID#">
+				<cfinvokeargument name="SiteID" value="#application.SiteID#">
 				<cfinvokeargument name="ItemID" value="#ItemID#">
 				<cfinvokeargument name="Quantity" value="#newQuantity#">
 				<cfif isDefined("OptionName1") AND OptionName1 NEQ ''>

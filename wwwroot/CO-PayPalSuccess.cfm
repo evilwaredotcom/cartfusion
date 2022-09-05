@@ -1,6 +1,11 @@
+<!--- 
+|| MIT LICENSE
+|| CartFusion.com
+--->
+
 <cfoutput>
 
-<cfmodule template="tags/layout.cfm" CurrentTab="MyAccount" LayoutStyle="Full" PageTitle="Check Out - Step 4 of 4" showCategories="false">
+<cfmodule template="templates/#application.SiteTemplate#/layout.cfm" CurrentTab="MyAccount" LayoutStyle="Full" PageTitle="Check Out - Step 4 of 4" showCategories="false">
 
 <!--- Start Breadcrumb --->
 <cfmodule template="tags/breadCrumbs.cfm" CrumbLevel='2' showLinkCrumb="Cart|Check Out - Step 4 of 4" />

@@ -1,5 +1,10 @@
+<!--- 
+|| MIT LICENSE
+|| CartFusion.com
+--->
 
-<cfmodule template="tags/layout.cfm" CurrentTab="Home" PageTitle="Store Home">
+
+<cfmodule template="templates/#application.SiteTemplate#/layout.cfm" currenttab="Home" pagetitle="Store Home">
 
 
 	<!--- SHOW CUSTOM BANNER --->
@@ -25,11 +30,11 @@
 	
 	
 	<!--- SHOW SHORT STORE NAME ---
-	<font class="cfHomeHeading">#config.StoreNameShort#</font><br>
+	<font class="cfHomeHeading">#application.StoreNameShort#</font><br>
 	--->
 	
 	<!--- SHOW COMPANY DESCRIPTION ---
-	#config.CompanyDescription#<br><br>
+	#application.CompanyDescription#<br><br>
 	--->
 	
 	<!--- SHOW MAIN CATEGORIES ---

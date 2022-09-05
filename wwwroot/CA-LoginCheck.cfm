@@ -1,3 +1,8 @@
+<!--- 
+|| MIT LICENSE
+|| CartFusion.com
+--->
+
 <!--- PROCESS LOGOUT --->
 <cfif isDefined('Logout')>
 	<cflock scope="session" timeout="30" type="exclusive">
@@ -31,7 +36,7 @@
 		
 	<!--- IF USER IS FOUND IN Customers TABLE, CHECK DECRYPTED PASSWORD AND MOVE ON WITH SETTING CUSTOMER INFO IN Session.CustomerArray --->
 	<cfelseif getCustomerInfo.RecordCount AND not getUser.RecordCount>
-		<cfset Decrypted_Password = DECRYPT(getCustomerInfo.Password, application.siteConfig.data.CryptKey, "CFMX_COMPAT", "Hex") >
+		<cfset Decrypted_Password = DECRYPT(getCustomerInfo.Password, application.CryptKey, "CFMX_COMPAT", "Hex") >
 		
 		<!--- PASSWORD MATCH UNSUCCESSFUL, THROW ERROR --->
 		<cfif Decrypted_Password NEQ Form.CustPassword >
@@ -55,7 +60,7 @@
 					session.CustomerArray[11] = Email ;
 					session.CustomerArray[12] = CompanyName ;
 					// CARTFUSION 4.6
-					if ( application.siteConfig.data.SaveCreditCard EQ 1 and application.siteConfig.data.ShowCreditCard EQ 1 )
+					if ( application.SaveCreditCard EQ 1 and application.ShowCreditCard EQ 1 )
 					{
 						session.CustomerArray[13] = CardName ;
 						session.CustomerArray[14] = CardNum ;
@@ -111,8 +116,8 @@
 	</cfif>
 	
 	<!--- SSL PATH --->
-	<cfif application.siteConfig.data.EnableSSL EQ 1 AND application.siteConfig.data.SSL_Path NEQ '' AND ( findnocase("CA-CustomerArea.cfm",GoToPage) GT 0 OR findnocase("CO-Billing.cfm",GoToPage) GT 0 ) >
-		<cfoutput><cflocation url="#application.siteConfig.data.SSL_Path#/#goToPage#" addtoken="no"></cfoutput>
+	<cfif application.EnableSSL EQ 1 AND application.SSLURL NEQ '' AND ( findnocase("CA-CustomerArea.cfm",GoToPage) GT 0 OR findnocase("CO-Billing.cfm",GoToPage) GT 0 ) >
+		<cfoutput><cflocation url="#application.SSLURL#/#goToPage#" addtoken="no"></cfoutput>
 	<cfelse>
 		<cfoutput><cflocation url="#goToPage#" addtoken="no"></cfoutput>
 	</cfif>
@@ -180,16 +185,16 @@
 		<!--- CREATE CUSTOMERID --->
 		<cfscript>
 			CustomerID = FormatBaseN(Now(),10) & RandRange(100,999) & Second(Now()) + 10 ;			
-			Encrypted_Password = TRIM(ENCRYPT(Form.Password, application.siteConfig.data.CryptKey, "CFMX_COMPAT", "Hex")) ;
+			Encrypted_Password = TRIM(ENCRYPT(Form.Password, application.CryptKey, "CFMX_COMPAT", "Hex")) ;
 		</cfscript>
 				
 		<cfquery name="newUserRegistration" datasource="#application.dsn#">
 			INSERT INTO Customers
-				( CustomerID, IPAddress, FirstName, LastName, Email, UserName, EmailOK, Password, PriceToUse)
+				( CustomerID, IPAddress, FirstName, LastName, Email, UserName, EmailOK, Password, PriceToUse )
 			VALUES 
 				( '#CustomerID#', '#CGI.REMOTE_ADDR#', '#Form.FirstName#', '#Form.LastName#', '#Form.Email#', '#Form.UserName#', #Form.Notify#, 
-					<cfif application.siteConfig.data.DBIsMySQL>'#Replace(Encrypted_Password, "\", "\\", "ALL")#'<cfelse>'#Encrypted_Password#'</cfif>, 
-					<cfif #session.CustomerArray[28]# EQ ''> 1 <cfelse> #session.CustomerArray[28]# </cfif>
+					<cfif application.DBIsMySQL>'#Replace(Encrypted_Password, "\", "\\", "ALL")#'<cfelse>'#Encrypted_Password#'</cfif>, 
+					<cfif session.CustomerArray[28] EQ '' > 1 <cfelse> #session.CustomerArray[28]# </cfif>
 				)
 		</cfquery>
 		
@@ -197,7 +202,7 @@
 			<cfscript>
 				session.CustomerArray[1]  = Form.FirstName ;
 				session.CustomerArray[2]  = Form.LastName ;
-				session.CustomerArray[8] = application.siteConfig.data.BaseCountry ;
+				session.CustomerArray[8]  = application.BaseCountry ;
 				session.CustomerArray[11] = Email ;
 				session.CustomerArray[17] = CustomerID ;
 				session.CustomerArray[26] = Form.UserName ;
@@ -208,8 +213,8 @@
 		</cflock>
 		
 		<!--- SSL PATH --->
-		<cfif application.siteConfig.data.EnableSSL EQ 1 AND application.siteConfig.data.SSL_Path NEQ '' AND ( findnocase("CA-CustomerArea.cfm",GoToPage) GT 0 OR findnocase("CO-Billing.cfm",GoToPage) GT 0 ) >
-			<cfoutput><cflocation url="#application.siteConfig.data.SSL_Path#/#goToPage#" addtoken="no"></cfoutput>
+		<cfif application.EnableSSL EQ 1 AND application.SSLURL NEQ '' AND ( findnocase("CA-CustomerArea.cfm",GoToPage) GT 0 OR findnocase("CO-Billing.cfm",GoToPage) GT 0 ) >
+			<cfoutput><cflocation url="#application.SSLURL#/#goToPage#" addtoken="no"></cfoutput>
 		<cfelse>
 			<cfoutput><cflocation url="#goToPage#" addtoken="no"></cfoutput>
 		</cfif>
@@ -221,8 +226,8 @@
 
 <cfelse>
 	<!--- SSL PATH --->
-	<cfif application.siteConfig.data.EnableSSL EQ 1 AND application.siteConfig.data.SSL_Path NEQ '' AND ( findnocase("CA-CustomerArea.cfm",GoToPage) GT 0 OR findnocase("CO-Billing.cfm",GoToPage) GT 0 ) >
-		<cfoutput><cflocation url="#application.siteConfig.data.SSL_Path#/#goToPage#" addtoken="no"></cfoutput>
+	<cfif application.EnableSSL EQ 1 AND application.SSLURL NEQ '' AND ( findnocase("CA-CustomerArea.cfm",GoToPage) GT 0 OR findnocase("CO-Billing.cfm",GoToPage) GT 0 ) >
+		<cfoutput><cflocation url="#application.SSLURL#/#goToPage#" addtoken="no"></cfoutput>
 	<cfelse>
 		<cfoutput><cflocation url="#goToPage#" addtoken="no"></cfoutput>
 	</cfif>

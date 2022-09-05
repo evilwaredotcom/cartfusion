@@ -1,18 +1,13 @@
-<cfinvoke component="#application.Queries#" method="getShippingCos" returnvariable="getShippingCos">
-	<cfinvokeargument name="SiteID" value="#config.SiteID#">
-</cfinvoke>
-<!--- CARTFUSION 4.6 - SHIPPING CODES --->
-<cfquery name="getShippingCodes" datasource="#datasource#" >
-    SELECT	*
-    FROM	ShippingCodes
-</cfquery>
-
-<!--- Initialize variables --->
 <cfscript>
+	getShippingCos = application.Queries.getShippingCos(SiteID=application.SiteID);
+	// CARTFUSION 4.6 - SHIPPING CODES
+	getShippingCodes = application.Queries.getShippingCodes();
+
+	// Initialize variables
 	fedexAcNum   = getShippingCos.FedexAccountNum ;
 	identifier   = getShippingCos.FedexIdentifier ;
 	UPSAccessKey = getShippingCos.UPSAccessKey ;
-	UPSUserID    = getShippingCos.UPSUserID ;
+	UPSUserID	= getShippingCos.UPSUserID ;
 	UPSPassword  = getShippingCos.UPSPassword ;
 	USPSUserID   = getShippingCos.USPSUserID ;
 	USPSPassword = getShippingCos.USPSPassword ;
@@ -24,12 +19,12 @@
 		'ShippingPrice#cpi#' = 0 ;
 	}
 	IntShip = 0 ;
-	if ( session.CustomerArray[25] NEQ config.BaseCountry ) // Verify if Shipping is International or not
+	if ( session.CustomerArray[25] NEQ application.BaseCountry ) // Verify if Shipping is International or not
 		IntShip = 1 ;
 </cfscript>
 
 <!--- BEGIN: CALCULATE TOTAL WEIGHT & TOTAL PRICE OF ORDER --->
-<cfif NOT isDefined('Cart.CartTotal') >
+<cfif not isDefined('Cart.CartTotal') >
 	<cfinclude template="CartTotals.cfm">
 </cfif>
 <!--- END: CALCULATE TOTAL WEIGHT & TOTAL PRICE OF ORDER --->
@@ -43,7 +38,7 @@
 	<cfelse>
 		<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 	</cfif>
-	<cfinvokeargument name="SiteID" value="#config.SiteID#">
+	<cfinvokeargument name="SiteID" value="#application.SiteID#">
 	<cfinvokeargument name="SessionID" value="#SessionID#">
 </cfinvoke>
 
@@ -72,81 +67,133 @@
 		PSTotalWeight = 0 ;
 		PSShipCodeUsed = 0 ;
 	</cfscript>
-    <cfloop query="getCartItems.data">
+	<cfloop query="getCartItems.data">
+		
 		<cfscript>
 			ShippingPrice = ShippingPrice + NumberFormat(fldShipAmount,0.00) + NumberFormat(fldHandAmount,0.00) ;
-            PSTotalWeight = PSTotalWeight + (NumberFormat(fldShipWeight,0.000) * Qty) ;
-        </cfscript>
-        <!--- CARTFUSION 4.6 - CUSTOM SHIPPING CODES 
-        <cfquery name="checkShippingCode" dbtype="query" >
-            SELECT	*
-            FROM	getShippingCodes
-            WHERE	ShippingCode = #fldShipCode# <!--- previous CF code: #fldShipAmount#, field fldShipCode added 22-Mar-07 --->
-        </cfquery>        
-        <!--- CUSTOM SHIPPING CODE/MESSAGE IS APPLICABLE --->
-        <cfif checkShippingCode.RecordCount NEQ 0 >
-            <cfif RPShipCodeUsed NEQ 1 >
-                <cfscript>
-                    PSShipCodeUsed = 1 ;
-                    PSShipCode = checkShippingCode.ShippingCode ;
-                </cfscript>
-            </cfif>
-        </cfif>
+			PSTotalWeight = PSTotalWeight + (NumberFormat(fldShipWeight,0.000) * Qty) ;
+		</cfscript>
+		
+		
+		<!--- CARTFUSION 4.6 - CUSTOM SHIPPING CODES 
+		<cfquery name="checkShippingCode" dbtype="query" >
+			SELECT	*
+			FROM	getShippingCodes
+			WHERE	ShippingCode = #fldShipCode# <!--- previous CF code: #fldShipAmount#, field fldShipCode added 22-Mar-07 --->
+		</cfquery>		
+		<!--- CUSTOM SHIPPING CODE/MESSAGE IS APPLICABLE --->
+		<cfif checkShippingCode.RecordCount NEQ 0 >
+			<cfif RPShipCodeUsed NEQ 1 >
+				<cfscript>
+					PSShipCodeUsed = 1 ;
+					PSShipCode = checkShippingCode.ShippingCode ;
+				</cfscript>
+			</cfif>
+		</cfif>
 		--->
-        <cfoutput><b style="color:green">#ShippingPrice#</b><br></cfoutput>
-    </cfloop>
-    
+		<!--- <cfoutput><b style="color:green">#ShippingPrice#</b><br></cfoutput> --->
+	</cfloop>
+	
 
 <!--- SHIPBY PRICE --->
-<cfif config.ShipBy EQ 1>
+<cfif application.ShipBy EQ 1>
 
-	<cfquery name="getShipPrice" datasource="#datasource#">				
+	<cfquery name="getShipPrice" datasource="#application.dsn#">				
 		SELECT	InternationalRate, DomesticRate
 		FROM	ShipPrice
 		WHERE	Start	<	#Cart.CartTotal#
 		AND		Finish	>=	#Cart.CartTotal#
-		AND		SiteID = #config.SiteID#
+		AND		SiteID = #application.SiteID#
 	</cfquery>
 		
 	<cfscript>
-		if (getShipPrice.RecordCount NEQ 0)
+		if (getShipPrice.RecordCount)
 		{
 			if (IntShip EQ 1) // Apply International Rate
 			{
 				if (getShipPrice.InternationalRate NEQ '')
 					ShippingPrice = ShippingPrice + getShipPrice.InternationalRate ;
 				else
-					ShippingPrice = ShippingPrice + config.DefaultShipRateInt ;
+					ShippingPrice = ShippingPrice + application.DefaultShipRateInt ;
 			}
 			else
 			{
 				if (getShipPrice.DomesticRate NEQ '')
 					ShippingPrice = ShippingPrice + getShipPrice.DomesticRate ;
 				else
-					ShippingPrice = ShippingPrice + config.DefaultShipRateDom ;
+					ShippingPrice = ShippingPrice + application.DefaultShipRateDom ;
 			}
 		}
 		else if (IntShip EQ 1)
-			ShippingPrice = ShippingPrice + config.DefaultShipRateInt ;
+			ShippingPrice = ShippingPrice + application.DefaultShipRateInt ;
 		else
-			ShippingPrice = ShippingPrice + config.DefaultShipRateDom ;
+			ShippingPrice = ShippingPrice + application.DefaultShipRateDom ;
 	</cfscript>
 	
 	<!--- BEGIN: GET SHIPPING DISCOUNT --->
-	<cfif GlobalShipDiscount EQ 0 >
+	
+	<!--- Converted to CFSCRIPT by Carl Vanderpal 18 June 2007 --->
+	<cfscript>
+		if( GlobalShipDiscount EQ 0 )	{
+			if( session.CustomerArray[28] EQ '')	{
+				UserId = 1;
+			}
+			else	{
+				UserID = session.CustomerArray[28];
+			}
+			ShippingDiscount = application.Cart.getShipDiscount(
+				UserID=UserID, 
+				SiteID=application.SiteID,
+				ShippingMethod='Price',
+				SessionID=SessionID);
+		
+		
+			if ( ShippingDiscount.ShipMethod EQ 'Price' )
+			{
+				UsedShipDiscounts = ListAppend(UsedShipDiscounts,ShippingDiscount.ID) ;
+				if ( ShippingDiscount.Type EQ 1 )
+					ShippingPrice = ShippingPrice - (ShippingPrice * ShippingDiscount.Value/100) ;
+				else
+					ShippingPrice = ShippingPrice - ShippingDiscount.Value ;
+			}
+		}
+		else	{
+			if ( ShippingDiscount.Type EQ 1 )
+				ShippingPrice = ShippingPrice - (ShippingPrice * ShippingDiscount.Value/100) ;
+			else
+				ShippingPrice = ShippingPrice - ShippingDiscount.Value ;
+		}
+	
+	</cfscript>
+	
+	
+	<!--- <cfif GlobalShipDiscount EQ 0 >
 		<!--- INVOKE INSTANCE OF OBJECT - GET PRODUCT PRICE, INCLUDING ANY DISCOUNTS --->
-		<cfinvoke component="#application.Cart#" method="getShipDiscount" returnvariable="ShippingDiscount">
+		<!--- <cfinvoke component="#application.Cart#" method="getShipDiscount" returnvariable="ShippingDiscount">
 			<cfif session.CustomerArray[28] EQ '' >
 				<cfinvokeargument name="UserID" value="1">
 			<cfelse>
 				<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 			</cfif>
-			<cfinvokeargument name="SiteID" value="#config.SiteID#">
+			<cfinvokeargument name="SiteID" value="#application.SiteID#">
 			<cfinvokeargument name="ShippingMethod" value="Price">
 			<cfinvokeargument name="SessionID" value="#SessionID#">
-		</cfinvoke>
+		</cfinvoke> --->
 		
 		<cfscript>
+			if( session.CustomerArray[28] EQ '')	{
+				UserId = 1;
+			}
+			else	{
+				UserID = session.CustomerArray[28];
+			}
+			ShippingDiscount = application.Cart.getShipDiscount(
+				UserID=UserID, 
+				SiteID=application.SiteID,
+				ShippingMethod='Price',
+				SessionID=SessionID);
+		
+		
 			if ( ShippingDiscount.ShipMethod EQ 'Price' )
 			{
 				UsedShipDiscounts = ListAppend(UsedShipDiscounts,ShippingDiscount.ID) ;
@@ -163,18 +210,18 @@
 			else
 				ShippingPrice = ShippingPrice - ShippingDiscount.Value ;
 		</cfscript>
-	</cfif>
+	</cfif> --->
 	<!--- END: GET SHIPPING DISCOUNT --->
 
 <!--- SHIPBY WEIGHT --->	
-<cfelseif config.ShipBy EQ 2>
+<cfelseif application.ShipBy EQ 2>
 
-	<cfquery name="getShipPrice" datasource="#datasource#">				
+	<cfquery name="getShipPrice" datasource="#application.dsn#">				
 		SELECT	InternationalRate, DomesticRate
 		FROM	ShipWeight
 		WHERE	Start	<	#Cart.CartWeight#
 		AND		Finish	>=	#Cart.CartWeight#
-		AND		SiteID = #config.SiteID#
+		AND		SiteID = #application.SiteID#
 	</cfquery>
 	
 	<cfscript>
@@ -185,23 +232,24 @@
 				if (getShipPrice.InternationalRate NEQ '')
 					ShippingPrice = ShippingPrice + getShipPrice.InternationalRate;
 				else
-					ShippingPrice = ShippingPrice + config.DefaultShipRateInt ;
+					ShippingPrice = ShippingPrice + application.DefaultShipRateInt ;
 			}
 			else
 			{
 				if (getShipPrice.DomesticRate NEQ '')
 					ShippingPrice = ShippingPrice + getShipPrice.DomesticRate;
 				else
-					ShippingPrice = ShippingPrice + config.DefaultShipRateDom ;
+					ShippingPrice = ShippingPrice + application.DefaultShipRateDom ;
 			}
 		}
 		else if (IntShip EQ 1)
-			ShippingPrice = ShippingPrice + config.DefaultShipRateInt ;
+			ShippingPrice = ShippingPrice + application.DefaultShipRateInt ;
 		else
-			ShippingPrice = ShippingPrice + config.DefaultShipRateDom ;
+			ShippingPrice = ShippingPrice + application.DefaultShipRateDom ;
 	</cfscript>		
 	
 	<!--- BEGIN: GET SHIPPING DISCOUNT --->
+	
 	<cfif GlobalShipDiscount EQ 0 >
 		<!--- INVOKE INSTANCE OF OBJECT - GET PRODUCT PRICE, INCLUDING ANY DISCOUNTS --->
 		<cfinvoke component="#application.Cart#" method="getShipDiscount" returnvariable="ShippingDiscount">
@@ -210,7 +258,7 @@
 			<cfelse>
 				<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 			</cfif>
-			<cfinvokeargument name="SiteID" value="#config.SiteID#">
+			<cfinvokeargument name="SiteID" value="#application.SiteID#">
 			<cfinvokeargument name="ShippingMethod" value="Weight">
 			<cfinvokeargument name="SessionID" value="#SessionID#">
 		</cfinvoke>
@@ -237,15 +285,15 @@
 
 
 <!--- SHIPBY AUTOMATED --->
-<cfelseif config.ShipBy EQ 3>
+<cfelseif application.ShipBy EQ 3>
 
 	<cfparam name="ShippingMethod" default="">
 	
-	<cfif ShippingMethod NEQ 'Default' AND ShippingMethod NEQ '' >
+	<cfif ShippingMethod neq 'Default' and ShippingMethod neq '' >
 	
 		<!--- OVERWEIGHT --->
 		<cfif ShippingMethod EQ 'OverWeight'>
-			<cfset ShippingPrice = ShippingPrice + config.DefaultShipRateOver >
+			<cfset ShippingPrice = ShippingPrice + application.DefaultShipRateOver >
 			
 		
 		<!--- UPS --->	
@@ -258,10 +306,10 @@
 				UPSPassword="#UPSPassword#"
 				PickUpType="03"
 				ServiceType="#ShippingMethod#"
-				ShipperCity="#config.CompanyCity#"
-				ShipperState="#config.CompanyState#"
-				ShipperZip="#config.CompanyZip#"
-				ShipperCountry="#config.CompanyCountry#"
+				ShipperCity="#application.CompanyCity#"
+				ShipperState="#application.CompanyState#"
+				ShipperZip="#application.CompanyZip#"
+				ShipperCountry="#application.CompanyCountry#"
 				ShipToCity="#session.CustomerArray[22]#"
 				ShipToState="#session.CustomerArray[23]#"
 				ShipToZip="#session.CustomerArray[24]#"
@@ -275,10 +323,10 @@
 					<cfscript>
 						if ( TotalCharges EQ 0 )
 						{
-							if ( session.CustomerArray[25] NEQ config.BaseCountry )
-								TotalCharges = config.DefaultShipRateInt;
+							if ( session.CustomerArray[25] NEQ application.BaseCountry )
+								TotalCharges = application.DefaultShipRateInt;
 							else
-								TotalCharges = config.DefaultShipRateDom;
+								TotalCharges = application.DefaultShipRateDom;
 						}
 						ShippingPrice = ShippingPrice + TotalCharges ;
 					</cfscript>
@@ -286,18 +334,32 @@
 					<!--- BEGIN: GET SHIPPING DISCOUNTS --->
 					<cfif GlobalShipDiscount EQ 0 >
 						<!--- INVOKE INSTANCE OF OBJECT - GET SHIPPING DISCOUNT --->
-						<cfinvoke component="#application.Cart#" method="getShipDiscount" returnvariable="ShippingDiscount">
+						
+						<!--- <cfinvoke component="#application.Cart#" method="getShipDiscount" returnvariable="ShippingDiscount">
 							<cfif session.CustomerArray[28] EQ '' >
 								<cfinvokeargument name="UserID" value="1">
 							<cfelse>
 								<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 							</cfif>
-							<cfinvokeargument name="SiteID" value="#config.SiteID#">
+							<cfinvokeargument name="SiteID" value="#application.SiteID#">
 							<cfinvokeargument name="ShippingMethod" value="#ShippingMethod#">
 							<cfinvokeargument name="SessionID" value="#SessionID#">
-						</cfinvoke>
+						</cfinvoke> --->
 						
 						<cfscript>
+							if( session.CustomerArray[28] EQ '')	{
+								UserId = 1;
+							}
+							else	{
+								UserID = session.CustomerArray[28];
+							}
+							ShippingDiscount = application.Cart.getShipDiscount(
+								UserID=UserID, 
+								SiteID=application.SiteID,
+								ShippingMethod=ShippingMethod,
+								SessionID=SessionID);
+						
+						// Shipping
 							if ( ShippingDiscount.ShipMethod EQ ShippingMethod )
 							{
 								UsedShipDiscounts = ListAppend(UsedShipDiscounts,ShippingDiscount.ID) ;
@@ -320,10 +382,10 @@
 				</cfoutput>
 			<cfelse>
 				<cfscript>
-					if ( session.CustomerArray[25] NEQ config.BaseCountry )
-						ShippingPrice = ShippingPrice + config.DefaultShipRateInt;
+					if ( session.CustomerArray[25] NEQ application.BaseCountry )
+						ShippingPrice = ShippingPrice + application.DefaultShipRateInt;
 					else
-						ShippingPrice = ShippingPrice + config.DefaultShipRateDom;
+						ShippingPrice = ShippingPrice + application.DefaultShipRateDom;
 				</cfscript>
 			</cfif>
 		
@@ -348,7 +410,7 @@
 					ounces = int(ounces);
 			</cfscript> 
 			
-			<cfif session.CustomerArray[25] NEQ config.BaseCountry >
+			<cfif session.CustomerArray[25] NEQ application.BaseCountry >
 				<!--- INTERNATIONAL RATE --->
 				<cf_TagUSPS
 					function="RateIntlRequest"
@@ -365,7 +427,7 @@
 					function="RateDomesticRequest"
 					USPSUserID="#USPSUserID#"
 					USPSPassword="#USPSPassword#"
-					ShipFromZip5="#config.DefaultOriginZipCode#"
+					ShipFromZip5="#application.DefaultOriginZipCode#"
 					ShipToZip5="#session.CustomerArray[24]#"
 					PackageWeightLB="#pounds#"
 					PackageWeightOZ="#ounces#"
@@ -378,7 +440,7 @@
 				<cfoutput query="USPSDomesticRateQuery">
 					<cfscript>
 						if ( FreightCharges EQ 0 )
-							FreightCharges = config.DefaultShipRateDom;
+							FreightCharges = application.DefaultShipRateDom;
 						ShippingPrice = ShippingPrice + FreightCharges ;
 					</cfscript>
 					
@@ -391,7 +453,7 @@
 							<cfelse>
 								<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 							</cfif>
-							<cfinvokeargument name="SiteID" value="#config.SiteID#">
+							<cfinvokeargument name="SiteID" value="#application.SiteID#">
 							<cfinvokeargument name="ShippingMethod" value="#ShippingMethod#">
 							<cfinvokeargument name="SessionID" value="#SessionID#">
 						</cfinvoke>
@@ -421,7 +483,7 @@
 				<cfoutput query="USPSIntlRateServicesQuery">
 					<cfscript>
 						if ( FreightCharges EQ 0 )
-							FreightCharges = config.DefaultShipRateInt;
+							FreightCharges = application.DefaultShipRateInt;
 						ShippingPrice = ShippingPrice + FreightCharges ;
 					</cfscript>
 					
@@ -434,7 +496,7 @@
 							<cfelse>
 								<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 							</cfif>
-							<cfinvokeargument name="SiteID" value="#config.SiteID#">
+							<cfinvokeargument name="SiteID" value="#application.SiteID#">
 							<cfinvokeargument name="ShippingMethod" value="#ShippingMethod#">
 							<cfinvokeargument name="SessionID" value="#SessionID#">
 						</cfinvoke>
@@ -462,10 +524,10 @@
 				</cfoutput>
 			<cfelse>
 				<cfscript>
-					if ( session.CustomerArray[25] NEQ config.BaseCountry )
-						ShippingPrice = ShippingPrice + config.DefaultShipRateInt;
+					if ( session.CustomerArray[25] NEQ application.BaseCountry )
+						ShippingPrice = ShippingPrice + application.DefaultShipRateInt;
 					else
-						ShippingPrice = ShippingPrice + config.DefaultShipRateDom;
+						ShippingPrice = ShippingPrice + application.DefaultShipRateDom;
 				</cfscript>
 			</cfif>
 			
@@ -493,9 +555,9 @@
 				accountnumber="#fedexAcNum#"
 				servicelevel="#ShippingMethod#"
 				raterequesttype="FDXE"
-				ShipperState="#config.CompanyState#"
-				ShipperZip="#config.DefaultOriginZipCode#"
-				ShipperCountry="#config.BaseCountry#"
+				ShipperState="#application.CompanyState#"
+				ShipperZip="#application.DefaultOriginZipCode#"
+				ShipperCountry="#application.BaseCountry#"
 				ShipToState="#session.CustomerArray[23]#"
 				ShipToZip="#session.CustomerArray[24]#"
 				ShipToCountry="#session.CustomerArray[25]#"
@@ -513,8 +575,8 @@
 
 			<cfif IsDefined("qFedexRateQuery")>
 				<cfoutput query="qFedexRateQuery">
-                	
-                    <!--- <b style="color:blue">#ShippingPrice#</b><br> --->
+					
+					<!--- <b style="color:blue">#ShippingPrice#</b><br> --->
 					
 					<cfscript>
 						if ( Len(ListNetTotalCharge) GT 0 )
@@ -524,14 +586,14 @@
 					
 						if ( ShippingPrice EQ 0 )
 						{
-							if ( session.CustomerArray[25] NEQ config.BaseCountry )
-								ShippingPrice = ShippingPrice + config.DefaultShipRateInt;
+							if ( session.CustomerArray[25] NEQ application.BaseCountry )
+								ShippingPrice = ShippingPrice + application.DefaultShipRateInt;
 							else
-								ShippingPrice = ShippingPrice + config.DefaultShipRateDom;
+								ShippingPrice = ShippingPrice + application.DefaultShipRateDom;
 						}
 					</cfscript>
 					
-                    <!--- <b style="color:green">#ShippingPrice#</b><br> --->
+					<!--- <b style="color:green">#ShippingPrice#</b><br> --->
 					
 					<!--- BEGIN: GET SHIPPING DISCOUNTS --->
 					<cfif GlobalShipDiscount EQ 0 >
@@ -542,7 +604,7 @@
 							<cfelse>
 								<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 							</cfif>
-							<cfinvokeargument name="SiteID" value="#config.SiteID#">
+							<cfinvokeargument name="SiteID" value="#application.SiteID#">
 							<cfinvokeargument name="ShippingMethod" value="#ShippingMethod#">
 							<cfinvokeargument name="SessionID" value="#SessionID#">
 						</cfinvoke>
@@ -567,59 +629,59 @@
 					</cfif>
 					<!--- END: GET SHIPPING DISCOUNT --->					
 					
-                    <!--- <b style="color:black">#ShippingPrice#</b><br> --->
-                    
+					<!--- <b style="color:black">#ShippingPrice#</b><br> --->
+					
 				</cfoutput>
 			<cfelse>
 				<cfscript>
-					if ( session.CustomerArray[25] NEQ config.BaseCountry )
-						ShippingPrice = ShippingPrice + config.DefaultShipRateInt;
+					if ( session.CustomerArray[25] NEQ application.BaseCountry )
+						ShippingPrice = ShippingPrice + application.DefaultShipRateInt;
 					else
-						ShippingPrice = ShippingPrice + config.DefaultShipRateDom;
+						ShippingPrice = ShippingPrice + application.DefaultShipRateDom;
 				</cfscript>
 			</cfif>
 		
 		
 		<!--- INTERNATIONAL: AND NO OTHER SHIPPING METHOD SELECTED --->
-		<cfelseif session.CustomerArray[25] NEQ config.BaseCountry >
-			<cfset ShippingPrice = config.DefaultShipRateInt >	
+		<cfelseif session.CustomerArray[25] NEQ application.BaseCountry >
+			<cfset ShippingPrice = application.DefaultShipRateInt >	
 
 		</cfif>
 		<!--- END: SHIPPINGMETHOD --->
-        
+		
 	<!--- SHIPPINGMETHOD IS 'Default' --->
-	<cfelseif session.CustomerArray[25] NEQ config.BaseCountry >
+	<cfelseif session.CustomerArray[25] NEQ application.BaseCountry >
 		<!--- INTERNATIONAL --->
-		<cfset ShippingPrice = ShippingPrice + config.DefaultShipRateInt >
+		<cfset ShippingPrice = ShippingPrice + application.DefaultShipRateInt >
 	<cfelse>
-		<cfset ShippingPrice = ShippingPrice + config.DefaultShipRateDom >
+		<cfset ShippingPrice = ShippingPrice + application.DefaultShipRateDom >
 	</cfif>
 
 
 <!--- SHIPBY REGION/GEOGRAPHY --->	
-<cfelseif config.ShipBy EQ 4 >
+<cfelseif application.ShipBy EQ 4 >
 
-	<cfif session.CustomerArray[25] EQ config.BaseCountry >
-		<cfquery name="getRate" datasource="#datasource#">
+	<cfif session.CustomerArray[25] EQ application.BaseCountry >
+		<cfquery name="getRate" datasource="#application.dsn#">
 			SELECT 	*
 			FROM 	States
 			WHERE 	StateCode = '#session.CustomerArray[23]#'
 		</cfquery>
 		<cfscript>
 			if ( GetRate.S_Rate EQ '' OR GetRate.S_Rate EQ 0 )
-				ShippingPrice = ShippingPrice + config.DefaultShipRateDom ;
+				ShippingPrice = ShippingPrice + application.DefaultShipRateDom ;
 			else
 				ShippingPrice = ShippingPrice + GetRate.S_Rate ;
 		</cfscript>
 	<cfelse>
-		<cfquery name="getRate" datasource="#datasource#">
+		<cfquery name="getRate" datasource="#application.dsn#">
 			SELECT 	*
 			FROM	countries
 			WHERE	Country = '#session.CustomerArray[25]#'
 		</cfquery>
 		<cfscript>
 			if ( GetRate.S_Rate EQ '' OR GetRate.S_Rate EQ 0 )
-				ShippingPrice = ShippingPrice + config.DefaultShipRateInt ;
+				ShippingPrice = ShippingPrice + application.DefaultShipRateInt ;
 			else
 				ShippingPrice = ShippingPrice + GetRate.S_Rate ;
 		</cfscript>
@@ -634,7 +696,7 @@
 			<cfelse>
 				<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 			</cfif>
-			<cfinvokeargument name="SiteID" value="#config.SiteID#">
+			<cfinvokeargument name="SiteID" value="#application.SiteID#">
 			<cfinvokeargument name="ShippingMethod" value="Location">
 			<cfinvokeargument name="SessionID" value="#SessionID#">
 		</cfinvoke>
@@ -662,12 +724,12 @@
 
 
 <!--- SHIPBY CUSTOM SHIPPING OPTIONS: WEIGHT --->	
-<cfelseif config.ShipBy EQ 5 >
+<cfelseif application.ShipBy EQ 5 >
 	
-	<cfquery name="getCustomShipping" datasource="#datasource#">
+	<cfquery name="getCustomShipping" datasource="#application.dsn#">
 		SELECT 	ShipPrice
 		FROM	ShippingMethods
-		WHERE	SiteID = #config.SiteID#
+		WHERE	SiteID = #application.SiteID#
 		AND		ShippingCode = '#ShippingMethod#'
 	</cfquery>
 	
@@ -685,7 +747,7 @@
 			<cfelse>
 				<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 			</cfif>
-			<cfinvokeargument name="SiteID" value="#config.SiteID#">
+			<cfinvokeargument name="SiteID" value="#application.SiteID#">
 			<cfinvokeargument name="ShippingMethod" value="Weight">
 			<cfinvokeargument name="SessionID" value="#SessionID#">
 		</cfinvoke>
@@ -712,12 +774,12 @@
 	
 	
 <!--- SHIPBY CUSTOM SHIPPING OPTIONS: PRICE --->	
-<cfelseif config.ShipBy EQ 6 >
+<cfelseif application.ShipBy EQ 6 >
 	
-	<cfquery name="getCustomShipping" datasource="#datasource#">
+	<cfquery name="getCustomShipping" datasource="#application.dsn#">
 		SELECT 	ShipPrice
 		FROM	ShippingMethods
-		WHERE	SiteID = #config.SiteID#
+		WHERE	SiteID = #application.SiteID#
 		AND		ShippingCode = '#ShippingMethod#'
 	</cfquery>
 	
@@ -735,7 +797,7 @@
 			<cfelse>
 				<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 			</cfif>
-			<cfinvokeargument name="SiteID" value="#config.SiteID#">
+			<cfinvokeargument name="SiteID" value="#application.SiteID#">
 			<cfinvokeargument name="ShippingMethod" value="Price">
 			<cfinvokeargument name="SessionID" value="#SessionID#">
 		</cfinvoke>
@@ -762,9 +824,9 @@
 
 
 <!--- SHIPBY RETAIL PRO --->
-<cfelseif config.ShipBy EQ 7 >
+<cfelseif application.ShipBy EQ 7 >
 	
-	<!--- <cfquery name="getShippingCodes" datasource="#datasource#" >
+	<!--- <cfquery name="getShippingCodes" datasource="#application.dsn#" >
 		SELECT	*
 		FROM	ShippingCodes
 	</cfquery> --->
@@ -784,7 +846,7 @@
 			<cfquery name="checkShippingCode" dbtype="query" >
 				SELECT	*
 				FROM	getShippingCodes
-            	WHERE	ShippingCode = #fldShipCode# <!--- previous CF code: #fldShipAmount#, field fldShipCode added 22-Mar-07 --->
+				WHERE	ShippingCode = #fldShipCode# <!--- previous CF code: #fldShipAmount#, field fldShipCode added 22-Mar-07 --->
 			</cfquery>
 			
 			<!--- CUSTOM MESSAGE IS APPLICABLE --->
@@ -805,10 +867,10 @@
 	</cfloop>
 	
 	<cfif ShippingMethod NEQ 'Default'>
-		<cfquery name="getCustomShipping" datasource="#datasource#">
+		<cfquery name="getCustomShipping" datasource="#application.dsn#">
 			SELECT 	ShipPrice
 			FROM	ShippingMethods
-			WHERE	SiteID = #config.SiteID#
+			WHERE	SiteID = #application.SiteID#
 			AND		ShippingCode = '#ShippingMethod#'
 		</cfquery>
 		<cfscript>
@@ -823,10 +885,10 @@
 		</cfscript>
 	<cfelse>
 		<cfscript>
-			if ( session.CustomerArray[25] NEQ config.BaseCountry AND config.AcceptIntShipment EQ 1 )
-				ShippingPrice = ShippingPrice + config.DefaultShipRateInt ;
+			if ( session.CustomerArray[25] NEQ application.BaseCountry AND application.AcceptIntShipment EQ 1 )
+				ShippingPrice = ShippingPrice + application.DefaultShipRateInt ;
 			else
-				ShippingPrice = ShippingPrice + config.DefaultShipRateDom ;
+				ShippingPrice = ShippingPrice + application.DefaultShipRateDom ;
 		</cfscript>
 	</cfif>
 		
@@ -839,7 +901,7 @@
 			<cfelse>
 				<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
 			</cfif>
-			<cfinvokeargument name="SiteID" value="#config.SiteID#">
+			<cfinvokeargument name="SiteID" value="#application.SiteID#">
 			<cfinvokeargument name="ShippingMethod" value="Weight">
 			<cfinvokeargument name="SessionID" value="#SessionID#">
 		</cfinvoke>
@@ -866,21 +928,21 @@
 		
 <!--- FALLBACK --->
 <cfelse>
-	<cfset ShippingPrice = ShippingPrice + config.DefaultShipRateDom >
+	<cfset ShippingPrice = ShippingPrice + application.DefaultShipRateDom >
 </cfif>
 	
 	<!--- CARTFUSION 4.6 - APPLY HANDLING FEE TO SHIPPING PRICE --->
 	<!--- (previously only applied to automated realtime shipping) --->
-    <cfscript>
-        if ( config.HandlingType EQ 1 ) {
-            ShippingPrice = NumberFormat(ShippingPrice + (ShippingPrice * (config.HandlingFee/100)),0.00) ;
-        } else {
-            ShippingPrice = NumberFormat(ShippingPrice + config.HandlingFee,0.00) ;
-        }
-    </cfscript>
-    
-    <!--- <cfoutput><b style="color:maroon">#ShippingPrice#</b><br></cfoutput> --->
-        
+	<cfscript>
+		if ( application.HandlingType EQ 1 ) {
+			ShippingPrice = NumberFormat(ShippingPrice + (ShippingPrice * (application.HandlingFee/100)),0.00) ;
+		} else {
+			ShippingPrice = NumberFormat(ShippingPrice + application.HandlingFee,0.00) ;
+		}
+	</cfscript>
+	
+	<!--- <cfoutput><b style="color:maroon">#ShippingPrice#</b><br></cfoutput> --->
+		
 	<cfscript>
 		'ShippingPrice#cpi#' = NumberFormat(ShippingPrice,0.00) ;
 		TotalShippingPrice = TotalShippingPrice + Evaluate('ShippingPrice' & cpi) ;

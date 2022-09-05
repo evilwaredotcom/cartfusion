@@ -1,16 +1,16 @@
+<!--- 
+|| MIT LICENSE
+|| CartFusion.com
+--->
+<cfoutput>
+
 <html>
 <head>
-<title>Invoice Order # <cfoutput>#OrderID#</cfoutput></title>
-
-<cfif FindNoCase("MSIE", "#CGI.HTTP_USER_AGENT#")><cfinclude template="css.cfm">
-<cfelse><cfinclude template="css.cfm">
-</cfif>
-
-<style type="text/css">
-	td
-	{ font-family: Verdana, Arial, Sans-Serif; font-size: 11px; font-weight: normal;
-	  text-decoration: none; color: 000000; }
-</style>
+<title>Invoice Order ###OrderID#</title>
+<!--- <CFINCLUDE Template="css.cfm"> --->
+<link rel="stylesheet" type="text/css" href="templates/#application.SiteTemplate#/screen_layout.css">
+<link rel="stylesheet" type="text/css" href="templates/#application.SiteTemplate#/screen_formatting.css">
+<link rel="stylesheet" type="text/css" href="templates/#application.SiteTemplate#/screen_design.css">
 
 </head>
 
@@ -23,22 +23,21 @@
 	
 </cflock>
 
-<body onLoad="window.print()">
+<body style="margin:20px;" onLoad="window.print()">
 
-<cfoutput>
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tr>
 		<td width="33%">
 			<b>SEND ORDER FORM TO:</b><br>
-			#application.siteConfig.data.CompanyName#<br>
-			#application.siteConfig.data.CompanyAddress1#<br>
-			<cfif #application.siteConfig.data.CompanyAddress2# NEQ ''>
-			#application.siteConfig.data.CompanyAddress2#<br>
+			#application.CompanyName#<br>
+			#application.CompanyAddress1#<br>
+			<cfif #application.CompanyAddress2# NEQ ''>
+			#application.CompanyAddress2#<br>
 			</cfif>
-			#application.siteConfig.data.CompanyCity#, #application.siteConfig.data.CompanyState# #application.siteConfig.data.CompanyZIP#
+			#application.CompanyCity#, #application.CompanyState# #application.CompanyZIP#
 		</td>
 		<td width="33%">
-			<font class="cfAdminHeader2"><b>#UCase(config.storename)# ORDER FORM</b></font><br>
+			<font class="cfAdminHeader2"><b>#UCase(application.storename)# ORDER FORM</b></font><br>
 			Order ## #OrderID#<br>
 			Customer ID: #getOrder.CustomerID#<br>
 			Order Date: #DateFormat(getOrder.OrderDate, "d-mmm-yyyy")#
@@ -50,18 +49,18 @@
 </table>
 </cfoutput>
 
-<br>
-<hr color="CCCCCC" width="100%">
+<cfoutput query="getOrder">
 
-<cfoutput QUERY="getOrder">
+<br>
+<hr color="##CCCCCC" width="100%">
 
 	<cfscript>
 		if ( getOrder.CCNum NEQ '' ) 
-			Decrypted_CCNum = DECRYPT(getOrder.CCNum, config.CryptKey, "CFMX_COMPAT", "Hex") ;
+			Decrypted_CCNum = DECRYPT(getOrder.CCNum, application.CryptKey, "CFMX_COMPAT", "Hex") ;
 		else 
 			Decrypted_CCNum = '' ;
 		if ( getOrder.CCExpDate NEQ '' ) 
-			Decrypted_CCExpDate = DECRYPT(getOrder.CCExpDate, config.CryptKey, "CFMX_COMPAT", "Hex") ;
+			Decrypted_CCExpDate = DECRYPT(getOrder.CCExpDate, application.CryptKey, "CFMX_COMPAT", "Hex") ;
 		else 
 			Decrypted_CCExpDate = '' ;
 	</cfscript>
@@ -71,9 +70,9 @@
 	</cfinvoke>
 			
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
-	<tr class="cfAdminHeader2" bgcolor="#cfAdminHeaderColor#">
+	<tr class="cfAdminHeader2" bgcolor="##CCCCCC">
 		<td width="33%" colspan="2" height="20" class="cfAdminHeader2">&nbsp; <b>BILLING INFORMATION</b></td>
-		<td rowspan="12" width="1%" bgcolor="FFFFFF">&nbsp;</td>
+		<td rowspan="12" width="1%" bgcolor="##FFFFFF">&nbsp;</td>
 		<td width="32%" colspan="2" class="cfAdminHeader2">&nbsp; <b>SHIPPING INFORMATION</b></td>
 	</tr>
 	<tr>
@@ -142,17 +141,18 @@
 </table>	
 </cfoutput>
 
+<cfoutput>
 <br>
-<hr color="CCCCCC" width="100%">
+<hr color="##CCCCCC" width="100%">
 <!--- ORDERED ITEMS ----------------------------------------------------------------->
 
-<div align="left" class="cfAdminHeader2"><b>ORDER ITEMS</b></div><br>
+<div align="left" class="cfAdminHeader2" width="100%"><b>ORDER ITEMS</b></div><br>
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
-	<tr bgcolor="CCCCCC">
+	<tr bgcolor="##CCCCCC">
 		<td height="1" colspan="7"></td>
 	</tr>
-	<tr bgcolor="<cfoutput>#cfAdminHeaderColor#</cfoutput>">
+	<tr bgcolor="##CCCCCC">
 		<td width="10%" class="cfAdminHeader2" height="20">&nbsp;SKU</td>
 		<td width="30%" class="cfAdminHeader2">Item Name/Description</td>
 		<td width="5%"  class="cfAdminHeader2">Qty</td>
@@ -161,9 +161,10 @@
 		<td width="10%" class="cfAdminHeader2">Action Date</td>
 		<td width="10%" class="cfAdminHeader2" align="right">Price&nbsp;</td>
 	</tr>
-	<tr bgcolor="CCCCCC">
+	<tr bgcolor="##CCCCCC">
 		<td height="1" colspan="7"></td>
 	</tr>
+</cfoutput>
 
 <cfset runningtotal = 0>
 	
@@ -232,7 +233,7 @@
 	
 	<cfif CreditApplied NEQ '' AND CreditApplied NEQ 0>
 	<tr>
-		<td align="right" colspan="6"><img src="#application.rootUrl#/images/image-PotOGold.gif" border="0" align="absmiddle"> Xtra-Xtra / Credit:</td>
+		<td align="right" colspan="6">Credit Applied:</td>
 		<td align="right">#LSCurrencyFormat(CreditApplied)#</td>
 	</tr>
 	<cfset runningtotal = runningtotal - CreditApplied>
@@ -241,15 +242,15 @@
 	<tr>
 		<td colspan="7" height="5"></td>
 	</tr>
-	<tr bgcolor="CCCCCC">
+	<tr bgcolor="##CCCCCC">
 		<td height="1" colspan="7"></td>
 	</tr>	
-	<tr bgcolor="#cfAdminHeaderColor#">
+	<tr bgcolor="##CCCCCC">
 		<td colspan="5" height="20">&nbsp;</td>
 		<td align="right" valign="middle" class="cfAdminHeader2"><b>Total:</b></td>
 		<td align="right" valign="middle" class="cfAdminHeader2"><b>#LSCurrencyFormat(runningtotal, "local")#</b></td>
 	</tr>
-	<tr bgcolor="CCCCCC">
+	<tr bgcolor="##CCCCCC">
 		<td height="1" colspan="7"></td>
 	</tr>
 </table>

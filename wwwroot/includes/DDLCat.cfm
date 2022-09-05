@@ -1,3 +1,8 @@
+<!--- 
+|| MIT LICENSE
+|| CartFusion.com
+--->
+
 <cfparam name="CatDisplay" default="">
 <cfparam name="SecFilter" default="">
 <input type="hidden" name="start" value="1">
@@ -6,79 +11,78 @@
 	Category: 
 	
 	<!--- GET CATEGORIES --->
-	<CFQUERY NAME="getSubCategories" DATASOURCE="#datasource#" cachedwithin="#CreateTimeSpan(0,0,10,0)#">
-		SELECT 		CatID, CatName, SubCategoryOf
+	<cfquery name="getSubCategories" datasource="#application.dsn#" cachedwithin="#CreateTimeSpan(0,0,10,0)#">
+		SELECT 		CatID, CatName, subCategoryOf
 		FROM 		Categories
 		WHERE		Hide#session.CustomerArray[28]# != 1
-		AND			SiteID = #application.siteConfig.data.SiteID#
+		AND			SiteID = #application.SiteID#
 		ORDER BY 	DisplayOrder, CatName
-	</CFQUERY>
+	</cfquery>
 	
 	<!--- GET MAIN CATEGORIES (AFTER getSubCategories) --->
 	<cfquery name="getMainCategories" dbtype="query">
 		SELECT 	*
 		FROM 	getSubCategories
-		WHERE	(SubCategoryOf = 0
-		OR		 SubCategoryOf IS NULL)
+		WHERE	(subCategoryOf = 0
+		OR		 subCategoryOf IS NULL)
 	</cfquery>
 		
-	<select name="CatDisplay" class="cfFormField" onChange="this.form.submit();">
+	<select name="CatDisplay" class="cfFormField" onchange="this.form.submit();">
 	<cfoutput query="getMainCategories" group="CatID">
 								
 		<cfquery name="getSubCategories1" dbtype="query">
 			SELECT 	*
 			FROM 	getSubCategories
-			WHERE	SubCategoryOf = #getMainCategories.CatID#
+			WHERE	subCategoryOf = #getMainCategories.CatID#
 		</cfquery>
 		
 		<!--- LEVEL 1 --->
 		<option value="#getMainCategories.CatID#" <cfif CatID EQ CatDisplay > selected </cfif> >*** #UCASE(getMainCategories.CatName)# ***</option>
-		<!--- <option value="#getMainCategories.CatID#" style="color:#layout.AttractColor#;" <cfif CatID EQ CatDisplay > selected </cfif> >*** #UCASE(getMainCategories.CatName)# ***</option> --->
 		
 		<!--- LEVEL 2 --->
 		<cfif getSubCategories1.RecordCount GTE 1 >
 			<cfloop query="getSubCategories1">
 				<cfoutput>					
-					<option value="#CatID#" style="color:000000;" <cfif CatID EQ CatDisplay > selected </cfif> >&nbsp;&nbsp;&nbsp; #CatName#</option>
+					<option value="#CatID#" style="color:##000;" <cfif CatID EQ CatDisplay > selected </cfif> >&nbsp;&nbsp;&nbsp; #CatName#</option>
 				</cfoutput>
 				
 				<cfquery name="getSubCategories2" dbtype="query">
 					SELECT 	*
 					FROM 	getSubCategories
-					WHERE	SubCategoryOf = #getSubCategories1.CatID#
+					WHERE	subCategoryOf = #getSubCategories1.CatID#
 				</cfquery>
 				
 				<!--- LEVEL 3 --->
 				<cfif getSubCategories2.RecordCount GTE 1 >
 					<cfloop query="getSubCategories2">
 						<cfoutput>					
-							<option value="#CatID#" style="color:555555;" <cfif CatID EQ CatDisplay > selected </cfif> >&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp; #CatName#</option>
+							<option value="#CatID#" style="color:##555;" <cfif CatID EQ CatDisplay > selected </cfif> >&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp; #CatName#</option>
 						</cfoutput>
 						
 						<cfquery name="getSubCategories3" dbtype="query">
 							SELECT 	*
 							FROM 	getSubCategories
-							WHERE	SubCategoryOf = #getSubCategories2.CatID#
+							WHERE	subCategoryOf = #getSubCategories2.CatID#
 						</cfquery>
 						
 						<!--- LEVEL 4 --->
 						<cfif getSubCategories3.RecordCount GTE 1 >
 							<cfloop query="getSubCategories3">
 								<cfoutput>					
-									<option value="#CatID#" style="color:999999;" <cfif CatID EQ CatDisplay > selected </cfif> >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp; #CatName#</option>
+									<option value="#CatID#" style="color:##999;" <cfif CatID EQ CatDisplay > selected </cfif> >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp; #CatName#</option>
 								</cfoutput>
 								
 								<cfquery name="getSubCategories4" dbtype="query">
 									SELECT 	*
 									FROM 	getSubCategories
-									WHERE	SubCategoryOf = #getSubCategories3.CatID#
+									WHERE	subCategoryOf = #getSubCategories3.CatID#
 								</cfquery>
 								
 								<!--- LEVEL 5 --->
 								<cfif getSubCategories4.RecordCount GTE 1 >
 									<cfloop query="getSubCategories4">
 										<cfoutput>					
-											<option value="#CatID#" style="color:CCCCCC;" <cfif CatID EQ CatDisplay > selected </cfif> >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp; #CatName#</option>
+											<option value="#CatID#" style="color:##CCC;" <cfif CatID EQ CatDisplay > selected </cfif> >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp; #CatName#</option>
 										</cfoutput>
 									</cfloop>
 								</cfif>
@@ -122,11 +126,11 @@ Sections:
 </cfoutput>
 
 <cfif getProducts.RecordCount NEQ 0 >
-	<cfquery name="getSecs" datasource="#datasource#" cachedwithin="#CreateTimeSpan(0,0,11,0)#">
+	<cfquery name="getSecs" datasource="#application.dsn#" cachedwithin="#CreateTimeSpan(0,0,11,0)#">
 		SELECT 	SectionID, SecName
 		FROM 	Sections
 		WHERE	Hide#session.CustomerArray[28]# != 1
-		AND		SiteID = #application.siteConfig.data.SiteID#
+		AND		SiteID = #application.SiteID#
 		<cfif WCSecID NEQ '' >
 		AND 	(#WCSecID#)
 		</cfif>

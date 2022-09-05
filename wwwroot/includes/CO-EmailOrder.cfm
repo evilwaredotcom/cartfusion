@@ -1,3 +1,8 @@
+<!--- 
+|| MIT LICENSE
+|| CartFusion.com
+--->
+
 <cfif NOT isDefined('session.CustomerArray') OR session.CustomerArray[11] EQ '' OR NOT isDefined('OrderID')>
 	<div class="cfErrorMsg">ERROR: No Email Address Specified</div>
 	<cfabort>
@@ -15,16 +20,18 @@
 	</cfinvoke>
 </cflock>
 
-<cfmail query="getOrder" group="OrderID" from="#config.EmailSales#" to="#session.CustomerArray[11]#" bcc="#config.NotifyEmail#"
-	subject="#config.StoreNameShort# Order ###OrderID# Received" type="HTML">
+<cfmail query="getOrder" group="OrderID" from="#application.EmailSales#" to="#session.CustomerArray[11]#" bcc="webmaster@tradestudios.com,#application.NotifyEmail#"
+	subject="#application.StoreNameShort# Order ###OrderID# Received" type="HTML">
 
 <html>
 <head>
-
-<cfinclude template="../css.cfm">
+<link rel="stylesheet" type="text/css" href="../templates/#application.SiteTemplate#/screen_layout.css">
+<link rel="stylesheet" type="text/css" href="../templates/#application.SiteTemplate#/screen_formatting.css">
+<link rel="stylesheet" type="text/css" href="../templates/#application.SiteTemplate#/screen_design.css">
+<!--- <cfinclude template="../css.cfm"> --->
 <style type="text/css">
 	TD, DIV, TEXTAREA
-	{ color:##000000; }
+	{ color:##000; }
 </style>
 
 </head>
@@ -34,18 +41,18 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tr>
 		<td width="33%">
-			<b>#UCase(config.storename)# INVOICE</b><br>
+			<b>#UCase(application.storename)# INVOICE</b><br>
 			Order ## #OrderID#<br>
 			Customer ID: #getOrder.CustomerID#<br>
 			Order Date: #DateFormat(getOrder.OrderDate, "d-mmm-yyyy")#
 		</td>
 		<td width="33%">
-			#config.CompanyName#<br>
-			#config.CompanyAddress1#<br>
-			<cfif #config.CompanyAddress2# NEQ ''>
-			#config.CompanyAddress2#<br>
+			#application.CompanyName#<br>
+			#application.CompanyAddress1#<br>
+			<cfif #application.CompanyAddress2# NEQ ''>
+			#application.CompanyAddress2#<br>
 			</cfif>
-			#config.CompanyCity#, #config.CompanyState# #config.CompanyZIP#
+			#application.CompanyCity#, #application.CompanyState# #application.CompanyZIP#
 		</td>
 		<td width="33%" align="right"></td>
 	</tr>
@@ -53,32 +60,36 @@
 
 <br>
 <cfscript>
-	if ( getOrder.CCNum NEQ '') Decrypted_CCNum = DECRYPT(getOrder.CCNum, config.CryptKey, "CFMX_COMPAT", "Hex") ;
+	if ( getOrder.CCNum NEQ '') Decrypted_CCNum = DECRYPT(getOrder.CCNum, application.CryptKey, "CFMX_COMPAT", "Hex") ;
 	else Decrypted_CCNum = '';
-	if ( getOrder.CCExpDate NEQ '') Decrypted_CCExpDate = DECRYPT(getOrder.CCExpDate, config.CryptKey, "CFMX_COMPAT", "Hex") ;
+	if ( getOrder.CCExpDate NEQ '') Decrypted_CCExpDate = DECRYPT(getOrder.CCExpDate, application.CryptKey, "CFMX_COMPAT", "Hex") ;
 	else Decrypted_CCExpDate = '';
+	
+	// Queries
+	getPaymentType = application.Queries.getPaymentType(Type='#getOrder.CCName#');
+	getShippingMethod = application.Queries.getShippingMethod(ShippingCode='#getOrder.ShippingMethod#');
 </cfscript>
 
-<cfinvoke component="#application.Queries#" method="getPaymentType" returnvariable="getPaymentType">
+<!--- <cfinvoke component="#application.Queries#" method="getPaymentType" returnvariable="getPaymentType">
 	<cfinvokeargument name="Type" value="#getOrder.CCName#">
 </cfinvoke>
 
 <cfinvoke component="#application.Queries#" method="getShippingMethod" returnvariable="getShippingMethod">
 	<cfinvokeargument name="ShippingCode" value="#getOrder.ShippingMethod#">
-</cfinvoke>
+</cfinvoke> --->
 			
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
-	<tr bgcolor="<cfoutput>#layout.TableHeadingBGColor#</cfoutput>">
-		<td width="33%" colspan="2" height="20" class="cfTableHeading">&nbsp; BILLING INFORMATION</td>
-		<td rowspan="11" width="1%" bgcolor="FFFFFF">&nbsp;</td>
-		<td width="32%" colspan="2" class="cfTableHeading">&nbsp; SHIPPING INFORMATION</td>
-		<td rowspan="11" width="1%" bgcolor="FFFFFF">&nbsp;</td>
-		<td width="33%" colspan="2" class="cfTableHeading">&nbsp; PAYMENT INFORMATION</td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%" class="cartLayoutTable">
+	<tr>
+		<th width="33%" colspan="2" height="20">&nbsp; BILLING INFORMATION</th>
+		<td rowspan="11" width="1%" bgcolor="##FFF">&nbsp;</td>
+		<th width="32%" colspan="2">&nbsp; SHIPPING INFORMATION</th>
+		<td rowspan="11" width="1%" bgcolor="##FFF">&nbsp;</td>
+		<th width="33%" colspan="2">&nbsp; PAYMENT INFORMATION</th>
 	</tr>
 	<tr>
 		<td colspan="6" height="5">&nbsp;</td>
 	</tr>
-	<tr>
+	<tr class="row0">
 		<td width="15%">First Name:</td>
 		<td width="15%">#FirstName#</td>
 		<td width="15%">First Name:</td>
@@ -90,14 +101,14 @@
 			</cfif>
 		</td>
 	</tr>
-	<tr>
+	<tr class="row1">
 		<td>Last Name:</td>
 		<td>#LastName#</td>
 		<td>Last Name:</td>
 		<td>#OShipLastName#</td>
 		<td colspan="2"></td>
 	</tr>
-	<tr>
+	<tr class="row0">
 		<td>Company:</td>
 		<td>#CompanyName#</td>
 		<td>Company:</td>
@@ -112,7 +123,7 @@
 			</cfif>
 		</td>
 	</tr>
-	<tr>
+	<tr class="row1">
 		<td>Address 1:</td>
 		<td>#Address1#</td>
 		<td>Address 1:</td>
@@ -124,7 +135,7 @@
 		<td width="40%" colspan="2" rowspan="3">
 		</cfif>
 	</tr>
-	<tr>
+	<tr class="row0">
 		<td>Address 2:</td>
 		<td>#Address2#</td>
 		<td>Address 2:</td>
@@ -134,7 +145,7 @@
 	  	<td>XXXXXXXX#Right(decrypted_CCNum,4)#</td>
 		</cfif>
 	</tr>
-	<tr>	
+	<tr class="row1">	
 		<td>City:</td>
 		<td>#City#</td>
 		<td>City:</td>
@@ -144,14 +155,14 @@
 		<td>#decrypted_CCexpdate#</td>
 		</cfif>
 	</tr>
-	<tr>
+	<tr class="row0">
 		<td>State:</td>
 		<td>#State#</td>
 		<td>State:</td>
 		<td>#OShipState#</td>
 		<td colspan="2"></td>
 	</tr>
-	<tr>
+	<tr class="row1">
 		<td>Zip/Postal:</td>
 		<td>#Zip#</td>
 		<td>Zip/Postal:</td>
@@ -159,7 +170,7 @@
 		<td>Shipping Method:</td>
 		<td>#getShippingMethod.ShippingMessage#</td>
 	</tr>
-	<tr>
+	<tr class="row0">
 		<td>Country:</td>
 		<td>#Country#</td>
 		<td>Country:</td>
@@ -170,25 +181,25 @@
 
 
 <br>
-<hr color="CCCCCC" width="100%">
+<hr class="snip">
 <!--- ORDERED ITEMS ----------------------------------------------------------------->
 
-<div align="left" class="cfTableHeading">ORDER ITEMS</div><br>
+<div align="left">ORDER ITEMS</div><br>
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
-	<tr bgcolor="CCCCCC">
+	<tr bgcolor="##CCCCCC">
 		<td height="1" colspan="7"></td>
 	</tr>
-	<tr bgcolor="<cfoutput>#layout.TableHeadingBGColor#</cfoutput>">
-		<td width="1%" height="20" class="cfTableHeading"></td>
-		<td width="39%" class="cfTableHeading">Item Name/Description</td>
-		<td width="5%"  class="cfTableHeading" align="center">Qty</td>
-		<td width="15%" class="cfTableHeading">Unit Price</td>
-		<td width="15%" class="cfTableHeading">Item Status</td>
-		<td width="10%" class="cfTableHeading">Action Date</td>
-		<td width="10%" align="right" class="cfTableHeading">Price</td>
+	<tr>
+		<th width="1%" height="20"></td>
+		<th width="39%">Item Name/Description</td>
+		<th width="5%"  align="center">Qty</td>
+		<th width="15%">Unit Price</td>
+		<th width="15%">Item Status</td>
+		<th width="10%">Action Date</td>
+		<th width="10%" align="right">Price</td>
 	</tr>
-	<tr bgcolor="CCCCCC">
+	<tr bgcolor="##CCCCCC">
 		<td height="1" colspan="7"></td>
 	</tr>
 
@@ -205,10 +216,15 @@
 	<td align="center">#Qty#</td>
 	<td>#LSCurrencyFormat(ItemPrice)#</td>			
 	
-		<cfinvoke component="#application.Queries#" method="getOrderItemsStatusCode" returnvariable="getOrderItemsStatusCode">
+		<!--- <cfinvoke component="#application.Queries#" method="getOrderItemsStatusCode" returnvariable="getOrderItemsStatusCode">
 			<cfinvokeargument name="StatusCode" value="#StatusCode#">
-		</cfinvoke>
+		</cfinvoke> --->
+		
+		
 		<cfscript>
+			// Get Query
+			getOrderItemsStatusCode = application.Queries.getOrderItemsStatusCode(StatusCode=StatusCode);
+			
 			if ( StatusCode IS 'BO' OR StatusCode IS 'CA' OR StatusCode IS 'RE' )
 				DisplayPrice = 0;
 			else 
@@ -227,9 +243,9 @@
 
 <!--- TOTALS ---------------------------------------------------------------------->
 
-	<tr>
-		<td align="right" colspan="6" height="20">SubTotal:</td>
-		<td align="right">#LSCurrencyFormat(runningtotal, "local")#</td>
+	<tr class="subTotal">
+		<td align="right" colspan="6" height="20"><strong>SubTotal:</strong></td>
+		<td align="right"><strong>#LSCurrencyFormat(runningtotal, "local")#</strong></td>
 	</tr>
 	<cfset runningtotal = runningtotal>
 	
@@ -265,19 +281,11 @@
 	<cfset runningtotal = runningtotal - CreditApplied>
 	</cfif>
 	
-	<tr>
-		<td colspan="7" height="5"></td>
-	</tr>
-	<tr bgcolor="CCCCCC">
-		<td height="1" colspan="7"></td>
-	</tr>	
-	<tr bgcolor="<cfoutput>#layout.TableHeadingBGColor#</cfoutput>">
+	
+	<tr class="grandTotal">
 		<td colspan="5" height="20">&nbsp;</td>
-		<td align="right" valign="middle" class="cfTableHeading">&nbsp; Total:</td>
-		<td align="right" valign="middle" class="cfTableHeading">&nbsp; #LSCurrencyFormat(runningtotal, "local")#</td>
-	</tr>
-	<tr bgcolor="CCCCCC">
-		<td height="1" colspan="7"></td>
+		<td align="right" valign="middle">&nbsp; Total:</td>
+		<td align="right" valign="middle">&nbsp; #LSCurrencyFormat(runningtotal, "local")#</td>
 	</tr>
 </table>
 

@@ -1,0 +1,1266 @@
+!TRNS	TRNSID	TRNSTYPE	DATE	ACCNT	NAME	CLASS	AMOUNT	DOCNUM	MEMO	CLEAR	TOPRINT	NAMEISTAXABLE	ADDR1	ADDR2	ADDR3	ADDR4	DUEDATE	TERMS	OTHER1
+!SPL	SPLID	TRNSTYPE	DATE	ACCNT	NAME	CLASS	AMOUNT	DOCNUM	MEMO	CLEAR	QNTY	PRICE	INVITEM	PAYMETH	TAXABLE	VALADJ	SERVICEDATE	OTHER2	EXTRA
+!ENDTRNS
+TRNS		INVOICE	03/24/2003	Accounts Receivable	1002700-Martin McGee		308.27	1002700	CartFusion Demo Order 1002700	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	22-Jun-03		3843586823
+SPL		INVOICE	03/24/2003	Sales			-299.98	1002700	MINDX20	N	-2	149.9900	MINDX20	1	Y	N	22-Jun-03		
+SPL		INVOICE	03/24/2003	Shipping and Handling			-7.48	1002700	Shipping and Handling	N	-1	7.48	Shipping and Handling	1	N	N	22-Jun-03		
+SPL		INVOICE	03/24/2003	Sales Tax Payable	Sales Tax		-0.81	1002700		N		0.27%	Sales Tax	1	N	N	22-Jun-03		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	03/24/2003	Accounts Receivable	1002701-Martin McGee		277.71	1002701	CartFusion Demo Order 1002701	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	22-Jun-03		3843586823
+SPL		INVOICE	03/24/2003	Sales			-269.95	1002701	CAPSA95	N	-1	269.9500	CAPSA95	1	Y	N	22-Jun-03		
+SPL		INVOICE	03/24/2003	Shipping and Handling			-6.95	1002701	Shipping and Handling	N	-1	6.95	Shipping and Handling	1	N	N	22-Jun-03		
+SPL		INVOICE	03/24/2003	Sales Tax Payable	Sales Tax		-0.81	1002701		N		0.30%	Sales Tax	1	N	N	22-Jun-03		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	03/24/2003	Undeposited Funds	1002701-Martin McGee		277.71	1002701
+SPL		PAYMENT	03/24/2003	Accounts Receivable	1002701-Martin McGee		-277.71	1002701
+ENDTRNS
+TRNS		INVOICE	03/24/2005	Accounts Receivable	1002702-Martin McGee		545.02	1002702	CartFusion Demo Order 1002702	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	22-Jun-05		3843586823
+SPL		INVOICE	03/24/2005	Sales			-529.99	1002702	FUJFPS7000	N	-1	529.9900	FUJFPS7000	1	Y	N	22-Jun-05		
+SPL		INVOICE	03/24/2005	Shipping and Handling			-6.95	1002702	Shipping and Handling	N	-1	6.95	Shipping and Handling	1	N	N	22-Jun-05		
+SPL		INVOICE	03/24/2005	Sales Tax Payable	Sales Tax		-8.08	1002702		N		1.52%	Sales Tax	1	N	N	22-Jun-05		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	03/24/2005	Undeposited Funds	1002702-Martin McGee		545.02	1002702
+SPL		PAYMENT	03/24/2005	Accounts Receivable	1002702-Martin McGee		-545.02	1002702
+ENDTRNS
+TRNS		INVOICE	05/02/2004	Accounts Receivable	1002703-Jack Riley		403.75	1002703	CartFusion Demo Order 1002703	N	Y		3121 34th St. 	Dammeron Valley	ID	80501	31-Jul-04		3847456123
+SPL		INVOICE	05/02/2004	Sales			-329.95	1002703	SODSCP150B	N	-1	329.9500	SODSCP150B	1	Y	N	31-Jul-04		
+SPL		INVOICE	05/02/2004	Sales			-199.95	1002703	OLM-S410	N	-1	199.9500	OLM-S410	1	Y	N	31-Jul-04		
+SPL		INVOICE	05/02/2004	Shipping and Handling			-6.95	1002703	Shipping and Handling	N	-1	6.95	Shipping and Handling	1	N	N	31-Jul-04		
+SPL		INVOICE	05/02/2004	Sales Tax Payable	Sales Tax		-18.90	1002703		N		3.57%	Sales Tax	1	N	N	31-Jul-04		AUTOSTAX
+SPL		INVOICE	05/02/2004	Discounts Given			-100.00	1002703	Discounts Given	N	-1	100.00	Discounts Given	1	N	N	31-Jul-04		
+SPL		INVOICE	05/02/2004	Other Expenses			-52.00	1002703	Other Expenses	N	-1	52.00	Other Expenses	1	N	N	31-Jul-04		
+ENDTRNS
+TRNS		PAYMENT	05/02/2004	Undeposited Funds	1002703-Jack Riley		403.75	1002703
+SPL		PAYMENT	05/02/2004	Accounts Receivable	1002703-Jack Riley		-403.75	1002703
+ENDTRNS
+TRNS		INVOICE	05/04/2004	Accounts Receivable	1002704-Martin McGee		201.43	1002704	CartFusion Demo Order 1002704	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	02-Aug-04		3843586823
+SPL		INVOICE	05/04/2004	Sales			-197.95	1002704	FUJFPS3000	N	-1	197.9500	FUJFPS3000	1	Y	N	02-Aug-04		
+SPL		INVOICE	05/04/2004	Shipping and Handling			-6.95	1002704	Shipping and Handling	N	-1	6.95	Shipping and Handling	1	N	N	02-Aug-04		
+SPL		INVOICE	05/04/2004	Sales Tax Payable	Sales Tax		-16.33	1002704		N		8.25%	Sales Tax	1	N	N	02-Aug-04		AUTOSTAX
+SPL		INVOICE	05/04/2004	Discounts Given			-19.80	1002704	Discounts Given	N	-1	19.80	Discounts Given	1	N	N	02-Aug-04		
+ENDTRNS
+TRNS		PAYMENT	05/04/2004	Undeposited Funds	1002704-Martin McGee		201.43	1002704
+SPL		PAYMENT	05/04/2004	Accounts Receivable	1002704-Martin McGee		-201.43	1002704
+ENDTRNS
+TRNS		INVOICE	05/04/2004	Accounts Receivable	1002705-Martin McGee		108.96	1002705	CartFusion Demo Order 1002705	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	02-Aug-04		3843586823
+SPL		INVOICE	05/04/2004	Sales			-89.99	1002705	FUJFPA205	N	-1	89.9900	FUJFPA205	1	Y	N	02-Aug-04		
+SPL		INVOICE	05/04/2004	Shipping and Handling			-11.55	1002705	Shipping and Handling	N	-1	11.55	Shipping and Handling	1	N	N	02-Aug-04		
+SPL		INVOICE	05/04/2004	Sales Tax Payable	Sales Tax		-7.42	1002705		N		8.25%	Sales Tax	1	N	N	02-Aug-04		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	05/04/2004	Undeposited Funds	1002705-Martin McGee		108.96	1002705
+SPL		PAYMENT	05/04/2004	Accounts Receivable	1002705-Martin McGee		-108.96	1002705
+ENDTRNS
+TRNS		INVOICE	05/04/2005	Accounts Receivable	1002706-Martin McGee		1080.65	1002706	CartFusion Demo Order 1002706	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	02-Aug-05		3843586823
+SPL		INVOICE	05/04/2005	Sales			-699.95	1002706	CAEDR	N	-1	699.9500	CAEDR	1	Y	N	02-Aug-05		
+SPL		INVOICE	05/04/2005	Sales			-449.99	1002706	CAPSSD500	N	-1	449.9900	CAPSSD500	1	Y	N	02-Aug-05		
+SPL		INVOICE	05/04/2005	Shipping and Handling			-12.95	1002706	Shipping and Handling	N	-1	12.95	Shipping and Handling	1	N	N	02-Aug-05		
+SPL		INVOICE	05/04/2005	Sales Tax Payable	Sales Tax		-57.75	1002706		N		5.02%	Sales Tax	1	N	N	02-Aug-05		AUTOSTAX
+SPL		INVOICE	05/04/2005	Discounts Given			-139.99	1002706	Discounts Given	N	-1	139.99	Discounts Given	1	N	N	02-Aug-05		
+ENDTRNS
+TRNS		PAYMENT	05/04/2005	Undeposited Funds	1002706-Martin McGee		1080.65	1002706
+SPL		PAYMENT	05/04/2005	Accounts Receivable	1002706-Martin McGee		-1080.65	1002706
+ENDTRNS
+TRNS		INVOICE	05/05/2005	Accounts Receivable	1002707-Jack Riley		449.93	1002707	CartFusion Demo Order 1002707	N	Y		3121 34th St. 	Dammeron Valley	ID	80501	03-Aug-05		3847456123
+SPL		INVOICE	05/05/2005	Sales			-269.95	1002707	FUJFPF410	N	-1	269.9500	FUJFPF410	1	Y	N	03-Aug-05		
+SPL		INVOICE	05/05/2005	Sales			-179.98	1002707	FUJFPA205	N	-2	89.9900	FUJFPA205	1	Y	N	03-Aug-05		
+SPL		INVOICE	05/05/2005	Shipping and Handling			0.00	1002707	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	03-Aug-05		
+SPL		INVOICE	05/05/2005	Sales Tax Payable	Sales Tax		0.00	1002707		N		0.00%	Sales Tax	1	N	N	03-Aug-05		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	05/05/2005	Undeposited Funds	1002707-Jack Riley		449.93	1002707
+SPL		PAYMENT	05/05/2005	Accounts Receivable	1002707-Jack Riley		-449.93	1002707
+ENDTRNS
+TRNS		INVOICE	05/06/2005	Accounts Receivable	1002708-Gene Gallant		187.49	1002708	CartFusion Demo Order 1002708	N	Y		415 Makeshift Rd. 	Charlotte	NC	30333	04-Aug-05		3847838015
+SPL		INVOICE	05/06/2005	Sales			-187.49	1002708	FUJFPS5000	N	-1	187.4900	FUJFPS5000	1	Y	N	04-Aug-05		
+SPL		INVOICE	05/06/2005	Shipping and Handling			0.00	1002708	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	04-Aug-05		
+SPL		INVOICE	05/06/2005	Sales Tax Payable	Sales Tax		0.00	1002708		N		0.00%	Sales Tax	1	N	N	04-Aug-05		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	05/06/2005	Undeposited Funds	1002708-Gene Gallant		187.49	1002708
+SPL		PAYMENT	05/06/2005	Accounts Receivable	1002708-Gene Gallant		-187.49	1002708
+ENDTRNS
+TRNS		INVOICE	05/06/2005	Accounts Receivable	1002709-Mel Jackson		2192.89	1002709	CartFusion Demo Order 1002709	N	Y		2000 South IH-35 	Gable	AL	29928	04-Aug-05		3847830514
+SPL		INVOICE	05/06/2005	Sales			-349.99	1002709	SODSCP200	N	-1	349.9900	SODSCP200	1	Y	N	04-Aug-05		
+SPL		INVOICE	05/06/2005	Sales			-199.95	1002709	NIKCP3700	N	-1	199.9500	NIKCP3700	1	Y	N	04-Aug-05		
+SPL		INVOICE	05/06/2005	Sales			-599.95	1002709	OLM-C8080	N	-1	599.9500	OLM-C8080	1	Y	N	04-Aug-05		
+SPL		INVOICE	05/06/2005	Sales			-899.95	1002709	NIKD70	N	-1	899.9500	NIKD70	1	Y	N	04-Aug-05		
+SPL		INVOICE	05/06/2005	Shipping and Handling			-38.00	1002709	Shipping and Handling	N	-1	38.00	Shipping and Handling	1	N	N	04-Aug-05		
+SPL		INVOICE	05/06/2005	Sales Tax Payable	Sales Tax		-105.05	1002709		N		5.13%	Sales Tax	1	N	N	04-Aug-05		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	05/06/2005	Accounts Receivable	1002710-Hilton Farler		1246.37	1002710	CartFusion Demo Order 1002710	N	Y		21 SE Court Ave. 	Chicago	IL	60601	04-Aug-05		3847833836
+SPL		INVOICE	05/06/2005	Sales			-1199.85	1002710	HPPS850	N	-3	399.9500	HPPS850	1	Y	N	04-Aug-05		
+SPL		INVOICE	05/06/2005	Shipping and Handling			-77.78	1002710	Shipping and Handling	N	-1	77.78	Shipping and Handling	1	N	N	04-Aug-05		
+SPL		INVOICE	05/06/2005	Sales Tax Payable	Sales Tax		-68.74	1002710		N		5.73%	Sales Tax	1	N	N	04-Aug-05		AUTOSTAX
+SPL		INVOICE	05/06/2005	Discounts Given			-100.00	1002710	Discounts Given	N	-1	100.00	Discounts Given	1	N	N	04-Aug-05		
+ENDTRNS
+TRNS		PAYMENT	05/06/2005	Undeposited Funds	1002710-Hilton Farler		1246.37	1002710
+SPL		PAYMENT	05/06/2005	Accounts Receivable	1002710-Hilton Farler		-1246.37	1002710
+ENDTRNS
+TRNS		INVOICE	05/07/2005	Accounts Receivable	1002711-Joanne Marquez		104.36	1002711	CartFusion Demo Order 1002711	N	Y		9000 Crow Cedar Way 	Granite Bay	CA	95978	05-Aug-05		3847940047
+SPL		INVOICE	05/07/2005	Sales			-89.99	1002711	FUJFPA205	N	-1	89.9900	FUJFPA205	1	Y	N	05-Aug-05		
+SPL		INVOICE	05/07/2005	Shipping and Handling			-6.95	1002711	Shipping and Handling	N	-1	6.95	Shipping and Handling	1	N	N	05-Aug-05		
+SPL		INVOICE	05/07/2005	Sales Tax Payable	Sales Tax		-7.42	1002711		N		8.25%	Sales Tax	1	N	N	05-Aug-05		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	05/07/2005	Undeposited Funds	1002711-Joanne Marquez		104.36	1002711
+SPL		PAYMENT	05/07/2005	Accounts Receivable	1002711-Joanne Marquez		-104.36	1002711
+ENDTRNS
+TRNS		INVOICE	05/07/2005	Accounts Receivable	1002712-Hillary Hodges		539.31	1002712	CartFusion Demo Order 1002712	N	Y		39 A West Bull Blvd. 	West Hollywood	CA	90209	05-Aug-05		3847978053
+SPL		INVOICE	05/07/2005	Sales			-399.95	1002712	KODZ740	N	-1	399.9500	KODZ740	1	Y	N	05-Aug-05		
+SPL		INVOICE	05/07/2005	Sales			-89.99	1002712	FUJFPA205	N	-1	89.9900	FUJFPA205	1	Y	N	05-Aug-05		
+SPL		INVOICE	05/07/2005	Shipping and Handling			-8.95	1002712	Shipping and Handling	N	-1	8.95	Shipping and Handling	1	N	N	05-Aug-05		
+SPL		INVOICE	05/07/2005	Sales Tax Payable	Sales Tax		-40.42	1002712		N		8.25%	Sales Tax	1	N	N	05-Aug-05		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	05/07/2005	Accounts Receivable	1002713-Barbara Beal		599.95	1002713	CartFusion Demo Order 1002713	N	Y		8190 Vargas Lane 	Henderson	NV	89134	05-Aug-05		3847934049
+SPL		INVOICE	05/07/2005	Sales			-599.95	1002713	OLM-C8080	N	-1	599.9500	OLM-C8080	1	Y	N	05-Aug-05		
+SPL		INVOICE	05/07/2005	Shipping and Handling			0.00	1002713	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	05-Aug-05		
+SPL		INVOICE	05/07/2005	Sales Tax Payable	Sales Tax		0.00	1002713		N		0.00%	Sales Tax	1	N	N	05-Aug-05		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	05/07/2005	Undeposited Funds	1002713-Barbara Beal		599.95	1002713
+SPL		PAYMENT	05/07/2005	Accounts Receivable	1002713-Barbara Beal		-599.95	1002713
+ENDTRNS
+TRNS		INVOICE	05/09/2005	Accounts Receivable	1002714-Meg Johnson		284.78	1002714	CartFusion Demo Order 1002714	N	Y		2290 E. Flaming Ave. 	Riverside	CA	91627	07-Aug-05		3848174746
+SPL		INVOICE	05/09/2005	Sales			-239.99	1002714	CASEXZ4U	N	-1	239.9900	CASEXZ4U	1	Y	N	07-Aug-05		
+SPL		INVOICE	05/09/2005	Shipping and Handling			-24.99	1002714	Shipping and Handling	N	-1	24.99	Shipping and Handling	1	N	N	07-Aug-05		
+SPL		INVOICE	05/09/2005	Sales Tax Payable	Sales Tax		-19.80	1002714		N		8.25%	Sales Tax	1	N	N	07-Aug-05		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	05/09/2005	Undeposited Funds	1002714-Meg Johnson		284.78	1002714
+SPL		PAYMENT	05/09/2005	Accounts Receivable	1002714-Meg Johnson		-284.78	1002714
+ENDTRNS
+TRNS		INVOICE	05/10/2005	Accounts Receivable	1002715-Jack Riley		2668	1002715	CartFusion Demo Order 1002715	N	Y		3121 34th St. 	Dammeron Valley	ID	80501	08-Aug-05		3847456123
+SPL		INVOICE	05/10/2005	Sales			-1349.97	1002715	CAPSSD500	N	-3	449.9900	CAPSSD500	1	Y	N	08-Aug-05		
+SPL		INVOICE	05/10/2005	Sales			-199.95	1002715	OLM-S410	N	-1	199.9500	OLM-S410	1	Y	N	08-Aug-05		
+SPL		INVOICE	05/10/2005	Sales			-229.95	1002715	MINDG500	N	-1	229.9500	MINDG500	1	Y	N	08-Aug-05		
+SPL		INVOICE	05/10/2005	Sales			-399.99	1002715	HPPS850	N	-1	399.9900	HPPS850	1	Y	N	08-Aug-05		
+SPL		INVOICE	05/10/2005	Sales			-395.90	1002715	FUJFPS3000	N	-2	197.9500	FUJFPS3000	1	Y	N	08-Aug-05		
+SPL		INVOICE	05/10/2005	Shipping and Handling			-30.95	1002715	Shipping and Handling	N	-1	30.95	Shipping and Handling	1	N	N	08-Aug-05		
+SPL		INVOICE	05/10/2005	Sales Tax Payable	Sales Tax		-61.29	1002715		N		2.38%	Sales Tax	1	N	N	08-Aug-05		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	05/10/2005	Undeposited Funds	1002715-Jack Riley		2668	1002715
+SPL		PAYMENT	05/10/2005	Accounts Receivable	1002715-Jack Riley		-2668	1002715
+ENDTRNS
+TRNS		INVOICE	05/10/2005	Accounts Receivable	1002716-Mike Gallagher		104.29	1002716	CartFusion Demo Order 1002716	N	Y		556 Yellow Rd. 	Minneapolis	MN	44333	08-Aug-05		3848236344
+SPL		INVOICE	05/10/2005	Sales			-89.99	1002716	FUJFPA205	N	-1	89.9900	FUJFPA205	1	Y	N	08-Aug-05		
+SPL		INVOICE	05/10/2005	Shipping and Handling			-8.45	1002716	Shipping and Handling	N	-1	8.45	Shipping and Handling	1	N	N	08-Aug-05		
+SPL		INVOICE	05/10/2005	Sales Tax Payable	Sales Tax		-5.85	1002716		N		6.50%	Sales Tax	1	N	N	08-Aug-05		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	05/10/2005	Undeposited Funds	1002716-Mike Gallagher		104.29	1002716
+SPL		PAYMENT	05/10/2005	Accounts Receivable	1002716-Mike Gallagher		-104.29	1002716
+ENDTRNS
+TRNS		INVOICE	06/15/2005	Accounts Receivable	1002717-Gene Gallant		235.11	1002717	CartFusion Demo Order 1002717	N	Y		415 Makeshift Rd. 	Charlotte	NC	30333	13-Sep-05		3847838015
+SPL		INVOICE	06/15/2005	Sales			0.00	1002717	CAPSSD500	N	-1	0.0000	CAPSSD500	1	Y	N	13-Sep-05		
+SPL		INVOICE	06/15/2005	Sales			0.00	1002717	CAEDRXTS	N	-1	0.0000	CAEDRXTS	1	Y	N	13-Sep-05		
+SPL		INVOICE	06/15/2005	Sales			-224.99	1002717	KODLS420	N	-1	224.9900	KODLS420	1	Y	N	13-Sep-05		
+SPL		INVOICE	06/15/2005	Shipping and Handling			0.00	1002717	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	13-Sep-05		
+SPL		INVOICE	06/15/2005	Sales Tax Payable	Sales Tax		-10.12	1002717		N		4.50%	Sales Tax	1	N	N	13-Sep-05		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	06/15/2005	Undeposited Funds	1002717-Gene Gallant		235.11	1002717
+SPL		PAYMENT	06/15/2005	Accounts Receivable	1002717-Gene Gallant		-235.11	1002717
+ENDTRNS
+TRNS		INVOICE	06/21/2005	Accounts Receivable	1002718-Hilton Farler		318.74	1002718	CartFusion Demo Order 1002718	N	Y		21 SE Court Ave. 	Chicago	IL	60601	19-Sep-05		3847833836
+SPL		INVOICE	06/21/2005	Sales			-299.99	1002718	HPPS945	N	-1	299.9900	HPPS945	1	Y	N	19-Sep-05		
+SPL		INVOICE	06/21/2005	Shipping and Handling			0.00	1002718	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	19-Sep-05		
+SPL		INVOICE	06/21/2005	Sales Tax Payable	Sales Tax		-18.75	1002718		N		6.25%	Sales Tax	1	N	N	19-Sep-05		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	06/21/2005	Undeposited Funds	1002718-Hilton Farler		318.74	1002718
+SPL		PAYMENT	06/21/2005	Accounts Receivable	1002718-Hilton Farler		-318.74	1002718
+ENDTRNS
+TRNS		INVOICE	06/21/2005	Accounts Receivable	1002719-Mike Gallagher		287.5	1002719	CartFusion Demo Order 1002719	N	Y		556 Yellow Rd. 	Minneapolis	MN	44333	19-Sep-05		3848236344
+SPL		INVOICE	06/21/2005	Sales			-269.95	1002719	FUJFPF410 16MB Memory Stick	N	-1	269.9500	FUJFPF410	1	Y	N	19-Sep-05		
+SPL		INVOICE	06/21/2005	Shipping and Handling			0.00	1002719	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	19-Sep-05		
+SPL		INVOICE	06/21/2005	Sales Tax Payable	Sales Tax		-17.55	1002719		N		6.50%	Sales Tax	1	N	N	19-Sep-05		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	06/21/2005	Accounts Receivable	1002720-Martin McGee		933.52	1002720	CartFusion Demo Order 1002720	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	19-Sep-05		3843586823
+SPL		INVOICE	06/21/2005	Sales			-849.95	1002720	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	19-Sep-05		
+SPL		INVOICE	06/21/2005	Shipping and Handling			-13.45	1002720	Shipping and Handling	N	-1	13.45	Shipping and Handling	1	N	N	19-Sep-05		
+SPL		INVOICE	06/21/2005	Sales Tax Payable	Sales Tax		-70.12	1002720		N		8.25%	Sales Tax	1	N	N	19-Sep-05		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	06/21/2005	Accounts Receivable	1002721-Martin McGee		766.05	1002721	CartFusion Demo Order 1002721	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	19-Sep-05		3843586823
+SPL		INVOICE	06/21/2005	Sales			-449.99	1002721	CAPSSD500	N	-1	449.9900	CAPSSD500	1	Y	N	19-Sep-05		
+SPL		INVOICE	06/21/2005	Sales			-399.99	1002721	HPPS850	N	-1	399.9900	HPPS850	1	Y	N	19-Sep-05		
+SPL		INVOICE	06/21/2005	Shipping and Handling			-15.95	1002721	Shipping and Handling	N	-1	15.95	Shipping and Handling	1	N	N	19-Sep-05		
+SPL		INVOICE	06/21/2005	Sales Tax Payable	Sales Tax		-70.12	1002721		N		8.25%	Sales Tax	1	N	N	19-Sep-05		AUTOSTAX
+SPL		INVOICE	06/21/2005	Discounts Given			-170.00	1002721	Discounts Given	N	-1	170.00	Discounts Given	1	N	N	19-Sep-05		
+ENDTRNS
+TRNS		INVOICE	06/21/2005	Accounts Receivable	1002722-Martin McGee		920.06	1002722	CartFusion Demo Order 1002722	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	19-Sep-05		3843586823
+SPL		INVOICE	06/21/2005	Sales			-699.95	1002722	CAEDR	N	-1	699.9500	CAEDR	1	Y	N	19-Sep-05		
+SPL		INVOICE	06/21/2005	Sales			-149.99	1002722	MINDX20	N	-1	149.9900	MINDX20	1	Y	N	19-Sep-05		
+SPL		INVOICE	06/21/2005	Shipping and Handling			0.00	1002722	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	19-Sep-05		
+SPL		INVOICE	06/21/2005	Sales Tax Payable	Sales Tax		-70.12	1002722		N		8.25%	Sales Tax	1	N	N	19-Sep-05		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	06/21/2005	Undeposited Funds	1002722-Martin McGee		920.06	1002722
+SPL		PAYMENT	06/21/2005	Accounts Receivable	1002722-Martin McGee		-920.06	1002722
+ENDTRNS
+TRNS		INVOICE	06/21/2005	Accounts Receivable	1002723-Martin McGee		933.52	1002723	CartFusion Demo Order 1002723	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	19-Sep-05		3843586823
+SPL		INVOICE	06/21/2005	Sales			-849.95	1002723	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	19-Sep-05		
+SPL		INVOICE	06/21/2005	Shipping and Handling			-13.45	1002723	Shipping and Handling	N	-1	13.45	Shipping and Handling	1	N	N	19-Sep-05		
+SPL		INVOICE	06/21/2005	Sales Tax Payable	Sales Tax		-70.12	1002723		N		8.25%	Sales Tax	1	N	N	19-Sep-05		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	06/22/2005	Accounts Receivable	1002724-Martin McGee		399.99	1002724	CartFusion Demo Order 1002724	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	20-Sep-05		3843586823
+SPL		INVOICE	06/22/2005	Sales			-399.99	1002724	KODZ740	N	-1	399.9900	KODZ740	1	Y	N	20-Sep-05		
+SPL		INVOICE	06/22/2005	Shipping and Handling			0.00	1002724	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	20-Sep-05		
+SPL		INVOICE	06/22/2005	Sales Tax Payable	Sales Tax		0.00	1002724		N		0.00%	Sales Tax	1	N	N	20-Sep-05		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	06/22/2005	Accounts Receivable	1002725-Martin McGee		7576.96	1002725	CartFusion Demo Order 1002725	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	20-Sep-05		3843586823
+SPL		INVOICE	06/22/2005	Sales			-6999.50	1002725	CAEDR	N	-10	699.9500	CAEDR	1	Y	N	20-Sep-05		
+SPL		INVOICE	06/22/2005	Shipping and Handling			0.00	1002725	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	20-Sep-05		
+SPL		INVOICE	06/22/2005	Sales Tax Payable	Sales Tax		-577.46	1002725		N		8.25%	Sales Tax	1	N	N	20-Sep-05		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	06/22/2005	Undeposited Funds	1002725-Martin McGee		7576.96	1002725
+SPL		PAYMENT	06/22/2005	Accounts Receivable	1002725-Martin McGee		-7576.96	1002725
+ENDTRNS
+TRNS		INVOICE	06/22/2005	Accounts Receivable	1002726-Martin McGee		2239.12	1002726	CartFusion Demo Order 1002726	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	20-Sep-05		3843586823
+SPL		INVOICE	06/22/2005	Sales			-2549.85	1002726	CAEDRXTS	N	-3	849.9500	CAEDRXTS	1	Y	N	20-Sep-05		
+SPL		INVOICE	06/22/2005	Shipping and Handling			-30.95	1002726	Shipping and Handling	N	-1	30.95	Shipping and Handling	1	N	N	20-Sep-05		
+SPL		INVOICE	06/22/2005	Sales Tax Payable	Sales Tax		-168.29	1002726		N		6.60%	Sales Tax	1	N	N	20-Sep-05		AUTOSTAX
+SPL		INVOICE	06/22/2005	Discounts Given			-509.97	1002726	Discounts Given	N	-1	509.97	Discounts Given	1	N	N	20-Sep-05		
+ENDTRNS
+TRNS		INVOICE	07/22/2005	Accounts Receivable	1002727-test test		916.52	1002727	CartFusion Demo Order 1002727	N	Y		1234 main st 	galveston	TX	77550	20-Oct-05		3852576845
+SPL		INVOICE	07/22/2005	Sales			-849.95	1002727	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	20-Oct-05		
+SPL		INVOICE	07/22/2005	Shipping and Handling			-13.45	1002727	Shipping and Handling	N	-1	13.45	Shipping and Handling	1	N	N	20-Oct-05		
+SPL		INVOICE	07/22/2005	Sales Tax Payable	Sales Tax		-53.12	1002727		N		6.25%	Sales Tax	1	N	N	20-Oct-05		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	07/22/2005	Undeposited Funds	1002727-test test		916.52	1002727
+SPL		PAYMENT	07/22/2005	Accounts Receivable	1002727-test test		-916.52	1002727
+ENDTRNS
+TRNS		INVOICE	07/22/2005	Accounts Receivable	1002728-test AKARD		916.52	1002728	CartFusion Demo Order 1002728	N	Y		1234 MAIN 	GALVESTON	TX	77550	20-Oct-05		3852512316
+SPL		INVOICE	07/22/2005	Sales			-849.95	1002728	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	20-Oct-05		
+SPL		INVOICE	07/22/2005	Shipping and Handling			-13.45	1002728	Shipping and Handling	N	-1	13.45	Shipping and Handling	1	N	N	20-Oct-05		
+SPL		INVOICE	07/22/2005	Sales Tax Payable	Sales Tax		-53.12	1002728		N		6.25%	Sales Tax	1	N	N	20-Oct-05		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	07/23/2005	Accounts Receivable	1002729-Martin McGee		350.74	1002729	CartFusion Demo Order 1002729	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	21-Oct-05		3843586823
+SPL		INVOICE	07/23/2005	Sales			-299.99	1002729	KODLS420	N	-1	299.9900	KODLS420	1	Y	N	21-Oct-05		
+SPL		INVOICE	07/23/2005	Shipping and Handling			-26.00	1002729	Shipping and Handling	N	-1	26.00	Shipping and Handling	1	N	N	21-Oct-05		
+SPL		INVOICE	07/23/2005	Sales Tax Payable	Sales Tax		-24.75	1002729		N		8.25%	Sales Tax	1	N	N	21-Oct-05		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	07/23/2005	Accounts Receivable	1002730-Martin McGee		4883.91	1002730	CartFusion Demo Order 1002730	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	21-Oct-05		3843586823
+SPL		INVOICE	07/23/2005	Sales			-699.95	1002730	CAEDR	N	-1	699.9500	CAEDR	1	Y	N	21-Oct-05		
+SPL		INVOICE	07/23/2005	Sales			-149.99	1002730	MINDX20	N	-1	149.9900	MINDX20	1	Y	N	21-Oct-05		
+SPL		INVOICE	07/23/2005	Sales			-3999.90	1002730	HPPS850	N	-10	399.9900	HPPS850	1	Y	N	21-Oct-05		
+SPL		INVOICE	07/23/2005	Shipping and Handling			-29.95	1002730	Shipping and Handling	N	-1	29.95	Shipping and Handling	1	N	N	21-Oct-05		
+SPL		INVOICE	07/23/2005	Sales Tax Payable	Sales Tax		-4.12	1002730		N		0.08%	Sales Tax	1	N	N	21-Oct-05		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	07/23/2005	Undeposited Funds	1002730-Martin McGee		4883.91	1002730
+SPL		PAYMENT	07/23/2005	Accounts Receivable	1002730-Martin McGee		-4883.91	1002730
+ENDTRNS
+TRNS		INVOICE	07/23/2005	Accounts Receivable	1002731-Barbara Beal		913.15	1002731	CartFusion Demo Order 1002731	N	Y		8190 Vargas Lane 	Henderson	NV	89134	21-Oct-05		3847934049
+SPL		INVOICE	07/23/2005	Sales			-849.95	1002731	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	21-Oct-05		
+SPL		INVOICE	07/23/2005	Shipping and Handling			-7.95	1002731	Shipping and Handling	N	-1	7.95	Shipping and Handling	1	N	N	21-Oct-05		
+SPL		INVOICE	07/23/2005	Sales Tax Payable	Sales Tax		-55.25	1002731		N		6.50%	Sales Tax	1	N	N	21-Oct-05		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	07/23/2005	Accounts Receivable	1002732-Barbara Beal		440.94	1002732	CartFusion Demo Order 1002732	N	Y		8190 Vargas Lane 	Henderson	NV	89134	21-Oct-05		3847934049
+SPL		INVOICE	07/23/2005	Sales			-399.99	1002732	HPPS850	N	-1	399.9900	HPPS850	1	Y	N	21-Oct-05		
+SPL		INVOICE	07/23/2005	Shipping and Handling			-14.95	1002732	Shipping and Handling	N	-1	14.95	Shipping and Handling	1	N	N	21-Oct-05		
+SPL		INVOICE	07/23/2005	Sales Tax Payable	Sales Tax		-26.00	1002732		N		6.50%	Sales Tax	1	N	N	21-Oct-05		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	07/24/2005	Accounts Receivable	1002733-test AKARD		921.07	1002733	CartFusion Demo Order 1002733	N	Y		1234 MAIN 	GALVESTON	TX	77550	22-Oct-05		3852512316
+SPL		INVOICE	07/24/2005	Sales			-849.95	1002733	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	22-Oct-05		
+SPL		INVOICE	07/24/2005	Shipping and Handling			-18.00	1002733	Shipping and Handling	N	-1	18.00	Shipping and Handling	1	N	N	22-Oct-05		
+SPL		INVOICE	07/24/2005	Sales Tax Payable	Sales Tax		-53.12	1002733		N		6.25%	Sales Tax	1	N	N	22-Oct-05		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	07/30/2005	Accounts Receivable	1002734-Martin McGee		920.07	1002734	CartFusion Demo Order 1002734	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	28-Oct-05		3843586823
+SPL		INVOICE	07/30/2005	Sales			-849.95	1002734	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	28-Oct-05		
+SPL		INVOICE	07/30/2005	Shipping and Handling			0.00	1002734	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	28-Oct-05		
+SPL		INVOICE	07/30/2005	Sales Tax Payable	Sales Tax		-70.12	1002734		N		8.25%	Sales Tax	1	N	N	28-Oct-05		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	07/30/2005	Undeposited Funds	1002734-Martin McGee		920.07	1002734
+SPL		PAYMENT	07/30/2005	Accounts Receivable	1002734-Martin McGee		-920.07	1002734
+ENDTRNS
+TRNS		INVOICE	08/04/2005	Accounts Receivable	1002735-Allan Curran		292.75	1002735	CartFusion Demo Order 1002735	N	Y		2 Sunnyside Drive 	Yonkers	NY	10705	02-Nov-05		3856859826
+SPL		INVOICE	08/04/2005	Sales			-269.95	1002735	CAPSA95	N	-1	269.9500	CAPSA95	1	Y	N	02-Nov-05		
+SPL		INVOICE	08/04/2005	Shipping and Handling			-12.00	1002735	Shipping and Handling	N	-1	12.00	Shipping and Handling	1	N	N	02-Nov-05		
+SPL		INVOICE	08/04/2005	Sales Tax Payable	Sales Tax		-10.80	1002735		N		4.00%	Sales Tax	1	N	N	02-Nov-05		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	08/20/2005	Accounts Receivable	1002736-Martin McGee		775.7	1002736	CartFusion Demo Order 1002736	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	18-Nov-05		3843586823
+SPL		INVOICE	08/20/2005	Sales			-699.95	1002736	CAEDR	N	-1	699.9500	CAEDR	1	Y	N	18-Nov-05		
+SPL		INVOICE	08/20/2005	Shipping and Handling			-18.00	1002736	Shipping and Handling	N	-1	18.00	Shipping and Handling	1	N	N	18-Nov-05		
+SPL		INVOICE	08/20/2005	Sales Tax Payable	Sales Tax		-57.75	1002736		N		8.25%	Sales Tax	1	N	N	18-Nov-05		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	08/22/2005	Accounts Receivable	1002737-Chris Yager		816.68	1002737	CartFusion Demo Order 1002737	N	Y		111 Fantasy Lane 	Miami	FL	32771	20-Nov-05		3858645240
+SPL		INVOICE	08/22/2005	Sales			-717.90	1002737	FUJFPF410 256MB Memory Stick	N	-2	358.9500	FUJFPF410	1	Y	N	20-Nov-05		
+SPL		INVOICE	08/22/2005	Sales			-199.95	1002737	NIKCP3700	N	-1	199.9500	NIKCP3700	1	Y	N	20-Nov-05		
+SPL		INVOICE	08/22/2005	Shipping and Handling			-7.95	1002737	Shipping and Handling	N	-1	7.95	Shipping and Handling	1	N	N	20-Nov-05		
+SPL		INVOICE	08/22/2005	Sales Tax Payable	Sales Tax		-34.46	1002737		N		3.75%	Sales Tax	1	N	N	20-Nov-05		AUTOSTAX
+SPL		INVOICE	08/22/2005	Discounts Given			-143.58	1002737	Discounts Given	N	-1	143.58	Discounts Given	1	N	N	20-Nov-05		
+ENDTRNS
+TRNS		INVOICE	08/22/2005	Accounts Receivable	1002738-Chris Yager		728.69	1002738	CartFusion Demo Order 1002738	N	Y		111 Fantasy Lane 	Miami	FL	32771	20-Nov-05		3858645240
+SPL		INVOICE	08/22/2005	Sales			-349.99	1002738	PENOPWP	N	-1	349.9900	PENOPWP	1	Y	N	20-Nov-05		
+SPL		INVOICE	08/22/2005	Sales			-329.95	1002738	SODSCP150B	N	-1	329.9500	SODSCP150B	1	Y	N	20-Nov-05		
+SPL		INVOICE	08/22/2005	Shipping and Handling			-7.95	1002738	Shipping and Handling	N	-1	7.95	Shipping and Handling	1	N	N	20-Nov-05		
+SPL		INVOICE	08/22/2005	Sales Tax Payable	Sales Tax		-40.80	1002738		N		6.00%	Sales Tax	1	N	N	20-Nov-05		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	08/22/2005	Undeposited Funds	1002738-Chris Yager		728.69	1002738
+SPL		PAYMENT	08/22/2005	Accounts Receivable	1002738-Chris Yager		-728.69	1002738
+ENDTRNS
+TRNS		INVOICE	09/06/2005	Accounts Receivable	1002739-Meg Johnson		269.95	1002739	CartFusion Demo Order 1002739	N	Y		2290 E. Flaming Ave. 	Riverside	CA	91627	05-Dec-05		3848174746
+SPL		INVOICE	09/06/2005	Sales			-269.95	1002739	FUJFPF410 128MB Memory Stick	N	-1	269.9500	FUJFPF410	1	Y	N	05-Dec-05		
+SPL		INVOICE	09/06/2005	Shipping and Handling			0.00	1002739	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	05-Dec-05		
+SPL		INVOICE	09/06/2005	Sales Tax Payable	Sales Tax		0.00	1002739		N		0.00%	Sales Tax	1	N	N	05-Dec-05		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	09/24/2005	Accounts Receivable	1002740-Sammy Sosa		247.95	1002740	CartFusion Demo Order 1002740	N	Y		1234 hallow dr 	jackson	AP	83001	23-Dec-05		3861847459
+SPL		INVOICE	09/24/2005	Sales			-229.95	1002740	MINDG500	N	-1	229.9500	MINDG500	1	Y	N	23-Dec-05		
+SPL		INVOICE	09/24/2005	Shipping and Handling			-18.00	1002740	Shipping and Handling	N	-1	18.00	Shipping and Handling	1	N	N	23-Dec-05		
+SPL		INVOICE	09/24/2005	Sales Tax Payable	Sales Tax		0.00	1002740		N		0.00%	Sales Tax	1	N	N	23-Dec-05		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	09/27/2005	Accounts Receivable	1002741-Martin McGee		392.86	1002741	CartFusion Demo Order 1002741	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	26-Dec-05		3843586823
+SPL		INVOICE	09/27/2005	Sales			-349.99	1002741	SODSCP200	N	-1	349.9900	SODSCP200	2	Y	N	26-Dec-05		
+SPL		INVOICE	09/27/2005	Shipping and Handling			-14.00	1002741	Shipping and Handling	N	-1	14.00	Shipping and Handling	2	N	N	26-Dec-05		
+SPL		INVOICE	09/27/2005	Sales Tax Payable	Sales Tax		-28.87	1002741		N		8.25%	Sales Tax	2	N	N	26-Dec-05		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	09/27/2005	Accounts Receivable	1002744-Martin McGee		490.96	1002744	CartFusion Demo Order 1002744	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	26-Dec-05		3843586823
+SPL		INVOICE	09/27/2005	Sales			-449.99	1002744	CAPSSD500	N	-1	449.9900	CAPSSD500	2	Y	N	26-Dec-05		
+SPL		INVOICE	09/27/2005	Shipping and Handling			-3.85	1002744	Shipping and Handling	N	-1	3.85	Shipping and Handling	2	N	N	26-Dec-05		
+SPL		INVOICE	09/27/2005	Sales Tax Payable	Sales Tax		-37.12	1002744		N		8.25%	Sales Tax	2	N	N	26-Dec-05		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	09/27/2005	Accounts Receivable	1002745-Martin McGee		1040.82	1002745	CartFusion Demo Order 1002745	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	26-Dec-05		3843586823
+SPL		INVOICE	09/27/2005	Sales			-699.95	1002745	CAEDR	N	-1	699.9500	CAEDR	2	Y	N	26-Dec-05		
+SPL		INVOICE	09/27/2005	Sales			-449.99	1002745	CAPSSD500	N	-1	449.9900	CAPSSD500	2	Y	N	26-Dec-05		
+SPL		INVOICE	09/27/2005	Shipping and Handling			-26.00	1002745	Shipping and Handling	N	-1	26.00	Shipping and Handling	2	N	N	26-Dec-05		
+SPL		INVOICE	09/27/2005	Sales Tax Payable	Sales Tax		-94.87	1002745		N		8.25%	Sales Tax	2	N	N	26-Dec-05		AUTOSTAX
+SPL		INVOICE	09/27/2005	Discounts Given			-229.99	1002745	Discounts Given	N	-1	229.99	Discounts Given	2	N	N	26-Dec-05		
+ENDTRNS
+TRNS		INVOICE	09/27/2005	Accounts Receivable	1002747-Martin McGee		581.66	1002747	CartFusion Demo Order 1002747	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	26-Dec-05		3843586823
+SPL		INVOICE	09/27/2005	Sales			-529.99	1002747	FUJFPS7000	N	-1	529.9900	FUJFPS7000	2	Y	N	26-Dec-05		
+SPL		INVOICE	09/27/2005	Shipping and Handling			-7.95	1002747	Shipping and Handling	N	-1	7.95	Shipping and Handling	2	N	N	26-Dec-05		
+SPL		INVOICE	09/27/2005	Sales Tax Payable	Sales Tax		-43.72	1002747		N		8.25%	Sales Tax	2	N	N	26-Dec-05		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	10/04/2005	Accounts Receivable	1002748-test test		301.1	1002748	CartFusion Demo Order 1002748	N	Y		34 eill st 	amityville	NY	11071	02-Jan-06		3862954627
+SPL		INVOICE	10/04/2005	Sales			-269.95	1002748	CAPSA95	N	-1	269.9500	CAPSA95	1	Y	N	02-Jan-06		
+SPL		INVOICE	10/04/2005	Shipping and Handling			-14.95	1002748	Shipping and Handling	N	-1	14.95	Shipping and Handling	1	N	N	02-Jan-06		
+SPL		INVOICE	10/04/2005	Sales Tax Payable	Sales Tax		-16.20	1002748		N		6.00%	Sales Tax	1	N	N	02-Jan-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	10/04/2005	Undeposited Funds	1002748-test test		301.1	1002748
+SPL		PAYMENT	10/04/2005	Accounts Receivable	1002748-test test		-301.1	1002748
+ENDTRNS
+TRNS		INVOICE	10/05/2005	Accounts Receivable	1002749-Martin McGee		581.66	1002749	CartFusion Demo Order 1002749	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	03-Jan-06		3843586823
+SPL		INVOICE	10/05/2005	Sales			-529.99	1002749	FUJFPS7000	N	-1	529.9900	FUJFPS7000	2	Y	N	03-Jan-06		
+SPL		INVOICE	10/05/2005	Shipping and Handling			-7.95	1002749	Shipping and Handling	N	-1	7.95	Shipping and Handling	2	N	N	03-Jan-06		
+SPL		INVOICE	10/05/2005	Sales Tax Payable	Sales Tax		-43.72	1002749		N		8.25%	Sales Tax	2	N	N	03-Jan-06		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	10/11/2005	Accounts Receivable	1002753-Realtime Processing		490.96	1002753	CartFusion Demo Order 1002753	N	Y		7350 Greenhaven Ave. #55	Rancho Cucamonga	CA	91730	09-Jan-06		3863674855
+SPL		INVOICE	10/11/2005	Sales			-449.99	1002753	CAPSSD500	N	-1	449.9900	CAPSSD500	1	Y	N	09-Jan-06		
+SPL		INVOICE	10/11/2005	Shipping and Handling			-3.85	1002753	Shipping and Handling	N	-1	3.85	Shipping and Handling	1	N	N	09-Jan-06		
+SPL		INVOICE	10/11/2005	Sales Tax Payable	Sales Tax		-37.12	1002753		N		8.25%	Sales Tax	1	N	N	09-Jan-06		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	10/11/2005	Accounts Receivable	1002754-Realtime Processing		935.02	1002754	CartFusion Demo Order 1002754	N	Y		7350 Greenhaven Ave. #55	Rancho Cucamonga	CA	91730	09-Jan-06		3863674855
+SPL		INVOICE	10/11/2005	Sales			-849.95	1002754	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	09-Jan-06		
+SPL		INVOICE	10/11/2005	Shipping and Handling			-14.95	1002754	Shipping and Handling	N	-1	14.95	Shipping and Handling	1	N	N	09-Jan-06		
+SPL		INVOICE	10/11/2005	Sales Tax Payable	Sales Tax		-70.12	1002754		N		8.25%	Sales Tax	1	N	N	09-Jan-06		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	10/11/2005	Accounts Receivable	1002755-Realtime Processing		938.07	1002755	CartFusion Demo Order 1002755	N	Y		7350 Greenhaven Ave. #55	Rancho Cucamonga	CA	91730	09-Jan-06		3863674855
+SPL		INVOICE	10/11/2005	Sales			-849.95	1002755	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	09-Jan-06		
+SPL		INVOICE	10/11/2005	Shipping and Handling			-18.00	1002755	Shipping and Handling	N	-1	18.00	Shipping and Handling	1	N	N	09-Jan-06		
+SPL		INVOICE	10/11/2005	Sales Tax Payable	Sales Tax		-70.12	1002755		N		8.25%	Sales Tax	1	N	N	09-Jan-06		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	10/11/2005	Accounts Receivable	1002756-Realtime Processing		765.65	1002756	CartFusion Demo Order 1002756	N	Y		7350 Greenhaven Ave. #55	Rancho Cucamonga	CA	91730	09-Jan-06		3863674855
+SPL		INVOICE	10/11/2005	Sales			-699.95	1002756	CAEDR	N	-1	699.9500	CAEDR	1	Y	N	09-Jan-06		
+SPL		INVOICE	10/11/2005	Shipping and Handling			-7.95	1002756	Shipping and Handling	N	-1	7.95	Shipping and Handling	1	N	N	09-Jan-06		
+SPL		INVOICE	10/11/2005	Sales Tax Payable	Sales Tax		-57.75	1002756		N		8.25%	Sales Tax	1	N	N	09-Jan-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	10/11/2005	Undeposited Funds	1002756-Realtime Processing		765.65	1002756
+SPL		PAYMENT	10/11/2005	Accounts Receivable	1002756-Realtime Processing		-765.65	1002756
+ENDTRNS
+TRNS		INVOICE	10/11/2005	Accounts Receivable	1002757-Realtime Processing		765.65	1002757	CartFusion Demo Order 1002757	N	Y		7350 Greenhaven Ave. #55	Rancho Cucamonga	CA	91730	09-Jan-06		3863674855
+SPL		INVOICE	10/11/2005	Sales			-699.95	1002757	CAEDR	N	-1	699.9500	CAEDR	4	Y	N	09-Jan-06		
+SPL		INVOICE	10/11/2005	Shipping and Handling			-7.95	1002757	Shipping and Handling	N	-1	7.95	Shipping and Handling	4	N	N	09-Jan-06		
+SPL		INVOICE	10/11/2005	Sales Tax Payable	Sales Tax		-57.75	1002757		N		8.25%	Sales Tax	4	N	N	09-Jan-06		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	10/11/2005	Accounts Receivable	1002758-Realtime Processing		386.81	1002758	CartFusion Demo Order 1002758	N	Y		7350 Greenhaven Ave. #55	Rancho Cucamonga	CA	91730	09-Jan-06		3863674855
+SPL		INVOICE	10/11/2005	Sales			-349.99	1002758	PENOPWP	N	-1	349.9900	PENOPWP	2	Y	N	09-Jan-06		
+SPL		INVOICE	10/11/2005	Shipping and Handling			-7.95	1002758	Shipping and Handling	N	-1	7.95	Shipping and Handling	2	N	N	09-Jan-06		
+SPL		INVOICE	10/11/2005	Sales Tax Payable	Sales Tax		-28.87	1002758		N		8.25%	Sales Tax	2	N	N	09-Jan-06		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	10/11/2005	Accounts Receivable	1002759-Realtime Processing		625.68	1002759	CartFusion Demo Order 1002759	N	Y		7350 Greenhaven Ave. #55	Rancho Cucamonga	CA	91730	09-Jan-06		3863674855
+SPL		INVOICE	10/11/2005	Sales			-699.98	1002759	PENOPWP	N	-2	349.9900	PENOPWP	1	Y	N	09-Jan-06		
+SPL		INVOICE	10/11/2005	Shipping and Handling			-7.95	1002759	Shipping and Handling	N	-1	7.95	Shipping and Handling	1	N	N	09-Jan-06		
+SPL		INVOICE	10/11/2005	Sales Tax Payable	Sales Tax		-57.75	1002759		N		8.25%	Sales Tax	1	N	N	09-Jan-06		AUTOSTAX
+SPL		INVOICE	10/11/2005	Discounts Given			-140.00	1002759	Discounts Given	N	-1	140.00	Discounts Given	1	N	N	09-Jan-06		
+ENDTRNS
+TRNS		PAYMENT	10/11/2005	Undeposited Funds	1002759-Realtime Processing		625.68	1002759
+SPL		PAYMENT	10/11/2005	Accounts Receivable	1002759-Realtime Processing		-625.68	1002759
+ENDTRNS
+TRNS		INVOICE	10/11/2005	Accounts Receivable	1002761-Realtime Processing		775.7	1002761	CartFusion Demo Order 1002761	N	Y		7350 Greenhaven Ave. #55	Rancho Cucamonga	CA	91730	09-Jan-06		3863674855
+SPL		INVOICE	10/11/2005	Sales			-699.95	1002761	CAEDR	N	-1	699.9500	CAEDR	1	Y	N	09-Jan-06		
+SPL		INVOICE	10/11/2005	Shipping and Handling			-18.00	1002761	Shipping and Handling	N	-1	18.00	Shipping and Handling	1	N	N	09-Jan-06		
+SPL		INVOICE	10/11/2005	Sales Tax Payable	Sales Tax		-57.75	1002761		N		8.25%	Sales Tax	1	N	N	09-Jan-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	10/11/2005	Undeposited Funds	1002761-Realtime Processing		775.7	1002761
+SPL		PAYMENT	10/11/2005	Accounts Receivable	1002761-Realtime Processing		-775.7	1002761
+ENDTRNS
+TRNS		INVOICE	10/19/2005	Accounts Receivable	1002762-sanjeev dhillon		933.02	1002762	CartFusion Demo Order 1002762	N	Y		10944 160th street 	surrey	BC	v3w4g3	17-Jan-06		3864483853
+SPL		INVOICE	10/19/2005	Sales			-849.95	1002762	CAEDRXTS	N	-1	849.9500	CAEDRXTS	4	Y	N	17-Jan-06		
+SPL		INVOICE	10/19/2005	Shipping and Handling			-12.95	1002762	Shipping and Handling	N	-1	12.95	Shipping and Handling	4	N	N	17-Jan-06		
+SPL		INVOICE	10/19/2005	Sales Tax Payable	Sales Tax		-70.12	1002762		N		8.25%	Sales Tax	4	N	N	17-Jan-06		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	10/25/2005	Accounts Receivable	1002763-Martin McGee		938.07	1002763	CartFusion Demo Order 1002763	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	23-Jan-06		3843586823
+SPL		INVOICE	10/25/2005	Sales			-849.95	1002763	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	23-Jan-06		
+SPL		INVOICE	10/25/2005	Shipping and Handling			-18.00	1002763	Shipping and Handling	N	-1	18.00	Shipping and Handling	1	N	N	23-Jan-06		
+SPL		INVOICE	10/25/2005	Sales Tax Payable	Sales Tax		-70.12	1002763		N		8.25%	Sales Tax	1	N	N	23-Jan-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	10/25/2005	Undeposited Funds	1002763-Martin McGee		938.07	1002763
+SPL		PAYMENT	10/25/2005	Accounts Receivable	1002763-Martin McGee		-938.07	1002763
+ENDTRNS
+TRNS		INVOICE	11/01/2005	Accounts Receivable	1002764-Martin McGee		307.17	1002764	CartFusion Demo Order 1002764	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	30-Jan-06		3843586823
+SPL		INVOICE	11/01/2005	Sales			-269.95	1002764	CAPSA95	N	-1	269.9500	CAPSA95	1	Y	N	30-Jan-06		
+SPL		INVOICE	11/01/2005	Shipping and Handling			-14.95	1002764	Shipping and Handling	N	-1	14.95	Shipping and Handling	1	N	N	30-Jan-06		
+SPL		INVOICE	11/01/2005	Sales Tax Payable	Sales Tax		-22.27	1002764		N		8.25%	Sales Tax	1	N	N	30-Jan-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	11/01/2005	Undeposited Funds	1002764-Martin McGee		307.17	1002764
+SPL		PAYMENT	11/01/2005	Accounts Receivable	1002764-Martin McGee		-307.17	1002764
+ENDTRNS
+TRNS		INVOICE	11/02/2005	Accounts Receivable	1002766-Martin McGee		935.02	1002766	CartFusion Demo Order 1002766	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	31-Jan-06		3843586823
+SPL		INVOICE	11/02/2005	Sales			-849.95	1002766	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	31-Jan-06		
+SPL		INVOICE	11/02/2005	Shipping and Handling			-14.95	1002766	Shipping and Handling	N	-1	14.95	Shipping and Handling	1	N	N	31-Jan-06		
+SPL		INVOICE	11/02/2005	Sales Tax Payable	Sales Tax		-70.12	1002766		N		8.25%	Sales Tax	1	N	N	31-Jan-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	11/02/2005	Undeposited Funds	1002766-Martin McGee		935.02	1002766
+SPL		PAYMENT	11/02/2005	Accounts Receivable	1002766-Martin McGee		-935.02	1002766
+ENDTRNS
+TRNS		INVOICE	11/02/2005	Accounts Receivable	1002767-Martin McGee		507.11	1002767	CartFusion Demo Order 1002767	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	31-Jan-06		3843586823
+SPL		INVOICE	11/02/2005	Sales			-449.99	1002767	CAPSSD500	N	-1	449.9900	CAPSSD500	1	Y	N	31-Jan-06		
+SPL		INVOICE	11/02/2005	Shipping and Handling			-20.00	1002767	Shipping and Handling	N	-1	20.00	Shipping and Handling	1	N	N	31-Jan-06		
+SPL		INVOICE	11/02/2005	Sales Tax Payable	Sales Tax		-37.12	1002767		N		8.25%	Sales Tax	1	N	N	31-Jan-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	11/02/2005	Undeposited Funds	1002767-Martin McGee		507.11	1002767
+SPL		PAYMENT	11/02/2005	Accounts Receivable	1002767-Martin McGee		-507.11	1002767
+ENDTRNS
+TRNS		INVOICE	11/02/2005	Accounts Receivable	1002768-Martin McGee		935.02	1002768	CartFusion Demo Order 1002768	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	31-Jan-06		3843586823
+SPL		INVOICE	11/02/2005	Sales			-849.95	1002768	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	31-Jan-06		
+SPL		INVOICE	11/02/2005	Shipping and Handling			-14.95	1002768	Shipping and Handling	N	-1	14.95	Shipping and Handling	1	N	N	31-Jan-06		
+SPL		INVOICE	11/02/2005	Sales Tax Payable	Sales Tax		-70.12	1002768		N		8.25%	Sales Tax	1	N	N	31-Jan-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	11/02/2005	Undeposited Funds	1002768-Martin McGee		935.02	1002768
+SPL		PAYMENT	11/02/2005	Accounts Receivable	1002768-Martin McGee		-935.02	1002768
+ENDTRNS
+TRNS		INVOICE	11/02/2005	Accounts Receivable	1002769-Martin McGee		757.7	1002769	CartFusion Demo Order 1002769	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	31-Jan-06		3843586823
+SPL		INVOICE	11/02/2005	Sales			-699.95	1002769	CAEDR	N	-1	699.9500	CAEDR	1	Y	N	31-Jan-06		
+SPL		INVOICE	11/02/2005	Shipping and Handling			0.00	1002769	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	31-Jan-06		
+SPL		INVOICE	11/02/2005	Sales Tax Payable	Sales Tax		-57.75	1002769		N		8.25%	Sales Tax	1	N	N	31-Jan-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	11/02/2005	Undeposited Funds	1002769-Martin McGee		757.7	1002769
+SPL		PAYMENT	11/02/2005	Accounts Receivable	1002769-Martin McGee		-757.7	1002769
+ENDTRNS
+TRNS		INVOICE	12/03/2005	Accounts Receivable	1002770-Mike Gallagher		917.2	1002770	CartFusion Demo Order 1002770	N	Y		556 Yellow Rd. 	Minneapolis	MN	44333	03-Mar-06		3848236344
+SPL		INVOICE	12/03/2005	Sales			-699.95	1002770	CAEDR	N	-1	699.9500	CAEDR	1	Y	N	03-Mar-06		
+SPL		INVOICE	12/03/2005	Sales			-349.99	1002770	PENOPWP	N	-1	349.9900	PENOPWP	1	Y	N	03-Mar-06		
+SPL		INVOICE	12/03/2005	Shipping and Handling			-9.00	1002770	Shipping and Handling	N	-1	9.00	Shipping and Handling	1	N	N	03-Mar-06		
+SPL		INVOICE	12/03/2005	Sales Tax Payable	Sales Tax		-68.25	1002770		N		6.50%	Sales Tax	1	N	N	03-Mar-06		AUTOSTAX
+SPL		INVOICE	12/03/2005	Discounts Given			-209.99	1002770	Discounts Given	N	-1	209.99	Discounts Given	1	N	N	03-Mar-06		
+ENDTRNS
+TRNS		PAYMENT	12/03/2005	Undeposited Funds	1002770-Mike Gallagher		917.2	1002770
+SPL		PAYMENT	12/03/2005	Accounts Receivable	1002770-Mike Gallagher		-917.2	1002770
+ENDTRNS
+TRNS		INVOICE	12/03/2005	Accounts Receivable	1002771-Mike Gallagher		745.45	1002771	CartFusion Demo Order 1002771	N	Y		556 Yellow Rd. 	Minneapolis	MN	44333	03-Mar-06		3848236344
+SPL		INVOICE	12/03/2005	Sales			-699.95	1002771	CAEDR	N	-1	699.9500	CAEDR	1	Y	N	03-Mar-06		
+SPL		INVOICE	12/03/2005	Shipping and Handling			0.00	1002771	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	03-Mar-06		
+SPL		INVOICE	12/03/2005	Sales Tax Payable	Sales Tax		-45.50	1002771		N		6.50%	Sales Tax	1	N	N	03-Mar-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	12/03/2005	Undeposited Funds	1002771-Mike Gallagher		745.45	1002771
+SPL		PAYMENT	12/03/2005	Accounts Receivable	1002771-Mike Gallagher		-745.45	1002771
+ENDTRNS
+TRNS		INVOICE	12/03/2005	Accounts Receivable	1002773-Matthew Ledger		754.51	1002773	CartFusion Demo Order 1002773	N	Y		7 Skyline Drive 	Pittsburgh	PA	31293	03-Mar-06		3868938560
+SPL		INVOICE	12/03/2005	Sales			-269.95	1002773	FUJFPF410	N	-1	269.9500	FUJFPF410	1	Y	N	03-Mar-06		
+SPL		INVOICE	12/03/2005	Sales			-399.99	1002773	KODZ740	N	-1	399.9900	KODZ740	1	Y	N	03-Mar-06		
+SPL		INVOICE	12/03/2005	Sales			-23.98	1002773	B0000TMP2M	N	-2	11.9900	B0000TMP2M	1	Y	N	03-Mar-06		
+SPL		INVOICE	12/03/2005	Shipping and Handling			-18.95	1002773	Shipping and Handling	N	-1	18.95	Shipping and Handling	1	N	N	03-Mar-06		
+SPL		INVOICE	12/03/2005	Sales Tax Payable	Sales Tax		-41.64	1002773		N		6.00%	Sales Tax	1	N	N	03-Mar-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	12/03/2005	Undeposited Funds	1002773-Matthew Ledger		754.51	1002773
+SPL		PAYMENT	12/03/2005	Accounts Receivable	1002773-Matthew Ledger		-754.51	1002773
+ENDTRNS
+TRNS		INVOICE	12/04/2005	Accounts Receivable	1002774-Shannon Clemens		1860.62	1002774	CartFusion Demo Order 1002774	N	Y		2740 Old Crow Canyon Road Building 4, Suite 200	San Ramon	CA	94583	04-Mar-06		3869042235
+SPL		INVOICE	12/04/2005	Sales			-1048.95	1002774	CAEDR Black	N	-1	1048.9500	CAEDR	1	Y	N	04-Mar-06		
+SPL		INVOICE	12/04/2005	Sales			-1058.95	1002774	CAEDR Black / Silver	N	-1	1058.9500	CAEDR	1	Y	N	04-Mar-06		
+SPL		INVOICE	12/04/2005	Sales			-11.99	1002774	B0000TMP2M Black	N	-1	11.9900	B0000TMP2M	1	Y	N	04-Mar-06		
+SPL		INVOICE	12/04/2005	Sales			-7.49	1002774	B0009B1ZP4 Brown	N	-1	7.4900	B0009B1ZP4	1	Y	N	04-Mar-06		
+SPL		INVOICE	12/04/2005	Sales			-8.49	1002774	B0009B1ZP4 Black	N	-1	8.4900	B0009B1ZP4	1	Y	N	04-Mar-06		
+SPL		INVOICE	12/04/2005	Sales			-9.49	1002774	B0009B1ZP4 Brown	N	-1	9.4900	B0009B1ZP4	1	Y	N	04-Mar-06		
+SPL		INVOICE	12/04/2005	Shipping and Handling			-26.00	1002774	Shipping and Handling	N	-1	26.00	Shipping and Handling	1	N	N	04-Mar-06		
+SPL		INVOICE	12/04/2005	Sales Tax Payable	Sales Tax		-118.33	1002774		N		5.52%	Sales Tax	1	N	N	04-Mar-06		AUTOSTAX
+SPL		INVOICE	12/04/2005	Discounts Given			-429.07	1002774	Discounts Given	N	-1	429.07	Discounts Given	1	N	N	04-Mar-06		
+ENDTRNS
+TRNS		PAYMENT	12/04/2005	Undeposited Funds	1002774-Shannon Clemens		1860.62	1002774
+SPL		PAYMENT	12/04/2005	Accounts Receivable	1002774-Shannon Clemens		-1860.62	1002774
+ENDTRNS
+TRNS		INVOICE	12/05/2005	Accounts Receivable	1002775-Matthew Ledger		753.15	1002775	CartFusion Demo Order 1002775	N	Y		7 Skyline Drive 	Pittsburgh	PA	31293	05-Mar-06		3868938560
+SPL		INVOICE	12/05/2005	Sales			-849.95	1002775	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	05-Mar-06		
+SPL		INVOICE	12/05/2005	Sales			-8.49	1002775	B0009B1ZP4 Brown	N	-1	8.4900	B0009B1ZP4	1	Y	N	05-Mar-06		
+SPL		INVOICE	12/05/2005	Shipping and Handling			-14.95	1002775	Shipping and Handling	N	-1	14.95	Shipping and Handling	1	N	N	05-Mar-06		
+SPL		INVOICE	12/05/2005	Sales Tax Payable	Sales Tax		-51.45	1002775		N		5.99%	Sales Tax	1	N	N	05-Mar-06		AUTOSTAX
+SPL		INVOICE	12/05/2005	Discounts Given			-171.69	1002775	Discounts Given	N	-1	171.69	Discounts Given	1	N	N	05-Mar-06		
+ENDTRNS
+TRNS		PAYMENT	12/05/2005	Undeposited Funds	1002775-Matthew Ledger		753.15	1002775
+SPL		PAYMENT	12/05/2005	Accounts Receivable	1002775-Matthew Ledger		-753.15	1002775
+ENDTRNS
+TRNS		INVOICE	12/05/2005	Accounts Receivable	1002776-Matthew Ledger		915.9	1002776	CartFusion Demo Order 1002776	N	Y		7 Skyline Drive 	Pittsburgh	PA	31293	05-Mar-06		3868938560
+SPL		INVOICE	12/05/2005	Sales			-849.95	1002776	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	05-Mar-06		
+SPL		INVOICE	12/05/2005	Shipping and Handling			-14.95	1002776	Shipping and Handling	N	-1	14.95	Shipping and Handling	1	N	N	05-Mar-06		
+SPL		INVOICE	12/05/2005	Sales Tax Payable	Sales Tax		-51.00	1002776		N		6.00%	Sales Tax	1	N	N	05-Mar-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	12/05/2005	Undeposited Funds	1002776-Matthew Ledger		915.9	1002776
+SPL		PAYMENT	12/05/2005	Accounts Receivable	1002776-Matthew Ledger		-915.9	1002776
+ENDTRNS
+TRNS		INVOICE	12/13/2005	Accounts Receivable	1002777-Carl Vanderpal		1087.1	1002777	CartFusion Demo Order 1002777	N	Y		133 Hancock Ave. 	New South Wales	-	5021	13-Mar-06		3856057054
+SPL		INVOICE	12/13/2005	Sales			-1048.95	1002777	CAEDR Black	N	-1	1048.9500	CAEDR	1	Y	N	13-Mar-06		
+SPL		INVOICE	12/13/2005	Sales			-299.99	1002777	KODLS420	N	-1	299.9900	KODLS420	1	Y	N	13-Mar-06		
+SPL		INVOICE	12/13/2005	Shipping and Handling			-7.95	1002777	Shipping and Handling	N	-1	7.95	Shipping and Handling	1	N	N	13-Mar-06		
+SPL		INVOICE	12/13/2005	Sales Tax Payable	Sales Tax		0.00	1002777		N		0.00%	Sales Tax	1	N	N	13-Mar-06		AUTOSTAX
+SPL		INVOICE	12/13/2005	Discounts Given			-269.79	1002777	Discounts Given	N	-1	269.79	Discounts Given	1	N	N	13-Mar-06		
+ENDTRNS
+TRNS		PAYMENT	12/13/2005	Undeposited Funds	1002777-Carl Vanderpal		1087.1	1002777
+SPL		PAYMENT	12/13/2005	Accounts Receivable	1002777-Carl Vanderpal		-1087.1	1002777
+ENDTRNS
+TRNS		INVOICE	12/13/2005	Accounts Receivable	1002778-Carl Vanderpal		1833.76	1002778	CartFusion Demo Order 1002778	N	Y		133 Hancock Ave. 	New South Wales	-	5021	13-Mar-06		3856057054
+SPL		INVOICE	12/13/2005	Sales			-89.99	1002778	FUJFPA205	N	-1	89.9900	FUJFPA205	1	Y	N	13-Mar-06		
+SPL		INVOICE	12/13/2005	Sales			-89.99	1002778	FUJFPA205	N	-1	89.9900	FUJFPA205	1	Y	N	13-Mar-06		
+SPL		INVOICE	12/13/2005	Sales			-299.99	1002778	KODLS420	N	-1	299.9900	KODLS420	1	Y	N	13-Mar-06		
+SPL		INVOICE	12/13/2005	Sales			-899.95	1002778	OLM-E300	N	-1	899.9500	OLM-E300	1	Y	N	13-Mar-06		
+SPL		INVOICE	12/13/2005	Sales			-449.99	1002778	CAPSSD500	N	-1	449.9900	CAPSSD500	1	Y	N	13-Mar-06		
+SPL		INVOICE	12/13/2005	Shipping and Handling			-3.85	1002778	Shipping and Handling	N	-1	3.85	Shipping and Handling	1	N	N	13-Mar-06		
+SPL		INVOICE	12/13/2005	Sales Tax Payable	Sales Tax		0.00	1002778		N		0.00%	Sales Tax	1	N	N	13-Mar-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	12/13/2005	Undeposited Funds	1002778-Carl Vanderpal		1833.76	1002778
+SPL		PAYMENT	12/13/2005	Accounts Receivable	1002778-Carl Vanderpal		-1833.76	1002778
+ENDTRNS
+TRNS		INVOICE	03/20/2006	Accounts Receivable	1002779-Mike Harrison		427.4	1002779	CartFusion Demo Order 1002779	N	Y		4140 NW 27th Lane 	Los Angeles	CA	91405	18-Jun-06		3851911567
+SPL		INVOICE	03/20/2006	Sales			-404.99	1002779	CAPSSD500	N	-1	404.9900	CAPSSD500	1	Y	N	18-Jun-06		
+SPL		INVOICE	03/20/2006	Shipping and Handling			-9.00	1002779	Shipping and Handling	N	-1	9.00	Shipping and Handling	1	N	N	18-Jun-06		
+SPL		INVOICE	03/20/2006	Sales Tax Payable	Sales Tax		-33.41	1002779		N		8.25%	Sales Tax	1	N	N	18-Jun-06		AUTOSTAX
+SPL		INVOICE	03/20/2006	Other Expenses			-20.00	1002779	Other Expenses	N	-1	20.00	Other Expenses	1	N	N	18-Jun-06		
+ENDTRNS
+TRNS		PAYMENT	03/20/2006	Undeposited Funds	1002779-Mike Harrison		427.4	1002779
+SPL		PAYMENT	03/20/2006	Accounts Receivable	1002779-Mike Harrison		-427.4	1002779
+ENDTRNS
+TRNS		INVOICE	03/20/2006	Accounts Receivable	1002780-Mike Harrison		614.18	1002780	CartFusion Demo Order 1002780	N	Y		4140 NW 27th Lane 	Los Angeles	CA	91405	18-Jun-06		3851911567
+SPL		INVOICE	03/20/2006	Sales			-314.99	1002780	CAPSSD500	N	-1	314.9900	CAPSSD500	1	Y	N	18-Jun-06		
+SPL		INVOICE	03/20/2006	Sales			-244.99	1002780	SODSCP200	N	-1	244.9900	SODSCP200	1	Y	N	18-Jun-06		
+SPL		INVOICE	03/20/2006	Shipping and Handling			-18.00	1002780	Shipping and Handling	N	-1	18.00	Shipping and Handling	1	N	N	18-Jun-06		
+SPL		INVOICE	03/20/2006	Sales Tax Payable	Sales Tax		-46.20	1002780		N		8.25%	Sales Tax	1	N	N	18-Jun-06		AUTOSTAX
+SPL		INVOICE	03/20/2006	Other Expenses			-10.00	1002780	Other Expenses	N	-1	10.00	Other Expenses	1	N	N	18-Jun-06		
+ENDTRNS
+TRNS		PAYMENT	03/20/2006	Undeposited Funds	1002780-Mike Harrison		614.18	1002780
+SPL		PAYMENT	03/20/2006	Accounts Receivable	1002780-Mike Harrison		-614.18	1002780
+ENDTRNS
+TRNS		INVOICE	03/21/2006	Accounts Receivable	1002781-Martin McGee		2127.91	1002781	CartFusion Demo Order 1002781	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	19-Jun-06		3843586823
+SPL		INVOICE	03/21/2006	Sales			-1259.96	1002781	CAPSSD500	N	-4	314.9900	CAPSSD500	1	Y	N	19-Jun-06		
+SPL		INVOICE	03/21/2006	Sales			-849.95	1002781	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	19-Jun-06		
+SPL		INVOICE	03/21/2006	Shipping and Handling			-18.00	1002781	Shipping and Handling	N	-1	18.00	Shipping and Handling	1	N	N	19-Jun-06		
+SPL		INVOICE	03/21/2006	Sales Tax Payable	Sales Tax		0.00	1002781		N		0.00%	Sales Tax	1	N	N	19-Jun-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	03/21/2006	Undeposited Funds	1002781-Martin McGee		2127.91	1002781
+SPL		PAYMENT	03/21/2006	Accounts Receivable	1002781-Martin McGee		-2127.91	1002781
+ENDTRNS
+TRNS		INVOICE	03/28/2006	Accounts Receivable	1002782-Shannon Clemens		2617.02	1002782	CartFusion Demo Order 1002782	N	Y		2740 Old Crow Canyon Road Building 4, Suite 200	San Ramon	CA	94583	26-Jun-06		3869042235
+SPL		INVOICE	03/28/2006	Sales			-849.95	1002782	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	26-Jun-06		
+SPL		INVOICE	03/28/2006	Sales			-719.97	1002782	CASEXZ4U	N	-3	239.9900	CASEXZ4U	1	Y	N	26-Jun-06		
+SPL		INVOICE	03/28/2006	Sales			-419.99	1002782	SODSCW7	N	-1	419.9900	SODSCW7	1	Y	N	26-Jun-06		
+SPL		INVOICE	03/28/2006	Sales			-399.99	1002782	KODZ740	N	-1	399.9900	KODZ740	1	Y	N	26-Jun-06		
+SPL		INVOICE	03/28/2006	Shipping and Handling			-29.95	1002782	Shipping and Handling	N	-1	29.95	Shipping and Handling	1	N	N	26-Jun-06		
+SPL		INVOICE	03/28/2006	Sales Tax Payable	Sales Tax		-197.17	1002782		N		8.25%	Sales Tax	1	N	N	26-Jun-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	03/28/2006	Undeposited Funds	1002782-Shannon Clemens		2617.02	1002782
+SPL		PAYMENT	03/28/2006	Accounts Receivable	1002782-Shannon Clemens		-2617.02	1002782
+ENDTRNS
+TRNS		INVOICE	03/28/2006	Accounts Receivable	1002783-Shannon Clemens		1239.19	1002783	CartFusion Demo Order 1002783	N	Y		2740 Old Crow Canyon Road Building 4, Suite 200	San Ramon	CA	94583	26-Jun-06		3869042235
+SPL		INVOICE	03/28/2006	Sales			-849.95	1002783	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	26-Jun-06		
+SPL		INVOICE	03/28/2006	Sales			-329.95	1002783	SODSCP150B	N	-1	329.9500	SODSCP150B	1	Y	N	26-Jun-06		
+SPL		INVOICE	03/28/2006	Shipping and Handling			-14.95	1002783	Shipping and Handling	N	-1	14.95	Shipping and Handling	1	N	N	26-Jun-06		
+SPL		INVOICE	03/28/2006	Sales Tax Payable	Sales Tax		-97.34	1002783		N		8.25%	Sales Tax	1	N	N	26-Jun-06		AUTOSTAX
+SPL		INVOICE	03/28/2006	Discounts Given			-53.00	1002783	Discounts Given	N	-1	53.00	Discounts Given	1	N	N	26-Jun-06		
+ENDTRNS
+TRNS		PAYMENT	03/28/2006	Undeposited Funds	1002783-Shannon Clemens		1239.19	1002783
+SPL		PAYMENT	03/28/2006	Accounts Receivable	1002783-Shannon Clemens		-1239.19	1002783
+ENDTRNS
+TRNS		INVOICE	03/28/2006	Accounts Receivable	1002784-Shannon Clemens		1971.44	1002784	CartFusion Demo Order 1002784	N	Y		2740 Old Crow Canyon Road Building 4, Suite 200	San Ramon	CA	94583	26-Jun-06		3869042235
+SPL		INVOICE	03/28/2006	Sales			-849.95	1002784	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	26-Jun-06		
+SPL		INVOICE	03/28/2006	Sales			-239.99	1002784	CASEXZ4U	N	-1	239.9900	CASEXZ4U	1	Y	N	26-Jun-06		
+SPL		INVOICE	03/28/2006	Sales			-419.99	1002784	SODSCW7	N	-1	419.9900	SODSCW7	1	Y	N	26-Jun-06		
+SPL		INVOICE	03/28/2006	Sales			-399.99	1002784	KODZ740	N	-1	399.9900	KODZ740	1	Y	N	26-Jun-06		
+SPL		INVOICE	03/28/2006	Shipping and Handling			-29.95	1002784	Shipping and Handling	N	-1	29.95	Shipping and Handling	1	N	N	26-Jun-06		
+SPL		INVOICE	03/28/2006	Sales Tax Payable	Sales Tax		-157.57	1002784		N		8.25%	Sales Tax	1	N	N	26-Jun-06		AUTOSTAX
+SPL		INVOICE	03/28/2006	Discounts Given			-126.00	1002784	Discounts Given	N	-1	126.00	Discounts Given	1	N	N	26-Jun-06		
+ENDTRNS
+TRNS		PAYMENT	03/28/2006	Undeposited Funds	1002784-Shannon Clemens		1971.44	1002784
+SPL		PAYMENT	03/28/2006	Accounts Receivable	1002784-Shannon Clemens		-1971.44	1002784
+ENDTRNS
+TRNS		INVOICE	03/28/2006	Accounts Receivable	1002785-Martin McGee		1931.34	1002785	CartFusion Demo Order 1002785	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	26-Jun-06		3843586823
+SPL		INVOICE	03/28/2006	Sales			-999.95	1002785	CAEDR Black	N	-1	999.9500	CAEDR	1	Y	N	26-Jun-06		
+SPL		INVOICE	03/28/2006	Sales			-419.99	1002785	SODSCW7	N	-1	419.9900	SODSCW7	1	Y	N	26-Jun-06		
+SPL		INVOICE	03/28/2006	Sales			-699.95	1002785	CAEDR Black	N	-1	699.9500	CAEDR	1	Y	N	26-Jun-06		
+SPL		INVOICE	03/28/2006	Sales			-7.49	1002785	B0009B1ZP4	N	-1	7.4900	B0009B1ZP4	1	Y	N	26-Jun-06		
+SPL		INVOICE	03/28/2006	Shipping and Handling			-7.95	1002785	Shipping and Handling	N	-1	7.95	Shipping and Handling	1	N	N	26-Jun-06		
+SPL		INVOICE	03/28/2006	Sales Tax Payable	Sales Tax		0.00	1002785		N		0.00%	Sales Tax	1	N	N	26-Jun-06		AUTOSTAX
+SPL		INVOICE	03/28/2006	Discounts Given			-203.99	1002785	Discounts Given	N	-1	203.99	Discounts Given	1	N	N	26-Jun-06		
+ENDTRNS
+TRNS		PAYMENT	03/28/2006	Undeposited Funds	1002785-Martin McGee		1931.34	1002785
+SPL		PAYMENT	03/28/2006	Accounts Receivable	1002785-Martin McGee		-1931.34	1002785
+ENDTRNS
+TRNS		INVOICE	04/02/2006	Accounts Receivable	1002786-Martin McGee		2348.8	1002786	CartFusion Demo Order 1002786	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	01-Jul-06		3843586823
+SPL		INVOICE	04/02/2006	Sales			-849.95	1002786	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	01-Jul-06		
+SPL		INVOICE	04/02/2006	Sales			-329.95	1002786	SODSCP150B	N	-1	329.9500	SODSCP150B	1	Y	N	01-Jul-06		
+SPL		INVOICE	04/02/2006	Sales			-899.95	1002786	NIKD70	N	-1	899.9500	NIKD70	1	Y	N	01-Jul-06		
+SPL		INVOICE	04/02/2006	Sales			-299.99	1002786	OLM-C765UZ	N	-1	299.9900	OLM-C765UZ	1	Y	N	01-Jul-06		
+SPL		INVOICE	04/02/2006	Sales			-299.99	1002786	KODLS420	N	-1	299.9900	KODLS420	1	Y	N	01-Jul-06		
+SPL		INVOICE	04/02/2006	Shipping and Handling			-29.95	1002786	Shipping and Handling	N	-1	29.95	Shipping and Handling	1	N	N	01-Jul-06		
+SPL		INVOICE	04/02/2006	Sales Tax Payable	Sales Tax		0.00	1002786		N		0.00%	Sales Tax	1	N	N	01-Jul-06		AUTOSTAX
+SPL		INVOICE	04/02/2006	Discounts Given			-360.98	1002786	Discounts Given	N	-1	360.98	Discounts Given	1	N	N	01-Jul-06		
+ENDTRNS
+TRNS		PAYMENT	04/02/2006	Undeposited Funds	1002786-Martin McGee		2348.8	1002786
+SPL		PAYMENT	04/02/2006	Accounts Receivable	1002786-Martin McGee		-2348.8	1002786
+ENDTRNS
+TRNS		INVOICE	04/02/2006	Accounts Receivable	1002787-Martin McGee		4634.59	1002787	CartFusion Demo Order 1002787	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	01-Jul-06		3843586823
+SPL		INVOICE	04/02/2006	Sales			-3399.80	1002787	CAEDRXTS	N	-4	849.9500	CAEDRXTS	1	Y	N	01-Jul-06		
+SPL		INVOICE	04/02/2006	Sales			-349.99	1002787	PENOPWP	N	-1	349.9900	PENOPWP	1	Y	N	01-Jul-06		
+SPL		INVOICE	04/02/2006	Sales			-329.95	1002787	SODSCP150B	N	-1	329.9500	SODSCP150B	1	Y	N	01-Jul-06		
+SPL		INVOICE	04/02/2006	Sales			-399.99	1002787	KODZ740	N	-1	399.9900	KODZ740	1	Y	N	01-Jul-06		
+SPL		INVOICE	04/02/2006	Sales			-229.95	1002787	MINDG500	N	-1	229.9500	MINDG500	1	Y	N	01-Jul-06		
+SPL		INVOICE	04/02/2006	Sales			-11.99	1002787	B0000TMP2M	N	-1	11.9900	B0000TMP2M	1	Y	N	01-Jul-06		
+SPL		INVOICE	04/02/2006	Sales			-229.95	1002787	MINDG500	N	-1	229.9500	MINDG500	1	Y	N	01-Jul-06		
+SPL		INVOICE	04/02/2006	Shipping and Handling			-29.95	1002787	Shipping and Handling	N	-1	29.95	Shipping and Handling	1	N	N	01-Jul-06		
+SPL		INVOICE	04/02/2006	Sales Tax Payable	Sales Tax		0.00	1002787		N		0.00%	Sales Tax	1	N	N	01-Jul-06		AUTOSTAX
+SPL		INVOICE	04/02/2006	Discounts Given			-346.98	1002787	Discounts Given	N	-1	346.98	Discounts Given	1	N	N	01-Jul-06		
+ENDTRNS
+TRNS		INVOICE	04/13/2006	Accounts Receivable	1002789-Martin McGee		2032.91	1002789	CartFusion Demo Order 1002789	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	12-Jul-06		3843586823
+SPL		INVOICE	04/13/2006	Sales			-2249.95	1002789	CAPSSD500	N	-5	449.9900	CAPSSD500	1	Y	N	12-Jul-06		
+SPL		INVOICE	04/13/2006	Shipping and Handling			-7.95	1002789	Shipping and Handling	N	-1	7.95	Shipping and Handling	1	N	N	12-Jul-06		
+SPL		INVOICE	04/13/2006	Sales Tax Payable	Sales Tax		0.00	1002789		N		0.00%	Sales Tax	1	N	N	12-Jul-06		AUTOSTAX
+SPL		INVOICE	04/13/2006	Discounts Given			-224.99	1002789	Discounts Given	N	-1	224.99	Discounts Given	1	N	N	12-Jul-06		
+ENDTRNS
+TRNS		PAYMENT	04/13/2006	Undeposited Funds	1002789-Martin McGee		2032.91	1002789
+SPL		PAYMENT	04/13/2006	Accounts Receivable	1002789-Martin McGee		-2032.91	1002789
+ENDTRNS
+TRNS		INVOICE	04/13/2006	Accounts Receivable	1002790-Martin McGee		1760.07	1002790	CartFusion Demo Order 1002790	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	12-Jul-06		3843586823
+SPL		INVOICE	04/13/2006	Sales			-1919.92	1002790	CASEXZ4U	N	-8	239.9900	CASEXZ4U	1	Y	N	12-Jul-06		
+SPL		INVOICE	04/13/2006	Sales			-89.99	1002790	FUJFPA205	N	-1	89.9900	FUJFPA205	1	Y	N	12-Jul-06		
+SPL		INVOICE	04/13/2006	Shipping and Handling			0.00	1002790	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	12-Jul-06		
+SPL		INVOICE	04/13/2006	Sales Tax Payable	Sales Tax		-134.14	1002790		N		6.67%	Sales Tax	1	N	N	12-Jul-06		AUTOSTAX
+SPL		INVOICE	04/13/2006	Discounts Given			-383.98	1002790	Discounts Given	N	-1	383.98	Discounts Given	1	N	N	12-Jul-06		
+ENDTRNS
+TRNS		PAYMENT	04/13/2006	Undeposited Funds	1002790-Martin McGee		1760.07	1002790
+SPL		PAYMENT	04/13/2006	Accounts Receivable	1002790-Martin McGee		-1760.07	1002790
+ENDTRNS
+TRNS		INVOICE	04/23/2006	Accounts Receivable	1002791-pete tester		279.99	1002791	CartFusion Demo Order 1002791	N	Y		 				22-Jul-06		3863425226
+SPL		INVOICE	04/23/2006	Sales			-279.99	1002791	KODZ700	N	-1	279.9900	KODZ700	1	Y	N	22-Jul-06		
+SPL		INVOICE	04/23/2006	Shipping and Handling			0.00	1002791	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	22-Jul-06		
+SPL		INVOICE	04/23/2006	Sales Tax Payable	Sales Tax		0.00	1002791		N		0.00%	Sales Tax	1	N	N	22-Jul-06		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	05/18/2006	Accounts Receivable	1002792-test AKARD		569.98	1002792	CartFusion Demo Order 1002792	N	Y		1234 MAIN 	GALVESTON	TX	77550	16-Aug-06		3852512316
+SPL		INVOICE	05/18/2006	Sales			-149.99	1002792	MINDX20	N	-1	149.9900	MINDX20	1	Y	N	16-Aug-06		
+SPL		INVOICE	05/18/2006	Sales			-419.99	1002792	SODSCW7	N	-1	419.9900	SODSCW7	1	Y	N	16-Aug-06		
+SPL		INVOICE	05/18/2006	Shipping and Handling			0.00	1002792	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	16-Aug-06		
+SPL		INVOICE	05/18/2006	Sales Tax Payable	Sales Tax		0.00	1002792		N		0.00%	Sales Tax	1	N	N	16-Aug-06		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	05/18/2006	Accounts Receivable	1002793-test test		1079.8	1002793	CartFusion Demo Order 1002793	N	Y		34 eill st 	amityville	NY	11071	16-Aug-06		3862954627
+SPL		INVOICE	05/18/2006	Sales			-1079.80	1002793	CAPSA95	N	-4	269.9500	CAPSA95	1	Y	N	16-Aug-06		
+SPL		INVOICE	05/18/2006	Shipping and Handling			0.00	1002793	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	16-Aug-06		
+SPL		INVOICE	05/18/2006	Sales Tax Payable	Sales Tax		0.00	1002793		N		0.00%	Sales Tax	1	N	N	16-Aug-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	05/18/2006	Undeposited Funds	1002793-test test		1079.8	1002793
+SPL		PAYMENT	05/18/2006	Accounts Receivable	1002793-test test		-1079.8	1002793
+ENDTRNS
+TRNS		INVOICE	05/24/2006	Accounts Receivable	1002794-Martin McGee		1364.48	1002794	CartFusion Demo Order 1002794	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	22-Aug-06		3843586823
+SPL		INVOICE	05/24/2006	Sales			-849.95	1002794	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	22-Aug-06		
+SPL		INVOICE	05/24/2006	Sales			-399.99	1002794	KODZ740	N	-1	399.9900	KODZ740	1	Y	N	22-Aug-06		
+SPL		INVOICE	05/24/2006	Sales			-299.99	1002794	HPPS945	N	-1	299.9900	HPPS945	1	Y	N	22-Aug-06		
+SPL		INVOICE	05/24/2006	Sales			-11.99	1002794	B0000TMP2M Black	N	-1	11.9900	B0000TMP2M	1	Y	N	22-Aug-06		
+SPL		INVOICE	05/24/2006	Shipping and Handling			-29.95	1002794	Shipping and Handling	N	-1	29.95	Shipping and Handling	1	N	N	22-Aug-06		
+SPL		INVOICE	05/24/2006	Sales Tax Payable	Sales Tax		0.00	1002794		N		0.00%	Sales Tax	1	N	N	22-Aug-06		AUTOSTAX
+SPL		INVOICE	05/24/2006	Discounts Given			-227.39	1002794	Discounts Given	N	-1	227.39	Discounts Given	1	N	N	22-Aug-06		
+ENDTRNS
+TRNS		PAYMENT	05/24/2006	Undeposited Funds	1002794-Martin McGee		1364.48	1002794
+SPL		PAYMENT	05/24/2006	Accounts Receivable	1002794-Martin McGee		-1364.48	1002794
+ENDTRNS
+TRNS		INVOICE	05/24/2006	Accounts Receivable	1002795-Martin McGee		1890.84	1002795	CartFusion Demo Order 1002795	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	22-Aug-06		3843586823
+SPL		INVOICE	05/24/2006	Sales			-849.95	1002795	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	22-Aug-06		
+SPL		INVOICE	05/24/2006	Sales			-449.99	1002795	CAPSSD500	N	-1	449.9900	CAPSSD500	1	Y	N	22-Aug-06		
+SPL		INVOICE	05/24/2006	Sales			-419.99	1002795	SODSCW7	N	-1	419.9900	SODSCW7	1	Y	N	22-Aug-06		
+SPL		INVOICE	05/24/2006	Sales			-199.95	1002795	NIKCP3700	N	-1	199.9500	NIKCP3700	1	Y	N	22-Aug-06		
+SPL		INVOICE	05/24/2006	Sales			-299.99	1002795	HPPS945	N	-1	299.9900	HPPS945	1	Y	N	22-Aug-06		
+SPL		INVOICE	05/24/2006	Shipping and Handling			-29.95	1002795	Shipping and Handling	N	-1	29.95	Shipping and Handling	1	N	N	22-Aug-06		
+SPL		INVOICE	05/24/2006	Sales Tax Payable	Sales Tax		0.00	1002795		N		0.00%	Sales Tax	1	N	N	22-Aug-06		AUTOSTAX
+SPL		INVOICE	05/24/2006	Discounts Given			-358.98	1002795	Discounts Given	N	-1	358.98	Discounts Given	1	N	N	22-Aug-06		
+ENDTRNS
+TRNS		PAYMENT	05/24/2006	Undeposited Funds	1002795-Martin McGee		1890.84	1002795
+SPL		PAYMENT	05/24/2006	Accounts Receivable	1002795-Martin McGee		-1890.84	1002795
+ENDTRNS
+TRNS		INVOICE	06/05/2006	Accounts Receivable	1002796-Martin Pearce		221.83	1002796	CartFusion Demo Order 1002796	N	Y		1234 Happy Street 	Orlando	FL	32809	03-Sep-06		3887311854
+SPL		INVOICE	06/05/2006	Sales			-197.95	1002796	FUJFPS3000	N	-1	197.9500	FUJFPS3000	1	Y	N	03-Sep-06		
+SPL		INVOICE	06/05/2006	Shipping and Handling			-12.00	1002796	Shipping and Handling	N	-1	12.00	Shipping and Handling	1	N	N	03-Sep-06		
+SPL		INVOICE	06/05/2006	Sales Tax Payable	Sales Tax		-11.88	1002796		N		6.00%	Sales Tax	1	N	N	03-Sep-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	06/05/2006	Undeposited Funds	1002796-Martin Pearce		221.83	1002796
+SPL		PAYMENT	06/05/2006	Accounts Receivable	1002796-Martin Pearce		-221.83	1002796
+ENDTRNS
+TRNS		INVOICE	06/13/2006	Accounts Receivable	1002797-Martin Pearce		1187.09	1002797	CartFusion Demo Order 1002797	N	Y		1234 Happy Street 	Orlando	FL	32809	11-Sep-06		3887311854
+SPL		INVOICE	06/13/2006	Sales			-849.95	1002797	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Sales			-269.95	1002797	FUJFPF410	N	-1	269.9500	FUJFPF410	1	Y	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Shipping and Handling			0.00	1002797	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Sales Tax Payable	Sales Tax		-67.19	1002797		N		6.00%	Sales Tax	1	N	N	11-Sep-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	06/13/2006	Undeposited Funds	1002797-Martin Pearce		1187.09	1002797
+SPL		PAYMENT	06/13/2006	Accounts Receivable	1002797-Martin Pearce		-1187.09	1002797
+ENDTRNS
+TRNS		INVOICE	06/13/2006	Accounts Receivable	1002798-Martin Pearce		417.95	1002798	CartFusion Demo Order 1002798	N	Y		1234 Happy Street 	Orlando	FL	32809	11-Sep-06		3887311854
+SPL		INVOICE	06/13/2006	Sales			-197.95	1002798	FUJFPS3000	N	-1	197.9500	FUJFPS3000	1	Y	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Sales			-220.00	1002798	FUJFPF10	N	-1	220.0000	FUJFPF10	1	Y	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Shipping and Handling			0.00	1002798	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Sales Tax Payable	Sales Tax		0.00	1002798		N		0.00%	Sales Tax	1	N	N	11-Sep-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	06/13/2006	Undeposited Funds	1002798-Martin Pearce		417.95	1002798
+SPL		PAYMENT	06/13/2006	Accounts Receivable	1002798-Martin Pearce		-417.95	1002798
+ENDTRNS
+TRNS		INVOICE	06/13/2006	Accounts Receivable	1002799-My Name Is Test		290.7	1002799	CartFusion Demo Order 1002799	N	Y		123 Anystreet Blvd. 	Buffalo	NY	10045	11-Sep-06		3881984524
+SPL		INVOICE	06/13/2006	Sales			-269.95	1002799	CAPSA95	N	-1	269.9500	CAPSA95	1	Y	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Shipping and Handling			-9.95	1002799	Shipping and Handling	N	-1	9.95	Shipping and Handling	1	N	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Sales Tax Payable	Sales Tax		-10.80	1002799		N		4.00%	Sales Tax	1	N	N	11-Sep-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	06/13/2006	Undeposited Funds	1002799-My Name Is Test		290.7	1002799
+SPL		PAYMENT	06/13/2006	Accounts Receivable	1002799-My Name Is Test		-290.7	1002799
+ENDTRNS
+TRNS		INVOICE	06/13/2006	Accounts Receivable	1002800-Martin Pearce		919.95	1002800	CartFusion Demo Order 1002800	N	Y		1234 Happy Street 	Orlando	FL	32809	11-Sep-06		3887311854
+SPL		INVOICE	06/13/2006	Sales			-699.95	1002800	CAEDR Black	N	-1	699.9500	CAEDR	1	Y	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Sales			-220.00	1002800	FUJFPF10	N	-1	220.0000	FUJFPF10	1	Y	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Shipping and Handling			0.00	1002800	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Sales Tax Payable	Sales Tax		0.00	1002800		N		0.00%	Sales Tax	1	N	N	11-Sep-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	06/13/2006	Undeposited Funds	1002800-Martin Pearce		919.95	1002800
+SPL		PAYMENT	06/13/2006	Accounts Receivable	1002800-Martin Pearce		-919.95	1002800
+ENDTRNS
+TRNS		INVOICE	06/13/2006	Accounts Receivable	1002801-My Name Is Test		175.99	1002801	CartFusion Demo Order 1002801	N	Y		123 Anystreet Blvd. 	Buffalo	NY	10045	11-Sep-06		3881984524
+SPL		INVOICE	06/13/2006	Sales			-149.99	1002801	MINDX20	N	-1	149.9900	MINDX20	1	Y	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Shipping and Handling			-20.00	1002801	Shipping and Handling	N	-1	20.00	Shipping and Handling	1	N	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Sales Tax Payable	Sales Tax		-6.00	1002801		N		4.00%	Sales Tax	1	N	N	11-Sep-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	06/13/2006	Undeposited Funds	1002801-My Name Is Test		175.99	1002801
+SPL		PAYMENT	06/13/2006	Accounts Receivable	1002801-My Name Is Test		-175.99	1002801
+ENDTRNS
+TRNS		INVOICE	06/13/2006	Accounts Receivable	1002802-My Name Is Test		631.9	1002802	CartFusion Demo Order 1002802	N	Y		123 Anystreet Blvd. 	Buffalo	NY	10045	11-Sep-06		3881984524
+SPL		INVOICE	06/13/2006	Sales			-599.95	1002802	OLM-C8080	N	-1	599.9500	OLM-C8080	1	Y	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Shipping and Handling			-7.95	1002802	Shipping and Handling	N	-1	7.95	Shipping and Handling	1	N	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Sales Tax Payable	Sales Tax		-24.00	1002802		N		4.00%	Sales Tax	1	N	N	11-Sep-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	06/13/2006	Undeposited Funds	1002802-My Name Is Test		631.9	1002802
+SPL		PAYMENT	06/13/2006	Accounts Receivable	1002802-My Name Is Test		-631.9	1002802
+ENDTRNS
+TRNS		INVOICE	06/13/2006	Accounts Receivable	1002803-My Name Is Test		1106.95	1002803	CartFusion Demo Order 1002803	N	Y		123 Anystreet Blvd. 	Buffalo	NY	10045	11-Sep-06		3881984524
+SPL		INVOICE	06/13/2006	Sales			-1058.95	1002803	CAEDR Black / Silver	N	-1	1058.9500	CAEDR	1	Y	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Shipping and Handling			-20.00	1002803	Shipping and Handling	N	-1	20.00	Shipping and Handling	1	N	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Sales Tax Payable	Sales Tax		-28.00	1002803		N		2.64%	Sales Tax	1	N	N	11-Sep-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	06/13/2006	Undeposited Funds	1002803-My Name Is Test		1106.95	1002803
+SPL		PAYMENT	06/13/2006	Accounts Receivable	1002803-My Name Is Test		-1106.95	1002803
+ENDTRNS
+TRNS		INVOICE	06/13/2006	Accounts Receivable	1002804-My Name Is Test		430.94	1002804	CartFusion Demo Order 1002804	N	Y		123 Anystreet Blvd. 	Buffalo	NY	10045	11-Sep-06		3881984524
+SPL		INVOICE	06/13/2006	Sales			-399.99	1002804	HPPS850	N	-1	399.9900	HPPS850	1	Y	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Shipping and Handling			-14.95	1002804	Shipping and Handling	N	-1	14.95	Shipping and Handling	1	N	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Sales Tax Payable	Sales Tax		-16.00	1002804		N		4.00%	Sales Tax	1	N	N	11-Sep-06		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	06/13/2006	Accounts Receivable	1002805-My Name Is Test		589.94	1002805	CartFusion Demo Order 1002805	N	Y		123 Anystreet Blvd. 	Buffalo	NY	10045	11-Sep-06		3881984524
+SPL		INVOICE	06/13/2006	Sales			-349.99	1002805	PENOPWP	N	-1	349.9900	PENOPWP	1	Y	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Sales			-199.95	1002805	OLM-S410	N	-1	199.9500	OLM-S410	1	Y	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Shipping and Handling			-18.00	1002805	Shipping and Handling	N	-1	18.00	Shipping and Handling	1	N	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Sales Tax Payable	Sales Tax		-22.00	1002805		N		4.00%	Sales Tax	1	N	N	11-Sep-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	06/13/2006	Undeposited Funds	1002805-My Name Is Test		589.94	1002805
+SPL		PAYMENT	06/13/2006	Accounts Receivable	1002805-My Name Is Test		-589.94	1002805
+ENDTRNS
+TRNS		INVOICE	06/13/2006	Accounts Receivable	1002806-My Name Is Test		319.94	1002806	CartFusion Demo Order 1002806	N	Y		123 Anystreet Blvd. 	Buffalo	NY	10045	11-Sep-06		3881984524
+SPL		INVOICE	06/13/2006	Sales			-299.99	1002806	OLM-C765UZ	N	-1	299.9900	OLM-C765UZ	1	Y	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Shipping and Handling			-7.95	1002806	Shipping and Handling	N	-1	7.95	Shipping and Handling	1	N	N	11-Sep-06		
+SPL		INVOICE	06/13/2006	Sales Tax Payable	Sales Tax		-12.00	1002806		N		4.00%	Sales Tax	1	N	N	11-Sep-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	06/13/2006	Undeposited Funds	1002806-My Name Is Test		319.94	1002806
+SPL		PAYMENT	06/13/2006	Accounts Receivable	1002806-My Name Is Test		-319.94	1002806
+ENDTRNS
+TRNS		INVOICE	07/26/2006	Accounts Receivable	1002807-Martin McGee		1222.92	1002807	CartFusion Demo Order 1002807	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	24-Oct-06		3843586823
+SPL		INVOICE	07/26/2006	Sales			-1349.97	1002807	CAPSSD500	N	-3	449.9900	CAPSSD500	1	Y	N	24-Oct-06		
+SPL		INVOICE	07/26/2006	Shipping and Handling			-7.95	1002807	Shipping and Handling	N	-1	7.95	Shipping and Handling	1	N	N	24-Oct-06		
+SPL		INVOICE	07/26/2006	Sales Tax Payable	Sales Tax		0.00	1002807		N		0.00%	Sales Tax	1	N	N	24-Oct-06		AUTOSTAX
+SPL		INVOICE	07/26/2006	Discounts Given			-135.00	1002807	Discounts Given	N	-1	135.00	Discounts Given	1	N	N	24-Oct-06		
+ENDTRNS
+TRNS		PAYMENT	07/26/2006	Undeposited Funds	1002807-Martin McGee		1222.92	1002807
+SPL		PAYMENT	07/26/2006	Accounts Receivable	1002807-Martin McGee		-1222.92	1002807
+ENDTRNS
+TRNS		INVOICE	07/27/2006	Accounts Receivable	1002808-Alex oddjob		304.22	1002808	CartFusion Demo Order 1002808	N	Y		22523 Dolorosa Street 	Woodland Hills	CA	91367	25-Oct-06		3892472449
+SPL		INVOICE	07/27/2006	Sales			-269.95	1002808	CAPSA95	N	-1	269.9500	CAPSA95	1	Y	N	25-Oct-06		
+SPL		INVOICE	07/27/2006	Shipping and Handling			-12.00	1002808	Shipping and Handling	N	-1	12.00	Shipping and Handling	1	N	N	25-Oct-06		
+SPL		INVOICE	07/27/2006	Sales Tax Payable	Sales Tax		-22.27	1002808		N		8.25%	Sales Tax	1	N	N	25-Oct-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	07/27/2006	Undeposited Funds	1002808-Alex oddjob		304.22	1002808
+SPL		PAYMENT	07/27/2006	Accounts Receivable	1002808-Alex oddjob		-304.22	1002808
+ENDTRNS
+TRNS		INVOICE	08/27/2006	Accounts Receivable	1002810-Martin McGee		950	1002810	CartFusion Demo Order 1002810	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	25-Nov-06		3843586823
+SPL		INVOICE	08/27/2006	Sales			-849.95	1002810	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	25-Nov-06		
+SPL		INVOICE	08/27/2006	Sales			-179.98	1002810	FUJFPA205	N	-2	89.9900	FUJFPA205	1	Y	N	25-Nov-06		
+SPL		INVOICE	08/27/2006	Sales			-119.80	1002810	DOF5XBB Sand	N	-4	29.9500	DOF5XBB	1	Y	N	25-Nov-06		
+SPL		INVOICE	08/27/2006	Shipping and Handling			-29.05	1002810	Shipping and Handling	N	-1	29.05	Shipping and Handling	1	N	N	25-Nov-06		
+SPL		INVOICE	08/27/2006	Sales Tax Payable	Sales Tax		0.00	1002810		N		0.00%	Sales Tax	1	N	N	25-Nov-06		AUTOSTAX
+SPL		INVOICE	08/27/2006	Discounts Given			-199.97	1002810	Discounts Given	N	-1	199.97	Discounts Given	1	N	N	25-Nov-06		
+SPL		INVOICE	08/27/2006	Other Expenses			-28.81	1002810	Other Expenses	N	-1	28.81	Other Expenses	1	N	N	25-Nov-06		
+ENDTRNS
+TRNS		INVOICE	08/28/2006	Accounts Receivable	1002811-Mike Gallagher		882.45	1002811	CartFusion Demo Order 1002811	N	Y		556 Yellow Rd. 	Minneapolis	MN	44333	26-Nov-06		3848236344
+SPL		INVOICE	08/28/2006	Sales			-899.95	1002811	NIKD70	N	-1	899.9500	NIKD70	1	Y	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Shipping and Handling			-14.00	1002811	Shipping and Handling	N	-1	14.00	Shipping and Handling	1	N	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Sales Tax Payable	Sales Tax		-58.50	1002811		N		6.50%	Sales Tax	1	N	N	26-Nov-06		AUTOSTAX
+SPL		INVOICE	08/28/2006	Discounts Given			-90.00	1002811	Discounts Given	N	-1	90.00	Discounts Given	1	N	N	26-Nov-06		
+ENDTRNS
+TRNS		PAYMENT	08/28/2006	Undeposited Funds	1002811-Mike Gallagher		882.45	1002811
+SPL		PAYMENT	08/28/2006	Accounts Receivable	1002811-Mike Gallagher		-882.45	1002811
+ENDTRNS
+TRNS		INVOICE	08/28/2006	Accounts Receivable	1002812-Mike Gallagher		429.84	1002812	CartFusion Demo Order 1002812	N	Y		556 Yellow Rd. 	Minneapolis	MN	44333	26-Nov-06		3848236344
+SPL		INVOICE	08/28/2006	Sales			-399.99	1002812	HPPS850	N	-1	399.9900	HPPS850	1	Y	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Shipping and Handling			-3.85	1002812	Shipping and Handling	N	-1	3.85	Shipping and Handling	1	N	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Sales Tax Payable	Sales Tax		-26.00	1002812		N		6.50%	Sales Tax	1	N	N	26-Nov-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	08/28/2006	Undeposited Funds	1002812-Mike Gallagher		429.84	1002812
+SPL		PAYMENT	08/28/2006	Accounts Receivable	1002812-Mike Gallagher		-429.84	1002812
+ENDTRNS
+TRNS		INVOICE	08/28/2006	Accounts Receivable	1002813-Mike Gallagher		376.59	1002813	CartFusion Demo Order 1002813	N	Y		556 Yellow Rd. 	Minneapolis	MN	44333	26-Nov-06		3848236344
+SPL		INVOICE	08/28/2006	Sales			-349.99	1002813	SODSCP200	N	-1	349.9900	SODSCP200	1	Y	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Shipping and Handling			-3.85	1002813	Shipping and Handling	N	-1	3.85	Shipping and Handling	1	N	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Sales Tax Payable	Sales Tax		-22.75	1002813		N		6.50%	Sales Tax	1	N	N	26-Nov-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	08/28/2006	Undeposited Funds	1002813-Mike Gallagher		376.59	1002813
+SPL		PAYMENT	08/28/2006	Accounts Receivable	1002813-Mike Gallagher		-376.59	1002813
+ENDTRNS
+TRNS		INVOICE	08/28/2006	Accounts Receivable	1002814-Mike Gallagher		376.59	1002814	CartFusion Demo Order 1002814	N	Y		556 Yellow Rd. 	Minneapolis	MN	44333	26-Nov-06		3848236344
+SPL		INVOICE	08/28/2006	Sales			-349.99	1002814	SODSCP200	N	-1	349.9900	SODSCP200	1	Y	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Shipping and Handling			-3.85	1002814	Shipping and Handling	N	-1	3.85	Shipping and Handling	1	N	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Sales Tax Payable	Sales Tax		-22.75	1002814		N		6.50%	Sales Tax	1	N	N	26-Nov-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	08/28/2006	Undeposited Funds	1002814-Mike Gallagher		376.59	1002814
+SPL		PAYMENT	08/28/2006	Accounts Receivable	1002814-Mike Gallagher		-376.59	1002814
+ENDTRNS
+TRNS		INVOICE	08/28/2006	Accounts Receivable	1002815-Mike Gallagher		381.74	1002815	CartFusion Demo Order 1002815	N	Y		556 Yellow Rd. 	Minneapolis	MN	44333	26-Nov-06		3848236344
+SPL		INVOICE	08/28/2006	Sales			-349.99	1002815	PENOPWP	N	-1	349.9900	PENOPWP	1	Y	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Shipping and Handling			-9.00	1002815	Shipping and Handling	N	-1	9.00	Shipping and Handling	1	N	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Sales Tax Payable	Sales Tax		-22.75	1002815		N		6.50%	Sales Tax	1	N	N	26-Nov-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	08/28/2006	Undeposited Funds	1002815-Mike Gallagher		381.74	1002815
+SPL		PAYMENT	08/28/2006	Accounts Receivable	1002815-Mike Gallagher		-381.74	1002815
+ENDTRNS
+TRNS		INVOICE	08/28/2006	Accounts Receivable	1002816-Mike Gallagher		67.7	1002816	CartFusion Demo Order 1002816	N	Y		556 Yellow Rd. 	Minneapolis	MN	44333	26-Nov-06		3848236344
+SPL		INVOICE	08/28/2006	Sales			-59.95	1002816	DOF5XBB Olive	N	-1	59.9500	DOF5XBB	1	Y	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Shipping and Handling			-3.85	1002816	Shipping and Handling	N	-1	3.85	Shipping and Handling	1	N	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Sales Tax Payable	Sales Tax		-3.90	1002816		N		6.51%	Sales Tax	1	N	N	26-Nov-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	08/28/2006	Undeposited Funds	1002816-Mike Gallagher		67.7	1002816
+SPL		PAYMENT	08/28/2006	Accounts Receivable	1002816-Mike Gallagher		-67.7	1002816
+ENDTRNS
+TRNS		INVOICE	08/28/2006	Accounts Receivable	1002817-Mike Gallagher		1436.74	1002817	CartFusion Demo Order 1002817	N	Y		556 Yellow Rd. 	Minneapolis	MN	44333	26-Nov-06		3848236344
+SPL		INVOICE	08/28/2006	Sales			-529.99	1002817	FUJFPS7000	N	-1	529.9900	FUJFPS7000	1	Y	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Sales			-899.95	1002817	OLM-E300	N	-1	899.9500	OLM-E300	1	Y	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Shipping and Handling			-3.85	1002817	Shipping and Handling	N	-1	3.85	Shipping and Handling	1	N	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Sales Tax Payable	Sales Tax		-92.95	1002817		N		6.50%	Sales Tax	1	N	N	26-Nov-06		AUTOSTAX
+SPL		INVOICE	08/28/2006	Discounts Given			-90.00	1002817	Discounts Given	N	-1	90.00	Discounts Given	1	N	N	26-Nov-06		
+ENDTRNS
+TRNS		PAYMENT	08/28/2006	Undeposited Funds	1002817-Mike Gallagher		1436.74	1002817
+SPL		PAYMENT	08/28/2006	Accounts Receivable	1002817-Mike Gallagher		-1436.74	1002817
+ENDTRNS
+TRNS		INVOICE	08/28/2006	Accounts Receivable	1002818-Martin McGee		944.95	1002818	CartFusion Demo Order 1002818	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	26-Nov-06		3843586823
+SPL		INVOICE	08/28/2006	Sales			-899.95	1002818	NIKD70	N	-1	899.9500	NIKD70	1	Y	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Sales			-249.99	1002818	FUJFPS5000	N	-1	249.9900	FUJFPS5000	1	Y	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Shipping and Handling			0.00	1002818	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Sales Tax Payable	Sales Tax		0.00	1002818		N		0.00%	Sales Tax	1	N	N	26-Nov-06		AUTOSTAX
+SPL		INVOICE	08/28/2006	Discounts Given			-204.99	1002818	Discounts Given	N	-1	204.99	Discounts Given	1	N	N	26-Nov-06		
+ENDTRNS
+TRNS		PAYMENT	08/28/2006	Undeposited Funds	1002818-Martin McGee		944.95	1002818
+SPL		PAYMENT	08/28/2006	Accounts Receivable	1002818-Martin McGee		-944.95	1002818
+ENDTRNS
+TRNS		INVOICE	08/28/2006	Accounts Receivable	1002819-Martin McGee		17.03	1002819	CartFusion Demo Order 1002819	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	26-Nov-06		3843586823
+SPL		INVOICE	08/28/2006	Sales			-11.99	1002819	B0000TMP2M Black	N	-1	11.9900	B0000TMP2M	2	Y	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Shipping and Handling			-4.05	1002819	Shipping and Handling	N	-1	4.05	Shipping and Handling	2	N	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Sales Tax Payable	Sales Tax		-0.99	1002819		N		8.26%	Sales Tax	2	N	N	26-Nov-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	08/28/2006	Undeposited Funds	1002819-Martin McGee		17.03	1002819
+SPL		PAYMENT	08/28/2006	Accounts Receivable	1002819-Martin McGee		-17.03	1002819
+ENDTRNS
+TRNS		INVOICE	08/28/2006	Accounts Receivable	1002820-Martin McGee		17.03	1002820	CartFusion Demo Order 1002820	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	26-Nov-06		3843586823
+SPL		INVOICE	08/28/2006	Sales			-11.99	1002820	B0000TMP2M Black	N	-1	11.9900	B0000TMP2M	2	Y	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Shipping and Handling			-4.05	1002820	Shipping and Handling	N	-1	4.05	Shipping and Handling	2	N	N	26-Nov-06		
+SPL		INVOICE	08/28/2006	Sales Tax Payable	Sales Tax		-0.99	1002820		N		8.26%	Sales Tax	2	N	N	26-Nov-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	08/28/2006	Undeposited Funds	1002820-Martin McGee		17.03	1002820
+SPL		PAYMENT	08/28/2006	Accounts Receivable	1002820-Martin McGee		-17.03	1002820
+ENDTRNS
+TRNS		INVOICE	09/11/2006	Accounts Receivable	1002821-Martin McGee		1362.08	1002821	CartFusion Demo Order 1002821	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	10-Dec-06		3843586823
+SPL		INVOICE	09/11/2006	Sales			-349.99	1002821	PENOPWP	N	-1	349.9900	PENOPWP	1	Y	N	10-Dec-06		
+SPL		INVOICE	09/11/2006	Sales			-239.99	1002821	CASEXZ4U	N	-1	239.9900	CASEXZ4U	1	Y	N	10-Dec-06		
+SPL		INVOICE	09/11/2006	Sales			-599.95	1002821	OLM-C8080	N	-1	599.9500	OLM-C8080	1	Y	N	10-Dec-06		
+SPL		INVOICE	09/11/2006	Sales			-11.99	1002821	B0000TMP2M Black	N	-1	11.9900	B0000TMP2M	1	Y	N	10-Dec-06		
+SPL		INVOICE	09/11/2006	Sales			-7.49	1002821	B0009B1ZP4 Black	N	-1	7.4900	B0009B1ZP4	1	Y	N	10-Dec-06		
+SPL		INVOICE	09/11/2006	Sales			-59.95	1002821	DOF5XBB Black	N	-1	59.9500	DOF5XBB	1	Y	N	10-Dec-06		
+SPL		INVOICE	09/11/2006	Shipping and Handling			-12.00	1002821	Shipping and Handling	N	-1	12.00	Shipping and Handling	1	N	N	10-Dec-06		
+SPL		INVOICE	09/11/2006	Sales Tax Payable	Sales Tax		-104.72	1002821		N		8.25%	Sales Tax	1	N	N	10-Dec-06		AUTOSTAX
+SPL		INVOICE	09/11/2006	Discounts Given			-24.00	1002821	Discounts Given	N	-1	24.00	Discounts Given	1	N	N	10-Dec-06		
+ENDTRNS
+TRNS		PAYMENT	09/11/2006	Undeposited Funds	1002821-Martin McGee		1362.08	1002821
+SPL		PAYMENT	09/11/2006	Accounts Receivable	1002821-Martin McGee		-1362.08	1002821
+ENDTRNS
+TRNS		INVOICE	09/11/2006	Accounts Receivable	1002822-Martin McGee		466.08	1002822	CartFusion Demo Order 1002822	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	10-Dec-06		3843586823
+SPL		INVOICE	09/11/2006	Sales			-299.99	1002822	OLM-C765UZ	N	-1	299.9900	OLM-C765UZ	1	Y	N	10-Dec-06		
+SPL		INVOICE	09/11/2006	Sales			-89.99	1002822	FUJFPA205	N	-1	89.9900	FUJFPA205	1	Y	N	10-Dec-06		
+SPL		INVOICE	09/11/2006	Sales			-11.99	1002822	B0000TMP2M Black	N	-1	11.9900	B0000TMP2M	1	Y	N	10-Dec-06		
+SPL		INVOICE	09/11/2006	Shipping and Handling			-30.95	1002822	Shipping and Handling	N	-1	30.95	Shipping and Handling	1	N	N	10-Dec-06		
+SPL		INVOICE	09/11/2006	Sales Tax Payable	Sales Tax		-33.16	1002822		N		8.25%	Sales Tax	1	N	N	10-Dec-06		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	09/11/2006	Undeposited Funds	1002822-Martin McGee		466.08	1002822
+SPL		PAYMENT	09/11/2006	Accounts Receivable	1002822-Martin McGee		-466.08	1002822
+ENDTRNS
+TRNS		INVOICE	12/09/2006	Accounts Receivable	1002823-Bill College		925.49	1002823	CartFusion Demo Order 1002823	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	09-Mar-07		3906022540
+SPL		INVOICE	12/09/2006	Sales			-59.95	1002823	DOF5XBB Black	N	-1	59.9500	DOF5XBB	4	Y	N	09-Mar-07		
+SPL		INVOICE	12/09/2006	Sales			-849.95	1002823	CAEDRXTS	N	-1	849.9500	CAEDRXTS	4	Y	N	09-Mar-07		
+SPL		INVOICE	12/09/2006	Shipping and Handling			-11.24	1002823	Shipping and Handling	N	-1	11.24	Shipping and Handling	4	N	N	09-Mar-07		
+SPL		INVOICE	12/09/2006	Sales Tax Payable	Sales Tax		-4.35	1002823		N		0.48%	Sales Tax	4	N	N	09-Mar-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	12/09/2006	Accounts Receivable	1002824-Bill College		830.62	1002824	CartFusion Demo Order 1002824	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	09-Mar-07		3906022540
+SPL		INVOICE	12/09/2006	Sales			-849.95	1002824	CAEDRXTS	N	-1	849.9500	CAEDRXTS	4	Y	N	09-Mar-07		
+SPL		INVOICE	12/09/2006	Shipping and Handling			-4.05	1002824	Shipping and Handling	N	-1	4.05	Shipping and Handling	4	N	N	09-Mar-07		
+SPL		INVOICE	12/09/2006	Sales Tax Payable	Sales Tax		-61.62	1002824		N		7.25%	Sales Tax	4	N	N	09-Mar-07		AUTOSTAX
+SPL		INVOICE	12/09/2006	Discounts Given			-85.00	1002824	Discounts Given	N	-1	85.00	Discounts Given	4	N	N	09-Mar-07		
+ENDTRNS
+TRNS		INVOICE	01/15/2007	Accounts Receivable	1002827-Todd Currie		1103.14	1002827	CartFusion Demo Order 1002827	N	Y		test 	Irvine	NY	33009	15-Apr-07		3909774919
+SPL		INVOICE	01/15/2007	Sales			-849.95	1002827	CAEDRXTS	N	-1	849.9500	CAEDRXTS	4	Y	N	15-Apr-07		
+SPL		INVOICE	01/15/2007	Sales			-199.95	1002827	OLM-S410	N	-1	199.9500	OLM-S410	4	Y	N	15-Apr-07		
+SPL		INVOICE	01/15/2007	Shipping and Handling			-29.24	1002827	Shipping and Handling	N	-1	29.24	Shipping and Handling	4	N	N	15-Apr-07		
+SPL		INVOICE	01/15/2007	Sales Tax Payable	Sales Tax		-34.00	1002827		N		3.24%	Sales Tax	4	N	N	15-Apr-07		AUTOSTAX
+SPL		INVOICE	01/15/2007	Discounts Given			-10.00	1002827	Discounts Given	N	-1	10.00	Discounts Given	4	N	N	15-Apr-07		
+ENDTRNS
+TRNS		INVOICE	02/02/2007	Accounts Receivable	1002829-tom degrezia		457.9	1002829	CartFusion Demo Order 1002829	N	Y		14702 Central 	Chino	CA	91710	03-May-07		3911436833
+SPL		INVOICE	02/02/2007	Sales			-399.99	1002829	HPPS850	N	-1	399.9900	HPPS850	2	Y	N	03-May-07		
+SPL		INVOICE	02/02/2007	Shipping and Handling			-28.91	1002829	Shipping and Handling	N	-1	28.91	Shipping and Handling	2	N	N	03-May-07		
+SPL		INVOICE	02/02/2007	Sales Tax Payable	Sales Tax		-29.00	1002829		N		7.25%	Sales Tax	2	N	N	03-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/02/2007	Accounts Receivable	1002830-tom degrezia		799.84	1002830	CartFusion Demo Order 1002830	N	Y		14702 Central 	Chino	CA	91710	03-May-07		3911436833
+SPL		INVOICE	02/02/2007	Sales			-399.99	1002830	HPPS850	N	-1	399.9900	HPPS850	4	Y	N	03-May-07		
+SPL		INVOICE	02/02/2007	Sales			-11.99	1002830	B0000TMP2M	N	-1	11.9900	B0000TMP2M	4	Y	N	03-May-07		
+SPL		INVOICE	02/02/2007	Sales			-329.95	1002830	SODSCP150B	N	-1	329.9500	SODSCP150B	4	Y	N	03-May-07		
+SPL		INVOICE	02/02/2007	Shipping and Handling			-28.91	1002830	Shipping and Handling	N	-1	28.91	Shipping and Handling	4	N	N	03-May-07		
+SPL		INVOICE	02/02/2007	Sales Tax Payable	Sales Tax		-29.00	1002830		N		3.91%	Sales Tax	4	N	N	03-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/14/2007	Accounts Receivable	1002831-Sammy Sosa		3299.8	1002831	CartFusion Demo Order 1002831	N	Y		1234 hallow dr 	jackson	AP	83001	15-May-07		3861847459
+SPL		INVOICE	02/14/2007	Sales			-2699.85	1002831	NIKD70	N	-3	899.9500	NIKD70	1	Y	N	15-May-07		
+SPL		INVOICE	02/14/2007	Sales			-599.95	1002831	OLM-C8080	N	-1	599.9500	OLM-C8080	1	Y	N	15-May-07		
+SPL		INVOICE	02/14/2007	Shipping and Handling			0.00	1002831	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	15-May-07		
+SPL		INVOICE	02/14/2007	Sales Tax Payable	Sales Tax		0.00	1002831		N		0.00%	Sales Tax	1	N	N	15-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/14/2007	Accounts Receivable	1002832-Test User		974.95	1002832	CartFusion Demo Order 1002832	N	Y		.. ..	..	CA	90210	15-May-07		3912713545
+SPL		INVOICE	02/14/2007	Sales			-349.99	1002832	PENOPWP	N	-1	349.9900	PENOPWP	2	Y	N	15-May-07		
+SPL		INVOICE	02/14/2007	Sales			-539.90	1002832	FUJFPF410	N	-2	269.9500	FUJFPF410	2	Y	N	15-May-07		
+SPL		INVOICE	02/14/2007	Shipping and Handling			-20.54	1002832	Shipping and Handling	N	-1	20.54	Shipping and Handling	2	N	N	15-May-07		
+SPL		INVOICE	02/14/2007	Sales Tax Payable	Sales Tax		-64.52	1002832		N		7.25%	Sales Tax	2	N	N	15-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/14/2007	Accounts Receivable	1002833-Test User		974.95	1002833	CartFusion Demo Order 1002833	N	Y		.. ..	..	CA	90210	15-May-07		3912713545
+SPL		INVOICE	02/14/2007	Sales			-349.99	1002833	PENOPWP	N	-1	349.9900	PENOPWP	4	Y	N	15-May-07		
+SPL		INVOICE	02/14/2007	Sales			-539.90	1002833	FUJFPF410	N	-2	269.9500	FUJFPF410	4	Y	N	15-May-07		
+SPL		INVOICE	02/14/2007	Shipping and Handling			-20.54	1002833	Shipping and Handling	N	-1	20.54	Shipping and Handling	4	N	N	15-May-07		
+SPL		INVOICE	02/14/2007	Sales Tax Payable	Sales Tax		-64.52	1002833		N		7.25%	Sales Tax	4	N	N	15-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/15/2007	Accounts Receivable	1002834-Seneca Kasper		239.99	1002834	CartFusion Demo Order 1002834	N	Y		2435 Willow Dr. 	Tucson	AZ	85701	16-May-07		3912834357
+SPL		INVOICE	02/15/2007	Sales			-239.99	1002834	CASEXZ4U	N	-1	239.9900	CASEXZ4U	1	Y	N	16-May-07		
+SPL		INVOICE	02/15/2007	Shipping and Handling			0.00	1002834	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	16-May-07		
+SPL		INVOICE	02/15/2007	Sales Tax Payable	Sales Tax		0.00	1002834		N		0.00%	Sales Tax	1	N	N	16-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/15/2007	Accounts Receivable	1002835-Omar Sten		599.9	1002835	CartFusion Demo Order 1002835	N	Y		4545 Maple Ave 	Walnut	CA	91789	16-May-07		3912846435
+SPL		INVOICE	02/15/2007	Sales			-329.95	1002835	OLM-C765UZ	N	-1	329.9500	OLM-C765UZ	1	Y	N	16-May-07		
+SPL		INVOICE	02/15/2007	Sales			-269.95	1002835	CAPSA95	N	-1	269.9500	CAPSA95	1	Y	N	16-May-07		
+SPL		INVOICE	02/15/2007	Shipping and Handling			0.00	1002835	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	16-May-07		
+SPL		INVOICE	02/15/2007	Sales Tax Payable	Sales Tax		0.00	1002835		N		0.00%	Sales Tax	1	N	N	16-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/15/2007	Accounts Receivable	1002836-August Suibne		419.99	1002836	CartFusion Demo Order 1002836	N	Y		87689 Lake Ave. 	Studio City	CA	91604	16-May-07		3912855328
+SPL		INVOICE	02/15/2007	Sales			-419.99	1002836	SODSCW7	N	-1	419.9900	SODSCW7	1	Y	N	16-May-07		
+SPL		INVOICE	02/15/2007	Shipping and Handling			0.00	1002836	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	16-May-07		
+SPL		INVOICE	02/15/2007	Sales Tax Payable	Sales Tax		0.00	1002836		N		0.00%	Sales Tax	1	N	N	16-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/15/2007	Accounts Receivable	1002837-Odysseus Eko		631.93	1002837	CartFusion Demo Order 1002837	N	Y		78 Mason St. 	Boston	MA	02108	16-May-07		3912812957
+SPL		INVOICE	02/15/2007	Sales			-11.99	1002837	B0000TMP2M	N	-1	11.9900	B0000TMP2M	1	Y	N	16-May-07		
+SPL		INVOICE	02/15/2007	Sales			-199.95	1002837	NIKCP3700	N	-1	199.9500	NIKCP3700	1	Y	N	16-May-07		
+SPL		INVOICE	02/15/2007	Sales			-419.99	1002837	SODSCW7	N	-1	419.9900	SODSCW7	1	Y	N	16-May-07		
+SPL		INVOICE	02/15/2007	Shipping and Handling			0.00	1002837	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	16-May-07		
+SPL		INVOICE	02/15/2007	Sales Tax Payable	Sales Tax		0.00	1002837		N		0.00%	Sales Tax	1	N	N	16-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/15/2007	Accounts Receivable	1002838-Alma Ulrike		329.95	1002838	CartFusion Demo Order 1002838	N	Y		265 Winston ST. 	Winter Park	FL	32789	16-May-07		3912820824
+SPL		INVOICE	02/15/2007	Sales			-329.95	1002838	SODSCP150B	N	-1	329.9500	SODSCP150B	1	Y	N	16-May-07		
+SPL		INVOICE	02/15/2007	Shipping and Handling			0.00	1002838	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	16-May-07		
+SPL		INVOICE	02/15/2007	Sales Tax Payable	Sales Tax		0.00	1002838		N		0.00%	Sales Tax	1	N	N	16-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/15/2007	Accounts Receivable	1002839-Carmel Godfried		12.99	1002839	CartFusion Demo Order 1002839	N	Y		314566 Alameda St. 	Los Angeles	CA	90026	16-May-07		3912871017
+SPL		INVOICE	02/15/2007	Sales			-12.99	1002839	B0000TMP2M	N	-1	12.9900	B0000TMP2M	1	Y	N	16-May-07		
+SPL		INVOICE	02/15/2007	Shipping and Handling			0.00	1002839	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	16-May-07		
+SPL		INVOICE	02/15/2007	Sales Tax Payable	Sales Tax		0.00	1002839		N		0.00%	Sales Tax	1	N	N	16-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/15/2007	Accounts Receivable	1002840-Harald Helmuth		699.89	1002840	CartFusion Demo Order 1002840	N	Y		90088 Apache St. 	Beverly Hills	CA	90210	16-May-07		3912864238
+SPL		INVOICE	02/15/2007	Sales			-299.99	1002840	OLM-C765UZ	N	-1	299.9900	OLM-C765UZ	1	Y	N	16-May-07		
+SPL		INVOICE	02/15/2007	Sales			-399.90	1002840	OLM-S410	N	-2	199.9500	OLM-S410	1	Y	N	16-May-07		
+SPL		INVOICE	02/15/2007	Shipping and Handling			0.00	1002840	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	16-May-07		
+SPL		INVOICE	02/15/2007	Sales Tax Payable	Sales Tax		0.00	1002840		N		0.00%	Sales Tax	1	N	N	16-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/15/2007	Accounts Receivable	1002841-Herman Eitan		899.95	1002841	CartFusion Demo Order 1002841	N	Y		22435 Capistrano St. 	Woodland Hills	CA	91367	16-May-07		3912863569
+SPL		INVOICE	02/15/2007	Sales			-899.95	1002841	NIKD70	N	-1	899.9500	NIKD70	1	Y	N	16-May-07		
+SPL		INVOICE	02/15/2007	Shipping and Handling			0.00	1002841	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	16-May-07		
+SPL		INVOICE	02/15/2007	Sales Tax Payable	Sales Tax		0.00	1002841		N		0.00%	Sales Tax	1	N	N	16-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/15/2007	Accounts Receivable	1002842-Avi Irving		257.48	1002842	CartFusion Demo Order 1002842	N	Y		55764 Washington Ave. 	San Antonio	TX	78201	16-May-07		3912877121
+SPL		INVOICE	02/15/2007	Sales			-7.49	1002842	B0009B1ZP4	N	-1	7.4900	B0009B1ZP4	1	Y	N	16-May-07		
+SPL		INVOICE	02/15/2007	Sales			-249.99	1002842	FUJFPS5000	N	-1	249.9900	FUJFPS5000	1	Y	N	16-May-07		
+SPL		INVOICE	02/15/2007	Shipping and Handling			0.00	1002842	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	16-May-07		
+SPL		INVOICE	02/15/2007	Sales Tax Payable	Sales Tax		0.00	1002842		N		0.00%	Sales Tax	1	N	N	16-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/15/2007	Accounts Receivable	1002843-Varinius Phocas		299.99	1002843	CartFusion Demo Order 1002843	N	Y		1234 Belt Drive 	Houston	TX	77002	16-May-07		3912867331
+SPL		INVOICE	02/15/2007	Sales			-299.99	1002843	HPPS945	N	-1	299.9900	HPPS945	1	Y	N	16-May-07		
+SPL		INVOICE	02/15/2007	Shipping and Handling			0.00	1002843	Shipping and Handling	N	-1	0.00	Shipping and Handling	1	N	N	16-May-07		
+SPL		INVOICE	02/15/2007	Sales Tax Payable	Sales Tax		0.00	1002843		N		0.00%	Sales Tax	1	N	N	16-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/16/2007	Accounts Receivable	1002850-Gregorios Jesper		807.85	1002850	CartFusion Demo Order 1002850	N	Y		6665 Mulberry Lane 	Springfield	MO	38863	17-May-07		3912937612
+SPL		INVOICE	02/16/2007	Sales			-849.95	1002850	CAEDRXTS	N	-1	849.9500	CAEDRXTS	2	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Shipping and Handling			-6.95	1002850	Shipping and Handling	N	-1	6.95	Shipping and Handling	2	N	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales Tax Payable	Sales Tax		-35.95	1002850		N		4.23%	Sales Tax	2	N	N	17-May-07		AUTOSTAX
+SPL		INVOICE	02/16/2007	Discounts Given			-85.00	1002850	Discounts Given	N	-1	85.00	Discounts Given	2	N	N	17-May-07		
+ENDTRNS
+TRNS		INVOICE	02/16/2007	Accounts Receivable	1002851-Martin McGee		904.37	1002851	CartFusion Demo Order 1002851	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	17-May-07		3843586823
+SPL		INVOICE	02/16/2007	Sales			-899.95	1002851	OLM-E300	N	-1	899.9500	OLM-E300	1	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Shipping and Handling			-29.17	1002851	Shipping and Handling	N	-1	29.17	Shipping and Handling	1	N	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales Tax Payable	Sales Tax		-65.25	1002851		N		7.25%	Sales Tax	1	N	N	17-May-07		AUTOSTAX
+SPL		INVOICE	02/16/2007	Discounts Given			-90.00	1002851	Discounts Given	N	-1	90.00	Discounts Given	1	N	N	17-May-07		
+ENDTRNS
+TRNS		INVOICE	02/16/2007	Accounts Receivable	1002852-Gregorios Jesper		810.35	1002852	CartFusion Demo Order 1002852	N	Y		6665 Mulberry Lane 	Springfield	MO	38863	17-May-07		3912937612
+SPL		INVOICE	02/16/2007	Sales			-849.95	1002852	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Shipping and Handling			-9.45	1002852	Shipping and Handling	N	-1	9.45	Shipping and Handling	1	N	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales Tax Payable	Sales Tax		-35.95	1002852		N		4.23%	Sales Tax	1	N	N	17-May-07		AUTOSTAX
+SPL		INVOICE	02/16/2007	Discounts Given			-85.00	1002852	Discounts Given	N	-1	85.00	Discounts Given	1	N	N	17-May-07		
+ENDTRNS
+TRNS		INVOICE	02/16/2007	Accounts Receivable	1002853-Martin McGee		306.72	1002853	CartFusion Demo Order 1002853	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	17-May-07		3843586823
+SPL		INVOICE	02/16/2007	Sales			-279.99	1002853	KODZ700	N	-1	279.9900	KODZ700	1	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Shipping and Handling			-6.43	1002853	Shipping and Handling	N	-1	6.43	Shipping and Handling	1	N	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales Tax Payable	Sales Tax		-20.30	1002853		N		7.25%	Sales Tax	1	N	N	17-May-07		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	02/16/2007	Undeposited Funds	1002853-Martin McGee		306.72	1002853
+SPL		PAYMENT	02/16/2007	Accounts Receivable	1002853-Martin McGee		-306.72	1002853
+ENDTRNS
+TRNS		INVOICE	02/16/2007	Accounts Receivable	1002854-Art Vandalay		1533.44	1002854	CartFusion Demo Order 1002854	N	Y		789 Kramer St. 	New York	NY	10002	17-May-07		3912929219
+SPL		INVOICE	02/16/2007	Sales			-849.95	1002854	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales			-699.98	1002854	SODSCP200	N	-2	349.9900	SODSCP200	1	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Shipping and Handling			-6.51	1002854	Shipping and Handling	N	-1	6.51	Shipping and Handling	1	N	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales Tax Payable	Sales Tax		-62.00	1002854		N		4.00%	Sales Tax	1	N	N	17-May-07		AUTOSTAX
+SPL		INVOICE	02/16/2007	Discounts Given			-85.00	1002854	Discounts Given	N	-1	85.00	Discounts Given	1	N	N	17-May-07		
+ENDTRNS
+TRNS		PAYMENT	02/16/2007	Undeposited Funds	1002854-Art Vandalay		1533.44	1002854
+SPL		PAYMENT	02/16/2007	Accounts Receivable	1002854-Art Vandalay		-1533.44	1002854
+ENDTRNS
+TRNS		INVOICE	02/16/2007	Accounts Receivable	1002855-Albert Teodor		928.57	1002855	CartFusion Demo Order 1002855	N	Y		898 Serenity Dr. 	Woodland Hills	CA	91367	17-May-07		3912953013
+SPL		INVOICE	02/16/2007	Sales			-899.95	1002855	NIKD70	N	-1	899.9500	NIKD70	4	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales			-9.49	1002855	B0009B1ZP4 Black	N	-1	9.4900	B0009B1ZP4	4	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Shipping and Handling			-43.20	1002855	Shipping and Handling	N	-1	43.20	Shipping and Handling	4	N	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales Tax Payable	Sales Tax		-65.93	1002855		N		7.25%	Sales Tax	4	N	N	17-May-07		AUTOSTAX
+SPL		INVOICE	02/16/2007	Discounts Given			-90.00	1002855	Discounts Given	N	-1	90.00	Discounts Given	4	N	N	17-May-07		
+ENDTRNS
+TRNS		INVOICE	02/16/2007	Accounts Receivable	1002856-Milburn Vitaly		736.19	1002856	CartFusion Demo Order 1002856	N	Y		678 Walnut Dr. 	Lodi	CA	88001	17-May-07		3912988721
+SPL		INVOICE	02/16/2007	Sales			-449.99	1002856	CAPSSD500	N	-1	449.9900	CAPSSD500	4	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales			-229.95	1002856	MINDG500	N	-1	229.9500	MINDG500	4	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Shipping and Handling			-6.95	1002856	Shipping and Handling	N	-1	6.95	Shipping and Handling	4	N	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales Tax Payable	Sales Tax		-49.30	1002856		N		7.25%	Sales Tax	4	N	N	17-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/16/2007	Accounts Receivable	1002857-Margareta Astraea		818.1	1002857	CartFusion Demo Order 1002857	N	Y		909 Flummer Dr. 	Kansas City	MO	64102	17-May-07		3912950543
+SPL		INVOICE	02/16/2007	Sales			-299.99	1002857	KODLS420	N	-1	299.9900	KODLS420	4	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales			-399.99	1002857	HPPS850	N	-1	399.9900	HPPS850	4	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Shipping and Handling			-88.51	1002857	Shipping and Handling	N	-1	88.51	Shipping and Handling	4	N	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales Tax Payable	Sales Tax		-29.61	1002857		N		4.23%	Sales Tax	4	N	N	17-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/16/2007	Accounts Receivable	1002858-Sharon Temple		377.89	1002858	CartFusion Demo Order 1002858	N	Y		2829 Sunset Dr. 	Hollywood	CA	90495	17-May-07		3912947747
+SPL		INVOICE	02/16/2007	Sales			-249.99	1002858	FUJFPS5000	N	-1	249.9900	FUJFPS5000	1	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales			-89.99	1002858	FUJFPA205	N	-1	89.9900	FUJFPA205	1	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Shipping and Handling			-13.26	1002858	Shipping and Handling	N	-1	13.26	Shipping and Handling	1	N	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales Tax Payable	Sales Tax		-24.65	1002858		N		7.25%	Sales Tax	1	N	N	17-May-07		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	02/16/2007	Undeposited Funds	1002858-Sharon Temple		377.89	1002858
+SPL		PAYMENT	02/16/2007	Accounts Receivable	1002858-Sharon Temple		-377.89	1002858
+ENDTRNS
+TRNS		INVOICE	02/16/2007	Accounts Receivable	1002859-alex ocuna		854.6	1002859	CartFusion Demo Order 1002859	N	Y		909 Train Rd 	Tucson	AZ	85704	17-May-07		3912982564
+SPL		INVOICE	02/16/2007	Sales			-849.95	1002859	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales			-7.49	1002859	B0009B1ZP4 Black	N	-1	7.4900	B0009B1ZP4	1	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Shipping and Handling			-34.14	1002859	Shipping and Handling	N	-1	34.14	Shipping and Handling	1	N	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales Tax Payable	Sales Tax		-48.02	1002859		N		5.60%	Sales Tax	1	N	N	17-May-07		AUTOSTAX
+SPL		INVOICE	02/16/2007	Discounts Given			-85.00	1002859	Discounts Given	N	-1	85.00	Discounts Given	1	N	N	17-May-07		
+ENDTRNS
+TRNS		PAYMENT	02/16/2007	Undeposited Funds	1002859-alex ocuna		854.6	1002859
+SPL		PAYMENT	02/16/2007	Accounts Receivable	1002859-alex ocuna		-854.6	1002859
+ENDTRNS
+TRNS		INVOICE	02/16/2007	Accounts Receivable	1002860-Hikaru Kazuo		870.88	1002860	CartFusion Demo Order 1002860	N	Y		4142 Lake Dr. 	Lake Forrest	ME	90035	17-May-07		3912995630
+SPL		INVOICE	02/16/2007	Sales			-239.99	1002860	CASEXZ4U	N	-1	239.9900	CASEXZ4U	4	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales			-599.95	1002860	OLM-C8080	N	-1	599.9500	OLM-C8080	4	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Shipping and Handling			-12.94	1002860	Shipping and Handling	N	-1	12.94	Shipping and Handling	4	N	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales Tax Payable	Sales Tax		-42.00	1002860		N		5.00%	Sales Tax	4	N	N	17-May-07		AUTOSTAX
+SPL		INVOICE	02/16/2007	Discounts Given			-24.00	1002860	Discounts Given	N	-1	24.00	Discounts Given	4	N	N	17-May-07		
+ENDTRNS
+TRNS		INVOICE	02/16/2007	Accounts Receivable	1002861-Yankel Yoram		999.88	1002861	CartFusion Demo Order 1002861	N	Y		876 Kane Dr. 	Beverly Hills	CA	90210	17-May-07		3912944350
+SPL		INVOICE	02/16/2007	Sales			-329.95	1002861	SODSCP150B	N	-1	329.9500	SODSCP150B	1	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales			-349.99	1002861	SODSCP200	N	-1	349.9900	SODSCP200	1	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales			-197.95	1002861	FUJFPS3000	N	-1	197.9500	FUJFPS3000	1	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Shipping and Handling			-58.34	1002861	Shipping and Handling	N	-1	58.34	Shipping and Handling	1	N	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales Tax Payable	Sales Tax		-63.65	1002861		N		7.25%	Sales Tax	1	N	N	17-May-07		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	02/16/2007	Undeposited Funds	1002861-Yankel Yoram		999.88	1002861
+SPL		PAYMENT	02/16/2007	Accounts Receivable	1002861-Yankel Yoram		-999.88	1002861
+ENDTRNS
+TRNS		INVOICE	02/16/2007	Accounts Receivable	1002862-Hyun Jung		1438.96	1002862	CartFusion Demo Order 1002862	N	Y		123 Buena Ave. 	Coco Beach	FL	32931	17-May-07		3912955515
+SPL		INVOICE	02/16/2007	Sales			-849.95	1002862	CAEDRXTS	N	-1	849.9500	CAEDRXTS	4	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales			-529.99	1002862	FUJFPS7000	N	-1	529.9900	FUJFPS7000	4	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Shipping and Handling			-61.22	1002862	Shipping and Handling	N	-1	61.22	Shipping and Handling	4	N	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales Tax Payable	Sales Tax		-82.80	1002862		N		6.00%	Sales Tax	4	N	N	17-May-07		AUTOSTAX
+SPL		INVOICE	02/16/2007	Discounts Given			-85.00	1002862	Discounts Given	N	-1	85.00	Discounts Given	4	N	N	17-May-07		
+ENDTRNS
+TRNS		INVOICE	02/16/2007	Accounts Receivable	1002863-Horacio Daniel		1058.89	1002863	CartFusion Demo Order 1002863	N	Y		866 Turtle Dr. 	Hartford	CT	06106	17-May-07		3912930955
+SPL		INVOICE	02/16/2007	Sales			-269.95	1002863	FUJFPF410	N	-1	269.9500	FUJFPF410	4	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales			-599.95	1002863	OLM-C8080	N	-1	599.9500	OLM-C8080	4	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales			-9.49	1002863	B0009B1ZP4 Brown	N	-1	9.4900	B0009B1ZP4	4	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Shipping and Handling			-126.74	1002863	Shipping and Handling	N	-1	126.74	Shipping and Handling	4	N	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales Tax Payable	Sales Tax		-52.76	1002863		N		6.00%	Sales Tax	4	N	N	17-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/16/2007	Accounts Receivable	1002864-Gheorghe Patxi		952.75	1002864	CartFusion Demo Order 1002864	N	Y		1234 89th St. 	Pasadena	CA	91103	17-May-07		3912944313
+SPL		INVOICE	02/16/2007	Sales			-899.95	1002864	OLM-E300	N	-1	899.9500	OLM-E300	1	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales			-59.95	1002864	DOF5XBB Navy	N	-1	59.9500	DOF5XBB	1	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Shipping and Handling			-13.26	1002864	Shipping and Handling	N	-1	13.26	Shipping and Handling	1	N	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales Tax Payable	Sales Tax		-69.59	1002864		N		7.25%	Sales Tax	1	N	N	17-May-07		AUTOSTAX
+SPL		INVOICE	02/16/2007	Discounts Given			-90.00	1002864	Discounts Given	N	-1	90.00	Discounts Given	1	N	N	17-May-07		
+ENDTRNS
+TRNS		PAYMENT	02/16/2007	Undeposited Funds	1002864-Gheorghe Patxi		952.75	1002864
+SPL		PAYMENT	02/16/2007	Accounts Receivable	1002864-Gheorghe Patxi		-952.75	1002864
+ENDTRNS
+TRNS		INVOICE	02/16/2007	Accounts Receivable	1002865-Wasswa Flynn		516.21	1002865	CartFusion Demo Order 1002865	N	Y		4678 Donna Dr. 	Mercury	RI	90076	17-May-07		3912932935
+SPL		INVOICE	02/16/2007	Sales			-269.95	1002865	CAPSA95	N	-1	269.9500	CAPSA95	4	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales			-199.95	1002865	NIKCP3700	N	-1	199.9500	NIKCP3700	4	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Shipping and Handling			-13.42	1002865	Shipping and Handling	N	-1	13.42	Shipping and Handling	4	N	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales Tax Payable	Sales Tax		-32.89	1002865		N		7.00%	Sales Tax	4	N	N	17-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/16/2007	Accounts Receivable	1002866-Gabriel Robert		1223.07	1002866	CartFusion Demo Order 1002866	N	Y		345 Nathan St. 	Denver	CO	80014	17-May-07		3912971559
+SPL		INVOICE	02/16/2007	Sales			-449.99	1002866	CAPSSD500	N	-1	449.9900	CAPSSD500	1	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales			-329.95	1002866	SODSCP150B	N	-1	329.9500	SODSCP150B	1	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales			-299.99	1002866	HPPS945	N	-1	299.9900	HPPS945	1	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Shipping and Handling			-111.82	1002866	Shipping and Handling	N	-1	111.82	Shipping and Handling	1	N	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales Tax Payable	Sales Tax		-31.32	1002866		N		2.90%	Sales Tax	1	N	N	17-May-07		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	02/16/2007	Undeposited Funds	1002866-Gabriel Robert		1223.07	1002866
+SPL		PAYMENT	02/16/2007	Accounts Receivable	1002866-Gabriel Robert		-1223.07	1002866
+ENDTRNS
+TRNS		INVOICE	02/16/2007	Accounts Receivable	1002867-Gerry Rafiq		1457.51	1002867	CartFusion Demo Order 1002867	N	Y		4545 Washington Ave. 	Los Angeles	CA	90028	17-May-07		3912927327
+SPL		INVOICE	02/16/2007	Sales			-899.95	1002867	NIKD70	N	-1	899.9500	NIKD70	1	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales			-529.99	1002867	FUJFPS7000	N	-1	529.9900	FUJFPS7000	1	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Shipping and Handling			-13.90	1002867	Shipping and Handling	N	-1	13.90	Shipping and Handling	1	N	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales Tax Payable	Sales Tax		-103.67	1002867		N		7.25%	Sales Tax	1	N	N	17-May-07		AUTOSTAX
+SPL		INVOICE	02/16/2007	Discounts Given			-90.00	1002867	Discounts Given	N	-1	90.00	Discounts Given	1	N	N	17-May-07		
+ENDTRNS
+TRNS		PAYMENT	02/16/2007	Undeposited Funds	1002867-Gerry Rafiq		1457.51	1002867
+SPL		PAYMENT	02/16/2007	Accounts Receivable	1002867-Gerry Rafiq		-1457.51	1002867
+ENDTRNS
+TRNS		INVOICE	02/16/2007	Accounts Receivable	1002868-Cadence Jan		1017.21	1002868	CartFusion Demo Order 1002868	N	Y		555 Hazel St. 	Punxsutawny	PA	15767	17-May-07		3912969416
+SPL		INVOICE	02/16/2007	Sales			-329.95	1002868	SODSCP150B	N	-1	329.9500	SODSCP150B	4	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales			-239.99	1002868	CASEXZ4U	N	-1	239.9900	CASEXZ4U	4	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales			-349.99	1002868	SODSCP200	N	-1	349.9900	SODSCP200	4	Y	N	17-May-07		
+SPL		INVOICE	02/16/2007	Shipping and Handling			-66.08	1002868	Shipping and Handling	N	-1	66.08	Shipping and Handling	4	N	N	17-May-07		
+SPL		INVOICE	02/16/2007	Sales Tax Payable	Sales Tax		-55.20	1002868		N		6.00%	Sales Tax	4	N	N	17-May-07		AUTOSTAX
+SPL		INVOICE	02/16/2007	Discounts Given			-24.00	1002868	Discounts Given	N	-1	24.00	Discounts Given	4	N	N	17-May-07		
+ENDTRNS
+TRNS		INVOICE	02/19/2007	Accounts Receivable	1002869-Christiaan Thorvald		1111.29	1002869	CartFusion Demo Order 1002869	N	Y		5685 Glen St. 	Fort Lauderdale	FL	33304	20-May-07		3913285427
+SPL		INVOICE	02/19/2007	Sales			-449.99	1002869	CAPSSD500	N	-1	449.9900	CAPSSD500	4	Y	N	20-May-07		
+SPL		INVOICE	02/19/2007	Sales			-529.99	1002869	FUJFPS7000	N	-1	529.9900	FUJFPS7000	4	Y	N	20-May-07		
+SPL		INVOICE	02/19/2007	Shipping and Handling			-72.51	1002869	Shipping and Handling	N	-1	72.51	Shipping and Handling	4	N	N	20-May-07		
+SPL		INVOICE	02/19/2007	Sales Tax Payable	Sales Tax		-58.80	1002869		N		6.00%	Sales Tax	4	N	N	20-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/19/2007	Accounts Receivable	1002870-Gino Emil		365.57	1002870	CartFusion Demo Order 1002870	N	Y		8989 Crestview Ln. 	Dayton	OH	45405	20-May-07		3913293550
+SPL		INVOICE	02/19/2007	Sales			-279.99	1002870	KODZ700	N	-1	279.9900	KODZ700	1	Y	N	20-May-07		
+SPL		INVOICE	02/19/2007	Sales			-8.49	1002870	B0009B1ZP4 Black	N	-1	8.4900	B0009B1ZP4	1	Y	N	20-May-07		
+SPL		INVOICE	02/19/2007	Shipping and Handling			-61.22	1002870	Shipping and Handling	N	-1	61.22	Shipping and Handling	1	N	N	20-May-07		
+SPL		INVOICE	02/19/2007	Sales Tax Payable	Sales Tax		-15.87	1002870		N		5.50%	Sales Tax	1	N	N	20-May-07		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	02/19/2007	Undeposited Funds	1002870-Gino Emil		365.57	1002870
+SPL		PAYMENT	02/19/2007	Accounts Receivable	1002870-Gino Emil		-365.57	1002870
+ENDTRNS
+TRNS		INVOICE	02/19/2007	Accounts Receivable	1002871-Daniel Johan		1272.18	1002871	CartFusion Demo Order 1002871	N	Y		8907 Stern St. 	Longport	NJ	08403	20-May-07		3913272243
+SPL		INVOICE	02/19/2007	Sales			-849.95	1002871	CAEDRXTS	N	-1	849.9500	CAEDRXTS	1	Y	N	20-May-07		
+SPL		INVOICE	02/19/2007	Sales			-239.99	1002871	CASEXZ4U	N	-1	239.9900	CASEXZ4U	1	Y	N	20-May-07		
+SPL		INVOICE	02/19/2007	Sales			-199.95	1002871	OLM-S410	N	-1	199.9500	OLM-S410	1	Y	N	20-May-07		
+SPL		INVOICE	02/19/2007	Shipping and Handling			-13.90	1002871	Shipping and Handling	N	-1	13.90	Shipping and Handling	1	N	N	20-May-07		
+SPL		INVOICE	02/19/2007	Sales Tax Payable	Sales Tax		-77.39	1002871		N		6.00%	Sales Tax	1	N	N	20-May-07		AUTOSTAX
+SPL		INVOICE	02/19/2007	Discounts Given			-109.00	1002871	Discounts Given	N	-1	109.00	Discounts Given	1	N	N	20-May-07		
+ENDTRNS
+TRNS		PAYMENT	02/19/2007	Undeposited Funds	1002871-Daniel Johan		1272.18	1002871
+SPL		PAYMENT	02/19/2007	Accounts Receivable	1002871-Daniel Johan		-1272.18	1002871
+ENDTRNS
+TRNS		INVOICE	02/19/2007	Accounts Receivable	1002872-Lemmy Isocrates		217.77	1002872	CartFusion Demo Order 1002872	N	Y		1236 Maple St. 	Johnson	MN	56236	20-May-07		3913231112
+SPL		INVOICE	02/19/2007	Sales			-197.95	1002872	FUJFPS3000	N	-1	197.9500	FUJFPS3000	1	Y	N	20-May-07		
+SPL		INVOICE	02/19/2007	Shipping and Handling			-6.95	1002872	Shipping and Handling	N	-1	6.95	Shipping and Handling	1	N	N	20-May-07		
+SPL		INVOICE	02/19/2007	Sales Tax Payable	Sales Tax		-12.87	1002872		N		6.50%	Sales Tax	1	N	N	20-May-07		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	02/19/2007	Undeposited Funds	1002872-Lemmy Isocrates		217.77	1002872
+SPL		PAYMENT	02/19/2007	Accounts Receivable	1002872-Lemmy Isocrates		-217.77	1002872
+ENDTRNS
+TRNS		INVOICE	02/19/2007	Accounts Receivable	1002873-Sean Elias		239.06	1002873	CartFusion Demo Order 1002873	N	Y		3131 Orange Grove Ave. 	Anaheim	CA	92805	20-May-07		3913253837
+SPL		INVOICE	02/19/2007	Sales			-149.99	1002873	MINDX20	N	-1	149.9900	MINDX20	1	Y	N	20-May-07		
+SPL		INVOICE	02/19/2007	Sales			-59.95	1002873	DOF5XBB Navy	N	-1	59.9500	DOF5XBB	1	Y	N	20-May-07		
+SPL		INVOICE	02/19/2007	Shipping and Handling			-13.90	1002873	Shipping and Handling	N	-1	13.90	Shipping and Handling	1	N	N	20-May-07		
+SPL		INVOICE	02/19/2007	Sales Tax Payable	Sales Tax		-15.22	1002873		N		7.25%	Sales Tax	1	N	N	20-May-07		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	02/19/2007	Undeposited Funds	1002873-Sean Elias		239.06	1002873
+SPL		PAYMENT	02/19/2007	Accounts Receivable	1002873-Sean Elias		-239.06	1002873
+ENDTRNS
+TRNS		INVOICE	02/19/2007	Accounts Receivable	1002874-Carol Marcial		735.83	1002874	CartFusion Demo Order 1002874	N	Y		67 Dexter Ave. 	New Orleans	LA	70116	20-May-07		3913287262
+SPL		INVOICE	02/19/2007	Sales			-229.95	1002874	MINDG500	N	-1	229.9500	MINDG500	4	Y	N	20-May-07		
+SPL		INVOICE	02/19/2007	Sales			-299.99	1002874	HPPS945	N	-1	299.9900	HPPS945	4	Y	N	20-May-07		
+SPL		INVOICE	02/19/2007	Sales			-89.99	1002874	FUJFPA205	N	-1	89.9900	FUJFPA205	4	Y	N	20-May-07		
+SPL		INVOICE	02/19/2007	Shipping and Handling			-91.10	1002874	Shipping and Handling	N	-1	91.10	Shipping and Handling	4	N	N	20-May-07		
+SPL		INVOICE	02/19/2007	Sales Tax Payable	Sales Tax		-24.80	1002874		N		4.00%	Sales Tax	4	N	N	20-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/19/2007	Accounts Receivable	1002875-Javier Uinseann		811.29	1002875	CartFusion Demo Order 1002875	N	Y		3131 Lake Ave. 	Santa Clara	CA	95054	20-May-07		3913229655
+SPL		INVOICE	02/19/2007	Sales			-749.97	1002875	FUJFPS5000	N	-3	249.9900	FUJFPS5000	4	Y	N	20-May-07		
+SPL		INVOICE	02/19/2007	Shipping and Handling			-6.95	1002875	Shipping and Handling	N	-1	6.95	Shipping and Handling	4	N	N	20-May-07		
+SPL		INVOICE	02/19/2007	Sales Tax Payable	Sales Tax		-54.37	1002875		N		7.25%	Sales Tax	4	N	N	20-May-07		AUTOSTAX
+ENDTRNS
+TRNS		INVOICE	02/19/2007	Accounts Receivable	1002876-Foster Maitland		350.86	1002876	CartFusion Demo Order 1002876	N	Y		300 Waterfront Rd. 	kansas city	MO	64112	20-May-07		3913225613
+SPL		INVOICE	02/19/2007	Sales			-329.95	1002876	FUJFPF10	N	-1	329.9500	FUJFPF10	1	Y	N	20-May-07		
+SPL		INVOICE	02/19/2007	Shipping and Handling			-6.95	1002876	Shipping and Handling	N	-1	6.95	Shipping and Handling	1	N	N	20-May-07		
+SPL		INVOICE	02/19/2007	Sales Tax Payable	Sales Tax		-13.96	1002876		N		4.23%	Sales Tax	1	N	N	20-May-07		AUTOSTAX
+ENDTRNS
+TRNS		PAYMENT	02/19/2007	Undeposited Funds	1002876-Foster Maitland		350.86	1002876
+SPL		PAYMENT	02/19/2007	Accounts Receivable	1002876-Foster Maitland		-350.86	1002876
+ENDTRNS
+TRNS		INVOICE	02/21/2007	Accounts Receivable	1002877-gh dfg		772.22	1002877	CartFusion Demo Order 1002877	N	Y		cvcx 	cvcx	DE	11214	22-May-07		3913427040
+SPL		INVOICE	02/21/2007	Sales			-849.95	1002877	CAEDRXTS	N	-1	849.9500	CAEDRXTS	4	Y	N	22-May-07		
+SPL		INVOICE	02/21/2007	Shipping and Handling			-7.27	1002877	Shipping and Handling	N	-1	7.27	Shipping and Handling	4	N	N	22-May-07		
+SPL		INVOICE	02/21/2007	Sales Tax Payable	Sales Tax		0.00	1002877		N		0.00%	Sales Tax	4	N	N	22-May-07		AUTOSTAX
+SPL		INVOICE	02/21/2007	Discounts Given			-85.00	1002877	Discounts Given	N	-1	85.00	Discounts Given	4	N	N	22-May-07		
+ENDTRNS
+TRNS		INVOICE	03/10/2007	Accounts Receivable	1002878-Martin McGee		636.45	1002878	CartFusion Demo Order 1002878	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	08-Jun-07		3843586823
+SPL		INVOICE	03/10/2007	Sales			-59.95	1002878	DOF5XBB Navy	N	-1	59.9500	DOF5XBB	4	Y	N	08-Jun-07		
+SPL		INVOICE	03/10/2007	Sales			-599.95	1002878	OLM-C8080	N	-1	599.9500	OLM-C8080	4	Y	N	08-Jun-07		
+SPL		INVOICE	03/10/2007	Shipping and Handling			-32.11	1002878	Shipping and Handling	N	-1	32.11	Shipping and Handling	4	N	N	08-Jun-07		
+SPL		INVOICE	03/10/2007	Sales Tax Payable	Sales Tax		-40.85	1002878		N		6.19%	Sales Tax	4	N	N	08-Jun-07		AUTOSTAX
+SPL		INVOICE	03/10/2007	Other Expenses			-96.41	1002878	Other Expenses	N	-1	96.41	Other Expenses	4	N	N	08-Jun-07		
+ENDTRNS
+TRNS		PAYMENT	03/10/2007	Undeposited Funds	1002878-Martin McGee		636.45	1002878
+SPL		PAYMENT	03/10/2007	Accounts Receivable	1002878-Martin McGee		-636.45	1002878
+ENDTRNS
+TRNS		INVOICE	03/25/2007	Accounts Receivable	1002879-Martin McGee		929.38	1002879	CartFusion Demo Order 1002879	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	23-Jun-07		3843586823
+SPL		INVOICE	03/25/2007	Sales			-599.98	1002879	OLM-C765UZ	N	-2	299.9900	OLM-C765UZ	4	Y	N	23-Jun-07		
+SPL		INVOICE	03/25/2007	Sales			-22.00	1002879	2012440 Royal Blue	N	-1	22.0000	2012440	4	Y	N	23-Jun-07		
+SPL		INVOICE	03/25/2007	Shipping and Handling			-369.60	1002879	Shipping and Handling	N	-1	369.60	Shipping and Handling	4	N	N	23-Jun-07		
+SPL		INVOICE	03/25/2007	Sales Tax Payable	Sales Tax		0.00	1002879		N		0.00%	Sales Tax	4	N	N	23-Jun-07		AUTOSTAX
+SPL		INVOICE	03/25/2007	Discounts Given			-62.20	1002879	Discounts Given	N	-1	62.20	Discounts Given	4	N	N	23-Jun-07		
+ENDTRNS
+TRNS		INVOICE	03/25/2007	Accounts Receivable	1002880-Martin McGee		1303.9	1002880	CartFusion Demo Order 1002880	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	23-Jun-07		3843586823
+SPL		INVOICE	03/25/2007	Sales			-399.99	1002880	HPPS850	N	-1	399.9900	HPPS850	4	Y	N	23-Jun-07		
+SPL		INVOICE	03/25/2007	Sales			-197.95	1002880	FUJFPS3000	N	-1	197.9500	FUJFPS3000	4	Y	N	23-Jun-07		
+SPL		INVOICE	03/25/2007	Sales			-899.95	1002880	OLM-E300	N	-1	899.9500	OLM-E300	4	Y	N	23-Jun-07		
+SPL		INVOICE	03/25/2007	Sales			-12.00	1002880	B0000TMP2M Black	N	-1	12.0000	B0000TMP2M	4	Y	N	23-Jun-07		
+SPL		INVOICE	03/25/2007	Shipping and Handling			-35.00	1002880	Shipping and Handling	N	-1	35.00	Shipping and Handling	4	N	N	23-Jun-07		
+SPL		INVOICE	03/25/2007	Sales Tax Payable	Sales Tax		0.00	1002880		N		0.00%	Sales Tax	4	N	N	23-Jun-07		AUTOSTAX
+SPL		INVOICE	03/25/2007	Discounts Given			-240.99	1002880	Discounts Given	N	-1	240.99	Discounts Given	4	N	N	23-Jun-07		
+ENDTRNS
+TRNS		INVOICE	03/25/2007	Accounts Receivable	1002881-Martin McGee		790.15	1002881	CartFusion Demo Order 1002881	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	23-Jun-07		3843586823
+SPL		INVOICE	03/25/2007	Sales			-849.95	1002881	CAEDRXTS	N	-1	849.9500	CAEDRXTS	4	Y	N	23-Jun-07		
+SPL		INVOICE	03/25/2007	Sales			-17.00	1002881	B0000TMP2M Black	N	-1	17.0000	B0000TMP2M	4	Y	N	23-Jun-07		
+SPL		INVOICE	03/25/2007	Shipping and Handling			-9.90	1002881	Shipping and Handling	N	-1	9.90	Shipping and Handling	4	N	N	23-Jun-07		
+SPL		INVOICE	03/25/2007	Sales Tax Payable	Sales Tax		0.00	1002881		N		0.00%	Sales Tax	4	N	N	23-Jun-07		AUTOSTAX
+SPL		INVOICE	03/25/2007	Discounts Given			-86.70	1002881	Discounts Given	N	-1	86.70	Discounts Given	4	N	N	23-Jun-07		
+ENDTRNS
+TRNS		INVOICE	06/28/2007	Accounts Receivable	1002882-Martin McGee		951.98	1002882	CartFusion Demo Order 1002882	N	Y		7350 Greenhaven Ave. #55 	Rancho Cucamonga	CA	91730	26-Sep-07		3926041423
+SPL		INVOICE	06/28/2007	Sales			-854.99	1002882	7989901	N	-1	854.9900	7989901	1	Y	N	26-Sep-07		
+SPL		INVOICE	06/28/2007	Shipping and Handling			-35.00	1002882	Shipping and Handling	N	-1	35.00	Shipping and Handling	1	N	N	26-Sep-07		
+SPL		INVOICE	06/28/2007	Sales Tax Payable	Sales Tax		-61.99	1002882		N		7.25%	Sales Tax	1	N	N	26-Sep-07		AUTOSTAX
+ENDTRNS

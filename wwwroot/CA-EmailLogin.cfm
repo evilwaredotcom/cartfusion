@@ -1,3 +1,5 @@
+
+
 <cfscript>
 	if( structKeyExists(form, 'EmailAddress') )	{
 		login = application.Common.login(form.EmailAddress);
@@ -5,7 +7,7 @@
 </cfscript>
 
 
-<cfmodule template="tags/layout.cfm" CurrentTab="MyAccount" PageTitle="Customer Email Login Info">
+<cfmodule template="templates/#application.SiteTemplate#/layout.cfm" CurrentTab="MyAccount" PageTitle="Customer Email Login Info">
 
 <!--- Start Breadcrumb --->
 <cfmodule template="tags/breadCrumbs.cfm" CrumbLevel='1' showLinkCrumb="Customer Email Login Info" />
@@ -21,38 +23,37 @@
 			or does not belong to a registered customer.<br><br>
 	<a href="CA-Login.cfm">Please try again.</a></div>
 <cfelse>
-	<cfset Decrypted_Password = DECRYPT(login.Password, application.siteConfig.data.CryptKey, "CFMX_COMPAT", "Hex") >
+	<cfset Decrypted_Password = DECRYPT(login.Password, application.CryptKey, "CFMX_COMPAT", "Hex") >
 	<div class="cfMessageTwo" align="center">Your Password has been emailed to #form.EmailAddress#.<br><br>
 	<a href="CA-Login.cfm">Return to Customer Area</a><br>
 	<a href="index.cfm">Return to Store</a></div>
 
-	<cfmail from="#application.siteConfig.data.NotifyEmail#"
+	<cfmail from="#application.NotifyEmail#"
 			to="#form.EmailAddress#"
-			subject="#application.siteConfig.data.DomainName# Customer Login Information"
+			subject="#application.DomainName# Customer Login Information"
 			type="html">
 		
 		<div class="cfMessageThree">
-		Customer Login Information for #application.siteConfig.data.DomainName#<br><br>
+		Customer Login Information for #application.DomainName#<br><br>
 		<cfloop query="login">	
 			Username: #login.UserName#<br>
 			Password: #decrypted_password#<br><br>
 		</cfloop>
-		<a href="http://www.#application.siteConfig.data.DomainName#">Visit #application.siteConfig.data.DomainName# Now</a>
+		<a href="http://www.#application.DomainName#">Visit #application.DomainName# Now</a>
 		</div>
 	</cfmail>
 </cfif>
 
 	<cfelse>
-		<br />
+		<br/>
 	<div class="cfErrorMsg" align="center">We're sorry but an Email address was not passed in the form.</div>
 	<div align="center">
-		<br />
-		<br />
+		<br/>
+		<br/>
 		<hr class="snip" />
-		<br />
-		<a href="javascript:history.back()"><img src="images/button-back.gif"></a>
-		<a href="index.cfm"><img src="images/button-home.gif"></a>
-	</div>
+		<br/>
+		<input type="button" name="GoBack" value="&lt; BACK" class="button2" onclick="javascript:history.back();"> 
+		<input type="button" name="GoHome" value="HOME &gt;" class="button2" onclick="javascript:document.location.href='index.cfm';">	</div>
 
 </cfif>
 </cfoutput>

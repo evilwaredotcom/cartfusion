@@ -1,12 +1,15 @@
+
+
+
 <cfscript>
 	getCategories = application.Common.getCategories(
 		UserID=session.CustomerArray[28],
-		SiteID=application.siteConfig.data.SiteID,
+		SiteID=application.SiteID,
 		OnlyMainCategories=1);
 </cfscript>
 
 <cfloop query="getCategories">
-	#CatID#<br />
+	#CatID#<br/>
 </cfloop>
 
 
@@ -23,7 +26,7 @@
 <!--- <!--- GET MAIN CATEGORIES --->
 <cfinvoke component="#application.Common#" method="getCategories" returnvariable="getCategories">
 	<cfinvokeargument name="UserID" value="#session.CustomerArray[28]#">
-	<cfinvokeargument name="SiteID" value="#config.SiteID#">
+	<cfinvokeargument name="SiteID" value="#application.SiteID#">
 	<cfinvokeargument name="OnlyMainCategories" value="1">
 </cfinvoke>
 
@@ -41,7 +44,7 @@
 								<td align="center" valign="middle" class="cfDefault"> 
 									<cfif CatFeaturedID EQ ''>	
 										<a href="ProductList.cfm?CatDisplay=#CatID#&start=1">#CatName#</a>
-									<cfelseif FileExists(#config.IU_VirtualPathDIR# & '\' & #CatFeaturedDir# & '\' & #CatFeaturedID#)>
+									<cfelseif FileExists(#application.ImageServerPath# & '\' & #CatFeaturedDir# & '\' & #CatFeaturedID#)>
 										<a href="ProductList.cfm?CatDisplay=#CatID#&start=1"><img src="images/#CatFeaturedDir#/#CatFeaturedID#" BORDER="0" align="absmiddle" alt="#CatName#"></a><br>
 										<a href="ProductList.cfm?CatDisplay=#CatID#&start=1">#CatName#</a>
 									<cfelse>

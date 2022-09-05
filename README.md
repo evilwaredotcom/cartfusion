@@ -1,7 +1,12 @@
-# CartFusion 4.8
-ColdFusion Ecommerce + Shopping Cart on SQL: MSSQL Server, MySQL, Postgres
+# CartFusion 4.8.1
+ColdFusion Ecommerce + Shopping Cart on SQL: MSSQL Server 2005 (, MySQL, Postgres)
 
 ## Installation
+
+>> SEE NEW INSTRUCTIONS IN PDF FILE "CartFusion-4.8.1-Installation-Instructions.pdf"
+
+=====================================================
+## (older) 4.8.0
 
 ### Database
 1. Create a blank database in Microsoft SQL Server, MySQL, or PostgreSQL
@@ -19,9 +24,9 @@ ColdFusion Ecommerce + Shopping Cart on SQL: MSSQL Server, MySQL, Postgres
 
 ### Files
 6. Put all files that are in the "cartfusion.net" folder into your test/live site's primary root folder.  Make sure also to change the name of the "wwwroot" folder to whatever your site's web root folder is.
-7. In a code editing program, open the file "_serverSpecificVars.xml.cfm" in folder "CartFusion_Core/4_8_0/_config/", and change these values to fit your company's settings.
+7. In a code editing program, open the file "_serverSpecificVars.xml.cfm" in folder "CartFusion_Core/4_8_1/config/", and change these values to fit your company's settings.
 8. In a code editing program, open the file "Application.cfm" in folder "wwwroot/admin/" and the one in folder "wwwroot/", and set variables to:
-- SoftwareVersion = '4_8_0';
+- SoftwareVersion = '4_8_1';
 - CoreFolder = '<YourCFMappingLogicalPath>';
 
 ### Site

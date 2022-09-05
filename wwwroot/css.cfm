@@ -1,4 +1,6 @@
 <cfprocessingdirective suppresswhitespace="Yes">
+
+
 <style type="text/css">
 
 /*  BEGIN: Text Styles  ***/
@@ -6,7 +8,7 @@
 
 BODY 
 { font-family: #layout.PrimaryFontFamily#; font-size:#layout.DefaultSize#px; text-decoration: #layout.DefaultDecor#; 
-  color: #layout.DefaultColor#; bgcolor: #layout.PrimaryBGColor#; background: #config.imagepathurl#/#layout.PrimaryBGImage#; }
+  color: #layout.DefaultColor#; bgcolor: #layout.PrimaryBGColor#; background: #application.ImagePath#/#layout.PrimaryBGImage#; }
 
 B
 { font-weight: bold; }
@@ -103,7 +105,7 @@ LI
 .cfRetail
 { font-family: #layout.PrimaryFontFamily#; font-size: #layout.DefaultSize#px; font-weight: #layout.DefaultWeight#;
   text-decoration: line-through; color: #layout.DefaultColor#; }
-      
+	  
 .cfTableHeading
 { font-family: #layout.PrimaryFontFamily#; font-size: #layout.TableHeadingSize#px; font-weight: #layout.TableHeadingWeight#; 
   text-decoration: #layout.TableHeadingDecor#; color: #layout.TableHeadingColor#; } 
@@ -218,18 +220,18 @@ input.button:hover 	{ background-color:##fed; color:###ColorLink#;
 
 /***  BEGIN: CALENDAR Styles  */
 #calendar {position:absolute; 
-           left:0px; 
-           top:0px; 
-           visibility:hidden
-          }
+		   left:0px; 
+		   top:0px; 
+		   visibility:hidden
+		  }
 th {background-color:#ccffcc; 
-    text-align:center; 
-    font-size:10px; 
-    width:26px
+	text-align:center; 
+	font-size:10px; 
+	width:26px
    }
 #tableHeader {background-color:#ffcccc; 
-              width:100%
-             }
+			  width:100%
+			 }
 
 #tableBody tr td {width:26px}
 #today {background-color:#ffcc33}

@@ -369,7 +369,7 @@ Media
 	  	<cfset CALLER.USPSError = 0> <!--- No Error --->
 		<cfset CALLER.USPSTrackErrorDesc = "Success">
 
-	    <cfset CALLER.TrackSummary = CALLER.stUSPSTrack.TrackResponse.TrackInfo.TrackSummary.XmlText>	
+		<cfset CALLER.TrackSummary = CALLER.stUSPSTrack.TrackResponse.TrackInfo.TrackSummary.XmlText>	
 		<cfset CALLER.USPSTrackQuery = QueryNew("ActivityScan")>
 		<!--- Pounds, Ounces, Service, Size, ZipDestination, ZipOrigination, Zone --->
 		<cfif IsDefined("CALLER.stUSPSTrack.TrackResponse.TrackInfo.TrackDetail") AND #IsArray(CALLER.stUSPSTrack.TrackResponse.TrackInfo.TrackDetail.XmlChildren)#>
@@ -380,7 +380,7 @@ Media
 		 </cfloop>
 		 
 		<cfelse>
-		    <cfset newRow  = QueryAddRow(CALLER.USPSTrackQuery, 1)>	
+			<cfset newRow  = QueryAddRow(CALLER.USPSTrackQuery, 1)>	
 			<cfif IsDefined("CALLER.stUSPSTrack.TrackResponse.TrackInfo.TrackDetail.XmlText")>	
 				<cfset temp = QuerySetCell(CALLER.USPSTrackQuery, "ActivityScan", CALLER.stUSPSTrack.TrackResponse.TrackInfo.TrackDetail.XmlText)>
 			<cfelse>
@@ -544,7 +544,7 @@ Media
 		 </cfloop>
 		 
 		<cfelse>
-		    <cfset newRow  = QueryAddRow(CALLER.USPSTrackDetailQuery, 1)>	
+			<cfset newRow  = QueryAddRow(CALLER.USPSTrackDetailQuery, 1)>	
 			<cfif IsDefined("CALLER.stUSPSTrackDetail.TrackResponse.TrackInfo.TrackDetail.EventDate.XmlText")>	
 				<cfset temp = QuerySetCell(CALLER.USPSTrackDetailQuery, "ScanDate", CALLER.stUSPSTrackDetail.TrackResponse.TrackInfo.TrackDetail.EventDate.XmlText)>
 			<cfelse>
@@ -571,17 +571,17 @@ Media
  <!--- Start USPS Signature Confirmation request --->
  <cfcase value="SignatureConfirmRequest">
 
-    <!--- 
-	For “Canned” test requests the code should read:
-	File = “/ShippingAPItest.dll?”
+	<!--- 
+	For ï¿½Cannedï¿½ test requests the code should read:
+	File = ï¿½/ShippingAPItest.dll?ï¿½
 	xml = "API=SignatureConfirmation&XML=" & XMLSTRING
 	
-	For “Sample” test requests the code should read:
-	File = “/ShippingAPI.dll?”
+	For ï¿½Sampleï¿½ test requests the code should read:
+	File = ï¿½/ShippingAPI.dll?ï¿½
 	xml = "API=SignatureConfirmationCertify&XML=" & XMLSTRING
 	
-	For “Live” requests the code should read:
-	File = “/ShippingAPI.dll?”
+	For ï¿½Liveï¿½ requests the code should read:
+	File = ï¿½/ShippingAPI.dll?ï¿½
 	xml = "API=SignatureConfirmation&XML=" & XMLSTRING --->
 	
 	<cfscript>
@@ -803,11 +803,11 @@ Media
 		ZipIndicator = '';
 		 
 		 for ( idx = 1 ; idx lte ListLen(ATTRIBUTES.ShipToZip5); idx = idx + 1 ) {
-             ZipIndicator = '#ZipIndicator#
+			 ZipIndicator = '#ZipIndicator#
 	<ZipCode ID="#idx#">
 		<Zip5>#ListGetAt(ATTRIBUTES.ShipToZip5, idx)#</Zip5>
 	</ZipCode>';
-          }
+		  }
 	  
 	}
 	else {
@@ -827,7 +827,7 @@ Media
 	</cfhttp>
 	
 	<cfset CALLER.stUSPSAddrCityStateLookup = XmlParse(cfhttp.FileContent)>
-    
+	
 	<!--- <cfoutput><cfdump var="#CALLER.stUSPSAddrCityStateLookup#"></cfoutput> --->
 	
 	<cfif ATTRIBUTES.Debug eq "TRUE">
@@ -919,13 +919,13 @@ Media
  <cfcase value="DeliveryConfirmation">
  
 		<!--- 
-	File = “/ShippingAPItest.dll?”
+	File = ï¿½/ShippingAPItest.dll?ï¿½
 	= "API=DeliveryConfirmationV2&XML=" & XMLSTRING
-	For “Sample” test requests the code should read:
-	File = “/ShippingAPI.dll?”
+	For ï¿½Sampleï¿½ test requests the code should read:
+	File = ï¿½/ShippingAPI.dll?ï¿½
 	xml = "API=DelivConfirmCertify&XML=" & XMLSTRING
-	For “Live” requests the code should read:
-	File = “/ShippingAPI.dll?”
+	For ï¿½Liveï¿½ requests the code should read:
+	File = ï¿½/ShippingAPI.dll?ï¿½
 	xml = "API=DeliveryConfirmationV2&XML=" & XMLSTRING
 	 --->
 	
@@ -1094,19 +1094,19 @@ Media
  <cfcase value="ExpressMailLabel">
  
 		<!--- 	
-		For “Canned” test requests the code should read:
+		For ï¿½Cannedï¿½ test requests the code should read:
 		-----------------------------------------------
-		File = “/ShippingAPItest.dll?”
+		File = ï¿½/ShippingAPItest.dll?ï¿½
 		xml = "ExpressMailLabel&XML=" & XMLSTRING
 		
-		For “Sample” test requests the code should read:
+		For ï¿½Sampleï¿½ test requests the code should read:
 		------------------------------------------------
-		File = “/ShippingAPI.dll?”
+		File = ï¿½/ShippingAPI.dll?ï¿½
 		xml = "API=ExpressMailLabelCertify&XML=" & XMLSTRING
 		
-		For “Live” requests the code should read:
+		For ï¿½Liveï¿½ requests the code should read:
 		-----------------------------------------
-		File = “/ShippingAPI.dll?”
+		File = ï¿½/ShippingAPI.dll?ï¿½
 		xml = "API=ExpressMailLabel&XML=" & XMLSTRING
 
 	 --->
@@ -1452,7 +1452,7 @@ Media
 		<cfset CALLER.USPSError = 0> <!--- Success --->
 		<cfset CALLER.USPSPryServiceErrorDesc = "Success">
 		
-	    <cfif StructKeyExists(CALLER.stUSPSPryMailService.PriorityMailResponse, "OriginZip")>
+		<cfif StructKeyExists(CALLER.stUSPSPryMailService.PriorityMailResponse, "OriginZip")>
 			<cfset CALLER.OriginZip3 = CALLER.stUSPSPryMailService.PriorityMailResponse.OriginZip.XmlText>
 		<cfelse>
 			<!--- invalid response received --->
@@ -1531,7 +1531,7 @@ Media
 		<cfset CALLER.USPSError = 0> <!--- Success --->
 		<cfset CALLER.USPSPackageServiceErrorDesc = "Success">
 		
-	    <cfif StructKeyExists(CALLER.stUSPSPackageService.StandardBResponse, "OriginZip")>
+		<cfif StructKeyExists(CALLER.stUSPSPackageService.StandardBResponse, "OriginZip")>
 			<cfset CALLER.OriginZip3 = CALLER.stUSPSPackageService.StandardBResponse.OriginZip.XmlText>
 		<cfelse>
 			<!--- invalid response received --->

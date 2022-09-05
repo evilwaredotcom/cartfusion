@@ -1,4 +1,4 @@
-<cfmodule template="tags/layout.cfm" CurrentTab="Affiliates">
+<cfmodule template="templates/#application.SiteTemplate#/layout.cfm" CurrentTab="Affiliates">
 
 <!--- Start Breadcrumb --->
 <cfmodule template="tags/breadCrumbs.cfm" CrumbLevel='1' showLinkCrumb="Affiliate Sign Up Success" />
@@ -25,12 +25,12 @@
 		<div id="AffiliateOutput">
 			<br>
 			<p><strong>THANK YOU</strong></p><!---<img src="images/image-RegComplete.gif">--->
-			<p>Affiliate registration is now complete.  Thank you for signing up as an affiliate with #application.siteConfig.data.DomainName#.<br /><br />
+			<p>Affiliate registration is now complete.  Thank you for signing up as an affiliate with #application.DomainName#.<br/><br/>
 			
-			<strong>Your Affiliate ID:</strong> #URL.AFID#<br /><br />
+			<strong>Your Affiliate ID:</strong> #URL.AFID#<br/><br/>
 			
-			Easily collect your commissions by offering your customers the following link to <cfoutput>#application.siteConfig.data.DomainName#</cfoutput>:<br>
-			<a href="#application.siteConfig.data..RootURL#/?AFID=#URL.AFID#">#application.siteConfig.data.RootURL#/?AFID=#URL.AFID#</a><br /><br />
+			Easily collect your commissions by offering your customers the following link to <cfoutput>#application.DomainName#</cfoutput>:<br>
+			<a href="#application.RootURL#/?AFID=#URL.AFID#">#application.RootURL#/?AFID=#URL.AFID#</a><br/><br/>
 			You and your customers may also type in your Affiliate ID during the order checkout process to ensure you receive a commission.</p>
 		</div>
 		
@@ -42,13 +42,12 @@
 </cfoutput>
 </cfif>
 
-	<br />
-	<br />
+	<br/>
+	<br/>
 	<hr class="snip" />
-	<br />
+	<br/>
 	<div align="center">
-		<a href="javascript:history.back()"><img src="images/button-back.gif"></a>
-		<a href="index.cfm"><img src="images/button-home.gif"></a>
-	</div>
+		<input type="button" name="GoBack" value="&lt; BACK" class="button2" onclick="javascript:history.back();"> 
+		<input type="button" name="GoHome" value="HOME &gt;" class="button2" onclick="javascript:document.location.href='index.cfm';">	</div>
 
 </cfmodule>

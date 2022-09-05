@@ -1,3 +1,21 @@
+<!--- 
+|| LEGAL ||
+$CartFusion - Copyright � 2001-2007 Trade Studios, LLC.$
+$This copyright notice MUST stay intact for use (see license.txt).$
+$It is against the law to copy, distribute, gift, bundle or give away this code$
+$without written consent from Trade Studios, LLC.$
+
+|| VERSION CONTROL ||
+$Id: $
+$Date: $
+$Revision: $
+
+|| DESCRIPTION || 
+$Description: 	Final Step 4 of 4 of the checkout process $
+$TODO: 			Move all of these functions to a CFC and show Success/Fail $
+$				confirmation message and print invoice on CO-Payment.cfm $
+--->
+
 <!--- INVOKE INSTANCE OF OBJECT - GET CART ITEMS --->
 <!--- CARTFUSION 4.6 - CART CFC --->
 <cfscript>
@@ -6,24 +24,26 @@
 	} else {
 		UserID = 1 ;
 	}
-	getCartItems = application.Cart.getCartItems(UserID=UserID,SiteID=config.SiteID,SessionID=SessionID) ;
+	getCartItems = application.Cart.getCartItems(
+		UserID=UserID,
+		SiteID=application.SiteID,
+		SessionID=SessionID) ;
 </cfscript>
 
 <!--- CHECK FOR MINIMUM ORDER REQUIREMENT --->
 <cfinclude template="Includes/CartMinimums.cfm">
 
-<cfif getCartItems.data.RecordCount EQ 0 OR MinNotReached EQ 1 OR FirstOrder EQ 1 >
+<cfif not getCartItems.data.RecordCount OR MinNotReached EQ 1 OR FirstOrder EQ 1 >
 	<cflocation url="CartEdit.cfm" addtoken="no">
 	
 <!--- IF CART HAS STUFF... --->
 <cfelse>
-
-	<cfset PageTitle = 'Check Out - Step 5 of 5'>
 	
-	<cfif session.CustomerArray[25] NEQ config.BaseCountry>
-		<cfif config.AcceptIntShipment EQ 0 >	
+	<!--- IF WE'RE NOT ACCEPTING INTERNATIONAL SHIPMENTS AT THIS TIME --->
+	<cfif session.CustomerArray[25] NEQ application.BaseCountry>
+		<cfif application.AcceptIntShipment EQ 0 >	
 			<div class="11pxDarkGray" align="center">
-				<div class="13pxDarkGrayBold" align="center"><cfoutput>#config.StoreName#</cfoutput> Error</div><br>
+				<div class="13pxDarkGrayBold" align="center"><cfoutput>#application.StoreName#</cfoutput> Error</div><br>
 				We are sorry...<br>
 				At this moment we are not accepting international shipments.<br>
 				You can go back and specify a national shipping address or cancel your order.<br>
@@ -45,11 +65,11 @@
 	
 	<!--- APPLY FORM FIELDS TO CUSTOMER ARRAY --->
 	<cfscript>
-		if ( config.AllowCreditCards EQ 1 AND Form.FormOfPayment EQ 1 )
+		if ( application.AllowCreditCards EQ 1 AND Form.FormOfPayment EQ 1 )
 		{
 			// ENCRYPT CARDNUMBER, EXPIRATION DATE
-			Encrypted_CardNum = TRIM(ENCRYPT(Form.CardNum, config.CryptKey, "CFMX_COMPAT", "Hex")) ;
-			Encrypted_ExpDate = TRIM(ENCRYPT(Form.ExpDate, config.CryptKey, "CFMX_COMPAT", "Hex")) ;
+			Encrypted_CardNum = TRIM(ENCRYPT(Form.CardNum, application.CryptKey, "CFMX_COMPAT", "Hex")) ;
+			Encrypted_ExpDate = TRIM(ENCRYPT(Form.ExpDate, application.CryptKey, "CFMX_COMPAT", "Hex")) ;
 		}
 	</cfscript>
 		
@@ -59,8 +79,8 @@
 	<cfquery name="SearchCustomer" datasource="#application.dsn#">
 		SELECT 	CustomerID
 		FROM 	Customers
-		WHERE 	UserName = '#session.CustomerArray[26]#'
-		OR		CustomerID = '#session.CustomerArray[17]#'		
+		WHERE 	UserName = <cfqueryparam cfsqltype="cf_sql_varchar" value="#session.CustomerArray[26]#" >
+		OR		CustomerID = <cfqueryparam cfsqltype="cf_sql_varchar" value="#session.CustomerArray[17]#" >
 	</cfquery>
 	
 	<!--- SET CUSTOMER ID --->
@@ -87,7 +107,7 @@
 		<cfquery name="getLegitAFID" datasource="#application.dsn#">
 			SELECT	AFID
 			FROM	Affiliates
-			WHERE	AFID = #session.CustomerArray[36]#
+			WHERE	AFID = <cfqueryparam cfsqltype="cf_sql_integer" value="#session.CustomerArray[36]#" >
 			AND		Disabled != 1
 		</cfquery>
 		<cfscript>
@@ -167,7 +187,7 @@
 					<cfif Form.FormOfPayment EQ 1 >
 						Cardname, Cardnum, ExpDate, CardCVV, 
 					</cfif>
-					<cfif config.AffiliateToCustomer EQ 1 AND session.CustomerArray[36] NEQ '' >
+					<cfif application.AffiliateToCustomer EQ 1 AND session.CustomerArray[36] NEQ '' >
 						AffiliateID,
 					</cfif>
 					UserName, Password,
@@ -186,7 +206,7 @@
 					<cfif Form.FormOfPayment EQ 1 >
 						'#Form.CardName#', '#Encrypted_CardNum#', '#Encrypted_ExpDate#', '#Form.CardCVV#',
 					</cfif>
-					<cfif config.AffiliateToCustomer EQ 1 >
+					<cfif application.AffiliateToCustomer EQ 1 >
 						#session.CustomerArray[36]#,
 					</cfif>
 					'#session.CustomerArray[26]#',				
@@ -232,7 +252,7 @@
 					ExpDate = '#Encrypted_ExpDate#',
 					CardCVV= '#Form.CardCVV#',
 					</cfif>
-					<cfif config.AffiliateToCustomer EQ 1 AND session.CustomerArray[36] NEQ '' >
+					<cfif application.AffiliateToCustomer EQ 1 AND session.CustomerArray[36] NEQ '' >
 					AffiliateID = #session.CustomerArray[36]#,
 					</cfif>
 					<cfif isDefined('CreditToApply') >
@@ -275,7 +295,7 @@
 				)
 				VALUES 
 				(
-					#config.SiteID#, #OrderID#, #session.CustomerArray[17]#, '#CGI.REMOTE_ADDR#', '#Form.ShippingMethod1#',
+					#application.SiteID#, #OrderID#, #session.CustomerArray[17]#, '#CGI.REMOTE_ADDR#', '#Form.ShippingMethod1#',
 					<cfif Form.FormOfPayment EQ 1 >
 					'#Form.CardName#', '#Encrypted_CardNum#', '#Encrypted_ExpDate#', '#Form.CardCVV#',
 					</cfif>
@@ -305,7 +325,7 @@
 		<cfoutput query="getCartItems.data">
 		
 			<!--- CARTFUSION 4.6 - CART CFC --->
-            <cfscript>
+			<cfscript>
 				if ( TRIM(session.CustomerArray[28]) NEQ '' ) {
 					UserID = session.CustomerArray[28] ;
 				} else {
@@ -313,16 +333,16 @@
 				}
 				UseThisPrice = application.Cart.getItemPrice(
 									UserID=UserID,
-									SiteID=config.SiteID,
+									SiteID=application.SiteID,
 									ItemID=ItemID,
 									SessionID=SessionID,
 									OptionName1=OptionName1,
 									OptionName2=OptionName2,
 									OptionName3=OptionName3
 									) ;
-            </cfscript>
+			</cfscript>
 			
-			<cfif config.EnableMultiShip EQ 1 >
+			<cfif application.EnableMultiShip EQ 1 >
 				<cfquery name="getDistinctAddresses" dbtype="query">
 					SELECT 	DISTINCT ShippingID
 					FROM	getCartItems.data
@@ -357,11 +377,11 @@
 					( #OrderID#, #ItemID#, #Qty#, #UseThisPrice#, '#OptionName1#', '#OptionName2#', '#OptionName3#', '#StatusCode#' 
 					 <cfif isDefined('getDistinctAddresses') AND getDistinctAddresses.RecordCount NEQ 0 >
 					  	<cfif isDefined('getCustomerSH') AND getCartItems.data.ShippingID GT 0 >
-							, #getCartItems.ShippingID#, '#getCustomerSH.ShipFirstName#', '#getCustomerSH.ShipLastName#', '#getCustomerSH.ShipCompanyName#', 
+							, #getCartItems.data.ShippingID#, '#getCustomerSH.ShipFirstName#', '#getCustomerSH.ShipLastName#', '#getCustomerSH.ShipCompanyName#', 
 							'#getCustomerSH.ShipAddress1#', '#getCustomerSH.ShipAddress2#', '#getCustomerSH.ShipCity#', '#getCustomerSH.ShipState#', 
 							'#getCustomerSH.ShipZip#', '#getCustomerSH.ShipCountry#', '#getCustomerSH.ShipPhone#', '#getCustomerSH.ShipEmail#'
 						<cfelse>
-							, #getCartItems.ShippingID#, '#session.CustomerArray[18]#', '#session.CustomerArray[19]#', '#session.CustomerArray[34]#', 
+							, #getCartItems.data.ShippingID#, '#session.CustomerArray[18]#', '#session.CustomerArray[19]#', '#session.CustomerArray[34]#', 
 							'#session.CustomerArray[20]#', '#session.CustomerArray[21]#', '#session.CustomerArray[22]#', '#session.CustomerArray[23]#', 
 							'#session.CustomerArray[24]#', '#session.CustomerArray[25]#', '#session.CustomerArray[35]#', '#session.CustomerArray[31]#'
 						</cfif>
@@ -472,14 +492,14 @@
 					<input type="hidden" name="cmd" value="_ext-enter">
 					<input type="hidden" name="redirect_cmd" value="_xclick">
 					<input type="hidden" name="business" value="#getPayPal.PayPalAccount#">
-					<input type="hidden" name="item_name" value="#config.StoreNameShort# Order #OrderID#">
+					<input type="hidden" name="item_name" value="#application.StoreNameShort# Order #OrderID#">
 					<input type="hidden" name="invoice" value="#OrderID#">
 					<input type="hidden" name="amount" value="#DecimalFormat(RunningTotal - ShippingPrice)#">
 					<input type="hidden" name="shipping" value="#DecimalFormat(ShippingPrice)#">
 					<input type="hidden" name="no_shipping" value="0">
-					<input type="hidden" name="return" value="#config.RootURL#/CO-PayPalSuccess.cfm?OrderID=#OrderID#">
-					<input type="hidden" name="cancel_return" value="#config.RootURL#/CO-PayPalFail.cfm?OrderID=#OrderID#">
-					<input type="hidden" name="image_URL" value="#config.RootURL#/images/logos/image-PayPal.jpg">
+					<input type="hidden" name="return" value="#application.RootURL#/CO-PayPalSuccess.cfm?OrderID=#OrderID#">
+					<input type="hidden" name="cancel_return" value="#application.RootURL#/CO-PayPalFail.cfm?OrderID=#OrderID#">
+					<input type="hidden" name="image_URL" value="#application.RootURL#/images/logos/image-PayPal.jpg">
 					<!--- PRE-POPULATE --->
 					<input type="hidden" name="email" value="#session.CustomerArray[11]#">
 					<input type="hidden" name="login_email" value="#session.CustomerArray[11]#">
@@ -539,4 +559,4 @@
 	</cfif><!--- END: IF MISSING INFORMATION - TRANSACTION --->
 </cfif><!--- CART HAS STUFF IN IT --->
 
-<cfinclude template="LayoutGlobalFooter.cfm">
+<!--- <cfinclude template="LayoutGlobalFooter.cfm"> --->
