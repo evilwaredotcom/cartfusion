@@ -1,14 +1,14 @@
 # CartFusion 4.8.1
-ColdFusion Ecommerce + Shopping Cart on SQL: MSSQL Server 2005 (, MySQL, Postgres)
+ColdFusion Ecommerce + Shopping Cart on SQL: MSSQL Server 2005 (MySQL, Postgres)
 
 ## Installation
 
->> SEE NEW INSTRUCTIONS IN ROOT FILE:
->> PDF: "CartFusion-4.8.1-Installation-Instructions.pdf"
->> DOC: "CartFusion-4.8.1-Installation-Instructions.doc"
+>> SEE NEW INSTRUCTION CHECKLISTS IN ROOT:
+* PDF: "CartFusion-4.8.1-Installation-Instructions.pdf"
+* DOC: "CartFusion-4.8.1-Installation-Instructions.doc"
 
 =====================================================
-## (older) 4.8.0
+## (older) <= 4.8.0
 
 ### Database
 1. Create a blank database in Microsoft SQL Server, MySQL, or PostgreSQL
