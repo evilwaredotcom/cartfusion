@@ -1,0 +1,12 @@
+{
+  "name": "cartfusion",
+  "version": "4.8.1",
+  "description": "ColdFusion + Vanilla JS on MS SQL Server 2005",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Marty McGee",
+  "license": "MIT"
+}
